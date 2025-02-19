@@ -523,6 +523,25 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.aide-bio-card').forEach(card => {
                 card.style.display = district === "0" ? "none" : "flex";
             });
+            
+            // If we go back to "select a district", hide all elements and only shows intro text
+            if (district === "0") {
+                document.getElementById('district-title').textContent = "San Francisco Supervisorial Districts";
+                document.getElementById('intro-text').style.display = "block";
+            // Hide all other elements
+            ['photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 
+                'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 
+                'homeownership', 'policeMeeting'].forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        if (element.tagName === 'IMG') {
+                            element.src = '';
+                        } else {
+                            element.textContent = '';
+                        }
+                    }
+                });
+            }
 
         });
 
