@@ -1,0 +1,105 @@
+<html>
+<head>
+    <title>Supervisorial district information</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+    <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <body>
+
+        <!-- Dropdown container -->
+        <div class="dropdown-container">
+            <select id="district-dropdown">
+                <option value="0">Select a district</option>
+                <option value="1">District 1</option>
+                <option value="2">District 2</option>
+                <option value="3">District 3</option>
+                <option value="4">District 4</option>
+                <option value="5">District 5</option>
+                <option value="6">District 6</option>
+                <option value="7">District 7</option>
+                <option value="8">District 8</option>
+                <option value="9">District 9</option>
+                <option value="10">District 10</option>
+                <option value="11">District 11</option>
+            </select>
+        </div>
+    
+        <!-- Map and info container -->
+        <div class="cont">
+
+            <div class="map-cont">
+                <div id="map"></div>
+            </div>
+
+            <div class="info-cont">
+                <div id="district-info">
+                    <h2 id="district-title">San Francisco Supervisorial Districts</h2>
+                    <p id="intro-text">San Francisco has 11 supervisorial districts. Select your district to check out the information of the supervisor and their office.</p>
+
+                    <div class="supe-bio-card">
+                        <img id="photo"></img>
+                        <div class="supe-info">
+                            <p id="supe"></p>
+                            <p id="supeEmail"></p>
+                            <p id="supeLang"></p>
+                            <p id="supeHistory"></p>
+                        </div>
+                    </div>
+
+                    <h2 id="about-aides">Legislative aides</h2>
+                    <div class="aide-bio-card">
+                        <div id="aide1"></div>
+                        <div class="aide-info">
+                            <div id="aide1Email"></div>
+                            <div id="aide1lang"></div>
+                            <div id="aide1work"></div>
+                        </div>
+                    </div>
+                    <div class="aide-bio-card">
+                        <div id="aide2"></div>
+                        <div class="aide-info">
+                            <div id="aide2Email"></div>
+                            <div id="aide2lang"></div>
+                            <div id="aide2work"></div>
+                        </div>
+                    </div>
+                    <div class="aide-bio-card">
+                        <div id="aide3"></div>
+                        <div class="aide-info">
+                            <div id="aide3Email"></div>
+                            <div id="aide3lang"></div>
+                            <div id="aide3work"></div>
+                        </div>
+                    </div>
+                    <div class="aide-bio-card">
+                        <div id="aide4"></div>
+                        <div class="aide-info">
+                            <div id="aide4Email"></div>
+                            <div id="aide4lang"></div>
+                            <div id="aide4work"></div>
+                        </div>
+                    </div>
+
+                    <h2 id="about-district">About the district</h2>
+                    <p id="newsletter"></p>
+                    <p id="neighborhoods"></p>
+                    <p id="population"></p>
+                    <p id="registeredVoters"></p>
+                    <p id="race"></p>
+                    <p id="turnout"></p>
+                    <p id="homeownership"></p>
+                    <p id="policeMeeting"></p>
+
+                </div>
+            </div>
+            
+        </div>
+
+        <script src="map.js"></script>
+    </body>
+
+</html>

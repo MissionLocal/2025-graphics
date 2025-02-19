@@ -1,0 +1,185 @@
+body {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 2px;
+    box-sizing: border-box;
+}
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+a {
+    color: #5E5E5E;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #5682A9;
+}
+
+a:visited {
+    color: #5E5E5E;
+}
+
+/* Dropdown styling */
+
+.dropdown-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#district-dropdown {
+    font-size: 20px;
+    border-radius: 5px;
+    border: 0px solid gray;
+    margin: 0 auto;
+    font-family: 'Barlow', sans-serif;
+    width: 100vw;
+    max-width: 600px;
+    background-color: white;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    appearance: none;
+    position: relative;
+    padding-right: 30px;
+}
+
+/* Map and info containers styling */
+
+#map {
+    height: 500px;
+    width: 100%;
+    min-height: 100%;
+}
+
+.map-cont,
+.info-cont {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 275px;
+    max-width: 600px;
+    width: 90%;
+    gap: 10px;
+}
+
+.info-cont {
+    margin: 0 0 10px 0;
+}
+
+/* District info styling */
+
+#district-info {
+    padding: 0px 15px;
+    font-family: 'Barlow', sans-serif;
+}
+
+.supe-bio-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
+    display: none;
+}
+
+.aide-bio-card {
+    display: flex;
+    align-items: left;
+    gap: 5px;
+    flex-direction: column;
+    display: none;
+    margin: 0 0 20px 0;
+}
+
+.aide-info {
+    border-left: 0.5px solid #D4D4D4;
+    padding-left: 10px;
+    gap: 10px;
+}
+
+#aide1, #aide2, #aide3, #aide4 {
+    font-weight: bold;
+}
+
+#aide1Email, #aide2Email, #aide3Email, #aide4Email {
+    margin-bottom: 5px;
+}
+
+#aide1lang, #aide2lang, #aide3lang, #aide4lang {
+    margin-bottom: 5px;
+}
+
+#about-aides {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#about-district {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#district-title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 0 10px 0;
+}
+
+@media screen and (max-width: 600px) {
+    .supe-bio-card {
+        flex-direction: column;
+    }
+    
+    .supe-bio-card img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+    }
+}
+
+.supe-bio-card img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.supe-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#supe {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0 0 5px 0;
+    margin: 5px 0px;
+}
+
+#supeEmail, #supeLang, #supeHistory {
+    font-size: 16px;
+    padding: 0;
+    margin: 5px 0px;
+}
+
+#intro-text {
+    font-size: 16px;
+}
+
+#photo {
+    width: 150px;
+    height: auto;
+}
