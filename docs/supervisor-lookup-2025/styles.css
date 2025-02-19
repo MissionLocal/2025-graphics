@@ -159,7 +159,7 @@ a:visited {
 .supe-info {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 2px;
 }
 
 #supe {
@@ -169,10 +169,10 @@ a:visited {
     margin: 5px 0px;
 }
 
-#supeEmail, #supeLang, #supeHistory {
+#supeEmail, #supeLang, #supeHistory, #newsletter {
     font-size: 16px;
     padding: 0;
-    margin: 5px 0px;
+    margin: 3px 0px;
 }
 
 #intro-text {
