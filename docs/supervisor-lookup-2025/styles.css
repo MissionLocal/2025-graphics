@@ -134,6 +134,13 @@ a:visited {
     padding: 0 0 10px 0;
 }
 
+#background {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+}
+
 @media screen and (max-width: 600px) {
     .supe-bio-card {
         flex-direction: column;

@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
             supeLang: "English, Cantonese, Mandarin",
             supeHistory: "Re-elected on Nov. 5, 2024 for the term from Jan. 8, 2025 to Jan. 8, 2029.",
             newsletter: "Sign up <a href='https://fe3b157075640675741775.pub.s10.sfmc-content.com/livrcs30wkh'>here</a> and read it <a href='https://sfbos.org/supervisor-chan-newsletter'>here</a>. District official <a href='https://sfbos.org/supervisor-chan-district-1'>page</a>.",
-            neighborhoods: "Inner Richmond, Central Richmond, Outer Richmond, Lone Mountain, Golden Gate Park, Lincoln Park, and University of San Francisco.",
             aide1: "Frances Hsieh",
             aide1Email: "Frances.Hsieh@sfgov.org",
             aide1Lang: "English",
@@ -58,9 +57,11 @@ document.addEventListener('DOMContentLoaded', function () {
             aide3Email: "Robyn.Burke@sfgov.org",
             aide3Work: "To be confirmed.",
             aide4: "Calvin Yan",
-            aide4Lang: "English, Cantonese.",
+            aide4Lang: "English, Cantonese",
             aide4Email: "Calvin.Yan@sfgov.org",
             aide4Work: "To be confirmed.",
+            background: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/District-1-background-blank.png",
+            neighborhoods: "Inner Richmond, Central Richmond, Outer Richmond, Lone Mountain, Golden Gate Park, Lincoln Park, and University of San Francisco.",
             race: "White: 47.17%; Asian: 41.25%; Latino: 7.16%; Black: 2.89%; Indigenous: 0.44%",
             population: "75,727",
             registeredVoters: "39,515",
@@ -465,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Update the district information using a loop to avoid repetition
             if (districtInfo[district]) {
-                const categories = ['district-title', 'photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 'aide1', 'aide1Email', 'aide1Lang', 'aide1Work', 'aide2', 'aide2Email',  'aide2Lang', 'aide2Work', 'aide3', 'aide3Email', 'aide3Lang', 'aide3Work', 'aide4', 'aide4Email', 'aide4Lang', 'aide4Work', 'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 'homeownership', 'policeMeeting'];
+                const categories = ['district-title', 'photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 'aide1', 'aide1Email', 'aide1Lang', 'aide1Work', 'aide2', 'aide2Email',  'aide2Lang', 'aide2Work', 'aide3', 'aide3Email', 'aide3Lang', 'aide3Work', 'aide4', 'aide4Email', 'aide4Lang', 'aide4Work', 'background', 'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 'homeownership', 'policeMeeting'];
                 const labels = {
                     'photo': '',
                     'supe': '',
@@ -489,6 +490,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'aide4Email': 'Email:',
                     'aide4Lang': 'Languages:',
                     'aide4Work': 'Areas:',
+                    'background': '',
                     'neighborhoods': 'Neighborhoods:',
                     'population': 'Population:',
                     'registeredVoters': 'Registered voters:',
@@ -502,7 +504,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 categories.forEach(category => {
                     const element = document.getElementById(category);
                     if (element) {
-                        if (category === 'photo') {
+                        if (category === 'photo' || category === 'background') {
                             element.src = districtInfo[district][category] || ''; // Set the image source
                             element.style.display = districtInfo[district][category] ? 'block' : 'none'; // Hide if no image
                         } else if (category === 'district-title') {
