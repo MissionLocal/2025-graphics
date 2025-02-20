@@ -112,11 +112,7 @@ a:visited {
     font-weight: bold;
 }
 
-#aide1Email, #aide2Email, #aide3Email, #aide4Email {
-    margin-bottom: 5px;
-}
-
-#aide1lang, #aide2lang, #aide3lang, #aide4lang {
+#aide1Email, #aide2Email, #aide3Email, #aide4Email, #aide1Lang, #aide2Lang, #aide3Lang, #aide4Lang {
     margin-bottom: 5px;
 }
 
