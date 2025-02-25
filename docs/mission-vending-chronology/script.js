@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/09/My-project.jpg", // 07
         "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/09/BARTPlaza.jpg", // 08
         "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/12/24thBARTPlazaNW.jpg", // 09
-        "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Screenshot-2025-02-24-at-12.29.58 PM.png", // 10
+        "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Screenshot-2025-02-24-at-12.30.34 PM.png", // 10
         "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/06/IMG_8701.jpg", // 11
         "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/09/16th-bart-plaza-barricades-vendor-scaled.jpg", // 12
         "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/10/vendorBanner.png", // 13

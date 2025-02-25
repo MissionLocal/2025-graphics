@@ -80,10 +80,9 @@ body {
 }
 
 #bg-image-1 {
-    opacity: 1; /* First one visible by default */
+    opacity: 1;
 }
 
-/* Background images are now set via JavaScript */
 
 /* Scrollytelling sections */
 .scrolly-container {
@@ -117,7 +116,7 @@ body {
 }
 
 .content-card h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     text-align: left;
 }
@@ -128,16 +127,17 @@ body {
 }
 
 .scrolly-text a {
-    color: #0066cc;
-    text-decoration: none;
-    border-bottom: 1px solid #0066cc;
-    padding-bottom: 1px;
-    transition: color 0.2s, border-color 0.2s;
+    color: #5E5E5E;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .scrolly-text a:hover {
-    color: #004499;
-    border-bottom: 2px solid #004499;
+    color: #5682A9;
+}
+
+.scrolly-text a:visited {
+    color: #5E5E5E;
 }
 
 /* Progress Bar */
