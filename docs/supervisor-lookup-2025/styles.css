@@ -143,6 +143,19 @@ a:visited {
     margin: 20px 0;
 }
 
+#moneyIcon {
+    width: 100px;
+    /*margin-right: 5px;*/
+    align-items: center;
+    margin: 0 auto;
+}
+
+/*.campaign-card {
+    flex-direction: row;
+    display: flex;
+    align-items: end;
+}*/
+
 @media screen and (max-width: 600px) {
     .supe-bio-card {
         flex-direction: column;

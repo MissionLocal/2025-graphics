@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
             turnout: "83.4%",
             homeownership: "34.5%",
             policeMeeting: "</br><p><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</p> <p><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom.</p>",
+            moneyIcon: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Income.png",
             endorsements: "Unions including SEIU Local 87, 1021, and 2015, San Francisco Fire Fighters Local 798, Teamsters Local 350, 665, 853, and 856, and <a href='https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Connie_Chan_D1_endorsements_nov2024.pdf'>others</a>.",
             outsideSpending: "</br><ul><li>Fix our City SF, a PAC supported by various labor unions (<span style='font-weight: 500'>$693,473</span>)</li><li>Asian Americans for Representation, a PAC put together by former District 7 Supervisor Norman Yee to support Asian candidates (<span style='font-weight: 500'>$90,913</span>)</li><li>Building a Working SF, a pro-labor PAC (<span style='font-weight: 500'>$39,294</span>)</li><li>Tenants and Families United PAC, supported by various labor organizations (<span style='font-weight: 500'>$11,567</span>)</li><li>San Francisco Labor Council Labor & Neighbor Independent Expenditure PAC, a pro-labor PAC (<span style='font-weight: 500'>$9,720</span>)</li></ul>",
             oppositionSpending: "GrowSF, a tech-backed public pressure group (<span style='font-weight: 500'>$76,226</span>)"
@@ -480,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Update the district information using a loop to avoid repetition
             if (districtInfo[district]) {
-                const categories = ['district-title', 'photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 'aide1', 'aide1Email', 'aide1Lang', 'aide1Work', 'aide2', 'aide2Email',  'aide2Lang', 'aide2Work', 'aide3', 'aide3Email', 'aide3Lang', 'aide3Work', 'aide4', 'aide4Email', 'aide4Lang', 'aide4Work', 'background', 'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 'homeownership', 'policeMeeting', 'endorsements', 'outsideSpending', 'oppositionSpending'];
+                const categories = ['district-title', 'photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 'aide1', 'aide1Email', 'aide1Lang', 'aide1Work', 'aide2', 'aide2Email',  'aide2Lang', 'aide2Work', 'aide3', 'aide3Email', 'aide3Lang', 'aide3Work', 'aide4', 'aide4Email', 'aide4Lang', 'aide4Work', 'background', 'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 'homeownership', 'policeMeeting', 'moneyIcon', 'endorsements', 'outsideSpending', 'oppositionSpending'];
                 const labels = {
                     'photo': '',
                     'supe': '',
@@ -512,6 +513,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'turnout': 'November 2024 election turnout:',
                     'homeownership': 'Homeownership rate:',
                     'policeMeeting': 'Police station community meeting:',
+                    'moneyIcon': '',
                     'endorsements': 'Endorsements:',
                     'outsideSpending': 'Top outside spending:',
                     'oppositionSpending': 'Opposition spending:'
@@ -521,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 categories.forEach(category => {
                     const element = document.getElementById(category);
                     if (element) {
-                        if (category === 'photo' || category === 'background') {
+                        if (category === 'photo' || category === 'background' || category === 'moneyIcon') {
                             element.src = districtInfo[district][category] || ''; // Set the image source
                             element.style.display = districtInfo[district][category] ? 'block' : 'none'; // Hide if no image
                         } else if (category === 'district-title') {
