@@ -5,6 +5,14 @@ body {
     box-sizing: border-box;
 }
 
+ul{
+    list-style-type: square;
+}
+
+li {
+    margin: 5px 0;
+}
+
 .cont {
     display: flex;
     flex-direction: column;
@@ -116,13 +124,7 @@ a:visited {
     margin-bottom: 5px;
 }
 
-#about-aides {
-    display: none;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#about-district {
+#about-aides, #about-district, #about-campaign {
     display: none;
     font-size: 24px;
     font-weight: bold;

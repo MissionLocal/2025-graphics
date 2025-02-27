@@ -68,6 +68,9 @@ document.addEventListener('DOMContentLoaded', function () {
             turnout: "83.4%",
             homeownership: "34.5%",
             policeMeeting: "</br><p><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</p> <p><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom.</p>",
+            endorsements: "Unions including SEIU Local 87, 1021, and 2015, San Francisco Fire Fighters Local 798, Teamsters Local 350, 665, 853, and 856, and <a href='https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Connie_Chan_D1_endorsements_nov2024.pdf'>others</a>.",
+            outsideSpending: "</br><ul><li>Fix our City SF, a PAC supported by various labor unions (<span style='font-weight: 500'>$693,473</span>)</li><li>Asian Americans for Representation, a PAC put together by former District 7 Supervisor Norman Yee to support Asian candidates (<span style='font-weight: 500'>$90,913</span>)</li><li>Building a Working SF, a pro-labor PAC (<span style='font-weight: 500'>$39,294</span>)</li><li>Tenants and Families United PAC, supported by various labor organizations (<span style='font-weight: 500'>$11,567</span>)</li><li>San Francisco Labor Council Labor & Neighbor Independent Expenditure PAC, a pro-labor PAC (<span style='font-weight: 500'>$9,720</span>)</li></ul>",
+            oppositionSpending: "GrowSF, a tech-backed public pressure group (<span style='font-weight: 500'>$76,226</span>)"
         },
         "2": { 
             title: "District 2", 
@@ -477,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Update the district information using a loop to avoid repetition
             if (districtInfo[district]) {
-                const categories = ['district-title', 'photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 'aide1', 'aide1Email', 'aide1Lang', 'aide1Work', 'aide2', 'aide2Email',  'aide2Lang', 'aide2Work', 'aide3', 'aide3Email', 'aide3Lang', 'aide3Work', 'aide4', 'aide4Email', 'aide4Lang', 'aide4Work', 'background', 'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 'homeownership', 'policeMeeting'];
+                const categories = ['district-title', 'photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 'aide1', 'aide1Email', 'aide1Lang', 'aide1Work', 'aide2', 'aide2Email',  'aide2Lang', 'aide2Work', 'aide3', 'aide3Email', 'aide3Lang', 'aide3Work', 'aide4', 'aide4Email', 'aide4Lang', 'aide4Work', 'background', 'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 'homeownership', 'policeMeeting', 'endorsements', 'outsideSpending', 'oppositionSpending'];
                 const labels = {
                     'photo': '',
                     'supe': '',
@@ -509,6 +512,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     'turnout': 'November 2024 election turnout:',
                     'homeownership': 'Homeownership rate:',
                     'policeMeeting': 'Police station community meeting:',
+                    'endorsements': 'Endorsements:',
+                    'outsideSpending': 'Top outside spending:',
+                    'oppositionSpending': 'Opposition spending:'
                 };
 
                 // Loop through categories and update content
@@ -531,11 +537,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
             document.getElementById('intro-text').style.display = district === "0" ? "block" : "none";
             document.getElementById('about-district').style.display = district === "0" ? "none" : "block";
+
+            // update the "About the District" text to match the number of the district
+            if (district !== "0") {
+                document.getElementById('about-district').textContent = `About District ${district}`;
+            } else {
+                document.getElementById('about-district').textContent = "About the District";
+            }
+
             document.getElementById('about-aides').style.display = district === "0" ? "none" : "block";
             document.querySelector('.supe-bio-card').style.display = district === "0" ? "none" : "flex";
             document.querySelectorAll('.aide-bio-card').forEach(card => {
                 card.style.display = district === "0" ? "none" : "flex";
             });
+
+            document.getElementById('about-campaign').style.display = district === "0" ? "none" : "block";
             
             // If we go back to "select a district", hide all elements and only shows intro text
             if (district === "0") {
@@ -544,7 +560,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Hide all other elements
             ['photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 
                 'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 
-                'homeownership', 'policeMeeting'].forEach(id => {
+                'homeownership', 'policeMeeting', 'background', 'endorsements', 'outsideSpending', 'oppositionSpending'].forEach(id => {
                     const element = document.getElementById(id);
                     if (element) {
                         if (element.tagName === 'IMG') {
@@ -554,9 +570,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     }
                 });
-            }
 
-        });
+            // Explicitly hide the background image
+            const backgroundImage = document.getElementById('background');
+            if (backgroundImage) {
+                backgroundImage.style.display = "none";
+            }
+        }
+    });
 
         // Resize the map when the window is resized
         window.addEventListener('resize', () => {
