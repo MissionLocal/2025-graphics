@@ -10,7 +10,7 @@ ul{
 }
 
 li {
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 .cont {
@@ -89,7 +89,7 @@ a:visited {
 /* District info styling */
 
 #district-info {
-    padding: 0px 15px;
+    padding: 0px 25px;
     font-family: 'Barlow', sans-serif;
 }
 
@@ -144,17 +144,11 @@ a:visited {
 }
 
 #moneyIcon {
-    width: 100px;
-    /*margin-right: 5px;*/
-    align-items: center;
-    margin: 0 auto;
+    width: 250px;
+    margin-right: 5px;
+    align-items: left;
+    margin-top: 30px;
 }
-
-/*.campaign-card {
-    flex-direction: row;
-    display: flex;
-    align-items: end;
-}*/
 
 @media screen and (max-width: 600px) {
     .supe-bio-card {

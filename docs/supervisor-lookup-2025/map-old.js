@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
             policeMeeting: "<ul><li><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</li><li><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom</a>.</li></ul>",
             moneyIcon: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/finance-icon.png",
             endorsements: "Unions including SEIU Local 87, 1021, and 2015, San Francisco Fire Fighters Local 798, Teamsters Local 350, 665, 853, and 856, and <a href='https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Connie_Chan_D1_endorsements_nov2024.pdf'>others</a>.",
-            outsideSpending: "<ul><li>Fix our City SF, a PAC supported by various labor unions (<span style='font-weight: 500'>$693,473</span>)</li><li>Asian Americans for Representation, a PAC put together by former District 7 Supervisor Norman Yee to support Asian candidates (<span style='font-weight: 500'>$90,913</span>)</li><li>Building a Working SF, a pro-labor PAC (<span style='font-weight: 500'>$39,294</span>)</li><li>Tenants and Families United PAC, supported by various labor organizations (<span style='font-weight: 500'>$11,567</span>)</li><li>San Francisco Labor Council Labor & Neighbor Independent Expenditure PAC, a pro-labor PAC (<span style='font-weight: 500'>$9,720</span>)</li></ul>",
+            outsideSpending: "</br><ul><li>Fix our City SF, a PAC supported by various labor unions (<span style='font-weight: 500'>$693,473</span>)</li><li>Asian Americans for Representation, a PAC put together by former District 7 Supervisor Norman Yee to support Asian candidates (<span style='font-weight: 500'>$90,913</span>)</li><li>Building a Working SF, a pro-labor PAC (<span style='font-weight: 500'>$39,294</span>)</li><li>Tenants and Families United PAC, supported by various labor organizations (<span style='font-weight: 500'>$11,567</span>)</li><li>San Francisco Labor Council Labor & Neighbor Independent Expenditure PAC, a pro-labor PAC (<span style='font-weight: 500'>$9,720</span>)</li></ul>",
             oppositionSpending: "GrowSF, a tech-backed public pressure group (<span style='font-weight: 500'>$76,226</span>)"
         },
         "2": { 
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "42,749",
             turnout: "86.2%",
             homeownership: "24%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom</a>.</li><li><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</li><li><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</li><li><span style='font-weight: 500'>Central Station</span>: The third Thursday of the month, 5 - 6 p.m. Call 415-315-2400 for the latest details.</li>",
+            policeMeeting: "</br><p><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom.</p></a><p><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</p><p><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</p><p><span style='font-weight: 500'>Central Station</span>: The third Thursday of the month, 5 - 6 p.m. Call 415-315-2400 for the latest details.</p>",
         },
         "3": { 
             title: "District 3", 
@@ -137,11 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "32,824",
             turnout: "77.2%",
             homeownership: "12.3%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Tenderloin Station</span>: Last Tuesday of the month, 6 - 7 p.m. In person at Tenderloin Station at 301 Eddy St.</li><li><span style='font-weight: 500'>Central Station</span>: The third Thursday of the month, 5 - 6 p.m. Call 415-315-2400 for the latest details.</li><li><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</li><li><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</li></ul>",
-            moneyIcon: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/finance-icon.png",
-            endorsements: "San Francisco Democratic Party, YIMBY Action, Asian political clubs such as Advancing Asians, Chinese American Citizens Alliance, Chinese American Democratic Club, and <a href='https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Danny_Sauter_D3_endorsements_nov2024.pdf'>others</a>.",
-            outsideSpending: "<ul><li>Families for a Vibrant SF, supported by the YIMBY and tech-backed group Abundance Network (<span style='font-weight: 500'>$161,877</span>)</li><li>GrowSF, a tech-backed public pressure group (<span style='font-weight: 500'>$70,910</span>)</li></ul>",
-            oppositionSpending: "San Francisco Labor Council Labor & Neighbor Independent Expenditure PAC, a pro-labor PAC (<span style='font-weight: 500'>$55,746</span>)"
+            policeMeeting: "</br><p><span style='font-weight: 500'>Tenderloin Station</span>: Last Tuesday of the month, 6 - 7 p.m. In person at Tenderloin Station at 301 Eddy St.</p><p><span style='font-weight: 500'>Central Station</span>: The third Thursday of the month, 5 - 6 p.m. Call 415-315-2400 for the latest details.</p><p><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</p><p><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</p>",
         },
         "4": { 
             title: "District 4", 
@@ -174,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "39,017",
             turnout: "78.6%",
             homeownership: "52.7%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Taraval Station</span>: The third Thursday of the month, 6 - 7 p.m. Call 415-759-3100 for the latest details.</li><li><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</li>",
+            policeMeeting: "</br>><p><span style='font-weight: 500'>Taraval Station</span>: The third Thursday of the month, 6 - 7 p.m. Call 415-759-3100 for the latest details.</p><p><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</p>",
         },
         "5": { 
             title: "District 5", 
@@ -207,11 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "32,526",
             turnout: "76.1%",
             homeownership: "11.4%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom</a>.</li><li><span style='font-weight: 500'>Tenderloin Station</span>: Last Tuesday of the month, 6 - 7 p.m. In person at Tenderloin Station at 301 Eddy St.</li><li><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</li><li><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</li><li><span style='font-weight: 500'>Central Station</span>: The third Thursday of the month, 5 - 6 p.m. Call 415-315-2400 for the latest details.</li></ul>",
-            moneyIcon: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/finance-icon.png",
-            endorsements: "San Francisco Democratic Party, San Francisco Chronicle, SF YIMBY, and <a href='https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Bilal_Mahmood_D5_endorsements_nov2024.pdf'>others</a>.",
-            outsideSpending: "GrowSF, a tech-backed public pressure group (<span style='font-weight: 500'>$14,940</span>)",
-            oppositionSpending: "<ul><li>Fix our City SF, a PAC supported by various labor unions (<span style='font-weight: 500'>$134,178</span>)</li><li>San Francisco Labor Council Labor & Neighbor Independent Expenditure PAC, a pro-labor PAC (<span style='font-weight: 500'>$65,879</span>)</li></ul>",
+            policeMeeting: "</br></p><p><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom.</a></p></p><p><span style='font-weight: 500'>Tenderloin Station</span>: Last Tuesday of the month, 6 - 7 p.m. In person at Tenderloin Station at 301 Eddy St.</a></p><p><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</p><p><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</p><p><span style='font-weight: 500'>Central Station</span>: The third Thursday of the month, 5 - 6 p.m. Call 415-315-2400 for the latest details.</p>",
         },
         "6": { 
             title: "District 6", 
@@ -229,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function () {
             aide2Email: "Madison.R.Tam@sfgov.org",
             aide2Lang: "English",
             aide2Work: "Rules committee, Chinese media inquiries, Asian American and Pacific Islander liaison, land use and housing, transportation, youth, families, and education.",
-            aide3: "Bryan Dahl",
+            aide3: "Bryan Dahl.",
             aide3Email: "Bryan.Dahl@sfgov.org",
             aide3Lang: "English",
             aide3Work: "Media inquiries and communications, budget, LGBTQ+, HIV/AIDS, Treasure Island redevelopment.",
@@ -244,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "27,576",
             turnout: "74.3%",
             homeownership: "18.5%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Bayview Station</span>: The first Tuesday of the month, 5 - 6 p.m., held in-person at Bayview Station at 201 Williams Ave.</li><li><span style='font-weight: 500'>Mission Station</span>: Last Tuesday of the month, 5 - 6 p.m. In person at Mission Station at 630 Valencia St.</li><li><span style='font-weight: 500'>Tenderloin Station</span>: Last Tuesday of the month, 6 - 7 p.m. In person at Tenderloin Station at 301 Eddy St.</li><li><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</li><li><span style='font-weight: 500'>Central Station</span>: The third Thursday of the month, 5 - 6 p.m. Call 415-315-2400 for the latest details.</li><li><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</li></ul>",
+            policeMeeting: "</br><p><span style='font-weight: 500'>Bayview Station</span>: The first Tuesday of the month, 5 - 6 p.m., held in-person at Bayview Station at 201 Williams Ave.</a></p><p><span style='font-weight: 500'>Mission Station</span>: Last Tuesday of the month, 5 - 6 p.m. In person at Mission Station at 630 Valencia St.</a></p><p><span style='font-weight: 500'>Tenderloin Station</span>: Last Tuesday of the month, 6 - 7 p.m. In person at Tenderloin Station at 301 Eddy St.</a></p><p><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</p><p><span style='font-weight: 500'>Central Station</span>: The third Thursday of the month, 5 - 6 p.m. Call 415-315-2400 for the latest details.</p><p><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</p>",
         },
         "7": { 
             title: "District 7",
@@ -277,11 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "43,048",
             turnout: "84.5%",
             homeownership: "50.7%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Ingleside Station</span>: The third Tuesday of the month, 6 - 7p.m. In person at Ingleside Station at 1 Sergeant John V. Young Lane.</li><li><span style='font-weight: 500'>Taraval Station</span>: The third Thursday of the month, 6 - 7 p.m. Call Taraval Station at 415-759-3100 for the latest details.</li><li><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom</a>.</li><li><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.</li></ul>",
-            moneyIcon: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/finance-icon.png",
-            endorsements: "San Francisco Democratic Party, San Francisco Chronicle, San Francisco Labor Council, San Francisco Fire Fighters Local 798 and <a href'https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Mynar_Melgar_D7_endorsements_nov2024.pdf'>others</a>.",
-            outsideSpending: "<ul><li>Alice B. Toklas Lesbian and Gay Democratic Club PAC, a moderate-leaning Democratic club (<span style='font-weight: 500'>$2,006</span>)</li><li>San Francisco Labor Council Labor & Neighbor Independent Expenditure PAC, a pro-labor PAC (<span style='font-weight: 500'>$1,810</span>)</li>",
-            oppositionSpending: "N/A",
+            policeMeeting: "<br><p><span style='font-weight: 500'>Ingleside Station</span>: The third Tuesday of the month, 6 - 7p.m. In person at Ingleside Station at 1 Sergeant John V. Young Lane.</p><p><span style='font-weight: 500'>Taraval Station</span>: The third Thursday of the month, 6 - 7 p.m. Call Taraval Station at 415-759-3100 for the latest details.</p><p><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom.</a></p><p><span style='font-weight: 500'>Richmond Station</span>: The fourth Tuesday of the month, 5 - 6 p.m. Call 415-666-8000 for the latest details.",
         },
         "8": { 
             title: "District 8", 
@@ -314,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "52,350",
             turnout: "88.1%",
             homeownership: "34%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Ingleside Station</span>: The third Tuesday of the month, 6 - 7p.m. In person at Ingleside Station at 1 Sergeant John V. Young Lane.</li><li><span style='font-weight: 500'>Mission Station</span>: Last Tuesday of the month, 5 - 6 p.m. In person at Mission Station at 630 Valencia St.</li><li><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom</a>.</li><li><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</li><li><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</li></ul>",
+            policeMeeting: "<br><p><span style='font-weight: 500'>Ingleside Station</span>: The third Tuesday of the month, 6 - 7p.m. In person at Ingleside Station at 1 Sergeant John V. Young Lane.</p><p><span style='font-weight: 500'>Mission Station</span>: Last Tuesday of the month, 5 - 6 p.m. In person at Mission Station at 630 Valencia St.</p><p><span style='font-weight: 500'>Park Station</span>: The fourth Wednesday of the month, 6:30 - 7:30 p.m., on <a href='https://www.sanfranciscopolice.org/stations/park-station'>Zoom.</a></p><p><span style='font-weight: 500'>Northern Station</span>: The second Tuesday of the month, 5 - 6 p.m. In-person at Northern Station at 1125 Fillmore St.</p><p><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</p>",
         },
         "9": { 
             title: "District 9", 
@@ -347,11 +335,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "37,213",
             turnout: "77%",
             homeownership: "32.1%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Mission Station</span>: Last Tuesday of the month, 5 - 6 p.m. In person at Mission Station at 630 Valencia St.</li><li><span style='font-weight: 500'>Ingleside Station</span>: The third Tuesday of the month, 6 - 7p.m. In person at Ingleside Station at 1 Sergeant John V. Young Lane.</li><li><span style='font-weight: 500'>Bayview Station</span>: The first Tuesday of the month, 5 - 6 p.m., in-person at Bayview Station at 201 Williams Ave.</li><li><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</li></ul>",
-            moneyIcon: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/finance-icon.png",
-            endorsements: "SF League of Pissed Off Voters, San Francisco Tenants Union, United Educators of San Francisco and <a href='https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Jackie_Fielder_D9_endorsements_nov2024.pdf'>others</a>.",
-            outsideSpending: "Building a Working SF, a pro-labor PAC (<span style='font-weight: 500'>$54,309</span>)",
-            oppositionSpending: "N/A",
+            policeMeeting: "</br><p><span style='font-weight: 500'>Mission Station</span>: Last Tuesday of the month, 5 - 6 p.m. In person at Mission Station at 630 Valencia St.</p><p><span style='font-weight: 500'>Ingleside Station</span>: The third Tuesday of the month, 6 - 7p.m. In person at Ingleside Station at 1 Sergeant John V. Young Lane.</p><p><span style='font-weight: 500'>Bayview Station</span>: The first Tuesday of the month, 5 - 6 p.m., in-person at Bayview Station at 201 Williams Ave.</p><p><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</p>",
         },
         "10": { 
             title: "District 10", 
@@ -384,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "29,785",
             turnout: "66.7%",
             homeownership: "37.8%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Ingleside Station</span>:The third Tuesday of the month, 6 - 7p.m. In person at Ingleside Station at 1 Sergeant John V. Young Lane.</li><li><span style='font-weight: 500'>Bayview Station</span>: The first Tuesday of the month, 5 - 6 p.m., in-person at Bayview Station at 201 Williams Ave.</li><li><span style='font-weight: 500'>Mission Station</span>: Last Tuesday of the month, 5 - 6 p.m. In person at Mission Station at 630 Valencia St.</li><li><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</li></ul>",
+            policeMeeting: "</br><p><span style='font-weight: 500'>Ingleside Station</span>:The third Tuesday of the month, 6 - 7p.m. In person at Ingleside Station at 1 Sergeant John V. Young Lane.</p><p><span style='font-weight: 500'>Bayview Station</span>: The first Tuesday of the month, 5 - 6 p.m., in-person at Bayview Station at 201 Williams Ave.</p><p><span style='font-weight: 500'>Mission Station</span>: Last Tuesday of the month, 5 - 6 p.m. In person at Mission Station at 630 Valencia St.</p><p><span style='font-weight: 500'>Southern Station</span>: The third Wednesday of the month, 6 - 7 p.m. Call 415-575-6000 for the latest details.</p>",
         },
         "11": { 
             title: "District 11", 
@@ -417,156 +401,9 @@ document.addEventListener('DOMContentLoaded', function () {
             registeredVoters: "32,487",
             turnout: "70.7%",
             homeownership: "51.8%",
-            policeMeeting: "<ul><li><span style='font-weight: 500'>Ingleside Station</span>: The third Tuesday of the month, 6 - 7 p.m. In person at the Ingleside Station at 1 Sergeant John V. Young Lane.</li><li><span style='font-weight: 500'>Taraval Station</span>: The third Thursday of the month, 6 - 7 p.m. Call Taraval Station at 415-759-3100 for the latest details.</li></ul>",
-            moneyIcon: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/finance-icon.png",
-            endorsements: "San Francisco District 11 Democratic Club, UESF, SEIU 1021, and <a href='https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Chyanne_Chen_D11_endorsements_nov2024.pdf'>others</a>.",
-            outsideSpending: "<ul><li>Building a Working SF, a pro-labor PAC (<span style='font-weight: 500'>$296,872</span>)</li><li>Fix our City SF, a PAC supported by various labor unions (<span style='font-weight: 500'>$60,000</span>)</li><li>Asian Americans for Representation, a PAC put together by former District 7 Supervisor Norman Yee to support Asian candidates (<span style='font-weight: 500'>$45,091</span>)</li><li>Tenants and Families United PAC, supported by various labor organizations (<span style='font-weight: 500'>$40,835</span>)</li><li>California Working Families Party, a progressive statewide group (<span style='font-weight: 500'>$1,778</span>)</li></ul>",
-            oppositionSpending: "San Francisco Police Officers Association PAC, the local police officers union (<span style='font-weight: 500'>$1,149</span>)",
+            policeMeeting: "</br><p><span style='font-weight: 500'>Ingleside Station</span>: The third Tuesday of the month, 6 - 7 p.m. In person at the Ingleside Station at 1 Sergeant John V. Young Lane.</p> <p><span style='font-weight: 500'>Taraval Station</span>: The third Thursday of the month, 6 - 7 p.m. Call Taraval Station at 415-759-3100 for the latest details.</p>",
         },
     };
-
-    // Hide all district-specific elements initially
-    function hideAllElements() {
-        const elementsToHide = [
-            'about-district', 'about-aides', 'about-campaign', 
-            'photo', 'background', 'moneyIcon',
-            'neighborhoods', 'population', 'registeredVoters', 'race', 
-            'turnout', 'homeownership', 'policeMeeting',
-            'endorsements', 'outsideSpending', 'oppositionSpending',
-            'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter',
-            'aide1', 'aide1Email', 'aide1Lang', 'aide1Work',
-            'aide2', 'aide2Email', 'aide2Lang', 'aide2Work',
-            'aide3', 'aide3Email', 'aide3Lang', 'aide3Work',
-            'aide4', 'aide4Email', 'aide4Lang', 'aide4Work'
-        ];
-        
-        document.querySelector('.supe-bio-card').style.display = 'none';
-        document.querySelectorAll('.aide-bio-card').forEach(card => card.style.display = 'none');
-        
-        elementsToHide.forEach(id => {
-            const element = document.getElementById(id);
-            if (element) {
-                element.style.display = 'none';
-            }
-        });
-    }
-
-    // Helper function to update an element
-    function updateElement(id, district, labels) {
-        const element = document.getElementById(id);
-        if (!element || !districtInfo[district][id]) return;
-        
-        if (element.tagName === 'IMG') {
-            element.src = districtInfo[district][id];
-            element.style.display = 'block';
-        } else {
-            element.innerHTML = labels[id] ? 
-                `<strong>${labels[id]}</strong> ${districtInfo[district][id]}` : 
-                districtInfo[district][id];
-            element.style.display = 'block';
-        }
-    }
-
-    // Efficient district switching logic
-    function updateDistrictDisplay(district) {
-        const isDefaultView = district === "0";
-        const isOddDistrict = !isDefaultView && parseInt(district) % 2 === 1;
-        
-        // Toggle visibility based on selection
-        document.getElementById('intro-text').style.display = isDefaultView ? "block" : "none";
-
-        if (isDefaultView) {
-            // Hide all elements and reset title
-            hideAllElements();
-            document.getElementById('district-title').textContent = "San Francisco Supervisorial Districts";
-            return; // Exit early for default view
-        }
-
-        document.getElementById('about-district').style.display = isDefaultView ? "none" : "block";
-        document.getElementById('about-aides').style.display = isDefaultView ? "none" : "block";
-        document.getElementById('about-campaign').style.display = isOddDistrict ? "block" : "none";
-        
-        document.querySelector('.supe-bio-card').style.display = isDefaultView ? "none" : "flex";
-        document.querySelectorAll('.aide-bio-card').forEach(card => {
-            card.style.display = isDefaultView ? "none" : "flex";
-        });
-        
-        // Update titles
-        if (!isDefaultView) {
-            document.getElementById('about-district').textContent = `About District ${district}`;
-            document.getElementById('district-title').textContent = districtInfo[district].title;
-        } else {
-            document.getElementById('district-title').textContent = "San Francisco Supervisorial Districts";
-            return; // Exit early for default view
-        }
-        
-        // Define content labels
-        const labels = {
-            'supeEmail': 'Email: ', 
-            'supeLang': 'Languages:', 
-            'supeHistory': 'Term:',
-            'newsletter': 'Newsletter:', 
-            'aide1Email': 'Email:',
-            'aide1Lang': 'Languages:',
-            'aide1Work': 'Areas:',
-            'aide2Email': 'Email:',
-            'aide2Lang': 'Languages:',
-            'aide2Work': 'Areas:',
-            'aide3Email': 'Email:',
-            'aide3Lang': 'Languages:',
-            'aide3Work': 'Areas:',
-            'aide4Email': 'Email:',
-            'aide4Lang': 'Languages:',
-            'aide4Work': 'Areas:',
-            'neighborhoods': 'Neighborhoods:',
-            'population': 'Population:', 
-            'registeredVoters': 'Registered voters:',
-            'race': 'Registered voter racial breakdown:',
-            'turnout': 'November 2024 election turnout:', 
-            'homeownership': 'Homeownership rate:',
-            'policeMeeting': 'Police station community meeting:',
-            'endorsements': 'Endorsements:', 
-            'outsideSpending': 'Top outside spending:',
-            'oppositionSpending': 'Opposition spending:'
-        };
-        
-        // Update standard elements
-        const standardElements = [
-            'photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter',
-            'aide1', 'aide1Email', 'aide1Lang', 'aide1Work',
-            'aide2', 'aide2Email', 'aide2Lang', 'aide2Work',
-            'aide3', 'aide3Email', 'aide3Lang', 'aide3Work',
-            'aide4', 'aide4Email', 'aide4Lang', 'aide4Work',
-            'background', 'neighborhoods', 'population', 'registeredVoters', 
-            'race', 'turnout', 'homeownership', 'policeMeeting'
-        ];
-        
-        // Add finance elements only for odd districts
-        const financeElements = ['moneyIcon', 'endorsements', 'outsideSpending', 'oppositionSpending'];
-        
-        // Update all elements
-        standardElements.forEach(id => updateElement(id, district, labels));
-        
-        // Only update finance elements for odd districts
-        if (isOddDistrict) {
-            financeElements.forEach(id => updateElement(id, district, labels));
-        } else {
-            financeElements.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    if (element.tagName === 'IMG') {
-                        element.style.display = 'none';
-                    } else {
-                        element.innerHTML = '';
-                        element.style.display = 'none';
-                    }
-                }
-            });
-        }
-    }
-
-    // Call hideAllElements on initial page load
-    hideAllElements();
 
     // Wait for map to load before adding data
     map.on('load', function () {
@@ -642,9 +479,126 @@ document.addEventListener('DOMContentLoaded', function () {
                 essential: true // This ensures the transition is smooth
             });
 
-            // Update district display
-            updateDistrictDisplay(district);
-        });
+            // Update the district information using a loop to avoid repetition
+            if (districtInfo[district]) {
+                const categories = ['district-title', 'photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 'aide1', 'aide1Email', 'aide1Lang', 'aide1Work', 'aide2', 'aide2Email',  'aide2Lang', 'aide2Work', 'aide3', 'aide3Email', 'aide3Lang', 'aide3Work', 'aide4', 'aide4Email', 'aide4Lang', 'aide4Work', 'background', 'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 'homeownership', 'policeMeeting', 'moneyIcon', 'endorsements', 'outsideSpending', 'oppositionSpending'];
+                const labels = {
+                    'photo': '',
+                    'supe': '',
+                    'supeEmail': 'Email: ',
+                    'supeLang': 'Languages:',
+                    'supeHistory': 'Term:',
+                    'newsletter': 'Newsletter:',
+                    'aide1': '',
+                    'aide1Email': 'Email:',
+                    'aide1Lang': 'Languages:',
+                    'aide1Work': 'Areas:',
+                    'aide2': '',
+                    'aide2Email': 'Email:',
+                    'aide2Lang': 'Languages:',
+                    'aide2Work': 'Areas:',
+                    'aide3': '',
+                    'aide3Email': 'Email:',
+                    'aide3Lang': 'Languages:',
+                    'aide3Work': 'Areas:',
+                    'aide4': '',
+                    'aide4Email': 'Email:',
+                    'aide4Lang': 'Languages:',
+                    'aide4Work': 'Areas:',
+                    'background': '',
+                    'neighborhoods': 'Neighborhoods:',
+                    'population': 'Population:',
+                    'registeredVoters': 'Registered voters:',
+                    'race': 'Registered voter racial breakdown:',
+                    'turnout': 'November 2024 election turnout:',
+                    'homeownership': 'Homeownership rate:',
+                    'policeMeeting': 'Police station community meeting:',
+                    'moneyIcon': '',
+                    'endorsements': 'Endorsements:',
+                    'outsideSpending': 'Top outside spending:',
+                    'oppositionSpending': 'Opposition spending:'
+                };
+
+                // Loop through categories and update content
+                categories.forEach(category => {
+                    const element = document.getElementById(category);
+                    if (element) {
+                        if (category === 'photo' || category === 'background' || category === 'moneyIcon') {
+                            element.src = districtInfo[district][category] || ''; // Set the image source
+                            element.style.display = districtInfo[district][category] ? 'block' : 'none'; // Hide if no image
+                        } else if (category === 'district-title') {
+                            element.innerHTML = districtInfo[district].title;
+                        } else {
+                            element.innerHTML = labels[category] ? `<strong>${labels[category]}</strong> ${districtInfo[district][category] || ''}` : (districtInfo[district][category] || '');
+                        }
+                    }
+                });
+            } else {
+                document.getElementById('district-title').textContent = "San Francisco Supervisorial Districts";
+            }
+
+            document.getElementById('intro-text').style.display = district === "0" ? "block" : "none";
+            document.getElementById('about-district').style.display = district === "0" ? "none" : "block";
+
+            // update the "About the District" text to match the number of the district
+            if (district !== "0") {
+                document.getElementById('about-district').textContent = `About District ${district}`;
+            } else {
+                document.getElementById('about-district').textContent = "About the District";
+            }
+
+            document.getElementById('about-aides').style.display = district === "0" ? "none" : "block";
+            document.querySelector('.supe-bio-card').style.display = district === "0" ? "none" : "flex";
+            document.querySelectorAll('.aide-bio-card').forEach(card => {
+                card.style.display = district === "0" ? "none" : "flex";
+            });
+
+            // Show finance sections only for odd-numbered districts (1, 3, 5, 7, 9, 11)
+            const isOddDistrict = district !== "0" && parseInt(district) % 2 === 1;
+            document.getElementById('about-campaign').style.display = district === "0" ? "none" : "block";
+
+            // Hide or show finance-related elements based on district
+            const financeElements = ['about-campaign', 'moneyIcon', 'endorsements', 'outsideSpending', 'oppositionSpending'];
+            financeElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (element.tagName === 'IMG') {
+                        element.style.display = isOddDistrict && districtInfo[district][id] ? 'block' : 'none';
+                    } else {
+                        // For text elements, empty the content if it's an even district
+                        if (!isOddDistrict) {
+                            element.innerHTML = '';
+                        }
+                    }
+                }
+            });
+            
+            // If we go back to "select a district", hide all elements and only shows intro text
+            if (district === "0") {
+                document.getElementById('district-title').textContent = "San Francisco Supervisorial Districts";
+                document.getElementById('intro-text').style.display = "block";
+            
+            // Hide all other elements
+            ['photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter', 
+                'neighborhoods', 'population', 'registeredVoters', 'race', 'turnout', 
+                'homeownership', 'policeMeeting', 'background', 'moneyIcon', 'about-campaign', 'endorsements', 'outsideSpending', 'oppositionSpending'].forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        if (element.tagName === 'IMG') {
+                            element.src = '';
+                        } else {
+                            element.textContent = '';
+                        }
+                    }
+                });
+
+            // Explicitly hide the background image
+            const backgroundImage = document.getElementById('background');
+            if (backgroundImage) {
+                backgroundImage.style.display = "none";
+            }
+        }
+    });
 
         // Resize the map when the window is resized
         window.addEventListener('resize', () => {
@@ -697,8 +651,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 }
 
-                // Send the map data to Pym.js for responsive design
-                pymChild.sendHeight();
-            });
+            // Send the map data to Pym.js for responsive design
+            pymChild.sendHeight();
+        })
     }
 });
