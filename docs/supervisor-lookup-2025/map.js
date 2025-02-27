@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
             aide4Email: "Sophie.Marie@sfgov.org",
             aide4Lang: "English",
             aide4Work: "To be confirmed.",
-            background: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/District-4-background-blank.png",
+            background: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/District-4-rev-2.png",
             neighborhoods: "The Sunset, Outer Sunset, Parkside, Pine Lake Park, Lakeshore and Merced Manor.",
             race: "Asian: 54.51%; White: 34.95%; Latino: 7.15%; Black: 1.72%; Indigenous: 0.43%",
             population: "75,998",
