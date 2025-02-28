@@ -19,6 +19,9 @@ body {
     align-items: center; /* Center the container vertically, if needed */
 }
 
+a {
+    color: gray;
+}
 
 .instruction-wrapper {
     align-items: left !important; 
