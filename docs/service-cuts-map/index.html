@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Proposed Muni Service Cuts</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="cont">
+        <div class="instriction-wrapper">
+            <p class="instruction"><em>Select a scenario:</em></p>
+        </div>
+    </div>
+
+    <div class="dropdownContainer">
+        <select id="propositionDropdown">
+            <option value="1">Scenario 1: Suspend lower ridership routes</option>
+            <option value="2">Scenario 2: Reduce frequencies</option>
+            <option value="3">Scenario 3: Suspend routes and reduce frequencies</option>
+        </select>
+    </div>
+    <div class="cont">
+        <div id='map'></div>
+    </div>
+    <div class="legend-container">
+        <!-- District 7 Legend -->
+        <div class="legend">
+            <div class="legend-labels">
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #f67cf6;"></div>
+                    <span>Suspended</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #efbe25;"></div>
+                    <span>Reduced frequency</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #8ad6ce;"></div>
+                    <span>Extended</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cont">
+        <p>Data from the <a href="https://www.sfmta.com/projects/summer-2025-muni-service-cuts" target="_blank">San Francisco Municipal Transportation Agency</a>.</p>
+    </div>
+    <script type='text/javascript' src="map.js"></script>
+    <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+</body>
+
+</html>
