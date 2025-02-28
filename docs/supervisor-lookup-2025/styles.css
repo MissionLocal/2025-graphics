@@ -160,6 +160,10 @@ a:visited {
         max-width: 200px;
         height: auto;
     }
+
+    #moneyIcon {
+        width: 200px;
+    }
 }
 
 .supe-bio-card img {
