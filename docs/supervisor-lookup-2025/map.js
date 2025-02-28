@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ";
 
     // Define basemap settings
-    let mapZoom = window.innerWidth < 400 ? 10.45 : 10.45;
+    let mapZoom = window.innerWidth >= 768 ? 10.8 : 10.45;
     let mapY = window.innerWidth < 400 ? 37.76 : 37.76;
     let mapX = window.innerWidth < 400 ? -122.434 : -122.434;
 
@@ -571,6 +571,26 @@ document.addEventListener('DOMContentLoaded', function () {
     // Wait for map to load before adding data
     map.on('load', function () {
         loadGeoJSON('all.geojson'); // Load all.geojson by default
+
+        map.on('mouseenter', 'districts-layer', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+        
+        map.on('mouseleave', 'districts-layer', () => {
+            map.getCanvas().style.cursor = '';
+        });
+        
+        map.on('click', 'districts-layer', (e) => {
+            // Get the district number from the clicked feature
+            const district = e.features[0].properties.district;
+            
+            // Update the dropdown to reflect the selected district
+            document.getElementById('district-dropdown').value = district;
+            
+            // Trigger change event to update map and display
+            const event = new Event('change');
+            document.getElementById('district-dropdown').dispatchEvent(event);
+        });
 
         // Event listener for dropdown changes
         document.getElementById('district-dropdown').addEventListener('change', function (event) {
