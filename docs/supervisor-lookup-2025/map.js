@@ -563,7 +563,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         }
+
+        // Send updated height after content changes
+            pymChild.sendHeight();
     }
+
+    window.addEventListener('resize', () => {
+        map.resize();
+        pymChild.sendHeight();
+    });
 
     // Call hideAllElements on initial page load
     hideAllElements();
