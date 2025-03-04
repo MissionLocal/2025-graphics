@@ -674,12 +674,12 @@ document.addEventListener('DOMContentLoaded', function () {
             updateDistrictDisplay(district);
         });
 
-        // // Resize the map when the window is resized
-        // window.addEventListener('resize', () => {
-        //     map.resize();
-        //     // Send the map data to Pym.js for responsive design
-        //     pymChild.sendHeight();
-        // });
+        // Resize the map when the window is resized
+        window.addEventListener('resize', () => {
+            map.resize();
+            // Send the map data to Pym.js for responsive design
+            pymChild.sendHeight();
+        });
 
     });
 
