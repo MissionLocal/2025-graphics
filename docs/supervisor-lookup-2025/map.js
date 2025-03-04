@@ -564,7 +564,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        // // Send updated height after content changes
+        // Send updated height after content changes
         pymChild.sendHeight();
     }
 
@@ -724,6 +724,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     });
                 }
+
+                // Send updated height after content changes
+                pymChild.sendHeight();
             });
     }
 
