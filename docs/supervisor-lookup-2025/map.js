@@ -681,8 +681,6 @@ document.addEventListener('DOMContentLoaded', function () {
             pymChild.sendHeight();
         });
 
-        pymChild.sendHeight();
-
     });
 
     // Function to load GeoJSON dynamically
