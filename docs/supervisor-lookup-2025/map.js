@@ -726,4 +726,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
     }
+    pymChild.sendHeight();
 });
