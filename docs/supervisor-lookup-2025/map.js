@@ -1,6 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize the Pym.js child
-    var pymChild = new pym.Child();
+    var pymChild = new pym.Child({ polling: 200 });  // Add polling option here too
+
+    // Add event listeners for image loading
+    window.addEventListener('load', function() {
+        // Send height when all resources including images are loaded
+        pymChild.sendHeight();
+    });
+    
+    // Listen for image loads
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('load', function() {
+            // Send height whenever an image loads
+            pymChild.sendHeight();
+        });
+    });
 
     // Define access token
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ";
@@ -471,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateDistrictDisplay(district) {
         const isDefaultView = district === "0";
         const isOddDistrict = !isDefaultView && parseInt(district) % 2 === 1;
-
+        
         // Toggle visibility based on selection
         document.getElementById('intro-text').style.display = isDefaultView ? "block" : "none";
 
@@ -479,18 +493,24 @@ document.addEventListener('DOMContentLoaded', function () {
             // Hide all elements and reset title
             hideAllElements();
             document.getElementById('district-title').textContent = "San Francisco Supervisorial Districts";
+            
+            // Send height after resetting to default view
+            setTimeout(() => {
+                pymChild.sendHeight();
+            }, 50);
+            
             return; // Exit early for default view
         }
 
         document.getElementById('about-district').style.display = isDefaultView ? "none" : "block";
         document.getElementById('about-aides').style.display = isDefaultView ? "none" : "block";
         document.getElementById('about-campaign').style.display = isOddDistrict ? "block" : "none";
-
+        
         document.querySelector('.supe-bio-card').style.display = isDefaultView ? "none" : "flex";
         document.querySelectorAll('.aide-bio-card').forEach(card => {
             card.style.display = isDefaultView ? "none" : "flex";
         });
-
+        
         // Update titles
         if (!isDefaultView) {
             document.getElementById('about-district').textContent = `About District ${district}`;
@@ -499,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('district-title').textContent = "San Francisco Supervisorial Districts";
             return; // Exit early for default view
         }
-
+        
         // Define content labels
         const labels = {
             'supeEmail': 'Email: ',
@@ -529,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'outsideSpending': 'Top outside spending:',
             'oppositionSpending': 'Opposition spending:'
         };
-
+        
         // Update standard elements
         const standardElements = [
             'photo', 'supe', 'supeEmail', 'supeLang', 'supeHistory', 'newsletter',
@@ -540,13 +560,13 @@ document.addEventListener('DOMContentLoaded', function () {
             'background', 'neighborhoods', 'population', 'registeredVoters',
             'race', 'turnout', 'homeownership', 'policeMeeting'
         ];
-
+        
         // Add finance elements only for odd districts
         const financeElements = ['moneyIcon', 'endorsements', 'outsideSpending', 'oppositionSpending'];
-
+        
         // Update all elements
         standardElements.forEach(id => updateElement(id, district, labels));
-
+        
         // Only update finance elements for odd districts
         if (isOddDistrict) {
             financeElements.forEach(id => updateElement(id, district, labels));
@@ -564,14 +584,19 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        // Send updated height after content changes
-        pymChild.sendHeight();
+        // Force a height reset to ensure proper recalculation
+        const infoContainer = document.querySelector('.info-cont');
+        
+        // Use a sequence of delayed height updates to ensure proper rendering
+        setTimeout(() => {
+            pymChild.sendHeight();
+            
+            // Send another height update after images may have loaded
+            setTimeout(() => {
+                pymChild.sendHeight();
+            }, 300);
+        }, 50);
     }
-
-    window.addEventListener('resize', () => {
-        map.resize();
-        pymChild.sendHeight();
-    });
 
     // Call hideAllElements on initial page load
     hideAllElements();
@@ -689,7 +714,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 let source = map.getSource('districts');
-
+    
                 if (source) {
                     source.setData(data);
                 } else {
@@ -697,7 +722,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         type: 'geojson',
                         data: data
                     });
-
+    
                     map.addLayer({
                         id: 'districts-layer',
                         type: 'fill',
@@ -724,8 +749,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     });
                 }
-
-                // Send updated height after content changes
+    
+                // Send updated height after content changes with slight delay
+                setTimeout(() => pymChild.sendHeight(), 50);
+            })
+            .catch(error => {
+                console.error("Error loading GeoJSON:", error);
+                // Still send height even if there's an error
                 pymChild.sendHeight();
             });
     }
