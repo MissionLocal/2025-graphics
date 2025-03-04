@@ -672,6 +672,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Update district display
             updateDistrictDisplay(district);
+
+            pymChild.sendHeight();
         });
 
         // Resize the map when the window is resized
@@ -724,9 +726,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     });
                 }
-
-                // Send the map data to Pym.js for responsive design
-                // pymChild.sendHeight();
             });
     }
 });
