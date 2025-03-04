@@ -564,8 +564,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        // Send updated height after content changes
-        pymChild.sendHeight();
+        // // Send updated height after content changes
+        // pymChild.sendHeight();
     }
 
     window.addEventListener('resize', () => {
@@ -672,7 +672,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Update district display
             updateDistrictDisplay(district);
-
             pymChild.sendHeight();
         });
 
