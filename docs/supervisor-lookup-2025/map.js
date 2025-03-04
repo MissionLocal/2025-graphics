@@ -600,10 +600,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('district-dropdown').dispatchEvent(event);
         });
 
-        // pym.js for responsive design
-        // send the height to the parent iframe
-        pymChild.sendHeight();
-
         // Event listener for dropdown changes
         document.getElementById('district-dropdown').addEventListener('change', function (event) {
             let district = event.target.value;
@@ -733,7 +729,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 // Send the map data to Pym.js for responsive design
-                pymChild.sendHeight();
+                // pymChild.sendHeight();
             });
     }
 });
