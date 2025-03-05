@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
             aide3: "Michelle Andrews",
             aide3Email: "Michelle.Andrews@sfgov.org",
             aide3Lang: "English",
-            aide3work: "Housing, Land use, transportation.",
+            aide3Work: "Housing, land use, transportation.",
             aide4: "Tita Bell",
             aide4Email: "Tita.Bell@sfgov.org",
             aide4Lang: "English, Thai, German",
