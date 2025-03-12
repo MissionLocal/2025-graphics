@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
             supeEmail: "sauterstaff@sfgov.org",
             supeLang: "English, Cantonese",
             supeHistory: "Elected on Nov. 5, 2024 for the term from Jan. 8, 2025 to Jan. 8, 2029.",
-            newsletter: "To be announced. District official <a href='https://sfbos.org/supervisor-sauter-district-3'>page</a>.",
+            newsletter: "Sign up <a href='https://www.dannyd3.com/newsletter'>here</a>.",
             aide1: "Tomio Nagano",
             aide1Email: "Tomio.Nagano@sfgov.org",
             aide1Lang: "English",
