@@ -25,7 +25,7 @@ Promise.all([
         chapters: [
             {
                 id: 'slide-00',
-                title: 'March 2022 to April 2022',
+                title: 'March to April 2022',
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/04/24thStreetBART.jpg",
                 description:
                     '<p>San Francisco has never had a citywide regulatory framework governing street vending — <a href="https://sfmayor.org/article/board-supervisors-approves-mayor-breed%E2%80%99s-street-vending-legislation">so then Supervisor Hillary Ronen works to develop one.</a></p>'
@@ -48,12 +48,12 @@ Promise.all([
             },
             {
                 id: 'slide-01',
-                title: 'July 20, 2022 to Aug. 21, 2022',
+                title: 'Three months later — July 20, 2022 to Aug. 21, 2022',
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/07/My-project-3-4-e1658345342468.png",
                 description:
                     '<p>The new permitting system for street vending — approved in March — is not yet in place.</p>'
                     +'<p>In the meantime, the city tries to control vending by fencing off the <span class="red-highlight">24th Street plaza</span>.</p>'
-                    +'<p>Calle 24 Latino Cultural District, a nonprofit working with Ronen and BART, told legal vendors that they would help them find new locations.</p>'
+                    +'<p>Calle 24 Latino Cultural District, a nonprofit working with Ronen and BART, tells legal vendors that they would help them find new locations.</p>'
                     +'<p>This news did not go over well. “I\'m a single mom,” one jewelry seller told Mission Local. “I\'ve been here for eight years. I don\'t want to have to start over.”</p>',
                 alignment: 'left',
                 location: {
@@ -154,7 +154,7 @@ Promise.all([
             },
             {
                 id: 'slide-06',
-                title: "September 2022",
+                title: "September 2022 — Six months after permits are proposed, they go into effect",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/09/My-project.jpg",
                 description:
                     '<p><span class="bold-text">Permits have been issued and enforcement begins.</span> Enforcement follows specific guidelines: DPW Staffers first ask for permits. Those selling goods without a permit are told how they can get one and given an opportunity to pack up and leave.</p>'
@@ -238,7 +238,7 @@ Promise.all([
             },
             {
                 id: 'slide-10',
-                title: "June 27, 2023 - Public Works wants police to take over enforcement",
+                title: "June 27, 2023 - Nine months after permits go into effect, Public Works wants police to take over enforcement",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/09/My-project.jpg",
                 description:
                     '<p>Department of Public Works employees say they want police to take over street vending enforcement.  One worker at a Mission District police station meeting says, “they\'re already threatening our families, threatening to kill us.”</p>'
@@ -281,10 +281,10 @@ Promise.all([
             },
             {
                 id: 'slide-12',
-                title: "September 2023 - 16th Street Plaza",
+                title: "September 2023 — One year after permits go into effect, 16th Street Plaza has to be fenced off",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/09/16th-bart-plaza-barricades-police-1200x900.jpg",
                 description:
-                    '<p>The <a href="https://missionlocal.org/2023/09/new-barricades-erected-at-16th-st-bart-plaza-to-deter-vendors/"><span class="red-highlight">16th Street BART plaza</span> is fenced off</a> at the request of SFPD. The goal is to keep the plaza clear for pedestrians, but vendors simply set up their wares in front of the barricades or on the pavement, further reducing walking space.</p>'
+                    '<p><a href="https://missionlocal.org/2023/09/new-barricades-erected-at-16th-st-bart-plaza-to-deter-vendors/">The goal</a> is to keep <span class="red-highlight">the plaza</span> clear for pedestrians, but vendors simply set up their wares in front of the barricades or on the pavement, further reducing walking space.</p>'
                     +'<p>Pinky, a vendor with bright pink hair and a can of pepper spray hanging on her neck, tells Mission Local that the new fencing is just an annoyance. “It\'s not stopping anybody doing anything; it just makes our lives more difficult.”</p>'
                     +'<p>She used to vend at Sixth and Market streets, she says, before coming to the 16th Street BART Plaza four years ago.</p>',
                 alignment: 'left',
@@ -303,7 +303,7 @@ Promise.all([
             },
             {
                 id: 'slide-13',
-                title: "October 2023",
+                title: "October 2023 — After a year and a month of trying out permits, Ronen calls for a ban",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/10/vendorBanner.png",
                 description:
                     '<p>Supervisor Hilary Ronen <a href="https://missionlocal.org/2023/10/ronen-ban-mission-17th-street-vending-vendors-lease-clecha/">announces</a> <span class="yellow-highlight">a 90-day ban</span> of all street vending on Mission between Cesar Chavez to 14th streets.</p>'
@@ -325,7 +325,7 @@ Promise.all([
             },
             {
                 id: 'slide-14',
-                title: "November 2023",
+                title: "November 2023 — A community meeting to discuss the ban",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/11/IMG_1698-scaled.jpg",
                 description:
                     '<p>Ronen refuses to abandon the ban. She managed to get a ban - which goes against state law that allows vending - based on health and safety precautions for the community.</p>'
@@ -372,7 +372,7 @@ Promise.all([
             },
             {
                 id: 'slide-16',
-                title: "Two weeks into the ban — December 2023 to 2024",
+                title: "December 2023 to 2024 — Two weeks into the ban",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/11/Franco-Gonzalez-70-2-14-p.m.-11-29.jpeg",
                 description:
                     '<p>Vendors remain largely absent from both BART plazas but only when four-person teams from Public Works and the San Francisco Police Department are present. Those shifts are generally from 9 a.m. to 8 p.m. on weekdays, and from 8 a.m. to 8 p.m. on the weekends.</p>'
@@ -437,7 +437,7 @@ Promise.all([
             },
             {
                 id: 'slide-19',
-                title: "April 2024 - June 2024 — Sanctioned spaces for permitted vendors fail to bring customers",
+                title: "June 2024 — Sanctioned spaces for permitted vendors fail to bring customers",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2024/05/La-Placita-3-scaled-e1715357230372.jpg",
                 description:
                     '<p><span class="green-highlight">El Tiangue</span> closes in May. <span class="green-highlight">La Placita</span>, is also failing. The remaining merchants estimate they have lost more than 90 percent of their income by moving off the streets.</p>'
@@ -460,7 +460,7 @@ Promise.all([
             },
             {
                 id: 'slide-20',
-                title: "June 2024",
+                title: "June 2024 — 10 permitted vendors are allowed back on Mission Street, Sen. Wiener introduces a bill to get control of vending",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2024/06/Pilot-2-scaled-e1719017954226.jpg",
                 description:
                     '<p>10 permitted vendors are allowed back on Mission Street.</p>'
@@ -505,7 +505,7 @@ Promise.all([
             },
             {
                 id: 'slide-22',
-                title: "August 2024",
+                title: "August 2024 — Sen. Wiener's bill dies in the State Assembly",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2024/12/vending-ban-3-scaled.jpg",
                 description:
                     '<p>SB 925, the state bill to give police the right to ticket vendors for selling stolen merchandise, quietly dies in the State Assembly without coming to a vote.</p>'
@@ -527,7 +527,7 @@ Promise.all([
             },
             {
                 id: 'slide-23',
-                title: "February 2025",
+                title: "February 2025 — Sen. Wiener reintroduces the failed bill",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Screenshot-2025-02-24-at-12.52.04 PM.png",
                 description:
                     '<p>By early February, it takes three police cars to keep the plaza at 24th Street clear.</p>'
@@ -571,7 +571,7 @@ Promise.all([
             },
             {
                 id: 'slide-25',
-                title: "March 2025",
+                title: "March 2025 — Mayor Daniel Lurie targets the 16th Street Plaza",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/03/e1610-1200x800.jpg",
                 description:
                     '<p>While legislation is under consideration in Sacramento <span class="bold-text">Mayor Daniel Lurie</span> targets the 16th Street Plaza in his campaign on drugs, violence and vending.</p>'
