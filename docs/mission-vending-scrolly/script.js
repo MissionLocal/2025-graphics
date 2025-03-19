@@ -28,10 +28,10 @@ Promise.all([
                 title: 'March to April 2022',
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/04/24thStreetBART.jpg",
                 description:
-                    '<p>San Francisco has never had a citywide regulatory framework governing street vending — <a href="https://sfmayor.org/article/board-supervisors-approves-mayor-breed%E2%80%99s-street-vending-legislation">so then Supervisor Hillary Ronen works to develop one.</a></p>'
+                    '<p>San Francisco has never had a citywide regulatory framework governing street vending — <a href="https://sfmayor.org/article/board-supervisors-approves-mayor-breed%E2%80%99s-street-vending-legislation">so then-Supervisor Hillary Ronen works to develop one.</a></p>'
                     +'<p>In March 2022, Ronen launches a <span class="yellow-highlight">"Mission Plan"</span> that envisions a system of permitted vendors. Other vendors will have their goods confiscated or be asked to leave the plazas.</p>'
-                    +'<p>"I don\'t want to create chaos in the streets and an unlawful feeling for everyone," Ronen said. "I thought, as long as Public Works can take their stuff and confiscate it, that\'ll be enough and they\'ll leave because they can\'t sell their stuff here."</p>'
-                    +'<p>This photo was taken on April 25, 2022 — less than two months after Ronen launched the plan. *</p>',
+                    +'<p>"I don\'t want to create chaos in the streets and an unlawful feeling for everyone," Ronen says. "I thought, as long as Public Works can take their stuff and confiscate it, that\'ll be enough and they\'ll leave because they can\'t sell their stuff here."</p>'
+                    +'<p>This photo was taken on April 25, 2022 — less than two months after Ronen launched the plan.</p>',
                 alignment: 'left',
                 location: {
                     center: [-122.4328161350563, 37.75824032733743],
@@ -48,13 +48,13 @@ Promise.all([
             },
             {
                 id: 'slide-01',
-                title: 'Three months later — July 20, 2022 to Aug. 21, 2022',
+                title: 'July 20 to Aug. 21, 2022 — Three months later',
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/07/My-project-3-4-e1658345342468.png",
                 description:
                     '<p>The new permitting system for street vending — approved in March — is not yet in place.</p>'
                     +'<p>In the meantime, the city tries to control vending by fencing off the <span class="red-highlight">24th Street plaza</span>.</p>'
-                    +'<p>Calle 24 Latino Cultural District, a nonprofit working with Ronen and BART, tells legal vendors that they would help them find new locations.</p>'
-                    +'<p>This news did not go over well. “I\'m a single mom,” one jewelry seller told Mission Local. “I\'ve been here for eight years. I don\'t want to have to start over.”</p>',
+                    +'<p>Calle 24 Latino Cultural District, a nonprofit working with Ronen and BART, tells legal vendors that they will help them find new locations.</p>'
+                    +'<p>This news does not go over well. <span class="bold-text">“I\'m a single mom,”</span> one jewelry seller tells Mission Local. <span class="bold-text">“I\'ve been here for eight years. I don\'t want to have to start over.”</span></p>',
                 alignment: 'left',
                 location: {
                     center: [-122.4328161350563, 37.75824032733743],
@@ -71,10 +71,10 @@ Promise.all([
             },
             {
                 id: 'slide-02',
-                title: 'Late July, 2022',
+                title: 'Late July 2022',
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/07/5p.m.24th.jpg",
                 description:
-                    '<p>The fences keep the <span class="red-highlight">24th street plazas</span> clear, but vendors set up in front of the fences, crowding out pedestrians on Mission street.</p>'
+                    '<p>The fences keep the <span class="red-highlight">24th Street plaza</span> clear, but vendors set up in front of the fences, crowding out pedestrians on Mission Street.</p>'
                     +'<p>Any rider getting off the bus faces a corridor of hawkers selling everything from beauty products to roach killer.</p>',
                 alignment: 'left',
                 location: {
@@ -95,8 +95,8 @@ Promise.all([
                 title: 'August 2022',
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/09/IMG_0162-800x600-1.jpg",
                 description:
-                    '<p>In August, a group takes the fences down at night. A Bart spokesperson attributes it to a group <a href="https://missionlocal.org/2022/08/its-like-youre-in-jail-activists-ecstatic-after-24th-street-bart-plaza-fences-pulled-down/">calling themselves Mission DeFENCE</a>.</p>'
-                    +'<p>DPW finishes the permitting system and announces <a href="https://sf.gov/apply-street-vending-permit?nid=5607">that by Sept. 12</a>,  all vendors need to obtain a $430 permit. Fees are waived in most cases.</p>',
+                    '<p>In August, a group takes the fences down at night. A BART spokesperson attributes it to a group <a href="https://missionlocal.org/2022/08/its-like-youre-in-jail-activists-ecstatic-after-24th-street-bart-plaza-fences-pulled-down/">calling themselves Mission DeFENCE</a>.</p>'
+                    +'<p>Public Works finishes the permitting system and announces <a href="https://sf.gov/apply-street-vending-permit?nid=5607">that by Sept. 12</a>,  all vendors need to obtain a $430 permit. Fees are waived in most cases.</p>',
                 alignment: 'left',
                 location: {
                     center: [-122.42000941874, 37.752299761830855],
@@ -132,11 +132,11 @@ Promise.all([
             },
             {
                 id: 'slide-05',
-                title: "Aug. 28, 2022 — The first fatality",
+                title: "Aug. 28, 2022 — First killing",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/07/5p.m.24th.jpg",
                 description:
                     '<p>A young BART passenger discovers 28-year-old Jabaree Harris bleeding from stab wounds and lying face down near the SFO/Millbrae platform.</p>'
-                    +'<p><a href="https://missionlocal.org/2022/08/stab-victim-found-at-24th-street-bart-station-closed/">A witness tells Mission Local</a> that Harris, who peddled shoes and clothes among other vendors at the <span class="red-highlight">24th street plaza</span>, was stabbed a few minutes earlier by another man during an argument over $50.</p>'
+                    +'<p><a href="https://missionlocal.org/2022/08/stab-victim-found-at-24th-street-bart-station-closed/">A witness tells Mission Local</a> that Harris, who peddled shoes and clothes among other vendors at the <span class="red-highlight">24th Street plaza</span>, was stabbed a few minutes earlier by another man during an argument over $50.</p>'
                     +'<p>Police <a href="https://missionlocal.org/2022/09/suspect-in-24th-bart-plaza-stabbing-arrested/">arrest his suspected killer</a> a week later.</p>',
                 alignment: 'center',
                 location: {
@@ -157,10 +157,10 @@ Promise.all([
                 title: "September 2022 — Six months after permits are proposed, they go into effect",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/09/My-project.jpg",
                 description:
-                    '<p><span class="bold-text">Permits have been issued and enforcement begins.</span> Enforcement follows specific guidelines: DPW Staffers first ask for permits. Those selling goods without a permit are told how they can get one and given an opportunity to pack up and leave.</p>'
-                    +'<p>If they do not, DPW may issue a Notice of Violation, and confiscate what they\'re selling.</p>'
-                    +'<p>Police are expected to be on hand, but only to protect DPW and other people present if a criminal act occurs.</p>'
-                    +'<p>Unpermitted vending continues, <a href="https://missionlocal.org/2022/09/day-one-of-enforcing-permits-at-the-24th-street-plaza-proves-easier-than-expected/">but vendors disperse once Department of Public Works staffers arrive</a>.</p>',
+                    '<p><span class="bold-text">Permits have been issued and enforcement begins.</span> Enforcement follows specific guidelines: Public Works staffers first ask for permits. Those selling goods without a permit are told how they can get one and given an opportunity to pack up and leave.</p>'
+                    +'<p>If they do not, Public Works may issue a notice of violation, and confiscate what they\'re selling.</p>'
+                    +'<p>Police are expected to be on hand, but only to protect city workers and other people present if a crime occurs.</p>'
+                    +'<p>Unpermitted vending continues, <a href="https://missionlocal.org/2022/09/day-one-of-enforcing-permits-at-the-24th-street-plaza-proves-easier-than-expected/">but vendors disperse once Public Works arrives</a>.</p>',
                 alignment: 'left',
                 location: {
                     center: [-122.4328161350563, 37.75824032733743],
@@ -196,10 +196,10 @@ Promise.all([
             },
             {
                 id: 'slide-08',
-                title: "Dec. 18, 2022 — The second fatality",
+                title: "Dec. 18, 2022 — Second killing",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/12/24thBARTPlazaNW.jpg",
                 description:
-                    '<p>At 4 p.m., a shooting at the <span class="red-highlight">24th street BART plaza</span> <a href="https://missionlocal.org/2022/12/one-dead-sf-bart-plaza-shooting/">leaves one person dead, two suspects at large</a>.</p>',
+                    '<p>At 4 p.m., a shooting at the <span class="red-highlight">24th Street plaza</span> <a href="https://missionlocal.org/2022/12/one-dead-sf-bart-plaza-shooting/">leaves one person dead and two suspects at large</a>.</p>',
                 alignment: 'center',
                 location: {
                     center: [-122.4328161350563, 37.76124032733743],
@@ -238,10 +238,10 @@ Promise.all([
             },
             {
                 id: 'slide-10',
-                title: "June 27, 2023 - Nine months after permits go into effect, Public Works wants police to take over enforcement",
+                title: "June 27, 2023 - Nine months after permits go into effect, Public Works wants SFPD to take over enforcement",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2022/09/My-project.jpg",
                 description:
-                    '<p>Department of Public Works employees say they want police to take over street vending enforcement.  One worker at a Mission District police station meeting says, “they\'re already threatening our families, threatening to kill us.”</p>'
+                    '<p>Public Works employees say they want police to take over street vending enforcement. One worker at a Mission District police station meeting says, <span class="bold-text">“They\'re already threatening our families, threatening to kill us.”</span></p>'
                     +'<p>“We\'ve had inspectors being punched before, cans thrown at us, you name it,” adds another.</p>'
                     +'<p>Switching enforcement to the police isn\'t possible — California SB 946 decriminalized vending.</p>'
                     +'<p>Mission Street remains packed, and most of the vendors appear to be operating without a permit.</p>',
@@ -261,10 +261,10 @@ Promise.all([
             },
             {
                 id: 'slide-11',
-                title: "July 23, 2023 - Third fatality",
+                title: "July 23, 2023 - Third killing",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/07/China-Express-24th-and-Mission-corner-July-23-by-Griffin.jpg",
                 description:
-                    '<p>In July, 42-year-old Valentin Hernandez Santillan, who regularly hangs out at the <span class="red-highlight">24th Street plaza</span>, is stabbed to death nearby early one morning.</p>',
+                    '<p>In July, 42-year-old Valentin Hernandez Santillan, who regularly hangs out at the <span class="red-highlight">24th Street plaza</span>, is <a href="https://missionlocal.org/2023/07/plaza-regular-stabbed-killed-at-24th-and-mission-in-early-morning/">stabbed to death</a> nearby early one morning.</p>',
                 alignment: 'center',
                 location: {
                     center: [-122.4328161350563, 37.76124032733743],
@@ -281,12 +281,12 @@ Promise.all([
             },
             {
                 id: 'slide-12',
-                title: "September 2023 — One year after permits go into effect, 16th Street Plaza has to be fenced off",
+                title: "September 2023 — One year after permits go into effect, 16th Street plaza is fenced off",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/09/16th-bart-plaza-barricades-police-1200x900.jpg",
                 description:
-                    '<p><a href="https://missionlocal.org/2023/09/new-barricades-erected-at-16th-st-bart-plaza-to-deter-vendors/">The goal</a> is to keep <span class="red-highlight">the plaza</span> clear for pedestrians, but vendors simply set up their wares in front of the barricades or on the pavement, further reducing walking space.</p>'
-                    +'<p>Pinky, a vendor with bright pink hair and a can of pepper spray hanging on her neck, tells Mission Local that the new fencing is just an annoyance. “It\'s not stopping anybody doing anything; it just makes our lives more difficult.”</p>'
-                    +'<p>She used to vend at Sixth and Market streets, she says, before coming to the 16th Street BART Plaza four years ago.</p>',
+                    '<p>The goal is to keep <span class="red-highlight">the plaza</span> clear for pedestrians, but vendors simply set up their wares in front of the barricades or on the pavement, further reducing walking space.</p>'
+                    +'<p>Pinky, a vendor with bright pink hair and a can of pepper spray hanging on her neck, <a href="https://missionlocal.org/2023/09/new-barricades-erected-at-16th-st-bart-plaza-to-deter-vendors/">tells Mission Local</a> that the new fencing is just an annoyance. <span class="bold-text">“It\'s not stopping anybody doing anything; it just makes our lives more difficult.”</span></p>'
+                    +'<p>She used to vend at Sixth and Market streets, she says, before coming to 16th Street four years ago.</p>',
                 alignment: 'left',
                 location: {
                     center: [-122.42292960530838, 37.76487577816566],
@@ -303,11 +303,11 @@ Promise.all([
             },
             {
                 id: 'slide-13',
-                title: "October 2023 — After a year and a month of trying out permits, Ronen calls for a ban",
+                title: "October 2023 — After 13 months of trying permits, Ronen calls for a ban",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/10/vendorBanner.png",
                 description:
-                    '<p>Supervisor Hilary Ronen <a href="https://missionlocal.org/2023/10/ronen-ban-mission-17th-street-vending-vendors-lease-clecha/">announces</a> <span class="yellow-highlight">a 90-day ban</span> of all street vending on Mission between Cesar Chavez to 14th streets.</p>'
-                    +'<p>Vendors with permits will be invited to move into empty storefronts — one, on <span class="green-highlight">Mission Street near 17th Street</span>, has already been leased by CLECHA with the support of a city grant. A second will be an open air space at <span class="green-highlight">Capp and 24th Street</span>.</p>'
+                    '<p>Supervisor Hilary Ronen <a href="https://missionlocal.org/2023/10/ronen-ban-mission-17th-street-vending-vendors-lease-clecha/">announces</a> <span class="yellow-highlight">a 90-day ban</span> of all street vending on Mission between Cesar Chavez and 14th streets.</p>'
+                    +'<p>Vendors with permits will be invited to move into empty storefronts — one, on <span class="green-highlight">Mission Street near 17th Street</span>, has already been leased by CLECHA with the support of a city grant. A second will be an open air space at <span class="green-highlight">Capp and 24th streets</span>.</p>'
                     +'<p>The plan <a href="https://missionlocal.org/2023/10/mission-street-vendors-oppose-upcoming-ban/">receives pushback from vendors worried for their livelihoods</a>, as well as the Latinx Democratic Club. Co-president Kevin Ortiz says the club is “appalled” by the ban, and that “just moving the problem around solves nothing.”</p>',
                 alignment: 'left',
                 location: {
@@ -328,10 +328,10 @@ Promise.all([
                 title: "November 2023 — A community meeting to discuss the ban",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/11/IMG_1698-scaled.jpg",
                 description:
-                    '<p>Ronen refuses to abandon the ban. She managed to get a ban - which goes against state law that allows vending - based on health and safety precautions for the community.</p>'
-                    +'<p>After several community meetings, it goes into effect on <a href="https://missionlocal.org/2023/11/mission-street-vending-ban-begins/">November 27</a>.</p>'
-                    +'<p>Permitted vendors are given two physical spots to set up — one indoors at <span class="green-highlight">2137 Mission called “El Tiangue,”</span> rented for 90 days by the city for $100,000.</p>'
-                    +'<p>The second called <span class="green-highlight">"La Placita" is at Capp and 24th Streets</span>. Neither ever take off.</p>',
+                    '<p>Ronen refuses to abandon the ban. She manages to get a ban — which goes against state law that allows vending — based on health and safety precautions for the community.</p>'
+                    +'<p>After several community meetings, it goes into effect on <a href="https://missionlocal.org/2023/11/mission-street-vending-ban-begins/">Nov. 27</a>.</p>'
+                    +'<p>Permitted vendors are given two physical spots to set up — one indoors at <span class="green-highlight">2137 Mission St. called “El Tiangue,”</span> rented for 90 days by the city for $100,000.</p>'
+                    +'<p>The second called <span class="green-highlight">"La Placita" is at Capp and 24th streets</span>. Neither ever take off.</p>',
                 alignment: 'left',
                 location: {
                     center: [-122.4328161350563, 37.75824032733743],
@@ -351,8 +351,8 @@ Promise.all([
                 title: 'Three days into the ban',
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/11/enforcement-scaled-e1701129804794.jpg",
                 description:
-                    '<p>It is clear it will only work when <a href="https://missionlocal.org/2023/11/update-three-days-into-street-vending-ban/">police and Public Works staff are present</a>.</p>'
-                    +'<p>Before they arrive, street vendors set up early along Mission street and the plazas. When police and Public Works staff appear for their scheduled shifts, vendors shout warnings to each other and clear out. As soon as the patrols leave, vendors return.</p>'
+                    '<p>It\'s clear the ban only works when <a href="https://missionlocal.org/2023/11/update-three-days-into-street-vending-ban/">police and Public Works staff are present</a>.</p>'
+                    +'<p>Before they arrive, street vendors set up early along Mission Street and the plazas. When police and Public Works staff appear for their scheduled shifts, vendors shout warnings to each other and clear out. As soon as the patrols leave, vendors return.</p>'
                     +'<p>Few of the permitted vendors are using the city\'s two rented spaces. La Placita, in a parking lot at 24th and Capp streets, has <span class="green-highlight">five vendors</span> in a space with <span class="green-highlight">room for nine</span>.</p>'
                     +'<p>El Tiangue, at 2137 Mission St., has <span class="green-highlight">eight vendors</span> in a space with <span class="green-highlight">room for 43</span>.</p>'
                     +'<p>Business is slow, say vendors at both, but they hope it will pick up.</p>',
@@ -372,13 +372,13 @@ Promise.all([
             },
             {
                 id: 'slide-16',
-                title: "December 2023 to 2024 — Two weeks into the ban",
+                title: "Two weeks into the ban",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2023/11/Franco-Gonzalez-70-2-14-p.m.-11-29.jpeg",
                 description:
                     '<p>Vendors remain largely absent from both BART plazas but only when four-person teams from Public Works and the San Francisco Police Department are present. Those shifts are generally from 9 a.m. to 8 p.m. on weekdays, and from 8 a.m. to 8 p.m. on the weekends.</p>'
                     +'<p>“It\'s working. It\'s not perfect, but it\'s working,” District Supervisor Hillary Ronen <a href="https://missionlocal.org/2023/12/2-weeks-into-mission-street-vending-ban-sanctioned-indoor-markets-getting-more-sales/">tells Mission Local</a>.</p>'
                     +'<p>At El Tiangue, <span class="green-highlight">some 21 vendors filled 43 stalls</span>. Sales are far from robust, but visitors are coming through and getting a photo with Santa Claus.</p>'
-                    +'<p>At La Placita at 24th and Capp, <span class="green-highlight">only two of nine stalls are filled</span>. A city-sponsored marketing campaign is trying to promote more foot traffic to both markets — called Las Posadas Holiday Shopping, it includes events like an Abuelita cook-off.</p>',
+                    +'<p>At La Placita at 24th and Capp, <span class="green-highlight">only two of nine stalls are filled</span>. A city-sponsored marketing campaign is trying to promote more foot traffic to both markets — called Las Posadas Holiday Shopping, it includes events like an abuelita cook-off.</p>',
                 alignment: 'center',
                 location: {
                     center: [-122.4328161350563, 37.75824032733743],
@@ -399,7 +399,7 @@ Promise.all([
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2024/02/IMG_2141-scaled.jpg",
                 description:
                     '<p>The <span class="yellow-highlight">90-day vending ban</span> is <a href="https://missionlocal.org/2024/02/mission-st-vending-ban-extended-by-six-months/">extended</a> for six months.</p>'
-                    +'<p>“The progress in the Mission is evident, and a great relief to residents, merchants, and city workers,” announces Mayor Breed in a press release.</p>'
+                    +'<p>“The progress in the Mission is evident, and a great relief to residents, merchants, and city workers,” announces Mayor London Breed in a press release.</p>'
                     + '<p>Data from Public Works and the police department shows a 30 percent decrease in assault and robbery incidents around the 16th Street and 24th Street BART plazas, and a 23 percent decrease in service requests for street cleaning since the vending ban was implemented, the mayor\'s office adds.</p>'
                     + '<p>The ban continues to be effective as long as officers and Public Works employees are on site.</p>',
                 alignment: 'left',
@@ -440,7 +440,7 @@ Promise.all([
                 title: "June 2024 — Sanctioned spaces for permitted vendors fail to bring customers",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2024/05/La-Placita-3-scaled-e1715357230372.jpg",
                 description:
-                    '<p><span class="green-highlight">El Tiangue</span> closes in May. <span class="green-highlight">La Placita</span>, is also failing. The remaining merchants estimate they have lost more than 90 percent of their income by moving off the streets.</p>'
+                    '<p><span class="green-highlight">El Tiangue</span> closes in May. <span class="green-highlight">La Placita</span> is also failing. The remaining merchants estimate they have lost more than 90 percent of their income by moving off the streets.</p>'
                     +'<p><span class="bold-text">“No one comes,”</span> the vendors say.</p>'
                     +'<p><span class="bold-text">“We were sold a bill of goods,”</span> says one vendor. <span class="bold-text">“We were told we would have customers. We were told it would be safe.”</span></p>',
                 alignment: 'left',
@@ -463,7 +463,7 @@ Promise.all([
                 title: "June 2024 — 10 permitted vendors are allowed back on Mission Street, Sen. Wiener introduces a bill to get control of vending",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2024/06/Pilot-2-scaled-e1719017954226.jpg",
                 description:
-                    '<p>10 permitted vendors are allowed back on Mission Street.</p>'
+                    '<p>Ten permitted vendors are allowed back on Mission Street.</p>'
                     +'<p>The <span class="green-highlight">10 permitted vendors</span> — <a href="https://missionlocal.org/2024/06/new-pilot-program-will-let-10-vendors-sell-on-mission-street/">six on the east side and four on the west side</a> — are allowed to set up shop on Mission Street between 23rd and 24th streets.</p>'
                     +'<p>“We\'re happy, because we\'re back and there\'s more people here, more transit,” <a href="https://missionlocal.org/2024/06/the-vendors-are-back-on-mission-street-with-uniforms-and-stalls/">said a vendor, in Spanish</a>. The ban stays in effect for everyone else.</p>'
                     +'<p>Sen. Scott Wiener <a href="https://missionlocal.org/2024/06/mission-vending-trial-set-for-mid-june-as-sen-wiener-introduces-bill-to-tackle-stolen-good-sales/">introduces SB 925</a>, a state bill specifically tailored to San Francisco\'s street vending troubles. It allows police to cite vendors who repeatedly sell stolen products with a misdemeanor and a penalty of up to six months in county jail. It does not apply to vendors selling food or anyone with a receipt or permit.</p>'
@@ -487,7 +487,7 @@ Promise.all([
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2024/06/IMG_8370-1.jpeg",
                 description:
                     '<p><span class="red-highlight">Unpermitted vending</span> continues at the plazas and along Mission Street. </p>'
-                    +'<p>One vendor, Estela Estrella, tells Mission Local she has already been asked to leave by the Department of Public Works, but seems undaunted. </p>'
+                    +'<p>One vendor, Estela Estrella, tells Mission Local she has already been asked to leave by Public Works, but seems undaunted. </p>'
                     +'<p>“I come here daily,” <a href="https://missionlocal.org/2024/06/the-vendors-are-back-on-mission-street-with-uniforms-and-stalls/">Estrella says</a>, “They have already taken my things four different times.”</p>',
                 alignment: 'left',
                 location: {
@@ -531,10 +531,9 @@ Promise.all([
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Screenshot-2025-02-24-at-12.52.04 PM.png",
                 description:
                     '<p>By early February, it takes three police cars to keep the plaza at 24th Street clear.</p>'
-                    +'<p>Scott Wiener <a href="https://missionlocal.org/2025/02/after-last-years-defeat-wiener-to-reintroduce-state-bill-to-address-fencing-operations-on-mission-street/">reintroduces</a> legislation — <a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB276">SB 276</a> — to give officers the ability to cite unpermitted vendors selling stolen goods.</p>'
+                    +'<p>Sen. Scott Wiener <a href="https://missionlocal.org/2025/02/after-last-years-defeat-wiener-to-reintroduce-state-bill-to-address-fencing-operations-on-mission-street/">reintroduces</a> legislation — <a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB276">SB 276</a> — to give officers the ability to cite unpermitted vendors selling stolen goods.</p>'
                     +'<p>It is set for a hearing on March 19, 2025.</p>'
-                    +'<p>The vending ban is extended until June 30, 2026.</p>'
-                    +'<p>Photo taken on Feb. 6, 2025 at 4:32 p.m.</p>',
+                    +'<p>The vending ban is extended until June 30, 2026.</p>',
                 alignment: 'center',
                 location: {
                     center: [-122.42000941874, 37.753099761830855],
@@ -553,8 +552,7 @@ Promise.all([
                 id: 'slide-24',
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/02/Screenshot-2025-02-24-at-12.52.40 PM.png",
                 description:
-                    '<p>The police cars leave and the plazas fill up, blocking pedestrians walking on Mission Street near the plazas.</p>'
-                    +'<p>Photo taken on Feb. 7, 2025 at 2:31 p.m.</p>',
+                    '<p>The police cars leave and the plazas fill up, blocking pedestrians walking on Mission Street near the plazas.</p>',
                 alignment: 'center',
                 location: {
                     center: [-122.42000941874, 37.753099761830855],
@@ -571,10 +569,10 @@ Promise.all([
             },
             {
                 id: 'slide-25',
-                title: "March 2025 — Mayor Daniel Lurie targets the 16th Street Plaza",
+                title: "March 2025 — Mayor Daniel Lurie targets the 16th Street plaza",
                 image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/03/e1610-1200x800.jpg",
                 description:
-                    '<p>While legislation is under consideration in Sacramento <span class="bold-text">Mayor Daniel Lurie</span> targets the 16th Street Plaza in his campaign on drugs, violence and vending.</p>'
+                    '<p>While legislation is under consideration in Sacramento, <span class="bold-text">Mayor Daniel Lurie</span> targets the 16th Street plaza in his campaign on drugs, violence and vending.</p>'
                     +'<p>The mayor visits the plaza at least twice in <a href="https://missionlocal.org/2025/03/sf-mission-16th-street-bart-plaza-daniel-lurie-hour-by-hour/">early March as vendors sell everything</a> from babyfood to champagne.</p>'
                     +'<p>After a second visit, the mayor deploys a <a href="https://missionlocal.org/2025/03/sfpd-mobile-command-unit-16th-and-mission-bart-plaza/">mobile command unit to 16th Street</a>.</p>',
                 alignment: 'center',
