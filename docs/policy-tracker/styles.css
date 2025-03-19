@@ -1,0 +1,45 @@
+body {
+    font-family: "barlow", sans-serif;
+    font-size: 16px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    min-width: 275px;
+    max-width: 500px;
+    width: 90%;
+}
+
+h4 {
+    margin-bottom: 2px;
+}
+
+.content-title {
+    margin-top: 5px;
+}
+.tag-button, .tag-button-top {
+    display: inline-block;
+    background-color: #e0e0e0; /* Light gray */
+    color: #333;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-weight: 500;
+    cursor: pointer; /* Makes it look clickable */
+    margin-top: 5px;
+    margin-bottom: 0px; /* Adds space below */
+    margin-right: 5px;
+}
+
+.slide {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
