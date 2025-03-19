@@ -1131,3 +1131,23 @@ Promise.all([
 .catch(error => {
     console.error('Error loading geojson files:', error);
 });
+
+// Initialize pym.js
+var pymChild = new pym.Child({ polling: 500 });
+
+// Send height to parent after map loads
+map.on("load", function() {
+    setTimeout(function() {
+        pymChild.sendHeight();
+    }, 1000);
+});
+
+// Send height on scroll step changes
+scroller.on("step", function() {
+    pymChild.sendHeight();
+});
+
+// Send height on resize
+window.addEventListener('resize', function() {
+    pymChild.sendHeight();
+});
