@@ -6,24 +6,6 @@ function fetchJSON(url) {
       });
 }
 
-// Determine if we're on mobile
-function isMobile() {
-    return window.innerWidth < 768;
-}
-
-// Get the appropriate location settings based on viewport
-function getLocationForViewport(chapterLocation) {
-    if (isMobile() && chapterLocation.mobile) {
-        return chapterLocation.mobile;
-    }
-    return {
-        center: chapterLocation.center,
-        zoom: chapterLocation.zoom,
-        bearing: chapterLocation.bearing,
-        pitch: chapterLocation.pitch
-    };
-}
-
 // Fetch both geojson files before initializing the map
 Promise.all([
     fetchJSON('mission.geojson'),
@@ -56,12 +38,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -85,12 +61,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -112,12 +82,6 @@ Promise.all([
                     zoom: 16.9,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41900941874, 37.752299761830855],
-                        zoom: 15.5,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -139,12 +103,6 @@ Promise.all([
                     zoom: 16.9,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41900941874, 37.752299761830855],
-                        zoom: 15.5,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -164,12 +122,6 @@ Promise.all([
                     zoom: 16.9,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41900941874, 37.752299761830855],
-                        zoom: 15.5,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -192,12 +144,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41900941874, 37.752299761830855],
-                        zoom: 15.5,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -221,12 +167,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -246,12 +186,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -272,12 +206,6 @@ Promise.all([
                     zoom: 13.5,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41935186602414, 37.76180547720679],
-                        zoom: 11.5,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -300,12 +228,6 @@ Promise.all([
                     zoom: 16.9,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41900941874, 37.752299761830855],
-                        zoom: 15.5,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -329,12 +251,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -355,12 +271,6 @@ Promise.all([
                     zoom: 13.5,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41935186602414, 37.76180547720679],
-                        zoom: 11.5,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -383,12 +293,6 @@ Promise.all([
                     zoom: 16.7,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41974869993318, 37.765037111482954],
-                        zoom: 15.5,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -411,12 +315,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -440,12 +338,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -470,12 +362,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -499,12 +385,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -528,12 +408,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -553,12 +427,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -581,12 +449,6 @@ Promise.all([
                     zoom: 14,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41526417941033, 37.759718918805575],
-                        zoom: 13.2,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -612,12 +474,6 @@ Promise.all([
                     zoom: 17.2,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41852131009021, 37.75298932286557],
-                        zoom: 16,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -639,12 +495,6 @@ Promise.all([
                     zoom: 17.2,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41852131009021, 37.75298932286557],
-                        zoom: 16,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -667,12 +517,6 @@ Promise.all([
                     zoom: 17.2,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41852131009021, 37.75298932286557],
-                        zoom: 16,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -696,12 +540,6 @@ Promise.all([
                     zoom: 17.2,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41852131009021, 37.75298932286557],
-                        zoom: 16,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -721,12 +559,6 @@ Promise.all([
                     zoom: 17.2,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41852131009021, 37.75298932286557],
-                        zoom: 16,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -749,12 +581,6 @@ Promise.all([
                     zoom: 17.2,
                     bearing: 0,
                     pitch: 0,
-                    mobile: {
-                        center: [-122.41852131009021, 37.75298932286557],
-                        zoom: 16,
-                        bearing: 0,
-                        pitch: 0
-                    }
                 },
                 showMission: true,
                 showMissionPlan: true,
@@ -878,17 +704,15 @@ Promise.all([
             url: url + suffix
         }
     }
-
-    var initialLocation = getLocationForViewport(config.chapters[0].location);
     
     var map = new mapboxgl.Map({
         container: 'map',
         style: config.style,
         minZoom: 10.4,
-        center: initialLocation.center,
-        zoom: initialLocation.zoom,
-        bearing: initialLocation.bearing,
-        pitch: initialLocation.pitch,
+        center: config.chapters[0].location.center,
+        zoom: config.chapters[0].location.zoom,
+        bearing: config.chapters[0].location.bearing,
+        pitch: config.chapters[0].location.pitch,
         scrollZoom: false,
         transformRequest: transformRequest
     });
@@ -1053,13 +877,13 @@ Promise.all([
                 
             map.setLayoutProperty('mission-plan-fill', 'visibility', 
                 chapter.showMissionPlan ? 'visible' : 'none');
-        
+
             map.setLayoutProperty('plazas-fill', 'visibility',
                 chapter.showPlazas ? 'visible' : 'none');
-        
+
             map.setLayoutProperty('markets-fill', 'visibility',
                 chapter.showMarkets ? 'visible' : 'none');
-        
+
             map.setLayoutProperty('vendors-circle', 'visibility',
                 chapter.showVendors ? 'visible' : 'none');
             
@@ -1105,18 +929,19 @@ Promise.all([
             }
             
             // Fly to the chapter location
-            const locationSettings = getLocationForViewport(chapter.location);
+            const viewport = window.innerWidth < 768 ? 'mobile' : 'desktop';
+            const location = chapter.location[viewport] || chapter.location;
 
             map.flyTo({
-                center: locationSettings.center,
-                zoom: locationSettings.zoom,
-                bearing: locationSettings.bearing,
-                pitch: locationSettings.pitch,
+                center: location.center,
+                zoom: location.zoom,
+                bearing: chapter.location.bearing,
+                pitch: chapter.location.pitch,
                 duration: 1000
             });
             
             if (config.showMarkers) {
-                marker.setLngLat(locationSettings.center);
+                marker.setLngLat(chapter.location.center);
             }
         })
         .onStepExit(response => {
