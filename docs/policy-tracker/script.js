@@ -91,21 +91,6 @@ function attachTopFilterListeners() {
     });
 }
 
-// Handle tag button clicks inside slides
-function handleTagClick(event) {
-    let tag = event.target.getAttribute("data-tag");
-
-    // Toggle selection
-    if (selectedTags.has(tag)) {
-        selectedTags.delete(tag);
-        event.target.style.opacity = "1"; // Reset button appearance
-    } else {
-        selectedTags.add(tag);
-        event.target.style.opacity = "0.6"; // Indicate selection
-    }
-
-    filterSlides(); // Update the slides
-}
 
 // Handle top filter button clicks
 function handleTopFilterClick(event) {
