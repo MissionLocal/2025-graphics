@@ -63,7 +63,6 @@ function renderSlides(data) {
         container.append("div").html(slideHTML);
     });
 
-    attachTagEventListeners();
     attachTopFilterListeners(); // Ensure top filters remain functional
 }
 
@@ -83,13 +82,6 @@ function filterSlides() {
     renderSlides(filteredData);
 }
 
-// Attach event listeners to tag buttons inside slides
-function attachTagEventListeners() {
-    document.querySelectorAll(".tag-button").forEach(button => {
-        button.removeEventListener("click", handleTagClick); // Remove old listeners
-        button.addEventListener("click", handleTagClick);
-    });
-}
 
 // Attach event listeners to filter buttons at the top
 function attachTopFilterListeners() {
