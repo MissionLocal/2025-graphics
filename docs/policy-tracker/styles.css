@@ -45,13 +45,13 @@ h4 {
 }
 
 .solid-line {
-    border: 1px solid black;
+    border: 0.5px solid #ccc;
     margin: 10px 0;
     width: 100%;
 }
 
 .dotted-line {
-    border: 1px dotted black;
+    border: 1px dotted #ccc;
     margin: 10px 0;
     width: 100%;
 }
