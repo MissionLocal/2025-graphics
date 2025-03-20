@@ -23,10 +23,12 @@ d3.csv("data.csv").then(data => {
     attachTopFilterListeners(); // Attach event listeners to top filter buttons
 }).catch(error => console.error("Error loading CSV:", error));
 
-// Function to render slides
+// Function to render slides with unique date headers
 function renderSlides(data) {
     const container = d3.select("#slides-container");
     container.html(""); // Clear previous slides
+
+    let lastDisplayedDate = null; // Track last displayed date
 
     data.forEach(d => {
         if (!d.tags || typeof d.tags !== "string") {
@@ -41,6 +43,18 @@ function renderSlides(data) {
 
         console.log(`Processed tags for "${d.title}":`, tagsArray);
 
+        let dateHTML = "";
+        let hrHTML = "";
+        
+        if (d.date !== lastDisplayedDate) {
+            dateHTML = `<h4 class="content-title">${d.date_formatted} &nbsp;&nbsp;&nbsp; <span style="color: gray;">Day ${d.day}</span></h4>`;
+            hrHTML = `<hr class="solid-line">`; // Solid line when date is displayed
+            lastDisplayedDate = d.date; 
+        } else {
+            hrHTML = `<hr class="dotted-line">`; // Dotted line if date is not displayed
+        }
+        
+
         let tagsHTML = tagsArray.map(tag => {
             let color = tagColors[tag] || defaultColor;
             return `<div class="tag-button" data-tag="${tag}" style="background-color: ${color};">${tag}</div>`;
@@ -49,9 +63,10 @@ function renderSlides(data) {
         let slideHTML = `
             <div class="box" data-tags="${tagsArray.join(",")}">
                 <div class="content slide">
-                    <h4 class="content-title">${d.date_formatted} &nbsp;&nbsp;&nbsp; <span style="color: gray;">Day ${d.day}</span></h4>
+                    ${dateHTML} <!-- Only show date if it's new -->
                     <div class="content-card">
-                        <hr>
+                    ${hrHTML} <!-- Only show date if it's new -->
+
                         ${tagsHTML}
                         <h3>${d.title}</h3>
                         <p>${d.description} <a style="color: gray;" target="_blank" href="${d.link}">Read more</a>.</p>

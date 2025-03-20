@@ -43,3 +43,15 @@ h4 {
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+.solid-line {
+    border: 1px solid black;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.dotted-line {
+    border: 1px dotted black;
+    margin: 10px 0;
+    width: 100%;
+}
