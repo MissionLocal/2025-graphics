@@ -51,7 +51,7 @@ function renderSlides(data) {
             hrHTML = `<hr class="solid-line">`; // Solid line when date is displayed
             lastDisplayedDate = d.date; 
         } else {
-            hrHTML = `<hr class="dotted-line">`; // Dotted line if date is not displayed
+            hrHTML = ``; // Dotted line if date is not displayed
         }
         
 
@@ -75,10 +75,17 @@ function renderSlides(data) {
             </div>
         `;
 
-        container.append("div").html(slideHTML);
+        container.html(container.html() + slideHTML);
+
     });
 
     attachTopFilterListeners(); // Ensure top filters remain functional
+
+
+    // Reinitialize pym.js to adjust iframe height after content changes
+    if (typeof pym !== "undefined") {
+        new pym.Child();
+    }
 }
 
 // Function to filter slides based on selected tags
@@ -122,3 +129,11 @@ function handleTopFilterClick(event) {
 
     filterSlides(); // Update the slides
 }
+
+
+// Initialize pym.js on document load
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof pym !== "undefined") {
+        new pym.Child();
+    }
+});
