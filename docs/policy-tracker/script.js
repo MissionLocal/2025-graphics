@@ -1,12 +1,12 @@
 // Define colors for each tag
 const tagColors = {
     "public safety": "#f67cf6",  
-    "budget": "#efbe25",         
+    "budget": "#46c134",         
     "fire department": "#ff9da6",     
     "culture": "#f36e57",        
     "governance": "#ade8f4",     
     "transit": "#8ad6ce",               
-    "homelessness": "#fae9b6",   
+    "homelessness": "#efbe25",   
     "business": "#ef9f6a",       
     "downtown": "#0dd6c7",   
     "public health": "#57a4ea"
