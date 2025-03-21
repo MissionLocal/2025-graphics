@@ -67,8 +67,8 @@ h4 {
 #governance { background-color: rgba(173, 232, 244, 0.4); }
 #governance.selected { background-color: #ade8f4; }
 
-#fire-dept { background-color: rgba(255, 157, 166, 0.4); }
-#fire-dept.selected { background-color: #ff9da6; }
+#fire-department { background-color: rgba(255, 157, 166, 0.4); }
+#fire-department.selected { background-color: #ff9da6; }
 
 #culture { background-color: rgba(243, 110, 87, 0.4); }
 #culture.selected { background-color: #f36e57; }
@@ -88,3 +88,20 @@ h4 {
 #public-health { background-color: rgba(87, 164, 234, 0.4); }
 #public-health.selected { background-color: #57a4ea; }
 
+#ordinance { background-color: rgba(224, 224, 224, 0.4); }
+#ordinance.selected { background-color: rgb(224, 224, 224); }
+
+#order { background-color: rgba(224, 224, 224, 0.4); }
+#order.selected { background-color: rgb(224, 224, 224); }
+
+#legislation { background-color: rgba(224, 224, 224, 0.4); }
+#legislation.selected { background-color: rgb(224, 224, 224); }
+
+#appointment { background-color: rgba(224, 224, 224, 0.4); }
+#appointment.selected { background-color: rgb(224, 224, 224); }
+
+#proclamation { background-color: rgba(224, 224, 224, 0.4); }
+#proclamation.selected { background-color: rgb(224, 224, 224); }
+
+#remove-type {background-color: white; display: none;}
+#remove-cat {background-color: white; display: none;}

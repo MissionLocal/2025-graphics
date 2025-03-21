@@ -2,7 +2,7 @@
 const tagColors = {
     "public safety": "#f67cf6",  
     "budget": "#efbe25",         
-    "fire dept.": "#ff9da6",     
+    "fire department": "#ff9da6",     
     "culture": "#f36e57",        
     "governance": "#ade8f4",     
     "transit": "#8ad6ce",               
@@ -88,10 +88,10 @@ function renderSlides(data) {
     }
 }
 
-// Function to filter slides based on selected tags
 function filterSlides() {
     if (selectedTags.size === 0) {
-        renderSlides(rawData); // Show all if no tags selected
+        console.log("No filters selected, showing all slides.");
+        renderSlides(rawData); // Show all slides
         return;
     }
 
@@ -101,8 +101,13 @@ function filterSlides() {
         return tagsArray.some(tag => selectedTags.has(tag));
     });
 
+    if (filteredData.length === 0) {
+        console.log("No matching slides found.");
+    }
+
     renderSlides(filteredData);
 }
+
 
 
 // Attach event listeners to filter buttons at the top
@@ -151,3 +156,77 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    function updateRemoveButtonVisibility(card) {
+        const removeButton = card.querySelector(".tag-button-top[id^='remove-']");
+        const anySelected = card.querySelector(".tag-button-top.selected");
+        removeButton.style.display = anySelected ? "inline-block" : "none";
+    }
+
+    function updateVisibility() {
+        const selectedCategories = Array.from(document.querySelectorAll(".content-card:first-of-type .tag-button-top.selected"))
+            .map(btn => btn.id);
+        const selectedTypes = Array.from(document.querySelectorAll(".content-card:last-of-type .tag-button-top.selected"))
+            .map(btn => btn.id);
+
+        document.querySelectorAll("#slides-container .slide").forEach(slide => {
+            let categoryMatch = selectedCategories.length === 0 || selectedCategories.some(cat => slide.dataset.category.includes(cat));
+            let typeMatch = selectedTypes.length === 0 || selectedTypes.some(type => slide.dataset.type.includes(type));
+
+            slide.style.display = (categoryMatch && typeMatch) ? "block" : "none";
+        });
+    }
+
+    function toggleSelection(event) {
+        let button = event.target;
+
+        if (button.id.startsWith("remove-")) return;
+
+        button.classList.toggle("selected");
+
+        const card = button.closest(".content-card");
+        updateRemoveButtonVisibility(card);
+        updateVisibility();
+    }
+    
+    function resetSection(event) {
+        let removeButton = event.target;
+        let card = removeButton.closest(".content-card");
+    
+        // Get the selected buttons in this section
+        let buttonsInSection = card.querySelectorAll(".tag-button-top.selected");
+    
+        // Remove only the selected tags from `selectedTags` that belong to this section
+        buttonsInSection.forEach(button => {
+            let tag = button.id.replace(/-/g, " ");
+            selectedTags.delete(tag);
+            button.classList.remove("selected");
+        });
+    
+        // If no tags are selected, reset everything
+        if (selectedTags.size === 0) {
+            console.log("All filters cleared, showing all slides.");
+            renderSlides(rawData);
+        } else {
+            filterSlides(); // Update the slides properly
+        }
+    
+        // Hide the remove button
+        removeButton.style.display = "none";
+    }
+    
+    
+    
+
+    document.querySelectorAll(".content-card .tag-button-top").forEach(button => {
+        button.addEventListener("click", toggleSelection);
+    });
+
+    document.querySelectorAll(".tag-button-top[id^='remove-']").forEach(button => {
+        button.addEventListener("click", resetSection);
+    });
+
+    document.querySelectorAll(".tag-button-top[id^='remove-']").forEach(button => {
+        button.style.display = "none";
+    });
+});
