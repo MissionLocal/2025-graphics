@@ -39,6 +39,8 @@ h4 {
     margin-right: 5px;
 }
 
+
+
 .slide {
     margin-bottom: 5px;
     margin-top: 20px;
@@ -55,4 +57,34 @@ h4 {
     margin: 10px 0;
     width: 100%;
 }
+
+#public-safety { background-color: rgba(246, 124, 246, 0.4); }
+#public-safety.selected { background-color: #f67cf6; }
+
+#budget { background-color: rgba(239, 190, 37, 0.4); }
+#budget.selected { background-color: #efbe25; }
+
+#governance { background-color: rgba(173, 232, 244, 0.4); }
+#governance.selected { background-color: #ade8f4; }
+
+#fire-dept { background-color: rgba(255, 157, 166, 0.4); }
+#fire-dept.selected { background-color: #ff9da6; }
+
+#culture { background-color: rgba(243, 110, 87, 0.4); }
+#culture.selected { background-color: #f36e57; }
+
+#transit { background-color: rgba(138, 214, 206, 0.4); }
+#transit.selected { background-color: #8ad6ce; }
+
+#homelessness { background-color: rgba(250, 233, 182, 0.4); }
+#homelessness.selected { background-color: #fae9b6; }
+
+#business { background-color: rgba(239, 159, 106, 0.4); }
+#business.selected { background-color: #ef9f6a; }
+
+#downtown { background-color: rgba(13, 214, 199, 0.4); }
+#downtown.selected { background-color: #0dd6c7; }
+
+#public-health { background-color: rgba(87, 164, 234, 0.4); }
+#public-health.selected { background-color: #57a4ea; }
 

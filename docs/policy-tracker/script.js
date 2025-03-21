@@ -113,23 +113,36 @@ function attachTopFilterListeners() {
     });
 }
 
+function generateId(text) {
+    return text.trim().toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, ""); // Convert spaces to hyphens & remove special chars
+}
 
-// Handle top filter button clicks
 function handleTopFilterClick(event) {
-    let tag = event.target.textContent.trim().toLowerCase();
+    let tag = event.target.id.replace(/-/g, " "); // Convert hyphens back to spaces
+    console.log(`Clicked: ${tag}`); // Debugging output
 
-    // Toggle selection
+    if (!tag) {
+        console.error("No ID found for clicked button!");
+        return;
+    }
+
     if (selectedTags.has(tag)) {
         selectedTags.delete(tag);
-        event.target.style.opacity = "1"; // Reset button appearance
+        event.target.classList.remove("selected");
+        console.log(`Deselected: ${tag}`);
     } else {
         selectedTags.add(tag);
-        event.target.style.opacity = "0.6"; // Indicate selection
+        event.target.classList.add("selected");
+        console.log(`Selected: ${tag}`);
     }
 
     filterSlides(); // Update the slides
 }
 
+// Attach event listener to all top filter buttons
+document.querySelectorAll(".tag-button-top").forEach(button => {
+    button.addEventListener("click", handleTopFilterClick);
+});
 
 // Initialize pym.js on document load
 document.addEventListener("DOMContentLoaded", () => {
@@ -137,3 +150,4 @@ document.addEventListener("DOMContentLoaded", () => {
         new pym.Child();
     }
 });
+
