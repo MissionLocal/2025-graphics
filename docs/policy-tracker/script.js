@@ -108,8 +108,6 @@ function filterSlides() {
     renderSlides(filteredData);
 }
 
-
-
 // Attach event listeners to filter buttons at the top
 function attachTopFilterListeners() {
     document.querySelectorAll(".tag-button-top").forEach(button => {
