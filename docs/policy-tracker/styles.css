@@ -103,5 +103,8 @@ h4 {
 #proclamation { background-color: rgba(224, 224, 224, 0.4); }
 #proclamation.selected { background-color: rgb(224, 224, 224); }
 
+#program { background-color: rgba(224, 224, 224, 0.4); }
+#program.selected { background-color: rgb(224, 224, 224); }
+
 #remove-type {background-color: white; display: none;}
 #remove-cat {background-color: white; display: none;}
