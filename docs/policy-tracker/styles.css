@@ -88,8 +88,8 @@ h4 {
 #public-health { background-color: rgba(87, 164, 234, 0.4); }
 #public-health.selected { background-color: #57a4ea; }
 
-#ordinance { background-color: rgba(224, 224, 224, 0.4); }
-#ordinance.selected { background-color: rgb(224, 224, 224); }
+#permit { background-color: rgba(224, 224, 224, 0.4); }
+#permit.selected { background-color: rgb(224, 224, 224); }
 
 #order { background-color: rgba(224, 224, 224, 0.4); }
 #order.selected { background-color: rgb(224, 224, 224); }
