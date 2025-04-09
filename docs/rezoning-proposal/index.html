@@ -323,9 +323,9 @@
   /* default */ '#ccc'
                         ],
 
-                        'fill-opacity': 0.7, 
-                        
-                    }, 
+                        'fill-opacity': 0.7,
+
+                    },
                     filter: ['!=', ['get', 'gen_hght'], null]
                 });
 
@@ -337,6 +337,19 @@
                         .setHTML(`<strong>Height:</strong> ${genHeight}`)
                         .addTo(map);
                 });
+
+                map.on('click', 'alternate-layer', (e) => {
+                    const feature = e.features[0];
+                    const genHeight = feature.properties.gen_hght;
+                    const roundedHeight = Math.round(genHeight);
+
+                    new mapboxgl.Popup()
+                        .setLngLat(e.lngLat)
+                        .setHTML(`<strong>Height:</strong> ${roundedHeight}`)
+                        .addTo(map);
+                });
+
+
 
                 map.moveLayer('road-label-navigation');
                 map.moveLayer('settlement-subdivision-label');
