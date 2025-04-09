@@ -363,6 +363,13 @@
                     const selected = e.target.value;
                     map.setLayoutProperty('blocks-layer', 'visibility', selected === 'proposal' ? 'visible' : 'none');
                     map.setLayoutProperty('alternate-layer', 'visibility', selected === 'alternate' ? 'visible' : 'none');
+                    // hide the legend-note-boxes for the alternate layer
+                    const legendNoteBoxes = document.querySelector('.legend-note-boxes');
+                    if (selected === 'alternate') {
+                        legendNoteBoxes.style.display = 'none';
+                    } else {
+                        legendNoteBoxes.style.display = 'flex';
+                    }
                 }
             });
         });
