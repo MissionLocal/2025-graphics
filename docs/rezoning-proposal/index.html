@@ -2,420 +2,420 @@
 <html>
 
 <head>
-  <meta charset='utf-8' />
-  <title>Rezoning proposal</title>
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  
-  <!-- Mapbox GL -->
-  <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
+    <meta charset='utf-8' />
+    <title>Rezoning proposal</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 
-  <!-- Mapbox Geocoder -->
-  <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" rel="stylesheet" />
-  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+    <!-- Mapbox GL -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Mapbox Geocoder -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
+        rel="stylesheet" />
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    padding-bottom: 20px;
-  }
-
-  #map {
-    width: 100vw;
-    max-width: 500px;
-    height: 500px;
-    margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .cont {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .dropdownContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 10px;
-  }
-
-  .color-box {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-    margin-left: 10px;
-    opacity: 0.6;
-  }
-
-  @media (max-width: 768px) {
-    .legend-container {
-      flex-direction: column;
-      align-items: center;
+    body {
+        margin: 0;
+        padding: 0;
+        padding-bottom: 20px;
     }
-  }
 
-  .color-scale {
-    max-height: 50px;
-  }
+    #map {
+        width: 100vw;
+        max-width: 500px;
+        height: 500px;
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-  #legend {
-    background-color: white;
-    border-radius: 4px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: fit-content;
-    font-family: Barlow, sans-serif;
-  }
+    .cont {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-  .note,
-  .popup-header,
-  .popup-text {
-    font-family: Barlow, sans-serif;
-  }
+    .dropdownContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 10px;
+    }
 
-  .popup-header {
-    margin: 2px 0;
-    font-size: 16px;
-  }
+    .color-box {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        margin-left: 10px;
+        opacity: 0.6;
+    }
 
-  .popup-text {
-    margin: 2px 0;
-    font-size: 14px;
-    line-height: 1.3;
-  }
+    @media (max-width: 768px) {
+        .legend-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
 
-  .mapboxgl-popup-content {
-    background-color: rgba(255, 255, 255);
-    border-radius: 5px;
-    color: #333;
-    font-family: Barlow, sans-serif;
-    font-size: 14px;
-  }
+    .color-scale {
+        max-height: 50px;
+    }
 
-  .map-legend-horizontal {
-    background: white;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-family: sans-serif;
-    font-size: 12px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
-  }
+    #legend {
+        background-color: white;
+        border-radius: 4px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: fit-content;
+        font-family: Barlow, sans-serif;
+    }
 
-  .legend-gradient {
-    width: 300px;
-    height: 15px;
-    background: linear-gradient(to right,
-      #e6f4f9, #b2e5e5, #9ddddd, #88d4d4, #73cbcb,
-      #5ec2c2, #4ab9b9, #36b0b0, #2599b2, #1f88aa,
-      #1977a1, #146696, #0f558a, #0a447d, #063370, #022263);
-    margin-top: 4px;
-    border: 0.75px solid #999;
-  }
+    .note,
+    .popup-header,
+    .popup-text {
+        font-family: Barlow, sans-serif;
+    }
 
-  .legend-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-  }
+    .popup-header {
+        margin: 2px 0;
+        font-size: 16px;
+    }
 
-  .legend-note-boxes {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    font-family: Barlow, sans-serif;
-    font-size: 14px;
-    color: #444;
-  }
+    .popup-text {
+        margin: 2px 0;
+        font-size: 14px;
+        line-height: 1.3;
+    }
 
-  .legend-entry {
-    display: flex;
-    align-items: center;
-  }
+    .mapboxgl-popup-content {
+        background-color: rgba(255, 255, 255);
+        border-radius: 5px;
+        color: #333;
+        font-family: Barlow, sans-serif;
+        font-size: 14px;
+    }
 
-  .legend-color-box {
-    width: 20px;
-    height: 15px;
-    margin-right: 8px;
-    border: 0.75px solid #999;
-    opacity: 1;
-  }
+    .map-legend-horizontal {
+        background: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-family: sans-serif;
+        font-size: 12px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        max-width: 90%;
+    }
 
-  #geocoder-container {
-    margin: 10px;
-    max-width: 300px;
-    /* width: 90vw; */
-    z-index: 1;
-  }
+    .legend-gradient {
+        width: 300px;
+        height: 15px;
+        background: linear-gradient(to right,
+                #e6f4f9, #b2e5e5, #9ddddd, #88d4d4, #73cbcb,
+                #5ec2c2, #4ab9b9, #36b0b0, #2599b2, #1f88aa,
+                #1977a1, #146696, #0f558a, #0a447d, #063370, #022263);
+        margin-top: 4px;
+        border: 0.75px solid #999;
+    }
+
+    .legend-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    .legend-note-boxes {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-family: Barlow, sans-serif;
+        font-size: 14px;
+        color: #444;
+    }
+
+    .legend-entry {
+        display: flex;
+        align-items: center;
+    }
+
+    .legend-color-box {
+        width: 20px;
+        height: 15px;
+        margin-right: 8px;
+        border: 0.75px solid #999;
+        opacity: 1;
+    }
+
+    #geocoder-container {
+        margin: 10px;
+        max-width: 300px;
+        /* width: 90vw; */
+        z-index: 1;
+    }
 </style>
 
 <body>
     <div class="cont">
         <div id="geocoder-container"></div>
-      </div>
-  <div class="cont">
-    <form id="layer-toggle" style="font-family: Barlow, sans-serif; margin-top: 10px;">
-      <label><input type="radio" name="layer" value="proposal" checked> Rezoning proposal</label>
-      <label style="margin-left: 20px;"><input type="radio" name="layer" value="alternate"> Current zoning</label>
-    </form>
-  </div>
-
-  <!-- Geocoder Container (must be in the DOM) -->
-
-
-  <div class="cont">
-    <div id='map'></div>
-  </div>
-
-  <div class="cont">
-    <div id="legend" class="map-legend-horizontal">
-      <div class="legend-labels">
-        <span>40'</span>
-        <span>650'+</span>
-      </div>
-      <div class="legend-gradient"></div>
-      <div class="legend-note-boxes">
-        <div class="legend-entry">
-          <div class="legend-color-box" style="background-color: #e6f4f9;"></div>
-          <div>40' height allowed and density decontrol</div>
-        </div>
-        <div class="legend-entry">
-          <div class="legend-color-box" style="background-color: #cccccc;"></div>
-          <div>Unchanged height and density decontrol</div>
-        </div>
-      </div>
     </div>
-  </div>
+    <div class="cont">
+        <form id="layer-toggle" style="font-family: Barlow, sans-serif; margin-top: 10px;">
+            <label><input type="radio" name="layer" value="proposal" checked> Rezoning proposal</label>
+            <label style="margin-left: 20px;"><input type="radio" name="layer" value="alternate"> Current zoning</label>
+        </form>
+    </div>
 
-  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+    <!-- Geocoder Container (must be in the DOM) -->
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var pymChild = new pym.Child();
 
-      // Set your Mapbox access token
-      mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ";
+    <div class="cont">
+        <div id='map'></div>
+    </div>
 
-      const mapZoom = window.innerWidth < 400 ? 11.5 : 11.5;
-      const mapY = window.innerWidth < 400 ? 37.762 : 37.762;
+    <div class="cont">
+        <div id="legend" class="map-legend-horizontal">
+            <div class="legend-labels">
+                <span>40'</span>
+                <span>650'+</span>
+            </div>
+            <div class="legend-gradient"></div>
+            <div class="legend-note-boxes">
+                <div class="legend-entry">
+                    <div class="legend-color-box" style="background-color: #e6f4f9;"></div>
+                    <div>40' height allowed and density decontrol</div>
+                </div>
+                <div class="legend-entry">
+                    <div class="legend-color-box" style="background-color: #cccccc;"></div>
+                    <div>Unchanged height and density decontrol</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-      // Initialize the map
-      const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
-        zoom: mapZoom,
-        center: [-122.461, mapY],
-        minZoom: 10.4
-      });
+    <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
 
-  
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var pymChild = new pym.Child();
 
-      // When the map loads, add layers and sources, etc.
-      map.on('load', () => {
-        map.addSource('blocks', {
-          type: 'geojson',
-          data: 'data/final.geojson'
-        });
+            // Set your Mapbox access token
+            mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ";
 
-        map.addLayer({
-          id: 'blocks-layer',
-          type: 'fill',
-          source: 'blocks',
-          paint: {
-            'fill-color': [
-              'match', ['get', 'proposal'],
-              "40' height allowed and density decontrol", '#e6f4f9',
-              "50' height allowed and density decontrol", '#b2e5e5',
-              "65' height allowed", '#9ddddd',
-              "85' height allowed", '#88d4d4',
-            //   "85' base height", '#88d4d4',
-              "120' height allowed", '#5ec2c2',
-              "140' height allowed", '#4ab9b9',
-              "160' height allowed", '#36b0b0',
-              "180' height allowed", '#2599b2',
-              "240' height allowed", '#1f88aa',
-              "250' height allowed", '#1977a1',
-              "300' height allowed", '#146696',
-              "350' height allowed", '#0f558a',
-              "490' height allowed", '#0a447d',
-              "500' height allowed", '#063370',
-              "650' height allowed", '#022263',
-              "Density decontrol, unchanged height", '#cccccc',
+            const mapZoom = window.innerWidth < 400 ? 11.5 : 11.5;
+            const mapY = window.innerWidth < 400 ? 37.762 : 37.762;
+
+            // Initialize the map
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
+                zoom: mapZoom,
+                center: [-122.461, mapY],
+                minZoom: 10.4
+            });
+
+            // When the map loads, add layers and sources, etc.
+            map.on('load', () => {
+                map.addSource('blocks', {
+                    type: 'geojson',
+                    data: 'data/final.geojson'
+                });
+
+                map.addLayer({
+                    id: 'blocks-layer',
+                    type: 'fill',
+                    source: 'blocks',
+                    paint: {
+                        'fill-color': [
+                            'match', ['get', 'proposal'],
+                            "40' height allowed and density decontrol", '#e6f4f9',
+                            "50' height allowed and density decontrol", '#b2e5e5',
+                            "65' height allowed", '#9ddddd',
+                            "85' height allowed", '#88d4d4',
+                            //   "85' base height", '#88d4d4',
+                            "120' height allowed", '#5ec2c2',
+                            "140' height allowed", '#4ab9b9',
+                            "160' height allowed", '#36b0b0',
+                            "180' height allowed", '#2599b2',
+                            "240' height allowed", '#1f88aa',
+                            "250' height allowed", '#1977a1',
+                            "300' height allowed", '#146696',
+                            "350' height allowed", '#0f558a',
+                            "490' height allowed", '#0a447d',
+                            "500' height allowed", '#063370',
+                            "650' height allowed", '#022263',
+                            "Density decontrol, unchanged height", '#cccccc',
               /* other */ '#f0f0f0'
-            ],
-            'fill-opacity': 1
-          }
-        });
+                        ],
+                        'fill-opacity': 1
+                    }
+                });
 
-        map.addSource('alternate', {
-          type: 'geojson',
-          data: 'data/current_zoning_clean.geojson'
-        });
+                map.addSource('alternate', {
+                    type: 'geojson',
+                    data: 'data/current_zoning_clean.geojson'
+                });
 
-        map.addLayer({
-          id: 'alternate-layer',
-          type: 'fill',
-          source: 'alternate',
-          layout: {
-            visibility: 'none'
-          },
-          paint: {
-            'fill-color': [
-              'match',
-              ['round', ['get', 'gen_hght']],
-              20, '#e6f4f9',
-              25, '#e6f4f9',
-              26, '#e6f4f9',
-              28, '#e6f4f9',
-              30, '#e6f4f9',
-              32, '#e6f4f9',
-              35, '#e6f4f9',
-              40, '#e6f4f9',
-              45, '#b2e5e5',
-              48, '#b2e5e5',
-              50, '#b2e5e5',
-              55, '#9ddddd',
-              56, '#9ddddd',
-              57, '#9ddddd',
-              58, '#9ddddd',
-              60, '#9ddddd',
-              62, '#9ddddd',
-              65, '#9ddddd',
-              67, '#88d4d4',
-              68, '#88d4d4',
-              70, '#88d4d4',
-              75, '#88d4d4',
-              76, '#88d4d4',
-              78, '#88d4d4',
-              80, '#88d4d4',
-              84, '#88d4d4',
-              85, '#88d4d4',
-              86, '#5ec2c2',
-              90, '#5ec2c2',
-              92, '#5ec2c2',
-              95, '#5ec2c2',
-              96, '#5ec2c2',
-              100, '#5ec2c2',
-              105, '#5ec2c2',
-              110, '#5ec2c2',
-              115, '#5ec2c2',
-              120, '#5ec2c2',
-              125, '#4ab9b9',
-              130, '#4ab9b9',
-              135, '#4ab9b9',
-              140, '#4ab9b9',
-              145, '#36b0b0',
-              150, '#36b0b0',
-              160, '#36b0b0',
-              165, '#2599b2',
-              180, '#2599b2',
-              190, '#1f88aa',
-              200, '#1f88aa',
-              220, '#1f88aa',
-              225, '#1f88aa',
-              230, '#1f88aa',
-              240, '#1f88aa',
-              250, '#1977a1',
-              270, '#146696',
-              275, '#146696',
-              285, '#146696',
-              300, '#146696',
-              315, '#0f558a',
-              320, '#0f558a',
-              340, '#0f558a',
-              350, '#0f558a',
-              360, '#0a447d',
-              365, '#0a447d',
-              400, '#0a447d',
-              450, '#0a447d',
-              480, '#0a447d',
-              500, '#063370',
-              520, '#022263',
-              550, '#022263',
-              590, '#022263',
-              600, '#022263',
-              700, '#022263',
-              750, '#022263',
-              850, '#022263',
-              1000, '#022263',
+                map.addLayer({
+                    id: 'alternate-layer',
+                    type: 'fill',
+                    source: 'alternate',
+                    layout: {
+                        visibility: 'none'
+                    },
+                    paint: {
+                        'fill-color': [
+                            'match',
+                            ['round', ['get', 'gen_hght']],
+                            20, '#e6f4f9',
+                            25, '#e6f4f9',
+                            26, '#e6f4f9',
+                            28, '#e6f4f9',
+                            30, '#e6f4f9',
+                            32, '#e6f4f9',
+                            35, '#e6f4f9',
+                            40, '#e6f4f9',
+                            45, '#b2e5e5',
+                            48, '#b2e5e5',
+                            50, '#b2e5e5',
+                            55, '#9ddddd',
+                            56, '#9ddddd',
+                            57, '#9ddddd',
+                            58, '#9ddddd',
+                            60, '#9ddddd',
+                            62, '#9ddddd',
+                            65, '#9ddddd',
+                            67, '#88d4d4',
+                            68, '#88d4d4',
+                            70, '#88d4d4',
+                            75, '#88d4d4',
+                            76, '#88d4d4',
+                            78, '#88d4d4',
+                            80, '#88d4d4',
+                            84, '#88d4d4',
+                            85, '#88d4d4',
+                            86, '#5ec2c2',
+                            90, '#5ec2c2',
+                            92, '#5ec2c2',
+                            95, '#5ec2c2',
+                            96, '#5ec2c2',
+                            100, '#5ec2c2',
+                            105, '#5ec2c2',
+                            110, '#5ec2c2',
+                            115, '#5ec2c2',
+                            120, '#5ec2c2',
+                            125, '#4ab9b9',
+                            130, '#4ab9b9',
+                            135, '#4ab9b9',
+                            140, '#4ab9b9',
+                            145, '#36b0b0',
+                            150, '#36b0b0',
+                            160, '#36b0b0',
+                            165, '#2599b2',
+                            180, '#2599b2',
+                            190, '#1f88aa',
+                            200, '#1f88aa',
+                            220, '#1f88aa',
+                            225, '#1f88aa',
+                            230, '#1f88aa',
+                            240, '#1f88aa',
+                            250, '#1977a1',
+                            270, '#146696',
+                            275, '#146696',
+                            285, '#146696',
+                            300, '#146696',
+                            315, '#0f558a',
+                            320, '#0f558a',
+                            340, '#0f558a',
+                            350, '#0f558a',
+                            360, '#0a447d',
+                            365, '#0a447d',
+                            400, '#0a447d',
+                            450, '#0a447d',
+                            480, '#0a447d',
+                            500, '#063370',
+                            520, '#022263',
+                            550, '#022263',
+                            590, '#022263',
+                            600, '#022263',
+                            700, '#022263',
+                            750, '#022263',
+                            850, '#022263',
+                            1000, '#022263',
               /* default */ '#ccc'
-            ],
-            'fill-opacity': 1
-          },
-          filter: ['!=', ['get', 'gen_hght'], null]
+                        ],
+                        'fill-opacity': 1
+                    },
+                    filter: ['!=', ['get', 'gen_hght'], null]
+                });
+
+                map.on('click', 'blocks-layer', (e) => {
+                    const feature = e.features[0];
+                    const genHeight = feature.properties.proposal;
+                    new mapboxgl.Popup()
+                        .setLngLat(e.lngLat)
+                        .setHTML(`<strong>Height:</strong> ${genHeight}`)
+                        .addTo(map);
+                });
+
+                map.on('click', 'alternate-layer', (e) => {
+                    const feature = e.features[0];
+                    const genHeight = feature.properties.gen_hght;
+                    const roundedHeight = Math.round(genHeight);
+                    new mapboxgl.Popup()
+                        .setLngLat(e.lngLat)
+                        .setHTML(`<strong>Height:</strong> ${roundedHeight}' height allowed`)
+                        .addTo(map);
+                });
+
+                map.moveLayer('road-label-navigation');
+                map.moveLayer('settlement-subdivision-label');
+
+                // Add the geocoder control to the map.
+                const geocoder = new MapboxGeocoder({
+                    accessToken: mapboxgl.accessToken,
+                    mapboxgl: mapboxgl,
+                    bbox: [-123.1738, 37.6398, -122.2818, 37.9298], // SF bounding box [west, south, east, north]
+                    placeholder: 'Search San Francisco',
+                    marker: true,
+                    zoom: 16
+                });
+                // Add geocoder to a container in the DOM.
+                document.getElementById('geocoder-container').appendChild(geocoder.onAdd(map));
+
+                map.addControl(new mapboxgl.NavigationControl({
+                    showCompass: false // optional: hide the compass if you only want zoom
+                }), 'top-right'); // or 'top-left', 'bottom-left', 'bottom-right'
+
+                // Layer toggle logic
+                document.getElementById('layer-toggle').addEventListener('change', function (e) {
+                    if (e.target.type === 'radio') {
+                        const selected = e.target.value;
+                        map.setLayoutProperty('blocks-layer', 'visibility', selected === 'proposal' ? 'visible' : 'none');
+                        map.setLayoutProperty('alternate-layer', 'visibility', selected === 'alternate' ? 'visible' : 'none');
+                        // Hide legend-note-boxes for alternate layer if needed.
+                        const legendNoteBoxes = document.querySelector('.legend-note-boxes');
+                        if (selected === 'alternate') {
+                            legendNoteBoxes.style.display = 'none';
+                        } else {
+                            legendNoteBoxes.style.display = 'flex';
+
+                        }
+                    }
+                    pymChild.sendHeight();
+                });
+
+                pymChild.sendHeight();
+
+                
+
+            });
         });
-
-        pymChild.sendHeight();
-
-        map.on('click', 'blocks-layer', (e) => {
-          const feature = e.features[0];
-          const genHeight = feature.properties.proposal;
-          new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(`<strong>Height:</strong> ${genHeight}`)
-            .addTo(map);
-        });
-
-        map.on('click', 'alternate-layer', (e) => {
-          const feature = e.features[0];
-          const genHeight = feature.properties.gen_hght;
-          const roundedHeight = Math.round(genHeight);
-          new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(`<strong>Height:</strong> ${roundedHeight}' height allowed`)
-            .addTo(map);
-        });
-
-        map.moveLayer('road-label-navigation');
-        map.moveLayer('settlement-subdivision-label');
-
-        // Add the geocoder control to the map.
-        const geocoder = new MapboxGeocoder({
-          accessToken: mapboxgl.accessToken,
-          mapboxgl: mapboxgl,
-          bbox: [-123.1738, 37.6398, -122.2818, 37.9298], // SF bounding box [west, south, east, north]
-          placeholder: 'Search San Francisco',
-          marker: true,
-          zoom: 16
-        });
-        // Add geocoder to a container in the DOM.
-        document.getElementById('geocoder-container').appendChild(geocoder.onAdd(map));
-
-        map.addControl(new mapboxgl.NavigationControl({
-  showCompass: false // optional: hide the compass if you only want zoom
-}), 'top-right'); // or 'top-left', 'bottom-left', 'bottom-right'
-
-        // Layer toggle logic
-        document.getElementById('layer-toggle').addEventListener('change', function (e) {
-          if (e.target.type === 'radio') {
-            const selected = e.target.value;
-            map.setLayoutProperty('blocks-layer', 'visibility', selected === 'proposal' ? 'visible' : 'none');
-            map.setLayoutProperty('alternate-layer', 'visibility', selected === 'alternate' ? 'visible' : 'none');
-            // Hide legend-note-boxes for alternate layer if needed.
-            const legendNoteBoxes = document.querySelector('.legend-note-boxes');
-            if (selected === 'alternate') {
-              legendNoteBoxes.style.display = 'none';
-            } else {
-              legendNoteBoxes.style.display = 'flex';
-
-            }
-          }
-          pymChild.sendHeight();
-        });
-      });
-
-      pymChild.sendHeight();
-
-    });
-  </script>
+    </script>
 </body>
 
 </html>
