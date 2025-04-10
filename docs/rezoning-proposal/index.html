@@ -230,22 +230,22 @@
           paint: {
             'fill-color': [
               'match', ['get', 'proposal'],
-              "40' Height Allowed", '#e6f4f9',
-              "50' Height Allowed", '#b2e5e5',
-              "65' Height Allowed", '#9ddddd',
-              "85' Height Allowed", '#88d4d4',
-              "85' Base Height", '#88d4d4',
-              "120' Height Allowed", '#5ec2c2',
-              "140' Height Allowed", '#4ab9b9',
-              "160' Height Allowed", '#36b0b0',
-              "180' Height Allowed", '#2599b2',
-              "240' Height Allowed", '#1f88aa',
-              "250' Height Allowed", '#1977a1',
-              "300' Height Allowed", '#146696',
-              "350' Height Allowed", '#0f558a',
-              "490' Height Allowed", '#0a447d',
-              "500' Height Allowed", '#063370',
-              "650' Height Allowed", '#022263',
+              "40' height allowed and density decontrol", '#e6f4f9',
+              "50' height allowed and density decontrol", '#b2e5e5',
+              "65' height allowed", '#9ddddd',
+              "85' height allowed", '#88d4d4',
+            //   "85' base height", '#88d4d4',
+              "120' height allowed", '#5ec2c2',
+              "140' height allowed", '#4ab9b9',
+              "160' height allowed", '#36b0b0',
+              "180' height allowed", '#2599b2',
+              "240' height allowed", '#1f88aa',
+              "250' height allowed", '#1977a1',
+              "300' height allowed", '#146696',
+              "350' height allowed", '#0f558a',
+              "490' height allowed", '#0a447d',
+              "500' height allowed", '#063370',
+              "650' height allowed", '#022263',
               "Density decontrol, unchanged height", '#cccccc',
               /* other */ '#f0f0f0'
             ],
@@ -366,7 +366,7 @@
           const roundedHeight = Math.round(genHeight);
           new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(`<strong>Height:</strong> ${roundedHeight}`)
+            .setHTML(`<strong>Height:</strong> ${roundedHeight}' height allowed`)
             .addTo(map);
         });
 
@@ -379,7 +379,8 @@
         const geocoder = new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,
           mapboxgl: mapboxgl,
-          placeholder: 'Search for your address',
+          bbox: [-123.1738, 37.6398, -122.2818, 37.9298], // SF bounding box [west, south, east, north]
+          placeholder: 'Search San Francisco',
           marker: true,
           zoom: 16
         });
