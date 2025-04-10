@@ -204,17 +204,19 @@
       // Set your Mapbox access token
       mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ";
 
-      const mapZoom = window.innerWidth < 400 ? 10.4 : 11.1;
-      const mapY = window.innerWidth < 400 ? 37.771 : 37.77;
+      const mapZoom = window.innerWidth < 400 ? 11.5 : 11.5;
+      const mapY = window.innerWidth < 400 ? 37.762 : 37.762;
 
       // Initialize the map
       const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
         zoom: mapZoom,
-        center: [-122.429, mapY],
+        center: [-122.461, mapY],
         minZoom: 10.4
       });
+
+  
 
       // When the map loads, add layers and sources, etc.
       map.on('load', () => {
