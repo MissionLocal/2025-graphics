@@ -389,6 +389,10 @@
         // Add geocoder to a container in the DOM.
         document.getElementById('geocoder-container').appendChild(geocoder.onAdd(map));
 
+        map.addControl(new mapboxgl.NavigationControl({
+  showCompass: false // optional: hide the compass if you only want zoom
+}), 'top-right'); // or 'top-left', 'bottom-left', 'bottom-right'
+
         // Layer toggle logic
         document.getElementById('layer-toggle').addEventListener('change', function (e) {
           if (e.target.type === 'radio') {
