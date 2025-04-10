@@ -353,6 +353,8 @@
           filter: ['!=', ['get', 'gen_hght'], null]
         });
 
+        pymChild.sendHeight();
+
         map.on('click', 'blocks-layer', (e) => {
           const feature = e.features[0];
           const genHeight = feature.properties.proposal;
@@ -374,8 +376,6 @@
 
         map.moveLayer('road-label-navigation');
         map.moveLayer('settlement-subdivision-label');
-
-        pymChild.sendHeight();
 
         // Add the geocoder control to the map.
         const geocoder = new MapboxGeocoder({
