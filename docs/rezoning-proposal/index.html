@@ -269,88 +269,101 @@
                     },
                     paint: {
                         'fill-color': [
-                            'match',
-                            ['round', ['get', 'gen_hght']],
-                            20, '#e6f4f9',
-                            25, '#e6f4f9',
-                            26, '#e6f4f9',
-                            28, '#e6f4f9',
-                            30, '#e6f4f9',
-                            32, '#e6f4f9',
-                            35, '#e6f4f9',
-                            40, '#e6f4f9',
-                            45, '#b2e5e5',
-                            48, '#b2e5e5',
-                            50, '#b2e5e5',
-                            55, '#9ddddd',
-                            56, '#9ddddd',
-                            57, '#9ddddd',
-                            58, '#9ddddd',
-                            60, '#9ddddd',
-                            62, '#9ddddd',
-                            65, '#9ddddd',
-                            67, '#88d4d4',
-                            68, '#88d4d4',
-                            70, '#88d4d4',
-                            75, '#88d4d4',
-                            76, '#88d4d4',
-                            78, '#88d4d4',
-                            80, '#88d4d4',
-                            84, '#88d4d4',
-                            85, '#88d4d4',
-                            86, '#5ec2c2',
-                            90, '#5ec2c2',
-                            92, '#5ec2c2',
-                            95, '#5ec2c2',
-                            96, '#5ec2c2',
-                            100, '#5ec2c2',
-                            105, '#5ec2c2',
-                            110, '#5ec2c2',
-                            115, '#5ec2c2',
-                            120, '#5ec2c2',
-                            125, '#4ab9b9',
-                            130, '#4ab9b9',
-                            135, '#4ab9b9',
-                            140, '#4ab9b9',
-                            145, '#36b0b0',
-                            150, '#36b0b0',
-                            160, '#36b0b0',
-                            165, '#2599b2',
-                            180, '#2599b2',
-                            190, '#1f88aa',
-                            200, '#1f88aa',
-                            220, '#1f88aa',
-                            225, '#1f88aa',
-                            230, '#1f88aa',
-                            240, '#1f88aa',
-                            250, '#1977a1',
-                            270, '#146696',
-                            275, '#146696',
-                            285, '#146696',
-                            300, '#146696',
-                            315, '#0f558a',
-                            320, '#0f558a',
-                            340, '#0f558a',
-                            350, '#0f558a',
-                            360, '#0a447d',
-                            365, '#0a447d',
-                            400, '#0a447d',
-                            450, '#0a447d',
-                            480, '#0a447d',
-                            500, '#063370',
-                            520, '#022263',
-                            550, '#022263',
-                            590, '#022263',
-                            600, '#022263',
-                            700, '#022263',
-                            750, '#022263',
-                            850, '#022263',
-                            1000, '#022263',
-              /* default */ '#ccc'
+                            'case',
+                            [
+                                'any',
+                                ['!', ['has', 'gen_hght']],
+                                ['==', ['get', 'gen_hght'], null],
+                                ['==', ['get', 'gen_hght'], 'null'],
+                                ['==', ['get', 'gen_hght'], ''],
+                                ['==', ['get', 'gen_hght'], 'OS']
+                            ],
+                            '#eeeeee', // Use this color when gen_hght is invalid or missing
+                            ['match',
+                                ['round', ['get', 'gen_hght']],
+                                20, '#e6f4f9',
+                                25, '#e6f4f9',
+                                26, '#e6f4f9',
+                                28, '#e6f4f9',
+                                30, '#e6f4f9',
+                                32, '#e6f4f9',
+                                35, '#e6f4f9',
+                                40, '#e6f4f9',
+                                45, '#b2e5e5',
+                                48, '#b2e5e5',
+                                50, '#b2e5e5',
+                                55, '#9ddddd',
+                                56, '#9ddddd',
+                                57, '#9ddddd',
+                                58, '#9ddddd',
+                                60, '#9ddddd',
+                                62, '#9ddddd',
+                                65, '#9ddddd',
+                                67, '#88d4d4',
+                                68, '#88d4d4',
+                                70, '#88d4d4',
+                                75, '#88d4d4',
+                                76, '#88d4d4',
+                                78, '#88d4d4',
+                                80, '#88d4d4',
+                                84, '#88d4d4',
+                                85, '#88d4d4',
+                                86, '#5ec2c2',
+                                90, '#5ec2c2',
+                                92, '#5ec2c2',
+                                95, '#5ec2c2',
+                                96, '#5ec2c2',
+                                100, '#5ec2c2',
+                                105, '#5ec2c2',
+                                110, '#5ec2c2',
+                                115, '#5ec2c2',
+                                120, '#5ec2c2',
+                                125, '#4ab9b9',
+                                130, '#4ab9b9',
+                                135, '#4ab9b9',
+                                140, '#4ab9b9',
+                                145, '#36b0b0',
+                                150, '#36b0b0',
+                                160, '#36b0b0',
+                                165, '#2599b2',
+                                180, '#2599b2',
+                                190, '#1f88aa',
+                                200, '#1f88aa',
+                                220, '#1f88aa',
+                                225, '#1f88aa',
+                                230, '#1f88aa',
+                                240, '#1f88aa',
+                                250, '#1977a1',
+                                270, '#146696',
+                                275, '#146696',
+                                285, '#146696',
+                                300, '#146696',
+                                315, '#0f558a',
+                                320, '#0f558a',
+                                340, '#0f558a',
+                                350, '#0f558a',
+                                360, '#0a447d',
+                                365, '#0a447d',
+                                400, '#0a447d',
+                                450, '#0a447d',
+                                480, '#0a447d',
+                                500, '#063370',
+                                520, '#022263',
+                                550, '#022263',
+                                590, '#022263',
+                                600, '#022263',
+                                700, '#022263',
+                                750, '#022263',
+                                850, '#022263',
+                                1000, '#022263',
+                                '#dddddd' // fallback if no match
+                            ],
                         ],
                         'fill-opacity': 1
-                    },
-                    filter: ['!=', ['get', 'gen_hght'], null]
+                    }
+
+                    // ,
+                    // filter: ['!=', ['get', 'gen_hght'], null]
                 });
 
                 map.on('click', 'blocks-layer', (e) => {
@@ -365,12 +378,29 @@
                 map.on('click', 'alternate-layer', (e) => {
                     const feature = e.features[0];
                     const genHeight = feature.properties.gen_hght;
-                    const roundedHeight = Math.round(genHeight);
+
+                    let displayHeight;
+
+                    // Check if genHeight is null, undefined, empty, "null", or "OS"
+                    if (
+                        genHeight === null ||
+                        genHeight === undefined ||
+                        genHeight === "" ||
+                        genHeight === "null" ||
+                        genHeight === "OS"
+                    ) {
+                        displayHeight = "Not applicable";
+                    } else {
+                        const roundedHeight = Math.round(Number(genHeight));
+                        displayHeight = `${roundedHeight}' height allowed`;
+                    }
+
                     new mapboxgl.Popup()
                         .setLngLat(e.lngLat)
-                        .setHTML(`<strong>Height:</strong> ${roundedHeight}' height allowed`)
+                        .setHTML(`<strong>Height:</strong> ${displayHeight}`)
                         .addTo(map);
                 });
+
 
                 map.moveLayer('road-label-navigation');
                 map.moveLayer('settlement-subdivision-label');
@@ -411,7 +441,7 @@
 
                 pymChild.sendHeight();
 
-                
+
 
             });
         });
