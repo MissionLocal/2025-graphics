@@ -77,7 +77,7 @@ function renderSlides(data, limit = null) {
             .attr("id", "see-all-wrapper")
             .style("text-align", "center")
             .style("margin", "20px 0")
-            .html(`<button id="see-all-button" style="padding: 10px 20px;">See all</button>`);
+            .html(`<button id="see-all-button" style="padding: 4px 8px;">See all</button>`);
 
         d3.select("#see-all-button").on("click", () => {
             renderSlides(data); // Render all slides
@@ -93,20 +93,30 @@ function renderSlides(data, limit = null) {
 
 
 function filterSlides() {
+    const noResultsEl = document.getElementById("no-results");
+
     if (selectedTags.size === 0) {
-        renderSlides(rawData, 10); // Show limited if no filters
+        renderSlides(rawData, 10);
+        noResultsEl.style.display = "none"; // 👈 hide message when filters are cleared
         return;
     }
 
     const filteredData = rawData.filter(d => {
         if (!d.tags || typeof d.tags !== "string") return false;
         let tagsArray = d.tags.split(/,\s*/).map(tag => tag.trim().toLowerCase());
-        return tagsArray.some(tag => selectedTags.has(tag));
+        return Array.from(selectedTags).every(tag => tagsArray.includes(tag));
     });
 
-    renderSlides(filteredData, 10); // Show all filtered results
-    
+    if (filteredData.length === 0) {
+        noResultsEl.style.display = "block";
+    } else {
+        noResultsEl.style.display = "none";
+    }
+
+    renderSlides(filteredData, 10);
 }
+
+
 
 
 // Attach event listeners to filter buttons at the top
@@ -207,17 +217,20 @@ document.addEventListener("DOMContentLoaded", function () {
     function resetSection(event) {
         let removeButton = event.target;
         let card = removeButton.closest(".content-card");
-
+    
+        // Hide the "no results" message immediately
+        document.getElementById("no-results").style.display = "none";
+    
         // Get the selected buttons in this section
         let buttonsInSection = card.querySelectorAll(".tag-button-top.selected");
-
+    
         // Remove only the selected tags from `selectedTags` that belong to this section
         buttonsInSection.forEach(button => {
             let tag = button.id.replace(/-/g, " ");
             selectedTags.delete(tag);
             button.classList.remove("selected");
         });
-
+    
         // If no tags are selected, reset everything
         if (selectedTags.size === 0) {
             console.log("All filters cleared, showing all slides.");
@@ -225,10 +238,11 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             filterSlides(); // Update the slides properly
         }
-
+    
         // Hide the remove button
         removeButton.style.display = "none";
     }
+    
 
     // Add event listeners to tag buttons
     document.querySelectorAll(".content-card .tag-button-top").forEach(button => {

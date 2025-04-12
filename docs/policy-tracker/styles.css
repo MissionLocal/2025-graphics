@@ -39,8 +39,6 @@ h4 {
     margin-right: 5px;
 }
 
-
-
 .slide {
     margin-bottom: 5px;
     margin-top: 20px;
@@ -57,6 +55,14 @@ h4 {
     margin: 10px 0;
     width: 100%;
 }
+
+
+#see-all-button {
+    font-family: Barlow, sans-serif;
+    border-radius: 15px;
+    stroke-width: 0.75px;
+}
+
 
 #public-safety { background-color: rgba(246, 124, 246, 0.4); }
 #public-safety.selected { background-color: #f67cf6; }
