@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // If no tags are selected, reset everything
         if (selectedTags.size === 0) {
             console.log("All filters cleared, showing all slides.");
-            renderSlides(rawData);  // Assuming `renderSlides` is the function rendering the slides
+            renderSlides(rawData, 10);  // Assuming `renderSlides` is the function rendering the slides
         } else {
             filterSlides(); // Update the slides properly
         }
