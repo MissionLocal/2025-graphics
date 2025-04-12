@@ -74,7 +74,6 @@ function renderSlides(data, limit = null) {
     // Add "See All" button if there are more items to show
     if (limit && data.length > limit) {
         container.append("div")
-            .attr("id", "see-all-wrapper")
             .style("text-align", "center")
             .style("margin", "20px 0")
             .html(`<button id="see-all-button" style="padding: 4px 8px;">See all</button>`);
