@@ -63,6 +63,17 @@ h4 {
     stroke-width: 0.75px;
 }
 
+#remove-cat {
+    font-weight: bold;
+    background-color: white; 
+    display: none;
+}
+
+#remove-type {
+    font-weight: bold;
+    background-color: white; 
+    display: none;
+}
 
 #public-safety { background-color: rgba(246, 124, 246, 0.4); }
 #public-safety.selected { background-color: #f67cf6; }
@@ -73,8 +84,8 @@ h4 {
 #budget { background-color: rgba(70, 193, 52, 0.4); }
 #budget.selected { background-color: rgba(70, 193, 52); }
 
-#governance { background-color: rgba(173, 232, 244, 0.4); }
-#governance.selected { background-color: #ade8f4; }
+#housing { background-color: rgba(173, 232, 244, 0.4); }
+#housing.selected { background-color: #ade8f4; }
 
 #fire-department { background-color: rgba(255, 157, 166, 0.4); }
 #fire-department.selected { background-color: #ff9da6; }
@@ -115,5 +126,3 @@ h4 {
 #program { background-color: rgba(224, 224, 224, 0.4); }
 #program.selected { background-color: rgb(224, 224, 224); }
 
-#remove-type {background-color: white; display: none;}
-#remove-cat {background-color: white; display: none;}

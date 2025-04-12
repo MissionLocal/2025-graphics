@@ -4,7 +4,7 @@ const tagColors = {
     "budget": "#46c134",         
     "fire department": "#ff9da6",     
     "culture": "#f36e57",        
-    "governance": "#ade8f4",     
+    "housing": "#ade8f4",     
     "transit": "#8ad6ce",               
     "homelessness": "#efbe25",   
     "business": "#ef9f6a",       
