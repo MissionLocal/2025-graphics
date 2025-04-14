@@ -52,16 +52,17 @@ h4 {
 
 .dotted-line {
     border: 1px dotted #ccc;
-    margin: 10px 0;
+    margin: 10px 10px;
     width: 100%;
 }
 
 
-#see-all-button {
-    font-family: Barlow, sans-serif;
-    border-radius: 15px;
-    stroke-width: 0.75px;
-}
+.see-all-link {
+    color: gray;
+    font-size: 18px;
+    text-decoration: underline;
+  }
+  
 
 #remove-cat {
     font-weight: bold;

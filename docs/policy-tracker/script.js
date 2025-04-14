@@ -1,14 +1,14 @@
 // Define colors for each tag
 const tagColors = {
-    "public safety": "#f67cf6",  
-    "budget": "#46c134",         
-    "fire department": "#ff9da6",     
-    "culture": "#f36e57",        
-    "housing": "#ade8f4",     
-    "transit": "#8ad6ce",               
-    "homelessness": "#efbe25",   
-    "business": "#ef9f6a",       
-    "downtown": "#0dd6c7",   
+    "public safety": "#f67cf6",
+    "budget": "#46c134",
+    "fire department": "#ff9da6",
+    "culture": "#f36e57",
+    "housing": "#ade8f4",
+    "transit": "#8ad6ce",
+    "homelessness": "#efbe25",
+    "business": "#ef9f6a",
+    "downtown": "#0dd6c7",
     "public health": "#57a4ea"
 };
 
@@ -76,11 +76,12 @@ function renderSlides(data, limit = null) {
         container.append("div")
             .style("text-align", "center")
             .style("margin", "20px 0")
-            .html(`<button id="see-all-button" style="padding: 4px 8px;">See all</button>`);
+            .html(`<span id="see-all" class="see-all-link">See all ↓</span>`);
 
-        d3.select("#see-all-button").on("click", () => {
+        d3.select("#see-all").on("click", () => {
             renderSlides(data); // Render all slides
         });
+
     }
 
     attachTopFilterListeners();
@@ -192,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Debugging: log the slide's tags to confirm it's read properly
             console.log('Slide Tags:', slideTags);
-            
+
             // Check if the slide contains all selected tags (AND condition)
             const allTagsMatch = selectedTags.every(tag => slideTags.includes(tag));
 
@@ -202,45 +203,45 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function toggleSelection(event) {
         let button = event.target;
-    
+
         if (button.id.startsWith("remove-")) return;
-    
+
         const tag = button.id.replace(/-/g, " ");
-    
+
         button.classList.toggle("selected");
-    
+
         if (selectedTags.has(tag)) {
             selectedTags.delete(tag);
         } else {
             selectedTags.add(tag);
         }
-    
+
         const card = button.closest(".content-card");
         updateRemoveButtonVisibility(card);
-    
+
         filterSlides(); // 👈 Re-filter based on updated selectedTags
     }
-    
+
 
     function resetSection(event) {
         let removeButton = event.target;
         let card = removeButton.closest(".content-card");
-    
+
         document.getElementById("no-results").style.display = "none";
-    
+
         let buttonsInSection = card.querySelectorAll(".tag-button-top.selected");
-    
+
         buttonsInSection.forEach(button => {
             let tag = button.id.replace(/-/g, " ");
             selectedTags.delete(tag);
             button.classList.remove("selected");
         });
-    
+
         filterSlides(); // 👈 Always update slides
-    
+
         removeButton.style.display = "none";
     }
-    
+
 
     // Add event listeners to tag buttons
     document.querySelectorAll(".content-card .tag-button-top").forEach(button => {
