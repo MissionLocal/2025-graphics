@@ -89,9 +89,11 @@ function renderSlides(data, limit = null) {
             .style("margin", "20px 0")
             .html(`<span id="see-all" class="see-all-link">See all ↓</span>`);
 
-        d3.select("#see-all").on("click", () => {
-            renderSlides(data); // Render all slides
-        });
+            d3.select("#see-all").on("click", () => {
+                renderSlides(data); // Render all slides
+                if (pymChild) pymChild.sendHeight(); // Correct way to send height
+            });
+            
     }
 
     attachTopFilterListeners();
