@@ -200,45 +200,44 @@ document.addEventListener("DOMContentLoaded", function () {
             slide.style.display = allTagsMatch ? "block" : "none";
         });
     }
-
     function toggleSelection(event) {
         let button = event.target;
-
+    
         if (button.id.startsWith("remove-")) return;
-
+    
+        const tag = button.id.replace(/-/g, " ");
+    
         button.classList.toggle("selected");
-
+    
+        if (selectedTags.has(tag)) {
+            selectedTags.delete(tag);
+        } else {
+            selectedTags.add(tag);
+        }
+    
         const card = button.closest(".content-card");
         updateRemoveButtonVisibility(card);
-        updateVisibility();
+    
+        filterSlides(); // 👈 Re-filter based on updated selectedTags
     }
+    
 
     function resetSection(event) {
         let removeButton = event.target;
         let card = removeButton.closest(".content-card");
     
-        // Hide the "no results" message immediately
         document.getElementById("no-results").style.display = "none";
     
-        // Get the selected buttons in this section
         let buttonsInSection = card.querySelectorAll(".tag-button-top.selected");
     
-        // Remove only the selected tags from `selectedTags` that belong to this section
         buttonsInSection.forEach(button => {
             let tag = button.id.replace(/-/g, " ");
             selectedTags.delete(tag);
             button.classList.remove("selected");
         });
     
-        // If no tags are selected, reset everything
-        if (selectedTags.size === 0) {
-            console.log("All filters cleared, showing all slides.");
-            renderSlides(rawData, 10);  // Assuming `renderSlides` is the function rendering the slides
-        } else {
-            filterSlides(); // Update the slides properly
-        }
+        filterSlides(); // 👈 Always update slides
     
-        // Hide the remove button
         removeButton.style.display = "none";
     }
     
