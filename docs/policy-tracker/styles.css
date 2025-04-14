@@ -121,9 +121,6 @@ h4 {
 #appointment { background-color: rgba(224, 224, 224, 0.4); }
 #appointment.selected { background-color: rgb(224, 224, 224); }
 
-#proclamation { background-color: rgba(224, 224, 224, 0.4); }
-#proclamation.selected { background-color: rgb(224, 224, 224); }
-
 #program { background-color: rgba(224, 224, 224, 0.4); }
 #program.selected { background-color: rgb(224, 224, 224); }
 
