@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayor Tracker</title>
+    <title>Mission Local policy tracker</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://d3js.org/d3.v6.min.js"></script> <!-- Load D3.js -->
@@ -32,7 +32,7 @@
             </div>
 
             <h4 style="margin-bottom: 5px;">Click to filter by type of action:</h4>
-            <div class="content-card">
+            <div class="content-card" style="margin-bottom: 20px;">
                 <div class="tag-button-top" id="appointment">appointment</div>
                 <div class="tag-button-top" id="enforcement">enforcement</div>
                 <div class="tag-button-top" id="legislation">legislation</div>
@@ -43,14 +43,20 @@
             </div>
         </div>
     </div>
-
+    <div class="box">
+        <div class="content">
+            <div id="tally" style="margin-bottom: 5px; color: gray;"></div>
+        </div>
+    </div>
     <div class="box">
     <div class="content" id="no-results" style="display: none; margin-top: 1em; font-style: italic;">
         <p>No items match the selected filters.</p>
       </div>      
     </div>
+    
+    <div id="slides-container">
 
-    <div id="slides-container"></div> <!-- Slides will be inserted here -->
+    </div> <!-- Slides will be inserted here -->
 
     <script src="script.js"></script> <!-- Load JavaScript -->
 </body>

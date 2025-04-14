@@ -23,12 +23,23 @@ d3.csv("data.csv").then(data => {
     attachTopFilterListeners(); // Attach event listeners to top filter buttons
 }).catch(error => console.error("Error loading CSV:", error));
 
+
+
 function renderSlides(data, limit = null) {
     const container = d3.select("#slides-container");
     container.html(""); // Clear previous slides
 
     let lastDisplayedDate = null;
-    const visibleData = limit ? data.slice(0, limit) : data;
+
+    // Apply filtering to the entire dataset
+    const filteredData = applyFilters(data);
+
+    // Create or update the tally display element (this will show the count of filtered slides, not limited ones)
+    const tally = d3.select("#tally");
+    tally.text(`Total results: ${filteredData.length}`);
+
+    // Only show a limited number of slides
+    const visibleData = limit ? filteredData.slice(0, limit) : filteredData;
 
     visibleData.forEach(d => {
         if (!d.tags || typeof d.tags !== "string") {
@@ -72,7 +83,7 @@ function renderSlides(data, limit = null) {
     });
 
     // Add "See All" button if there are more items to show
-    if (limit && data.length > limit) {
+    if (limit && filteredData.length > limit) {
         container.append("div")
             .style("text-align", "center")
             .style("margin", "20px 0")
@@ -81,7 +92,6 @@ function renderSlides(data, limit = null) {
         d3.select("#see-all").on("click", () => {
             renderSlides(data); // Render all slides
         });
-
     }
 
     attachTopFilterListeners();
@@ -90,6 +100,31 @@ function renderSlides(data, limit = null) {
         new pym.Child();
     }
 }
+
+// Function to apply the current filters
+function applyFilters(data) {
+    return data.filter(d => {
+        if (!d.tags || typeof d.tags !== "string") return false;
+        let tagsArray = d.tags.split(/,\s*/).map(tag => tag.trim().toLowerCase());
+
+        // Ensure every selected tag is present in the tags array
+        return Array.from(selectedTags).every(tag => tagsArray.includes(tag));
+    });
+}
+
+
+// Function to apply the current filters
+function applyFilters(data) {
+    return data.filter(d => {
+        if (!d.tags || typeof d.tags !== "string") return false;
+        let tagsArray = d.tags.split(/,\s*/).map(tag => tag.trim().toLowerCase());
+
+        // Ensure every selected tag is present in the tags array
+        return Array.from(selectedTags).every(tag => tagsArray.includes(tag));
+    });
+}
+
+
 
 
 function filterSlides() {
