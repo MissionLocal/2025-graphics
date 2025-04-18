@@ -1,0 +1,126 @@
+body {
+    font-family: "barlow", sans-serif;
+    font-size: 16px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    min-width: 275px;
+    max-width: 500px;
+    width: 90%;
+}
+
+h4 {
+    margin-bottom: 2px;
+}
+
+.content-title {
+    margin-top: 5px;
+}
+.tag-button, .tag-button-top {
+    display: inline-block;
+    background-color: #e0e0e0; /* Light gray */
+    color: #333;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-weight: 500;
+    cursor: pointer; /* Makes it look clickable */
+    margin-top: 5px;
+    margin-bottom: 0px; /* Adds space below */
+    margin-right: 5px;
+}
+
+.slide {
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.solid-line {
+    border: 0.5px solid #ccc;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.dotted-line {
+    border: 1px dotted #ccc;
+    margin: 10px 10px;
+    width: 100%;
+}
+
+
+.see-all-link {
+    color: gray;
+    font-size: 22px;
+    text-decoration: underline;
+  }
+  
+
+#remove-cat {
+    font-weight: bold;
+    background-color: white; 
+    display: none;
+}
+
+#remove-type {
+    font-weight: bold;
+    background-color: white; 
+    display: none;
+}
+
+#public-safety { background-color: rgba(246, 124, 246, 0.4); }
+#public-safety.selected { background-color: #f67cf6; }
+
+#homelessness { background-color: rgba(239, 190, 37, 0.4); }
+#homelessness.selected { background-color: #efbe25; }
+
+#budget { background-color: rgba(70, 193, 52, 0.4); }
+#budget.selected { background-color: rgba(70, 193, 52); }
+
+#housing { background-color: rgba(173, 232, 244, 0.4); }
+#housing.selected { background-color: #ade8f4; }
+
+#fire-department { background-color: rgba(255, 157, 166, 0.4); }
+#fire-department.selected { background-color: #ff9da6; }
+
+#culture { background-color: rgba(243, 110, 87, 0.4); }
+#culture.selected { background-color: #f36e57; }
+
+#transit { background-color: rgba(138, 214, 206, 0.4); }
+#transit.selected { background-color: #8ad6ce; }
+
+#business { background-color: rgba(239, 159, 106, 0.4); }
+#business.selected { background-color: #ef9f6a; }
+
+#downtown { background-color: rgba(13, 214, 199, 0.4); }
+#downtown.selected { background-color: #0dd6c7; }
+
+#public-health { background-color: rgba(87, 164, 234, 0.4); }
+#public-health.selected { background-color: #57a4ea; }
+
+#permit { background-color: rgba(224, 224, 224, 0.4); }
+#permit.selected { background-color: rgb(224, 224, 224); }
+
+#order { background-color: rgba(224, 224, 224, 0.4); }
+#order.selected { background-color: rgb(224, 224, 224); }
+
+#enforcement { background-color: rgba(224, 224, 224, 0.4); }
+#enforcement.selected { background-color: rgb(224, 224, 224); }
+
+#legislation { background-color: rgba(224, 224, 224, 0.4); }
+#legislation.selected { background-color: rgb(224, 224, 224); }
+
+#appointment { background-color: rgba(224, 224, 224, 0.4); }
+#appointment.selected { background-color: rgb(224, 224, 224); }
+
+#program { background-color: rgba(224, 224, 224, 0.4); }
+#program.selected { background-color: rgb(224, 224, 224); }
+
