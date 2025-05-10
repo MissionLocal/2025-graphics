@@ -301,6 +301,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initial visibility update after rendering slides
     updateVisibility();
 });
-setTimeout(() => {
-    console.log(document.getElementById("slides-container").innerHTML);
-}, 1000);
+// setTimeout(() => {
+//     console.log(document.getElementById("slides-container").innerHTML);
+// }, 1000);
