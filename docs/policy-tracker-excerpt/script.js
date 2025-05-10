@@ -150,12 +150,20 @@ function applyFilters(data) {
 //     button.addEventListener("click", handleTopFilterClick);
 // });
 
-// // Initialize pym.js on document load
-// document.addEventListener("DOMContentLoaded", () => {
-//     if (typeof pym !== "undefined") {
-//         new pym.Child();
-//     }
-// });
+// Initialize pym.js on document load
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof pym !== "undefined") {
+        new pym.Child();
+    }
+});
+
+// add a pym clause to account for a window resize
+
+window.addEventListener("resize", () => {
+    if (typeof pym !== "undefined") {
+        pym.Child.sendHeight();
+    }
+});
 
 // document.addEventListener("DOMContentLoaded", function () {
 //     function updateRemoveButtonVisibility(card) {
