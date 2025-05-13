@@ -78,7 +78,6 @@
       flex-direction: column;
       width: 100%;
       max-width: 800px;
-      margin: 20px auto;  /* Space between chart and legend, centered */
       margin-top: 20px;
     }
 
@@ -93,6 +92,7 @@
       height: 20px;
       margin-right: 10px;
       border-radius: 4px;
+      margin-left: 2px;
     }
 
     .legend-label {
@@ -124,10 +124,10 @@
       // Generate the Legend only once, outside of the render function
       function createLegend(orgGroups, customColors) {
         const legendContainer = d3.select("#legend");
-        
+
         // Clear any previous legend (in case of dynamic updates)
         legendContainer.selectAll("*").remove();
-        
+
         orgGroups.forEach((orgGroup, i) => {
           const legendItem = legendContainer.append("div")
             .attr("class", "legend-item");
@@ -217,34 +217,44 @@
 
             let formattedSize = "";
             if (size >= 1_000_000_000) {
-              const sizeInBillions = size / 1_000_000_000;
-              formattedSize = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                maximumFractionDigits: 1
-              }).format(sizeInBillions) + 'B';
+              formattedSize = (size / 1_000_000_000).toFixed(1) + 'B';
             } else if (size >= 1_000_000) {
-              const sizeInMillions = size / 1_000_000;
-              formattedSize = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                maximumFractionDigits: 1
-              }).format(sizeInMillions) + 'M';
+              formattedSize = (size / 1_000_000).toFixed(1) + 'M';
             } else {
-              formattedSize = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                maximumFractionDigits: 1
-              }).format(size);
+              formattedSize = size.toFixed(0);
             }
 
             header.innerText = label;
-            content.innerHTML = `${description}<br><br>Budget: ${formattedSize}`;
+            content.innerHTML = `${description}<br><br>Budget: $${formattedSize}`;
 
-            popup.style.left = `${event.pageX + 10}px`;
-            popup.style.top = `${event.pageY + 10}px`;
             popup.style.display = "block";
+
+            const popupRect = popup.getBoundingClientRect();
+            const pageX = event.pageX;
+            const pageY = event.pageY;
+
+            const offsetX = 10;
+            const offsetY = 10;
+
+            const svgRect = document.querySelector("svg").getBoundingClientRect();
+
+            let left = pageX + offsetX;
+            let top = pageY - popupRect.height - offsetY;
+
+            // Prevent overflow to the right
+            if (left + popupRect.width > window.innerWidth) {
+              left = window.innerWidth - popupRect.width - offsetX;
+            }
+
+            // Prevent overflow to the top
+            if (top < svgRect.top + window.scrollY) {
+              top = pageY + offsetY;  // fallback: place below
+            }
+
+            popup.style.left = `${left}px`;
+            popup.style.top = `${top}px`;
           });
+
 
         nodes.append("text")
           .attr("x", 4)
