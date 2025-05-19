@@ -14,20 +14,20 @@
       margin: 0;
       padding-bottom: 10px;
     }
+
     .cont {
-  width: 100%;
-  max-width: 100%;  /* Ensure it uses 100% of available width */
-  margin: 0 auto;
-  padding: 10px;
-}
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 10px;
+    }
 
-/* Media query for mobile screens */
-@media (max-width: 600px) {
-  .cont {
-    max-width: 100%; /* This ensures the width is still 100% on mobile */
-  }
-}
-
+    /* Media query for mobile screens */
+    @media (max-width: 600px) {
+      .cont {
+        max-width: 350px;
+      }
+    }
 
     svg {
       width: 100%;
@@ -151,6 +151,16 @@
       const luminance = 0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2];
       return luminance < 140;
     }
+
+      // Debounce function goes here first
+  function debounce(func, delay) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
     d3.json("Budget_2026.json").then(flatData => {
       window.pymChild = new pym.Child();
 
@@ -303,29 +313,28 @@
       createLegend();
       render();
 
-      document.getElementById("searchBox").addEventListener("input", function () {
+      document.getElementById("searchBox").addEventListener("input", debounce(function () {
         const query = this.value.toLowerCase();
 
         d3.selectAll("g").each(function (d) {
-          const departmentName = d.data.id.split('.')[2]?.toLowerCase() || ''; // Department name
-          const departmentCode = d.data.data?.department_code?.toLowerCase() || ''; // Department code
-          const match = departmentName.includes(query) || departmentCode.includes(query); // Match on either name or department_code
+          const name = d.data.id.split('.')[2]?.toLowerCase() || '';
+          const code = d.data.data?.department_code?.toLowerCase() || '';
+          const match = name.includes(query) || code.includes(query);
 
-          // Update rectangle appearance
           d3.select(this).select("rect")
             .transition()
             .duration(200)
             .style("opacity", match || !query ? 1 : 0.15)
-            .style("stroke", query && match ? "#000" : null)
-            .style("stroke-width", query && match ? 3 : null);
+            .style("stroke", match && query ? "#fff" : null)
+            .style("stroke-width", match && query ? 3 : null);
 
-          // Update label (text) opacity
           d3.select(this).select("text")
             .transition()
             .duration(200)
             .style("opacity", match || !query ? 1 : 0.15);
         });
-      });
+      }, 150));  // delay in ms
+
 
       let resizeTimeout;
       window.addEventListener('resize', () => {
