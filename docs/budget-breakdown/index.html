@@ -14,20 +14,20 @@
       margin: 0;
       padding-bottom: 10px;
     }
-
     .cont {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 10px;
-    }
+  width: 100%;
+  max-width: 100%;  /* Ensure it uses 100% of available width */
+  margin: 0 auto;
+  padding: 10px;
+}
 
-    /* Media query for mobile screens */
-    @media (max-width: 600px) {
-      .cont {
-        max-width: 400px;
-      }
-    }
+/* Media query for mobile screens */
+@media (max-width: 600px) {
+  .cont {
+    max-width: 100%; /* This ensures the width is still 100% on mobile */
+  }
+}
+
 
     svg {
       width: 100%;
