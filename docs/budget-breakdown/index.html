@@ -123,6 +123,28 @@
       margin-bottom: 12px;
       max-width: 300px;
     }
+
+    #suggestions-list {
+      position: absolute;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: Barlow, sans-serif;
+      z-index: 1000;
+    }
+
+    .suggestion-item {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .suggestion-item:hover {
+      background-color: #f0f0f0;
+    }
   </style>
 </head>
 
@@ -131,6 +153,7 @@
   <div class="cont" id="legend"></div>
   <div class="cont">
     <input type="text" id="searchBox" placeholder="Search for a department..." />
+    <div id="suggestions" style="position: relative;"></div>
   </div>
   <div class="cont">
     <svg></svg>
@@ -152,14 +175,14 @@
       return luminance < 140;
     }
 
-      // Debounce function goes here first
-  function debounce(func, delay) {
-    let timeout;
-    return function (...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), delay);
-    };
-  }
+    // Debounce function goes here first
+    function debounce(func, delay) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
 
     d3.json("Budget_2026.json").then(flatData => {
       window.pymChild = new pym.Child();
@@ -335,6 +358,44 @@
         });
       }, 150));  // delay in ms
 
+      
+      function showSuggestions(query, flatData) {
+        const suggestionBox = document.getElementById('suggestions');
+        suggestionBox.innerHTML = ''; // Clear previous suggestions
+
+        if (!query) {
+          suggestionBox.style.display = 'none';
+          return;
+        }
+
+        const matches = flatData.filter(d => {
+          const name = d.name?.split('.')?.[2]?.toLowerCase() || '';
+          const code = d.department_code?.toLowerCase() || '';
+          return name.includes(query.toLowerCase()) || code.includes(query.toLowerCase());
+        });
+
+        matches.slice(0, 10).forEach(d => {
+          const div = document.createElement('div');
+          div.className = 'suggestion-item';
+          div.textContent = `${d.department_code} – ${d.name?.split('.')?.[2] || ''}`;
+          div.onclick = () => {
+            document.getElementById('searchBox').value = d.name?.split('.')?.[2] || '';
+            suggestionBox.style.display = 'none';
+            // Optionally trigger your highlight logic here
+            document.getElementById('searchBox').dispatchEvent(new Event('input'));
+          };
+          suggestionBox.appendChild(div);
+        });
+
+        suggestionBox.style.display = 'block';
+      }
+
+      // Use it inside your existing input event listener:
+      document.getElementById("searchBox").addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        showSuggestions(query, flatData); // 👈 Call it here
+        // ...your highlight/fade logic follows
+      });
 
       let resizeTimeout;
       window.addEventListener('resize', () => {
