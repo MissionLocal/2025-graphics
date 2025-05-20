@@ -34,7 +34,7 @@
     "department_code": "AAM"
   },
   {
-    "name": "flare.General Administration & Finance.ASR",
+    "name": "flare.Administration & Finance.ASR",
     "size": 39711689.0,
     "description": "Aims to identify and assess all taxable property in the city, collect transfer tax, and record and provide access to records.",
     "department_code": "ASR"
@@ -46,7 +46,7 @@
     "department_code": "BOA"
   },
   {
-    "name": "flare.General Administration & Finance.BOS",
+    "name": "flare.Administration & Finance.BOS",
     "size": 23611933.0,
     "description": "The legislative branch of San Francisco\u2019s government. It adopts legislation, establishes policies, and assists constituents.",
     "department_code": "BOS"
@@ -58,37 +58,37 @@
     "department_code": "DBI"
   },
   {
-    "name": "flare.Human Welfare & Neighborhood Development.CHF",
+    "name": "flare.Welfare & Neighborhood Development.CHF",
     "size": 349435136.0,
     "description": "Aims to improve the city for children by investing in youth and their families.",
     "department_code": "CHF"
   },
   {
-    "name": "flare.Human Welfare & Neighborhood Development.CSS",
+    "name": "flare.Welfare & Neighborhood Development.CSS",
     "size": 13291458.0,
     "description": "Aims to ensure the financial support and well-being of children through child support orders and non-cash alternatives.",
     "department_code": "CSS"
   },
   {
-    "name": "flare.General Administration & Finance.CAT",
+    "name": "flare.Administration & Finance.CAT",
     "size": 117716023.0,
     "description": "Provides legal services to the Mayor\u2019s Office, the Board of Supervisors, elected City officials, and all the city\u2019s departments, boards, and commissions.",
     "department_code": "CAT"
   },
   {
-    "name": "flare.General Administration & Finance.CPC",
+    "name": "flare.Administration & Finance.CPC",
     "size": 55060285.0,
     "description": "Aims to guide and regulate land use, urban design, and development to make San Francisco the world\u2019s most livable urban place.",
     "department_code": "CPC"
   },
   {
-    "name": "flare.General Administration & Finance.CSC",
+    "name": "flare.Administration & Finance.CSC",
     "size": 1524657.0,
     "description": "Aims to make sure the city employs the best-qualified candidates for public service in a timely and efficient manner.",
     "department_code": "CSC"
   },
   {
-    "name": "flare.General Administration & Finance.CON",
+    "name": "flare.Administration & Finance.CON",
     "size": 88797154.0,
     "description": "Aims to ensure the City\u2019s financial integrity through audits and oversight, promoting effective and accountable government.",
     "department_code": "CON"
@@ -100,7 +100,7 @@
     "department_code": "DPA"
   },
   {
-    "name": "flare.Human Welfare & Neighborhood Development.DEC",
+    "name": "flare.Welfare & Neighborhood Development.DEC",
     "size": 336660759.0,
     "description": "Helps parents and guardians with child care, parenting support, and child development.",
     "department_code": "DEC"
@@ -118,7 +118,7 @@
     "department_code": "ECN"
   },
   {
-    "name": "flare.General Administration & Finance.REG",
+    "name": "flare.Administration & Finance.REG",
     "size": 25672135.0,
     "description": "Aims to provide equitable access to election services and voting, and to conduct free and fair elections.",
     "department_code": "REG"
@@ -130,13 +130,13 @@
     "department_code": "DEM"
   },
   {
-    "name": "flare.Human Welfare & Neighborhood Development.ENV",
+    "name": "flare.Welfare & Neighborhood Development.ENV",
     "size": 45708789.0,
     "description": "Provides support for urban agriculture, forestry, green buildings, and other environmental projects.",
     "department_code": "ENV"
   },
   {
-    "name": "flare.General Administration & Finance.ETH",
+    "name": "flare.Administration & Finance.ETH",
     "size": 14285132.0,
     "description": "Investigates and punishes wrongdoing in the city, and collects and reports electoral data.",
     "department_code": "ETH"
@@ -160,7 +160,7 @@
     "department_code": "GEN"
   },
   {
-    "name": "flare.General Administration & Finance.ADM",
+    "name": "flare.Administration & Finance.ADM",
     "size": 616895884.0,
     "description": "A broad array of departments, divisions, programs, and offices reporting to the Office of the City Administrator.",
     "department_code": "ADM"
@@ -172,31 +172,31 @@
     "department_code": "TIS"
   },
   {
-    "name": "flare.General Administration & Finance.HSS",
+    "name": "flare.Administration & Finance.HSS",
     "size": 12682101.0,
     "description": "Aims to preserve and improve health benefits and to enhance the well-being of employees, retirees, and their families.",
     "department_code": "HSS"
   },
   {
-    "name": "flare.Human Welfare & Neighborhood Development.HOM",
+    "name": "flare.Welfare & Neighborhood Development.HOM",
     "size": 846323741.0,
     "description": "Aims to make homelessness rare, brief, and one-time through services like housing and mental health support.",
     "department_code": "HOM"
   },
   {
-    "name": "flare.General Administration & Finance.HRD",
+    "name": "flare.Administration & Finance.HRD",
     "size": 156672431.0,
     "description": "Aims to use equitable practices to hire, develop, support, and retain a highly-qualified workforce.",
     "department_code": "HRD"
   },
   {
-    "name": "flare.Human Welfare & Neighborhood Development.HRC",
+    "name": "flare.Welfare & Neighborhood Development.HRC",
     "size": 44751345.0,
     "description": "Advocates for human and civil rights, and uses anti-discrimination laws to further racial solidarity and equity.",
     "department_code": "HRC"
   },
   {
-    "name": "flare.Human Welfare & Neighborhood Development.HSA",
+    "name": "flare.Welfare & Neighborhood Development.HSA",
     "size": 1231253530.0,
     "description": "Delivers services to support communities including food distribution, children's programs, and a disability community center.",
     "department_code": "HSA"
@@ -214,7 +214,7 @@
     "department_code": "LLB"
   },
   {
-    "name": "flare.General Administration & Finance.MYR",
+    "name": "flare.Administration & Finance.MYR",
     "size": 207543923.0,
     "description": "The executive branch of San Francisco's government. Has a broad remit for enacting programs and setting policy direction.",
     "department_code": "MYR"
@@ -244,7 +244,7 @@
     "department_code": "PDR"
   },
   {
-    "name": "flare.Community Health.DPH",
+    "name": "flare.Health.DPH",
     "size": 3231869228.0,
     "description": "Aims to protect and promote health through hospital funding, housing programs, mental health investment, and more.",
     "department_code": "DPH"
@@ -274,13 +274,13 @@
     "department_code": "REC"
   },
   {
-    "name": "flare.Human Welfare & Neighborhood Development.RNT",
+    "name": "flare.Welfare & Neighborhood Development.RNT",
     "size": 13812353.0,
     "description": "Aims to protect tenants from excessive rent increases and unjust evictions, while assuring landlords fair rents.",
     "department_code": "RNT"
   },
   {
-    "name": "flare.General Administration & Finance.RET",
+    "name": "flare.Administration & Finance.RET",
     "size": 54824818.0,
     "description": "Works to secure and prudently invest the city's pension trust accounts and provide promised benefits.",
     "department_code": "RET"
@@ -298,7 +298,7 @@
     "department_code": "SHF"
   },
   {
-    "name": "flare.Human Welfare & Neighborhood Development.WOM",
+    "name": "flare.Welfare & Neighborhood Development.WOM",
     "size": 11909801.0,
     "description": "Aims to make the city fully gender equitable through policies, programs, and legislation.",
     "department_code": "WOM"
@@ -310,7 +310,7 @@
     "department_code": "CRT"
   },
   {
-    "name": "flare.General Administration & Finance.TTX",
+    "name": "flare.Administration & Finance.TTX",
     "size": 49013115.0,
     "description": "The banker, tax collector, collection agent, and investment officer for the city.",
     "department_code": "TTX"
@@ -327,6 +327,114 @@
   },
   {
     "name": "flare..TIS",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development.HRC",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development.HSA",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development.CHF",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development.RNT",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development.WOM",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development.HOM",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development.DEC",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development.ENV",
+    "size": null
+  },
+  {
+    "name": "flare.Welfare & Neighborhood Development.CSS",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.ASR",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.ADM",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.BOS",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.REG",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.HSS",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.RET",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.TTX",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.ETH",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.CSC",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.CPC",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.HRD",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.CAT",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.MYR",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.CON",
+    "size": null
+  },
+  {
+    "name": "flare.Health",
+    "size": null
+  },
+  {
+    "name": "flare.Health.DPH",
     "size": null
   },
   {
@@ -362,119 +470,11 @@
     "size": null
   },
   {
-    "name": "flare.General Administration & Finance",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.ASR",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.ADM",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.BOS",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.REG",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.HSS",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.RET",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.TTX",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.ETH",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.CSC",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.CPC",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.HRD",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.CAT",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.MYR",
-    "size": null
-  },
-  {
-    "name": "flare.General Administration & Finance.CON",
-    "size": null
-  },
-  {
     "name": "flare.General City Responsibilities",
     "size": null
   },
   {
     "name": "flare.General City Responsibilities.GEN",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development.HRC",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development.HSA",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development.CHF",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development.RNT",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development.WOM",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development.HOM",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development.DEC",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development.ENV",
-    "size": null
-  },
-  {
-    "name": "flare.Human Welfare & Neighborhood Development.CSS",
-    "size": null
-  },
-  {
-    "name": "flare.Community Health",
-    "size": null
-  },
-  {
-    "name": "flare.Community Health.DPH",
     "size": null
   },
   {
