@@ -143,32 +143,39 @@
     }
 
     #searchBox {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  font-family: Barlow, sans-serif;
-  box-sizing: border-box; /* Ensures padding is included in the width */
-  border: 1px solid #ccc; /* Set the border you want */
-  outline: none; /* Remove the outline that appears when focused */
-  background-color: #fff; /* Set background to white or your desired color */
-}
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      font-family: Barlow, sans-serif;
+      box-sizing: border-box;
+      /* Ensures padding is included in the width */
+      border: 1px solid #ccc;
+      /* Set the border you want */
+      outline: none;
+      /* Remove the outline that appears when focused */
+      background-color: #fff;
+      /* Set background to white or your desired color */
+    }
 
-#suggestions {
-  position: absolute;
-  top: 100%; /* Places the suggestions list directly below the search box */
-  left: 0;
-  width: 100%;
-  max-width: 100%;
-  max-height: 200px;
-  overflow-y: auto;
-  background-color: white;
-  border: none; /* Remove the border of the suggestion list */
-  border-radius: 4px;
-  font-size: 14px;
-  font-family: Barlow, sans-serif;
-  z-index: 1000;
-  box-sizing: border-box; /* Ensure padding is included in the width */
-}
+    #suggestions {
+      position: absolute;
+      top: 100%;
+      /* Places the suggestions list directly below the search box */
+      left: 0;
+      width: 100%;
+      max-width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      background-color: white;
+      border: none;
+      /* Remove the border of the suggestion list */
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: Barlow, sans-serif;
+      z-index: 1000;
+      box-sizing: border-box;
+      /* Ensure padding is included in the width */
+    }
 
 
     .suggestion-item {
@@ -313,7 +320,14 @@
             category.innerText = group;
             category.style.backgroundColor = color;
             category.style.color = isDarkColor(color) ? '#fff' : '#000';
-            content.innerHTML = `${desc}<br><br>Budget: <strong>$${formattedSize}</strong> (${percent}%)`;
+
+            const rawChange = parseFloat(d.data.data?.change);
+            const formattedChange = !isNaN(rawChange)
+              ? `${rawChange > 0 ? '+' : ''}${rawChange.toFixed(2)}%`
+              : 'No change data available.';
+
+
+            content.innerHTML = `${desc}<br><br>Budget: <strong>$${formattedSize}</strong> (${percent}%)<br>${formattedChange} compared to previous year`;
 
             popup.style.display = "block";
 

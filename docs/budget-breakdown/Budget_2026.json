@@ -7,318 +7,371 @@
     "name": "flare.Culture & Recreation.Academy of Sciences",
     "size": 7658802.0,
     "description": "A science museum \u2014 and scientific and educational institution \u2014 located in San Francisco's Golden Gate Park.",
+    "change": "2.658232005023802",
     "department_code": "SCI"
   },
   {
     "name": "flare.Public Protection.Adult Probation",
     "size": 61597678.0,
     "description": "Aims to rehabilitate adult offenders to promote community safety and reduce recidivism.",
+    "change": "5.989561699434621",
     "department_code": "ADP"
   },
   {
     "name": "flare.Public Works, Transportation & Commerce.Airport Commission",
     "size": 2003762534.0,
     "description": "SFO is the Bay Area\u2019s largest airport by passenger volume. The Commission sets its policies.",
+    "change": "53.49449560882859",
     "department_code": "AIR"
   },
   {
     "name": "flare.Culture & Recreation.Arts Commission",
     "size": 29911303.0,
     "description": "The Commission champions the arts, invests in local artists, enlivens the urban environment, and shapes innovative cultural policy.",
+    "change": "-30.01885875674174",
     "department_code": "ART"
   },
   {
     "name": "flare.Culture & Recreation.Asian Art Museum",
     "size": 11814506.0,
     "description": "The museum celebrates, preserves, and promotes Asian and Asian American art and cultures.",
+    "change": "3.5259712526631777",
     "department_code": "AAM"
   },
   {
     "name": "flare.Administration & Finance.Assessor - Recorder",
     "size": 39711689.0,
     "description": "Aims to identify and assess all taxable property in the city, collect transfer tax, and record and provide access to records.",
+    "change": "6.815335490654917",
     "department_code": "ASR"
   },
   {
     "name": "flare.Public Works, Transportation & Commerce.Board of Appeals",
     "size": 1198622.0,
     "description": "Provides a final administrative review process for appeals on a range of City determinations.",
+    "change": "4.86292219761915",
     "department_code": "BOA"
   },
   {
     "name": "flare.Administration & Finance.Board of Supervisors",
     "size": 23611933.0,
     "description": "The legislative branch of San Francisco\u2019s government. It adopts legislation, establishes policies, and assists constituents.",
+    "change": "0.022569954468251576",
     "department_code": "BOS"
   },
   {
     "name": "flare.Public Works, Transportation & Commerce.Building Inspection",
     "size": 88340956.0,
     "description": "Oversees the enforcement of various building codes and Disability Access Regulations.",
+    "change": "2.5984775033844705",
     "department_code": "DBI"
   },
   {
     "name": "flare.Welfare & Neighborhood Development.Children, Youth & Families",
     "size": 349435136.0,
     "description": "Aims to improve the city for children by investing in youth and their families.",
+    "change": "2.123047119778006",
     "department_code": "CHF"
   },
   {
     "name": "flare.Welfare & Neighborhood Development.Child Support Services",
     "size": 13291458.0,
     "description": "Aims to ensure the financial support and well-being of children through child support orders and non-cash alternatives.",
+    "change": "-2.7444567128598116",
     "department_code": "CSS"
   },
   {
     "name": "flare.Administration & Finance.City Attorney",
     "size": 117716023.0,
     "description": "Provides legal services to the Mayor\u2019s Office, the Board of Supervisors, elected City officials, and all the city\u2019s departments, boards, and commissions.",
+    "change": "8.25500336731152",
     "department_code": "CAT"
   },
   {
     "name": "flare.Administration & Finance.City Planning",
     "size": 55060285.0,
     "description": "Aims to guide and regulate land use, urban design, and development to make San Francisco the world\u2019s most livable urban place.",
+    "change": "-6.197075346936993",
     "department_code": "CPC"
   },
   {
     "name": "flare.Administration & Finance.Civil Service Commission",
     "size": 1524657.0,
     "description": "Aims to make sure the city employs the best-qualified candidates for public service in a timely and efficient manner.",
+    "change": "0.8631861810825419",
     "department_code": "CSC"
   },
   {
     "name": "flare.Administration & Finance.Controller",
     "size": 88797154.0,
     "description": "Aims to ensure the City\u2019s financial integrity through audits and oversight, promoting effective and accountable government.",
+    "change": "5.733588802444543",
     "department_code": "CON"
   },
   {
     "name": "flare.Public Protection.Police Accountability",
     "size": 10037592.0,
     "description": "Aims to hold the police accountable to civilian oversight through investigations, policy recommendations, and performance audits.",
+    "change": "0.6743893621419422",
     "department_code": "DPA"
   },
   {
     "name": "flare.Welfare & Neighborhood Development.Dept of Early Childhood",
     "size": 336660759.0,
     "description": "Helps parents and guardians with child care, parenting support, and child development.",
+    "change": "-2.5538010435837433",
     "department_code": "DEC"
   },
   {
     "name": "flare.Public Protection.District Attorney",
     "size": 93586565.0,
     "description": "Aims to prosecute suspects, support victims of crime, and develop alternatives to incarceration.",
+    "change": "4.495893430866116",
     "department_code": "DAT"
   },
   {
     "name": "flare.Public Works, Transportation & Commerce.Economic & Workforce Development",
     "size": 140623065.0,
     "description": "Aims to support sustainable jobs and businesses using grants, work training, and more.",
+    "change": "-11.04422029409195",
     "department_code": "ECN"
   },
   {
     "name": "flare.Administration & Finance.Elections",
     "size": 25672135.0,
     "description": "Aims to provide equitable access to election services and voting, and to conduct free and fair elections.",
+    "change": "11.895532697213422",
     "department_code": "REG"
   },
   {
     "name": "flare.Public Protection.Emergency Management",
     "size": 140623335.0,
     "description": "Leads in planning, preparedness, communication, response, and recovery for daily emergencies, citywide events, and major disasters.",
+    "change": "1.3324906501700726",
     "department_code": "DEM"
   },
   {
     "name": "flare.Welfare & Neighborhood Development.Environment",
     "size": 45708789.0,
     "description": "Provides support for urban agriculture, forestry, green buildings, and other environmental projects.",
+    "change": "41.43473638184269",
     "department_code": "ENV"
   },
   {
     "name": "flare.Administration & Finance.Ethics Commission",
     "size": 14285132.0,
     "description": "Investigates and punishes wrongdoing in the city, and collects and reports electoral data.",
+    "change": "89.51146955002686",
     "department_code": "ETH"
   },
   {
     "name": "flare.Culture & Recreation.Fine Arts Museum",
     "size": 23789575.0,
     "description": "Aims to connect visitors with art to stimulate creativity and share knowledge and ideas.",
+    "change": "2.332367962109764",
     "department_code": "FAM"
   },
   {
     "name": "flare.Public Protection.Fire Department",
     "size": 530775857.0,
     "description": "Aims to protect lives and property from fires, natural disasters, accidents, hazardous materials incidents, and other causes.",
+    "change": "3.812236968718008",
     "department_code": "FIR"
   },
   {
     "name": "flare.General City Responsibilities.General City - Unallocated",
     "size": 1656487698.0,
     "description": "General City Responsibility Expenditures not directly attributable to one City department, such as reserve deposits and debt service.",
+    "change": "-9.495101471084103",
     "department_code": "GEN"
   },
   {
     "name": "flare.Administration & Finance.GSA - City Administrator",
     "size": 616895884.0,
     "description": "A broad array of departments, divisions, programs, and offices reporting to the Office of the City Administrator.",
+    "change": "3.413848701371637",
     "department_code": "ADM"
   },
   {
     "name": "flare.Administration & Finance.GSA - Technology",
     "size": 168555616.0,
     "description": "A broad array of departments, divisions, programs, and offices with the aim of improving city tech.",
+    "change": "1.3482767966783742",
     "department_code": "DT"
   },
   {
     "name": "flare.Administration & Finance.Health Service System",
     "size": 12682101.0,
     "description": "Aims to preserve and improve health benefits and to enhance the well-being of employees, retirees, and their families.",
+    "change": "-8.512292742172496",
     "department_code": "HSS"
   },
   {
     "name": "flare.Welfare & Neighborhood Development.Homelessness Services",
     "size": 846323741.0,
     "description": "Aims to make homelessness rare, brief, and one-time through services like housing and mental health support.",
+    "change": "18.650293518193763",
     "department_code": "HOM"
   },
   {
     "name": "flare.Administration & Finance.Human Resources",
     "size": 156672431.0,
     "description": "Aims to use equitable practices to hire, develop, support, and retain a highly-qualified workforce.",
+    "change": "3.921849037041737",
     "department_code": "HRD"
   },
   {
     "name": "flare.Welfare & Neighborhood Development.Human Rights Commission",
     "size": 44751345.0,
     "description": "Advocates for human and civil rights, and uses anti-discrimination laws to further racial solidarity and equity.",
+    "change": "107.91943895868525",
     "department_code": "HRC"
   },
   {
     "name": "flare.Welfare & Neighborhood Development.Human Services Agency",
     "size": 1231253530.0,
     "description": "Delivers services to support communities including food distribution, children's programs, and a disability community center.",
+    "change": "3.37558862458133",
     "department_code": "HSA"
   },
   {
     "name": "flare.Public Protection.Juvenile Probation",
     "size": 46628943.0,
     "description": "Aims to rehabilitate young offenders by providing supervision, support, and resources.",
+    "change": "-4.776271546899097",
     "department_code": "JUV"
   },
   {
     "name": "flare.Culture & Recreation.Law Library",
     "size": 1286319.0,
     "description": "Provides free legal information resources and services to help residents understand the law and protect their legal rights.",
+    "change": "-28.333184760928432",
     "department_code": "LLB"
   },
   {
     "name": "flare.Administration & Finance.Mayor",
     "size": 207543923.0,
     "description": "The executive branch of San Francisco's government. Has a broad remit for enacting programs and setting policy direction.",
+    "change": "3.232082484306871",
     "department_code": "MYR"
   },
   {
     "name": "flare.Public Works, Transportation & Commerce.Municipal Transportation Agency",
     "size": 1521768064.0,
     "description": "Aims to make transit and other sustainable modes of travel safe, affordable, and attractive.",
+    "change": "3.3276129840493303",
     "department_code": "MTA"
   },
   {
     "name": "flare.Public Protection.Police",
     "size": 822835972.0,
     "description": "Aims to prevent and investigate crimes, ensure public safety, and maintain respect for all.",
+    "change": "6.18448015686267",
     "department_code": "POL"
   },
   {
     "name": "flare.Public Works, Transportation & Commerce.Port",
     "size": 156486598.0,
     "description": "Aims to advance sustainable maritime, recreational, and economic opportunities via the port.",
+    "change": "4.237342417941666",
     "department_code": "PRT"
   },
   {
     "name": "flare.Public Protection.Public Defender",
     "size": 56698180.0,
     "description": "Offers free legal representation and advocates for systemic changes to benefit the disenfranchised and disempowered.",
+    "change": "7.770525198973679",
     "department_code": "PDR"
   },
   {
     "name": "flare.Health.Public Health",
     "size": 3231869228.0,
     "description": "Aims to protect and promote health through hospital funding, housing programs, mental health investment, and more.",
+    "change": "1.3095931394394937",
     "department_code": "DPH"
   },
   {
     "name": "flare.Culture & Recreation.Public Library",
     "size": 187512289.0,
     "description": "Provides free and equal access to books and digital services throughout the city.",
+    "change": "-6.363224597650668",
     "department_code": "LIB"
   },
   {
     "name": "flare.Public Works, Transportation & Commerce.Public Utilities Commission",
     "size": 2024002957.0,
     "description": "Provides reliable water, power, and wastewater services to the city.",
+    "change": "13.16778462771574",
     "department_code": "PUC"
   },
   {
     "name": "flare.Public Works, Transportation & Commerce.Public Works",
     "size": 452952912.0,
     "description": "Builds and maintains city infrastructure, such as streets and sidewalks.",
+    "change": "-0.06095503409976839",
     "department_code": "DPW"
   },
   {
     "name": "flare.Public Works, Transportation & Commerce.Recreation & Park Commission",
     "size": 254873111.0,
     "description": "Provides the city's parks, playgrounds, and open spaces, as well as enriching recreational activities.",
+    "change": "-3.1270493365669276",
     "department_code": "REC"
   },
   {
     "name": "flare.Welfare & Neighborhood Development.Rent Arbitration Board",
     "size": 13812353.0,
     "description": "Aims to protect tenants from excessive rent increases and unjust evictions, while assuring landlords fair rents.",
+    "change": "-22.075152453653192",
     "department_code": "RNT"
   },
   {
     "name": "flare.Administration & Finance.Retirement System",
     "size": 54824818.0,
     "description": "Works to secure and prudently invest the city's pension trust accounts and provide promised benefits.",
+    "change": "6.519035165348304",
     "department_code": "RET"
   },
   {
     "name": "flare.Public Protection.Sheriff Department Office Inspector General",
     "size": 1303559.0,
     "description": "Provides independent civilian oversight of the Sheriff's Office.",
+    "change": "-25.796196110040942",
     "department_code": "SDA"
   },
   {
     "name": "flare.Public Protection.Sheriff",
     "size": 323076630.0,
     "description": "Operates jails and alternative sentencing programs, guards courthouses, and executes warrants.",
+    "change": "11.017326202758719",
     "department_code": "SHF"
   },
   {
     "name": "flare.Welfare & Neighborhood Development.Status of Women",
     "size": 11909801.0,
     "description": "Aims to make the city fully gender equitable through policies, programs, and legislation.",
+    "change": "-14.726200658688457",
     "department_code": "WOM"
   },
   {
     "name": "flare.Public Protection.Superior Court",
     "size": 32956944.0,
     "description": "Aims to assure equal access, fair treatment, and the just and efficient resolution of disputes for all people asserting their rights under the law in the city.",
+    "change": "0.5338304525198383",
     "department_code": "CRT"
   },
   {
     "name": "flare.Administration & Finance.Treasurer-Tax Collector",
     "size": 49013115.0,
     "description": "The banker, tax collector, collection agent, and investment officer for the city.",
+    "change": "-3.0542497754031768",
     "department_code": "TTX"
   },
   {
     "name": "flare.Culture & Recreation.War Memorial",
     "size": 30516780.0,
     "description": "The War Memorial and Performing Arts Center operates venues for culture, education, and entertainment.",
+    "change": "-18.93626785964411",
     "department_code": "WAR"
   },
   {
