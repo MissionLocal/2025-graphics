@@ -166,10 +166,10 @@
     "department_code": "ADM"
   },
   {
-    "name": "flare..",
+    "name": "flare.Administration & Finance.GSA - Technology",
     "size": 168555616.0,
-    "description": "",
-    "department_code": "TIS"
+    "description": "A broad array of departments, divisions, programs, and offices with the aim of improving city tech.",
+    "department_code": "DT"
   },
   {
     "name": "flare.Administration & Finance.Health Service System",
@@ -322,14 +322,6 @@
     "department_code": "WAR"
   },
   {
-    "name": "flare.",
-    "size": null
-  },
-  {
-    "name": "flare..",
-    "size": null
-  },
-  {
     "name": "flare.Welfare & Neighborhood Development",
     "size": null
   },
@@ -419,6 +411,10 @@
   },
   {
     "name": "flare.Administration & Finance.Board of Supervisors",
+    "size": null
+  },
+  {
+    "name": "flare.Administration & Finance.GSA - Technology",
     "size": null
   },
   {
