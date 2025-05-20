@@ -115,27 +115,61 @@
       font-size: 14px;
     }
 
-    #searchBox {
-      width: 100%;
-      padding: 8px;
-      font-size: 16px;
-      font-family: Barlow, sans-serif;
-      margin-bottom: 12px;
-      max-width: 300px;
+    .clear-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #888;
+      cursor: pointer;
+      display: none;
+      /* Initially hidden */
     }
 
-    #suggestions-list {
-      position: absolute;
-      width: 100%;
-      max-height: 200px;
-      overflow-y: auto;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
-      font-family: Barlow, sans-serif;
-      z-index: 1000;
+    .clear-btn:hover {
+      color: #333;
     }
+
+    /* Ensuring the search box and suggestion list are aligned */
+    .search-container {
+      position: relative;
+      width: 100%;
+      /* Make sure it spans the width of the parent container */
+      max-width: 300px;
+      /* Or whatever your desired width is */
+    }
+
+    #searchBox {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  font-family: Barlow, sans-serif;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+  border: 1px solid #ccc; /* Set the border you want */
+  outline: none; /* Remove the outline that appears when focused */
+  background-color: #fff; /* Set background to white or your desired color */
+}
+
+#suggestions {
+  position: absolute;
+  top: 100%; /* Places the suggestions list directly below the search box */
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  border: none; /* Remove the border of the suggestion list */
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: Barlow, sans-serif;
+  z-index: 1000;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
 
     .suggestion-item {
       padding: 8px;
@@ -151,10 +185,12 @@
 <body>
 
   <div class="cont" id="legend"></div>
-  <div class="cont">
+  <div class="cont search-container" style="position: relative;">
     <input type="text" id="searchBox" placeholder="Search for a department..." />
-    <div id="suggestions" style="position: relative;"></div>
+    <button id="clearButton" class="clear-btn" style="display: none;">X</button> <!-- Clear Button -->
+    <div id="suggestions"></div>
   </div>
+
   <div class="cont">
     <svg></svg>
   </div>
@@ -255,6 +291,7 @@
             const group = d.ancestors().find(a => a.depth === 1)?.data.id.split('.')[1];
             return colorScale(group);
           })
+          // Inside the "click" event handler for treemap rectangles
           .on("click", function (event, d) {
             const popup = document.getElementById("popup");
             const header = document.getElementById("popup-header");
@@ -304,6 +341,7 @@
             popup.style.left = `${left}px`;
             popup.style.top = `${top}px`;
           });
+
 
         nodes.append("text").each(function (d) {
           const dept = d.data.data?.department_code || '';
@@ -358,7 +396,6 @@
         });
       }, 150));  // delay in ms
 
-      
       function showSuggestions(query, flatData) {
         const suggestionBox = document.getElementById('suggestions');
         suggestionBox.innerHTML = ''; // Clear previous suggestions
@@ -369,25 +406,39 @@
         }
 
         const matches = flatData.filter(d => {
-          const name = d.name?.split('.')?.[2]?.toLowerCase() || '';
-          const code = d.department_code?.toLowerCase() || '';
-          return name.includes(query.toLowerCase()) || code.includes(query.toLowerCase());
+          if (!d.name || !d.department_code) return false;
+
+          const parts = d.name.split('.');
+          if (parts.length < 3) return false;
+
+          const deptName = parts[2];
+          const deptCode = d.department_code;
+
+          // Skip if any piece is missing or blank
+          if (!deptName.trim() || !deptCode.trim()) return false;
+
+          return (
+            deptName.toLowerCase().includes(query.toLowerCase()) ||
+            deptCode.toLowerCase().includes(query.toLowerCase())
+          );
         });
 
         matches.slice(0, 10).forEach(d => {
+          const deptName = d.name.split('.')[2];
+          const deptCode = d.department_code;
+
           const div = document.createElement('div');
           div.className = 'suggestion-item';
-          div.textContent = `${d.department_code} – ${d.name?.split('.')?.[2] || ''}`;
+          div.textContent = `${deptCode} – ${deptName}`;
           div.onclick = () => {
-            document.getElementById('searchBox').value = d.name?.split('.')?.[2] || '';
+            document.getElementById('searchBox').value = deptName;
             suggestionBox.style.display = 'none';
-            // Optionally trigger your highlight logic here
             document.getElementById('searchBox').dispatchEvent(new Event('input'));
           };
           suggestionBox.appendChild(div);
         });
 
-        suggestionBox.style.display = 'block';
+        suggestionBox.style.display = matches.length > 0 ? 'block' : 'none';
       }
 
       // Use it inside your existing input event listener:
@@ -408,6 +459,70 @@
         }, 150);
       });
     });
+
+    // Clear button click listener
+    document.getElementById("clearButton").addEventListener("click", function () {
+      const searchBox = document.getElementById("searchBox");
+      searchBox.value = ''; // Clear the input field
+      document.getElementById('suggestions').innerHTML = ''; // Clear suggestions dropdown
+      this.style.display = 'none'; // Hide the clear button again
+
+      // Reset the opacity and styling of the treemap
+      d3.selectAll("g").each(function (d) {
+        d3.select(this).select("rect")
+          .transition()
+          .duration(200)
+          .style("opacity", 1)
+          .style("stroke", null)
+          .style("stroke-width", null);
+
+        d3.select(this).select("text")
+          .transition()
+          .duration(200)
+          .style("opacity", 1);
+      });
+
+      // Trigger the input event to re-render everything (optional)
+      searchBox.dispatchEvent(new Event('input'));
+    });
+
+    // Update the input event listener for search functionality
+    document.getElementById("searchBox").addEventListener("input", debounce(function () {
+      const query = this.value.toLowerCase();
+
+      // Show/hide clear button based on search box content
+      const clearButton = document.getElementById("clearButton");
+      if (query) {
+        clearButton.style.display = 'block'; // Show clear button
+      } else {
+        clearButton.style.display = 'none'; // Hide clear button if the box is empty
+      }
+
+      // Highlight or fade the treemap blocks based on search query
+      d3.selectAll("g").each(function (d) {
+        const name = d.data.id.split('.')[2]?.toLowerCase() || '';
+        const code = d.data.data?.department_code?.toLowerCase() || '';
+        const match = name.includes(query) || code.includes(query);
+
+        // Fade or highlight the blocks
+        d3.select(this).select("rect")
+          .transition()
+          .duration(200)
+          .style("opacity", match || !query ? 1 : 0.15)
+          .style("stroke", match && query ? "#fff" : null)
+          .style("stroke-width", match && query ? 3 : null);
+
+        // Fade or highlight the text
+        d3.select(this).select("text")
+          .transition()
+          .duration(200)
+          .style("opacity", match || !query ? 1 : 0.15);
+      });
+
+      // Show suggestions when typing in search box
+      showSuggestions(query, flatData);
+    }, 150));  // delay in ms
+
 
   </script>
 </body>
