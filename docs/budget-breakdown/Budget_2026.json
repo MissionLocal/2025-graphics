@@ -4,319 +4,319 @@
     "size": null
   },
   {
-    "name": "flare.Culture & Recreation.SCI",
+    "name": "flare.Culture & Recreation.Academy of Sciences",
     "size": 7658802.0,
     "description": "A science museum \u2014 and scientific and educational institution \u2014 located in San Francisco's Golden Gate Park.",
     "department_code": "SCI"
   },
   {
-    "name": "flare.Public Protection.ADP",
+    "name": "flare.Public Protection.Adult Probation",
     "size": 61597678.0,
     "description": "Aims to rehabilitate adult offenders to promote community safety and reduce recidivism.",
     "department_code": "ADP"
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.AIR",
+    "name": "flare.Public Works, Transportation & Commerce.Airport Commission",
     "size": 2003762534.0,
     "description": "SFO is the Bay Area\u2019s largest airport by passenger volume. The Commission sets its policies.",
     "department_code": "AIR"
   },
   {
-    "name": "flare.Culture & Recreation.ART",
+    "name": "flare.Culture & Recreation.Arts Commission",
     "size": 29911303.0,
     "description": "The Commission champions the arts, invests in local artists, enlivens the urban environment, and shapes innovative cultural policy.",
     "department_code": "ART"
   },
   {
-    "name": "flare.Culture & Recreation.AAM",
+    "name": "flare.Culture & Recreation.Asian Art Museum",
     "size": 11814506.0,
     "description": "The museum celebrates, preserves, and promotes Asian and Asian American art and cultures.",
     "department_code": "AAM"
   },
   {
-    "name": "flare.Administration & Finance.ASR",
+    "name": "flare.Administration & Finance.Assessor - Recorder",
     "size": 39711689.0,
     "description": "Aims to identify and assess all taxable property in the city, collect transfer tax, and record and provide access to records.",
     "department_code": "ASR"
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.BOA",
+    "name": "flare.Public Works, Transportation & Commerce.Board of Appeals",
     "size": 1198622.0,
     "description": "Provides a final administrative review process for appeals on a range of City determinations.",
     "department_code": "BOA"
   },
   {
-    "name": "flare.Administration & Finance.BOS",
+    "name": "flare.Administration & Finance.Board of Supervisors",
     "size": 23611933.0,
     "description": "The legislative branch of San Francisco\u2019s government. It adopts legislation, establishes policies, and assists constituents.",
     "department_code": "BOS"
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.DBI",
+    "name": "flare.Public Works, Transportation & Commerce.Building Inspection",
     "size": 88340956.0,
     "description": "Oversees the enforcement of various building codes and Disability Access Regulations.",
     "department_code": "DBI"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.CHF",
+    "name": "flare.Welfare & Neighborhood Development.Children, Youth & Families",
     "size": 349435136.0,
     "description": "Aims to improve the city for children by investing in youth and their families.",
     "department_code": "CHF"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.CSS",
+    "name": "flare.Welfare & Neighborhood Development.Child Support Services",
     "size": 13291458.0,
     "description": "Aims to ensure the financial support and well-being of children through child support orders and non-cash alternatives.",
     "department_code": "CSS"
   },
   {
-    "name": "flare.Administration & Finance.CAT",
+    "name": "flare.Administration & Finance.City Attorney",
     "size": 117716023.0,
     "description": "Provides legal services to the Mayor\u2019s Office, the Board of Supervisors, elected City officials, and all the city\u2019s departments, boards, and commissions.",
     "department_code": "CAT"
   },
   {
-    "name": "flare.Administration & Finance.CPC",
+    "name": "flare.Administration & Finance.City Planning",
     "size": 55060285.0,
     "description": "Aims to guide and regulate land use, urban design, and development to make San Francisco the world\u2019s most livable urban place.",
     "department_code": "CPC"
   },
   {
-    "name": "flare.Administration & Finance.CSC",
+    "name": "flare.Administration & Finance.Civil Service Commission",
     "size": 1524657.0,
     "description": "Aims to make sure the city employs the best-qualified candidates for public service in a timely and efficient manner.",
     "department_code": "CSC"
   },
   {
-    "name": "flare.Administration & Finance.CON",
+    "name": "flare.Administration & Finance.Controller",
     "size": 88797154.0,
     "description": "Aims to ensure the City\u2019s financial integrity through audits and oversight, promoting effective and accountable government.",
     "department_code": "CON"
   },
   {
-    "name": "flare.Public Protection.DPA",
+    "name": "flare.Public Protection.Police Accountability",
     "size": 10037592.0,
     "description": "Aims to hold the police accountable to civilian oversight through investigations, policy recommendations, and performance audits.",
     "department_code": "DPA"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.DEC",
+    "name": "flare.Welfare & Neighborhood Development.Dept of Early Childhood",
     "size": 336660759.0,
     "description": "Helps parents and guardians with child care, parenting support, and child development.",
     "department_code": "DEC"
   },
   {
-    "name": "flare.Public Protection.DAT",
+    "name": "flare.Public Protection.District Attorney",
     "size": 93586565.0,
     "description": "Aims to prosecute suspects, support victims of crime, and develop alternatives to incarceration.",
     "department_code": "DAT"
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.ECN",
+    "name": "flare.Public Works, Transportation & Commerce.Economic & Workforce Development",
     "size": 140623065.0,
     "description": "Aims to support sustainable jobs and businesses using grants, work training, and more.",
     "department_code": "ECN"
   },
   {
-    "name": "flare.Administration & Finance.REG",
+    "name": "flare.Administration & Finance.Elections",
     "size": 25672135.0,
     "description": "Aims to provide equitable access to election services and voting, and to conduct free and fair elections.",
     "department_code": "REG"
   },
   {
-    "name": "flare.Public Protection.DEM",
+    "name": "flare.Public Protection.Emergency Management",
     "size": 140623335.0,
     "description": "Leads in planning, preparedness, communication, response, and recovery for daily emergencies, citywide events, and major disasters.",
     "department_code": "DEM"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.ENV",
+    "name": "flare.Welfare & Neighborhood Development.Environment",
     "size": 45708789.0,
     "description": "Provides support for urban agriculture, forestry, green buildings, and other environmental projects.",
     "department_code": "ENV"
   },
   {
-    "name": "flare.Administration & Finance.ETH",
+    "name": "flare.Administration & Finance.Ethics Commission",
     "size": 14285132.0,
     "description": "Investigates and punishes wrongdoing in the city, and collects and reports electoral data.",
     "department_code": "ETH"
   },
   {
-    "name": "flare.Culture & Recreation.FAM",
+    "name": "flare.Culture & Recreation.Fine Arts Museum",
     "size": 23789575.0,
     "description": "Aims to connect visitors with art to stimulate creativity and share knowledge and ideas.",
     "department_code": "FAM"
   },
   {
-    "name": "flare.Public Protection.FIR",
+    "name": "flare.Public Protection.Fire Department",
     "size": 530775857.0,
     "description": "Aims to protect lives and property from fires, natural disasters, accidents, hazardous materials incidents, and other causes.",
     "department_code": "FIR"
   },
   {
-    "name": "flare.General City Responsibilities.GEN",
+    "name": "flare.General City Responsibilities.General City - Unallocated",
     "size": 1656487698.0,
     "description": "General City Responsibility Expenditures not directly attributable to one City department, such as reserve deposits and debt service.",
     "department_code": "GEN"
   },
   {
-    "name": "flare.Administration & Finance.ADM",
+    "name": "flare.Administration & Finance.GSA - City Administrator",
     "size": 616895884.0,
     "description": "A broad array of departments, divisions, programs, and offices reporting to the Office of the City Administrator.",
     "department_code": "ADM"
   },
   {
-    "name": "flare..TIS",
+    "name": "flare..",
     "size": 168555616.0,
     "description": "",
     "department_code": "TIS"
   },
   {
-    "name": "flare.Administration & Finance.HSS",
+    "name": "flare.Administration & Finance.Health Service System",
     "size": 12682101.0,
     "description": "Aims to preserve and improve health benefits and to enhance the well-being of employees, retirees, and their families.",
     "department_code": "HSS"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.HOM",
+    "name": "flare.Welfare & Neighborhood Development.Homelessness Services",
     "size": 846323741.0,
     "description": "Aims to make homelessness rare, brief, and one-time through services like housing and mental health support.",
     "department_code": "HOM"
   },
   {
-    "name": "flare.Administration & Finance.HRD",
+    "name": "flare.Administration & Finance.Human Resources",
     "size": 156672431.0,
     "description": "Aims to use equitable practices to hire, develop, support, and retain a highly-qualified workforce.",
     "department_code": "HRD"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.HRC",
+    "name": "flare.Welfare & Neighborhood Development.Human Rights Commission",
     "size": 44751345.0,
     "description": "Advocates for human and civil rights, and uses anti-discrimination laws to further racial solidarity and equity.",
     "department_code": "HRC"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.HSA",
+    "name": "flare.Welfare & Neighborhood Development.Human Services Agency",
     "size": 1231253530.0,
     "description": "Delivers services to support communities including food distribution, children's programs, and a disability community center.",
     "department_code": "HSA"
   },
   {
-    "name": "flare.Public Protection.JUV",
+    "name": "flare.Public Protection.Juvenile Probation",
     "size": 46628943.0,
     "description": "Aims to rehabilitate young offenders by providing supervision, support, and resources.",
     "department_code": "JUV"
   },
   {
-    "name": "flare.Culture & Recreation.LLB",
+    "name": "flare.Culture & Recreation.Law Library",
     "size": 1286319.0,
     "description": "Provides free legal information resources and services to help residents understand the law and protect their legal rights.",
     "department_code": "LLB"
   },
   {
-    "name": "flare.Administration & Finance.MYR",
+    "name": "flare.Administration & Finance.Mayor",
     "size": 207543923.0,
     "description": "The executive branch of San Francisco's government. Has a broad remit for enacting programs and setting policy direction.",
     "department_code": "MYR"
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.MTA",
+    "name": "flare.Public Works, Transportation & Commerce.Municipal Transportation Agency",
     "size": 1521768064.0,
     "description": "Aims to make transit and other sustainable modes of travel safe, affordable, and attractive.",
     "department_code": "MTA"
   },
   {
-    "name": "flare.Public Protection.POL",
+    "name": "flare.Public Protection.Police",
     "size": 822835972.0,
     "description": "Aims to prevent and investigate crimes, ensure public safety, and maintain respect for all.",
     "department_code": "POL"
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.PRT",
+    "name": "flare.Public Works, Transportation & Commerce.Port",
     "size": 156486598.0,
     "description": "Aims to advance sustainable maritime, recreational, and economic opportunities via the port.",
     "department_code": "PRT"
   },
   {
-    "name": "flare.Public Protection.PDR",
+    "name": "flare.Public Protection.Public Defender",
     "size": 56698180.0,
     "description": "Offers free legal representation and advocates for systemic changes to benefit the disenfranchised and disempowered.",
     "department_code": "PDR"
   },
   {
-    "name": "flare.Health.DPH",
+    "name": "flare.Health.Public Health",
     "size": 3231869228.0,
     "description": "Aims to protect and promote health through hospital funding, housing programs, mental health investment, and more.",
     "department_code": "DPH"
   },
   {
-    "name": "flare.Culture & Recreation.LIB",
+    "name": "flare.Culture & Recreation.Public Library",
     "size": 187512289.0,
     "description": "Provides free and equal access to books and digital services throughout the city.",
     "department_code": "LIB"
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.PUC",
+    "name": "flare.Public Works, Transportation & Commerce.Public Utilities Commission",
     "size": 2024002957.0,
     "description": "Provides reliable water, power, and wastewater services to the city.",
     "department_code": "PUC"
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.DPW",
+    "name": "flare.Public Works, Transportation & Commerce.Public Works",
     "size": 452952912.0,
     "description": "Builds and maintains city infrastructure, such as streets and sidewalks.",
     "department_code": "DPW"
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.REC",
+    "name": "flare.Public Works, Transportation & Commerce.Recreation & Park Commission",
     "size": 254873111.0,
     "description": "Provides the city's parks, playgrounds, and open spaces, as well as enriching recreational activities.",
     "department_code": "REC"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.RNT",
+    "name": "flare.Welfare & Neighborhood Development.Rent Arbitration Board",
     "size": 13812353.0,
     "description": "Aims to protect tenants from excessive rent increases and unjust evictions, while assuring landlords fair rents.",
     "department_code": "RNT"
   },
   {
-    "name": "flare.Administration & Finance.RET",
+    "name": "flare.Administration & Finance.Retirement System",
     "size": 54824818.0,
     "description": "Works to secure and prudently invest the city's pension trust accounts and provide promised benefits.",
     "department_code": "RET"
   },
   {
-    "name": "flare.Public Protection.SDA",
+    "name": "flare.Public Protection.Sheriff Department Office Inspector General",
     "size": 1303559.0,
     "description": "Provides independent civilian oversight of the Sheriff's Office.",
     "department_code": "SDA"
   },
   {
-    "name": "flare.Public Protection.SHF",
+    "name": "flare.Public Protection.Sheriff",
     "size": 323076630.0,
     "description": "Operates jails and alternative sentencing programs, guards courthouses, and executes warrants.",
     "department_code": "SHF"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.WOM",
+    "name": "flare.Welfare & Neighborhood Development.Status of Women",
     "size": 11909801.0,
     "description": "Aims to make the city fully gender equitable through policies, programs, and legislation.",
     "department_code": "WOM"
   },
   {
-    "name": "flare.Public Protection.CRT",
+    "name": "flare.Public Protection.Superior Court",
     "size": 32956944.0,
     "description": "Aims to assure equal access, fair treatment, and the just and efficient resolution of disputes for all people asserting their rights under the law in the city.",
     "department_code": "CRT"
   },
   {
-    "name": "flare.Administration & Finance.TTX",
+    "name": "flare.Administration & Finance.Treasurer-Tax Collector",
     "size": 49013115.0,
     "description": "The banker, tax collector, collection agent, and investment officer for the city.",
     "department_code": "TTX"
   },
   {
-    "name": "flare.Culture & Recreation.WAR",
+    "name": "flare.Culture & Recreation.War Memorial",
     "size": 30516780.0,
     "description": "The War Memorial and Performing Arts Center operates venues for culture, education, and entertainment.",
     "department_code": "WAR"
@@ -326,7 +326,7 @@
     "size": null
   },
   {
-    "name": "flare..TIS",
+    "name": "flare..",
     "size": null
   },
   {
@@ -334,39 +334,39 @@
     "size": null
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.HRC",
+    "name": "flare.Welfare & Neighborhood Development.Child Support Services",
     "size": null
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.HSA",
+    "name": "flare.Welfare & Neighborhood Development.Dept of Early Childhood",
     "size": null
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.CHF",
+    "name": "flare.Welfare & Neighborhood Development.Environment",
     "size": null
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.RNT",
+    "name": "flare.Welfare & Neighborhood Development.Children, Youth & Families",
     "size": null
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.WOM",
+    "name": "flare.Welfare & Neighborhood Development.Human Rights Commission",
     "size": null
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.HOM",
+    "name": "flare.Welfare & Neighborhood Development.Human Services Agency",
     "size": null
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.DEC",
+    "name": "flare.Welfare & Neighborhood Development.Homelessness Services",
     "size": null
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.ENV",
+    "name": "flare.Welfare & Neighborhood Development.Status of Women",
     "size": null
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.CSS",
+    "name": "flare.Welfare & Neighborhood Development.Rent Arbitration Board",
     "size": null
   },
   {
@@ -374,59 +374,59 @@
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.ASR",
+    "name": "flare.Administration & Finance.Controller",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.ADM",
+    "name": "flare.Administration & Finance.Elections",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.BOS",
+    "name": "flare.Administration & Finance.City Planning",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.REG",
+    "name": "flare.Administration & Finance.Mayor",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.HSS",
+    "name": "flare.Administration & Finance.Human Resources",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.RET",
+    "name": "flare.Administration & Finance.Retirement System",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.TTX",
+    "name": "flare.Administration & Finance.City Attorney",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.ETH",
+    "name": "flare.Administration & Finance.Health Service System",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.CSC",
+    "name": "flare.Administration & Finance.GSA - City Administrator",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.CPC",
+    "name": "flare.Administration & Finance.Civil Service Commission",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.HRD",
+    "name": "flare.Administration & Finance.Ethics Commission",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.CAT",
+    "name": "flare.Administration & Finance.Board of Supervisors",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.MYR",
+    "name": "flare.Administration & Finance.Assessor - Recorder",
     "size": null
   },
   {
-    "name": "flare.Administration & Finance.CON",
+    "name": "flare.Administration & Finance.Treasurer-Tax Collector",
     "size": null
   },
   {
@@ -434,7 +434,7 @@
     "size": null
   },
   {
-    "name": "flare.Health.DPH",
+    "name": "flare.Health.Public Health",
     "size": null
   },
   {
@@ -442,31 +442,31 @@
     "size": null
   },
   {
-    "name": "flare.Culture & Recreation.LIB",
+    "name": "flare.Culture & Recreation.Arts Commission",
     "size": null
   },
   {
-    "name": "flare.Culture & Recreation.SCI",
+    "name": "flare.Culture & Recreation.War Memorial",
     "size": null
   },
   {
-    "name": "flare.Culture & Recreation.AAM",
+    "name": "flare.Culture & Recreation.Academy of Sciences",
     "size": null
   },
   {
-    "name": "flare.Culture & Recreation.WAR",
+    "name": "flare.Culture & Recreation.Fine Arts Museum",
     "size": null
   },
   {
-    "name": "flare.Culture & Recreation.ART",
+    "name": "flare.Culture & Recreation.Public Library",
     "size": null
   },
   {
-    "name": "flare.Culture & Recreation.LLB",
+    "name": "flare.Culture & Recreation.Asian Art Museum",
     "size": null
   },
   {
-    "name": "flare.Culture & Recreation.FAM",
+    "name": "flare.Culture & Recreation.Law Library",
     "size": null
   },
   {
@@ -474,7 +474,7 @@
     "size": null
   },
   {
-    "name": "flare.General City Responsibilities.GEN",
+    "name": "flare.General City Responsibilities.General City - Unallocated",
     "size": null
   },
   {
@@ -482,39 +482,39 @@
     "size": null
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.BOA",
+    "name": "flare.Public Works, Transportation & Commerce.Building Inspection",
     "size": null
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.MTA",
+    "name": "flare.Public Works, Transportation & Commerce.Port",
     "size": null
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.DBI",
+    "name": "flare.Public Works, Transportation & Commerce.Municipal Transportation Agency",
     "size": null
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.ECN",
+    "name": "flare.Public Works, Transportation & Commerce.Public Works",
     "size": null
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.DPW",
+    "name": "flare.Public Works, Transportation & Commerce.Board of Appeals",
     "size": null
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.PRT",
+    "name": "flare.Public Works, Transportation & Commerce.Airport Commission",
     "size": null
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.PUC",
+    "name": "flare.Public Works, Transportation & Commerce.Economic & Workforce Development",
     "size": null
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.REC",
+    "name": "flare.Public Works, Transportation & Commerce.Recreation & Park Commission",
     "size": null
   },
   {
-    "name": "flare.Public Works, Transportation & Commerce.AIR",
+    "name": "flare.Public Works, Transportation & Commerce.Public Utilities Commission",
     "size": null
   },
   {
@@ -522,47 +522,47 @@
     "size": null
   },
   {
-    "name": "flare.Public Protection.ADP",
+    "name": "flare.Public Protection.Sheriff Department Office Inspector General",
     "size": null
   },
   {
-    "name": "flare.Public Protection.JUV",
+    "name": "flare.Public Protection.Superior Court",
     "size": null
   },
   {
-    "name": "flare.Public Protection.POL",
+    "name": "flare.Public Protection.Police",
     "size": null
   },
   {
-    "name": "flare.Public Protection.PDR",
+    "name": "flare.Public Protection.Police Accountability",
     "size": null
   },
   {
-    "name": "flare.Public Protection.CRT",
+    "name": "flare.Public Protection.Public Defender",
     "size": null
   },
   {
-    "name": "flare.Public Protection.DEM",
+    "name": "flare.Public Protection.Juvenile Probation",
     "size": null
   },
   {
-    "name": "flare.Public Protection.DAT",
+    "name": "flare.Public Protection.Sheriff",
     "size": null
   },
   {
-    "name": "flare.Public Protection.FIR",
+    "name": "flare.Public Protection.Fire Department",
     "size": null
   },
   {
-    "name": "flare.Public Protection.SHF",
+    "name": "flare.Public Protection.Adult Probation",
     "size": null
   },
   {
-    "name": "flare.Public Protection.DPA",
+    "name": "flare.Public Protection.District Attorney",
     "size": null
   },
   {
-    "name": "flare.Public Protection.SDA",
+    "name": "flare.Public Protection.Emergency Management",
     "size": null
   }
 ]
