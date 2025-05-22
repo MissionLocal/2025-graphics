@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
 
+  <!-- Pym.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pym.js/1.4.0/pym.min.js"></script>
+
   <style>
     body {
       font-family: Barlow, sans-serif;
@@ -36,17 +39,19 @@
 </head>
 
 <body>
-  <table id="budgetTable" class="display responsive nowrap" style="width:100%">
-    <thead>
-      <tr>
-        <th>Department</th>
-        <th>2024–2025 budget</th>
-        <th>2025–2026 budget</th>
-        <th>% change</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <div id="budget-table-container">
+    <table id="budgetTable" class="display responsive nowrap" style="width:100%">
+      <thead>
+        <tr>
+          <th>Department</th>
+          <th>2024–2025 budget</th>
+          <th>2025–2026 budget</th>
+          <th>% change</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 
   <!-- JS Libraries -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -101,10 +106,12 @@
           pageLength: 10,
           order: [[0, 'asc']]
         });
+
+        // Embed with pym.js for responsive resizing
+        var pymChild = new pym.Child();
       }
     });
   </script>
-
 </body>
 
 </html>
