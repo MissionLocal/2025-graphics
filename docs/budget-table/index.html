@@ -113,7 +113,12 @@
         // Embed with pym.js for responsive resizing
         var pymChild = new pym.Child();
 
-        // Wait for the content to fully load before sending the resize message
+        // Ensure the resize message is sent after the table is fully drawn
+        table.on('draw', function() {
+          pymChild.sendMessage('resize');
+        });
+
+        // Send initial resize after content has fully loaded
         $(window).on('load', function() {
           pymChild.sendMessage('resize');
         });
