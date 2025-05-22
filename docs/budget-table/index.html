@@ -105,7 +105,7 @@
           pageLength: 10,
           order: [[0, 'asc']],
           drawCallback: function() {
-            // Send resize message to parent (this is triggered whenever the table is redrawn)
+            // Send resize message to parent whenever the table is redrawn
             pymChild.sendMessage('resize');
           }
         });
@@ -113,10 +113,10 @@
         // Embed with pym.js for responsive resizing
         var pymChild = new pym.Child();
 
-        // Trigger the resize function after the table is fully initialized
-        setTimeout(() => {
+        // Wait for the content to fully load before sending the resize message
+        $(window).on('load', function() {
           pymChild.sendMessage('resize');
-        }, 500); // Delay to ensure table is fully rendered
+        });
       }
     });
   </script>
