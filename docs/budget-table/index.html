@@ -101,10 +101,15 @@
           tbody.append(tr);
         });
 
-        $('#budgetTable').DataTable({
+        // Initialize DataTable
+        const table = $('#budgetTable').DataTable({
           responsive: true,
           pageLength: 10,
-          order: [[0, 'asc']]
+          order: [[0, 'asc']],
+          drawCallback: function() {
+            // Send resize message to parent (this is triggered whenever the table is redrawn)
+            pymChild.sendMessage('resize');
+          }
         });
 
         // Embed with pym.js for responsive resizing
@@ -112,6 +117,7 @@
       }
     });
   </script>
+
 </body>
 
 </html>
