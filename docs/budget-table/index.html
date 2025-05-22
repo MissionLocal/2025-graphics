@@ -114,6 +114,11 @@
 
         // Embed with pym.js for responsive resizing
         var pymChild = new pym.Child();
+
+        // Trigger the resize function after the table is fully initialized
+        setTimeout(() => {
+          pymChild.sendMessage('resize');
+        }, 500); // Delay to ensure table is fully rendered
       }
     });
   </script>
