@@ -1,78 +1,90 @@
 [
-    {
-      "name": "flare",
-      "size": null
-    },
-    {
-      "name": "flare.Taxes",
-      "size": null
-    },
-    {
-      "name": "flare.Taxes.Business taxes",
-      "size": 1420896689
-    },
-    {
-      "name": "flare.Charges",
-      "size": null
-    },
-    {
-      "name": "flare.Charges.Charges for services",
-      "size": 5130928947
-    },
-    {
-      "name": "flare.Charges.Fines, forfeiture, & penalties",
-      "size": 174995821
-    },
-    {
-      "name": "flare.Other",
-      "size": null
-    },
-    {
-      "name": "flare.Other.Interest & investment income",
-      "size": 267420448
-    },
-    {
-      "name": "flare.Government",
-      "size": null
-    },
-    {
-      "name": "flare.Government.Federal funds",
-      "size": 883143756
-    },
-    {
-      "name": "flare.Government.Other government funds",
-      "size": 375787959
-    },
-    {
-      "name": "flare.Government.State funds",
-      "size": 1242826984
-    },
-    {
-      "name": "flare.Taxes.Other local taxes",
-      "size": 1285357000
-    },
-    {
-      "name": "flare.Other.Other revenues",
-      "size": 358221742
-    },
-    {
-      "name": "flare.Taxes.Property taxes",
-      "size": 3009174087
-    },
-    {
-      "name": "flare.Charges.Rents & concessions",
-      "size": 767860599
-    },
-    {
-      "name": "flare.Prior Year",
-      "size": null
-    },
-    {
-      "name": "flare.Prior Year.Prior year fund balance",
-      "size": 498738446
-    },
-    {
-      "name": "flare.Prior Year.Prior year reserves",
-      "size": 73624879
-    }
-  ]
+  {
+    "name": "flare",
+    "size": null
+  },
+  {
+    "name": "flare.Taxes",
+    "size": null
+  },
+  {
+    "name": "flare.Charges",
+    "size": null
+  },
+  {
+    "name": "flare.Other",
+    "size": null
+  },
+  {
+    "name": "flare.Government",
+    "size": null
+  },
+  {
+    "name": "flare.Prior Year",
+    "size": null
+  },
+  {
+    "name": "flare.Taxes.Business Taxes",
+    "size": 1420896689
+  },
+  {
+    "name": "flare.Charges.Charges for Services",
+    "size": 5130928947
+  },
+  {
+    "name": "flare.Charges.Fines, Forfeiture, & Penalties",
+    "size": 174995821
+  },
+  {
+    "name": "flare.Other.Interest",
+    "size": 267420448
+  },
+  {
+    "name": "flare.Government.Federal Funds",
+    "size": 883143756
+  },
+  {
+    "name": "flare.Government.Other Government Funds",
+    "size": 375787959
+  },
+  {
+    "name": "flare.Government.State Funds",
+    "size": 1242826984
+  },
+  {
+    "name": "flare.Taxes.Other Local Taxes",
+    "size": 1285357000
+  },
+  {
+    "name": "flare.Other.Other Revenues",
+    "size": 358221742
+  },
+  {
+    "name": "flare.Taxes.Property Taxes",
+    "size": 3009174087
+  },
+  {
+    "name": "flare.Charges.Rents & Concessions",
+    "size": 767860599
+  },
+  {
+    "name": "flare.Other.Other Revenues",
+    "size": 358221742
+  },
+  {
+    "name": "flare.Prior Year.Prior Year Fund Balance",
+    "size": 498738446
+  },
+  {
+    "name": "flare.Prior Year.Prior Year Reserves",
+    "size": 73624879
+  },
+  {
+    "name": "flare.Other.Other Financing Sources",
+    "size": 64395000
+  },
+  {
+    "name": "flare.Charges.Licenses, Permits & Franchises",
+    "size": 74955507
+  }
+]
