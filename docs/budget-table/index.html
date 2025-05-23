@@ -87,27 +87,30 @@
           tbody.append(tr);
         });
 
-        // Initialize DataTable
         const table = $('#budgetTable').DataTable({
           responsive: true,
           pageLength: 10,
           order: [[0, 'asc']],
           drawCallback: function() {
-            setTimeout(() => {
-              pymChild.sendHeight();
-            }, 100);
+            sendHeightSafely();
           }
         });
 
-        // Initialize Pym AFTER table is drawn
+        // Initialize Pym.js child
         const pymChild = new pym.Child();
 
-        // Send height after initial table load
-        setTimeout(() => {
-          pymChild.sendHeight();
-        }, 200);
+        function sendHeightSafely() {
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              pymChild.sendHeight();
+            }, 150);
+          });
+        }
 
-        // Resize on window resize
+        // Send initial height after DataTable is ready and painted
+        sendHeightSafely();
+
+        // Update height on window resize
         $(window).on('resize', function() {
           pymChild.sendHeight();
         });
