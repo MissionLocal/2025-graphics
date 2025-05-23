@@ -12,6 +12,7 @@
     body {
       font-family: Barlow, sans-serif;
       margin: 20px;
+      padding-bottom: 30px; /* Added bottom padding for buffer */
     }
     table.dataTable thead th {
       background-color: #f5f5f5;
@@ -39,7 +40,7 @@
     </table>
   </div>
 
-  <!-- Libraries -->
+  <!-- JS Libraries -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
@@ -47,7 +48,6 @@
   <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
 
   <script>
-    // Your CSV file URL (update as needed)
     const csvUrl = 'budget.csv';
 
     function formatBudget(value) {
@@ -58,7 +58,6 @@
       return '$' + num.toFixed(0);
     }
 
-    // Initialize pym Child (declare here to be accessible in functions)
     let pymChild;
 
     Papa.parse(csvUrl, {
@@ -82,7 +81,6 @@
           tbody.append(tr);
         });
 
-        // Initialize DataTable
         const table = $('#budgetTable').DataTable({
           responsive: true,
           pageLength: 10,
@@ -93,26 +91,25 @@
           }
         });
 
-        // Initialize pym child
         pymChild = new pym.Child();
 
         function sendHeightSafely() {
           requestAnimationFrame(() => {
             setTimeout(() => {
-              const height = document.body.scrollHeight;
-              console.log('Sending height:', height);
-              pymChild.sendHeight();
+              const height = document.body.scrollHeight + 30; // 30px buffer added
+              console.log('Sending height with buffer:', height);
+              pymChild.sendHeight(height);
             }, 150);
           });
         }
 
-        // Initial height send after DataTable initialized
+        // Initial height send
         sendHeightSafely();
 
-        // Send height on window resize inside iframe
+        // Send height on window resize
         $(window).on('resize', function() {
           console.log('Window resized; sending height');
-          pymChild.sendHeight();
+          sendHeightSafely();
         });
       }
     });
