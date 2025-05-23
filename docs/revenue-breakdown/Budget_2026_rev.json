@@ -25,66 +25,82 @@
   },
   {
     "name": "flare.Taxes.Business Taxes",
-    "size": 1420896689
+    "size": 1420896689,
+    "change": 6.346582516278722
   },
   {
     "name": "flare.Charges.Charges for Services",
-    "size": 5130928947
+    "size": 5130928947,
+    "change": 20.294632267580344
   },
   {
     "name": "flare.Charges.Fines, Forfeiture, & Penalties",
-    "size": 174995821
+    "size": 174995821,
+    "change": -13.262010566604813
   },
   {
     "name": "flare.Other.Interest",
-    "size": 267420448
+    "size": 267420448,
+    "change": 24.813152452112043
   },
   {
     "name": "flare.Government.Federal Funds",
-    "size": 883143756
+    "size": 883143756,
+    "change": -13.275049053732918
   },
   {
     "name": "flare.Government.Other Government Funds",
-    "size": 375787959
+    "size": 375787959,
+    "change": 177.78140239012018
   },
   {
     "name": "flare.Government.State Funds",
-    "size": 1242826984
+    "size": 1242826984,
+    "change": -17.218970606665955
   },
   {
     "name": "flare.Taxes.Other Local Taxes",
-    "size": 1285357000
+    "size": 1285357000,
+    "change": 11.34908073728136
   },
   {
     "name": "flare.Other.Other Revenues",
-    "size": 358221742
+    "size": 358221742,
+    "change": 12.220246767306978
   },
   {
     "name": "flare.Taxes.Property Taxes",
-    "size": 3009174087
+    "size": 3009174087,
+    "change": -5.586928709083095
   },
   {
     "name": "flare.Charges.Rents & Concessions",
-    "size": 767860599
+    "size": 767860599,
+    "change": 10.438879371786243
   },
   {
     "name": "flare.Other.Other Revenues",
-    "size": 358221742
+    "size": 358221742,
+    "change": 12.220246767306978
   },
   {
     "name": "flare.Prior Year.Prior Year Fund Balance",
-    "size": 498738446
+    "size": 498738446,
+    "change": 40.94883897857697
   },
   {
     "name": "flare.Prior Year.Prior Year Reserves",
-    "size": 73624879
+    "size": 73624879,
+    "change": -39.10155350641424
   },
   {
     "name": "flare.Other.Other Financing Sources",
-    "size": 64395000
+    "size": 64395000,
+    "change": -3.998358423362484
   },
   {
     "name": "flare.Charges.Licenses, Permits & Franchises",
-    "size": 74955507
+    "size": 74955507,
+    "change": 21.98086107115901
   }
 ]

@@ -221,7 +221,14 @@
             category.innerText = group;
             category.style.backgroundColor = color;
             category.style.color = isDarkColor(color) ? '#fff' : '#000';
-            content.innerHTML = `Budget: <strong>$${formattedSize}</strong> (${percent}%)`;
+
+            const rawChange = parseFloat(d.data.data?.change);
+            const formattedChange = !isNaN(rawChange)
+              ? `${rawChange > 0 ? '+' : ''}${rawChange.toFixed(2)}%`
+              : 'No change data available.';
+
+
+            content.innerHTML = `<br>Budget: <strong>$${formattedSize}</strong> (${percent}%)<br>${formattedChange} compared to previous year`;
 
             popup.style.display = "block";
 
