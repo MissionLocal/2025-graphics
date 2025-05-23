@@ -20,6 +20,14 @@
       background-color: #f5f5f5;
     }
 
+    .positive-change {
+      background-color: rgba(13, 214, 199, 0.6);
+    }
+
+    .negative-change {
+      background-color: rgba(239, 159, 106, 0.6);
+    }
+
     #budget-table-container {
       padding-bottom: 40px;
     }
@@ -32,6 +40,7 @@
         <tr>
           <th>Source</th>
           <th>Revenue</th>
+          <th>Change</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -77,22 +86,31 @@
         data.forEach(row => {
           const tr = $('<tr></tr>');
           tr.append(`<td>${row['character'] || 'N/A'}</td>`);
-          tr.append(`<td>${row['budget'] ? formatBudget(row['budget']) : 'N/A'}</td>`);
+          tr.append(`<td>${row['budget 2024-2025'] ? formatBudget(row['budget 2024-2025']) : 'N/A'}</td>`);
+
+          if (row['change']) {
+            const num = parseFloat(row['change']);
+            const cls = num > 0 ? 'positive-change' : num < 0 ? 'negative-change' : '';
+            tr.append(`<td class="${cls}">${num.toFixed(2)}%</td>`);
+          } else {
+            tr.append('<td>N/A</td>');
+          }
+
           tbody.append(tr);
         });
 
         const table = $('#budgetTable').DataTable({
-  responsive: true,
-  paging: false,         // No pagination
-  lengthChange: false,   // No "Show X entries"
-  searching: false,      // No search box
-  info: false,           // No "Showing X of Y entries"
-  ordering: false,       // 🚫 Disable all sorting
-  dom: 't',              // Only show the table (no controls)
-  drawCallback: function () {
-    sendHeightSafely();
-  }
-});
+          responsive: true,
+          paging: false,         // No pagination
+          lengthChange: false,   // No "Show X entries"
+          searching: false,      // No search box
+          info: false,           // No "Showing X of Y entries"
+          ordering: false,       // Disable all sorting
+          dom: 't',              // Only show the table (no controls)
+          drawCallback: function () {
+            sendHeightSafely();
+          }
+        });
 
         pymChild = new pym.Child();
 

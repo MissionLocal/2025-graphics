@@ -1,14 +1,17 @@
-character,budget
-Charges for Services,"$5,130,928,947"
-Property Taxes,"$3,009,174,087"
-Business Taxes,"$1,420,896,689"
-Other Local Taxes,"$1,285,357,000"
-State Funds,"$1,242,826,984"
-Federal Funds,"$883,143,756"
-Rents & Concessions,"$767,860,599"
-Prior Year Fund Balance,"$498,738,446"
-Other Funds,"$375,787,959"
-Other Revenues,"$358,221,742"
-Interest & Investment Income,"$267,420,448"
-"Fines, Forfeiture, & Penalties","$174,995,821"
-Prior Year Reserves,"$73,624,879"
+character,budget 2023-2024,budget 2024-2025,change
+Business Taxes,"$1,336,100,000","$1,420,896,689",6.35%
+Charges for Services,"$4,265,301,660","$5,130,928,947",20.29%
+"Fines, Forfeiture, & Penalties","$201,752,222","$174,995,821",-13.26%
+Interest & Investment Income,"$214,256,625","$267,420,448",24.81%
+Federal Funds,"$1,018,327,190","$883,143,756",-13.28%
+Other Funds,"$135,281,900","$375,787,959",177.78%
+State Funds,"$1,501,342,751","$1,242,826,984",-17.22%
+Other Local Taxes,"$1,154,349,000","$1,285,357,000",11.35%
+Other Revenues,"$319,213,112","$358,221,742",12.22%
+Property Taxes,"$3,187,243,086","$3,009,174,087",-5.59%
+Rents & Concessions,"$695,281,049","$767,860,599",10.44%
+Other Revenues,"$319,213,112","$358,221,742",12.22%
+Prior Year Fund Balance,"$353,843,600","$498,738,446",40.95%
+Prior Year Reserves,"$120,897,795","$73,624,879",-39.10%
+Other Financing Sources,"$67,076,978","$64,395,000",-4.00%
+"Licenses, Permits & Franchises","$61,448,580","$74,955,507",21.98%
