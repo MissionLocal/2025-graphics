@@ -1,136 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>San Francisco Budget Table</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>San Francisco Budget Table</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- DataTables + Responsive CSS -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
+    <!-- DataTables + Responsive CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
 
-  <style>
-    body {
-      font-family: Barlow, sans-serif;
-      margin: 20px;
-      padding-bottom: 30px; /* Prevent iframe cutoff */
-    }
+    <style>
+        body {
+            font-family: Barlow, sans-serif;
+            margin: 20px;
+            padding-bottom: 30px;
+            /* Prevent iframe cutoff */
+        }
 
-    h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-    table.dataTable thead th {
-      background-color: #f5f5f5;
-    }
+        table.dataTable thead th {
+            background-color: #f5f5f5;
+        }
 
-    .positive-change {
-      background-color: rgba(13, 214, 199, 0.6);
-    }
+        .positive-change {
+            background-color: rgba(13, 214, 199, 0.6);
+        }
 
-    .negative-change {
-      background-color: rgba(239, 159, 106, 0.6);
-    }
+        .negative-change {
+            background-color: rgba(239, 159, 106, 0.6);
+        }
 
-    #budget-table-container {
-      padding-bottom: 40px; /* Extra spacing for cutoff protection */
-    }
-  </style>
+        #budget-table-container {
+            padding-bottom: 40px;
+            /* Extra spacing for cutoff protection */
+        }
+    </style>
 </head>
+
 <body>
-  <div id="budget-table-container">
-    <table id="budgetTable" class="display responsive nowrap" style="width:100%">
-      <thead>
-        <tr>
-          <th>Department</th>
-          <th>2024–2025 budget</th>
-          <th>2025–2026 budget</th>
-          <th>% change</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+    <div id="budget-table-container">
+        <table id="budgetTable" class="display responsive nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Department</th>
+                    <th>2024–2025 budget</th>
+                    <th>2025–2026 budget</th>
+                    <th>% change</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
-  <!-- Libraries -->
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+    <!-- Libraries -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
 
-  <script>
-    const csvUrl = 'budget.csv'; // Update this to your CSV path
-    let pymChild;
+    <script>
+        const csvUrl = 'budget.csv'; // Update this to your CSV path
+        let pymChild;
 
-    function formatBudget(value) {
-      let num = parseFloat(value.replace(/[^\d.-]/g, ''));
-      if (isNaN(num)) return 'N/A';
-      if (num >= 1e9) return '$' + (num / 1e9).toFixed(1) + 'B';
-      if (num >= 1e6) return '$' + (num / 1e6).toFixed(1) + 'M';
-      return '$' + num.toFixed(0);
-    }
+        function formatBudget(value) {
+            let num = parseFloat(value.replace(/[^\d.-]/g, ''));
+            if (isNaN(num)) return 'N/A';
+            if (num >= 1e9) return '$' + (num / 1e9).toFixed(1) + 'B';
+            if (num >= 1e6) return '$' + (num / 1e6).toFixed(1) + 'M';
+            return '$' + num.toFixed(0);
+        }
 
-    function sendHeightSafely() {
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          const height = document.body.scrollHeight + 30; // buffer to avoid cutoff
-          console.log('Sending height with buffer:', height);
-          pymChild.sendHeight(height);
-        }, 150);
-      });
-    }
+        function sendHeightSafely() {
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    const height = document.body.scrollHeight + 30; // buffer to avoid cutoff
+                    console.log('Sending height with buffer:', height);
+                    pymChild.sendHeight(height);
+                }, 150);
+            });
+        }
 
-    Papa.parse(csvUrl, {
-      download: true,
-      header: true,
-      skipEmptyLines: true,
-      complete: function(results) {
-        const data = results.data;
-        const tbody = $('#budgetTable tbody');
+        Papa.parse(csvUrl, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function (results) {
+                const data = results.data;
+                const tbody = $('#budgetTable tbody');
 
-        data.forEach(row => {
-          const change2025 = parseFloat(row['% change from prior year_1']) || 0;
-          const tr = $('<tr></tr>');
-          tr.append(`<td>${row['Name'] || 'N/A'}</td>`);
-          tr.append(`<td>${row['2024-2025 budget'] ? formatBudget(row['2024-2025 budget']) : 'N/A'}</td>`);
-          tr.append(`<td>${row['2025-2026 budget'] ? formatBudget(row['2025-2026 budget']) : 'N/A'}</td>`);
+                data.forEach(row => {
+                    const change2025 = parseFloat(row['% change from prior year_1']) || 0;
+                    const tr = $('<tr></tr>');
+                    tr.append(`<td>${row['Name'] || 'N/A'}</td>`);
+                    tr.append(`<td>${row['2024-2025 budget'] ? formatBudget(row['2024-2025 budget']) : 'N/A'}</td>`);
+                    tr.append(`<td>${row['2025-2026 budget'] ? formatBudget(row['2025-2026 budget']) : 'N/A'}</td>`);
 
-          const changeClass = change2025 > 0 ? 'positive-change' : (change2025 < 0 ? 'negative-change' : '');
-          tr.append(`<td class="${changeClass}">${!isNaN(change2025) ? change2025.toFixed(2) + '%' : 'N/A'}</td>`);
+                    const changeClass = change2025 > 0 ? 'positive-change' : (change2025 < 0 ? 'negative-change' : '');
+                    tr.append(`<td class="${changeClass}">${!isNaN(change2025) ? change2025.toFixed(2) + '%' : 'N/A'}</td>`);
 
-          tbody.append(tr);
+                    tbody.append(tr);
+                });
+                const table = $('#budgetTable').DataTable({
+                    responsive: true,
+                    pageLength: 10,
+                    order: [[0, 'asc']],
+                    columnDefs: [
+                        { targets: [1, 2], orderable: false } // Disable sorting on budget columns
+                    ],
+                    drawCallback: function () {
+                        console.log('DataTable redrawn; sending height');
+                        sendHeightSafely();
+                    }
+                });
+
+
+                pymChild = new pym.Child();
+
+                // On responsive row expand/collapse
+                table.on('responsive-display', function () {
+                    console.log('Responsive row toggled; sending height');
+                    sendHeightSafely();
+                });
+
+                // Send on window resize
+                $(window).on('resize', function () {
+                    console.log('Window resized; sending height');
+                    sendHeightSafely();
+                });
+
+                // Initial height send
+                sendHeightSafely();
+            }
         });
-
-        const table = $('#budgetTable').DataTable({
-          responsive: true,
-          pageLength: 10,
-          order: [[0, 'asc']],
-          drawCallback: function() {
-            console.log('DataTable redrawn; sending height');
-            sendHeightSafely();
-          }
-        });
-
-        pymChild = new pym.Child();
-
-        // On responsive row expand/collapse
-        table.on('responsive-display', function () {
-          console.log('Responsive row toggled; sending height');
-          sendHeightSafely();
-        });
-
-        // Send on window resize
-        $(window).on('resize', function () {
-          console.log('Window resized; sending height');
-          sendHeightSafely();
-        });
-
-        // Initial height send
-        sendHeightSafely();
-      }
-    });
-  </script>
+    </script>
 </body>
+
 </html>
