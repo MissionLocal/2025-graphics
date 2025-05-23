@@ -44,8 +44,8 @@
       <thead>
         <tr>
           <th>Department</th>
+          <th>2023–2024 budget</th>
           <th>2024–2025 budget</th>
-          <th>2025–2026 budget</th>
           <th>% change</th>
         </tr>
       </thead>
@@ -91,30 +91,31 @@
         const tbody = $('#budgetTable tbody');
 
         data.forEach(row => {
-          const change2025 = parseFloat(row['% change from prior year_1']) || 0;
+          const changeValue = parseFloat(row['change']) || 0;
           const tr = $('<tr></tr>');
-          tr.append(`<td>${row['Name'] || 'N/A'}</td>`);
-          tr.append(`<td>${row['2024-2025 budget'] ? formatBudget(row['2024-2025 budget']) : 'N/A'}</td>`);
-          tr.append(`<td>${row['2025-2026 budget'] ? formatBudget(row['2025-2026 budget']) : 'N/A'}</td>`);
 
-          const changeClass = change2025 > 0 ? 'positive-change' : (change2025 < 0 ? 'negative-change' : '');
-          tr.append(`<td class="${changeClass}">${!isNaN(change2025) ? change2025.toFixed(2) + '%' : 'N/A'}</td>`);
+          tr.append(`<td>${row['name'] || 'N/A'}</td>`);
+          tr.append(`<td>${row['2023-2024 o. budget'] ? formatBudget(row['2023-2024 o. budget']) : 'N/A'}</td>`);
+          tr.append(`<td>${row['2024-2025 adopted budget'] ? formatBudget(row['2024-2025 adopted budget']) : 'N/A'}</td>`);
+
+          const changeClass = changeValue > 0 ? 'positive-change' : (changeValue < 0 ? 'negative-change' : '');
+          tr.append(`<td class="${changeClass}">${!isNaN(changeValue) ? changeValue.toFixed(2) + '%' : 'N/A'}</td>`);
 
           tbody.append(tr);
         });
-        const table = $('#budgetTable').DataTable({
-  responsive: true,
-  pageLength: 10,
-  order: [[0, 'asc']],
-  columnDefs: [
-    { targets: [1, 2], orderable: false } // Disable sorting on budget columns
-  ],
-  drawCallback: function() {
-    console.log('DataTable redrawn; sending height');
-    sendHeightSafely();
-  }
-});
 
+        const table = $('#budgetTable').DataTable({
+          responsive: true,
+          pageLength: 10,
+          order: [[0, 'asc']],
+          columnDefs: [
+            { targets: [1, 2], orderable: false } // Disable sorting on budget columns
+          ],
+          drawCallback: function() {
+            console.log('DataTable redrawn; sending height');
+            sendHeightSafely();
+          }
+        });
 
         pymChild = new pym.Child();
 
