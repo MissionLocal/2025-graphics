@@ -5,12 +5,12 @@
   <title>San Francisco Budget Table</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Favicon placeholder to prevent 404 -->
+  <link rel="icon" href="data:," />
+
   <!-- DataTables + Responsive CSS -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
-
-  <!-- Pym.js Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pym.js/1.4.0/pym.min.js"></script>
 
   <style>
     body {
@@ -56,28 +56,21 @@
     </table>
   </div>
 
-  <!-- JS Libraries -->
+  <!-- JS Libraries (loaded at bottom to ensure everything is ready) -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pym.js/1.4.0/pym.min.js"></script>
 
   <script>
-    // Declare pymChild early so it's available throughout
-    var pymChild = new pym.Child();
+    const csvUrl = 'budget.csv'; // Replace this with your actual CSV file path
 
-    const csvUrl = 'budget.csv'; // Replace with your actual CSV file path
-
-    // Format budget values
     function formatBudget(value) {
-      let num = parseFloat(value.replace(/[^\d.-]/g, '')); // Remove any non-numeric characters
+      let num = parseFloat(value.replace(/[^\d.-]/g, ''));
       if (isNaN(num)) return 'N/A';
-
-      if (num >= 1e9) {
-        return '$' + (num / 1e9).toFixed(1) + 'B';
-      } else if (num >= 1e6) {
-        return '$' + (num / 1e6).toFixed(1) + 'M';
-      }
+      if (num >= 1e9) return '$' + (num / 1e9).toFixed(1) + 'B';
+      if (num >= 1e6) return '$' + (num / 1e6).toFixed(1) + 'M';
       return '$' + num.toFixed(0);
     }
 
@@ -103,7 +96,6 @@
           tbody.append(tr);
         });
 
-        // Initialize DataTable
         const table = $('#budgetTable').DataTable({
           responsive: true,
           pageLength: 10,
@@ -111,11 +103,14 @@
           drawCallback: function() {
             setTimeout(() => {
               pymChild.sendMessage('resize');
-            }, 100); // small delay ensures layout has stabilized
+            }, 100);
           }
         });
 
-        // Initial resize after load
+        // ✅ Only initialize pym after table is ready
+        const pymChild = new pym.Child();
+
+        // Trigger resize once after data loads
         setTimeout(() => {
           pymChild.sendMessage('resize');
         }, 200);
