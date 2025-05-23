@@ -5,7 +5,6 @@
   <title>San Francisco Budget Table</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" href="data:," />
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
 
@@ -13,10 +12,6 @@
     body {
       font-family: Barlow, sans-serif;
       margin: 20px;
-    }
-    h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
     }
     table.dataTable thead th {
       background-color: #f5f5f5;
@@ -27,15 +22,11 @@
     .negative-change {
       background-color: rgba(239, 159, 106, 0.6);
     }
-    table.dataTable tbody tr:hover {
-      background-color: #f0f0f0;
-    }
   </style>
 </head>
 <body>
   <div id="budget-table-container">
-    <h2>San Francisco Department Budgets</h2>
-    <table id="budgetTable" class="display responsive nowrap" style="width:100%" aria-label="San Francisco Budget Table">
+    <table id="budgetTable" class="display responsive nowrap" style="width:100%">
       <thead>
         <tr>
           <th>Department</th>
@@ -48,14 +39,16 @@
     </table>
   </div>
 
+  <!-- Libraries -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pym.js/1.4.0/pym.min.js"></script>
+  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
 
   <script>
-    const csvUrl = 'budget.csv'; // Update this to your actual CSV file path
+    // Your CSV file URL (update as needed)
+    const csvUrl = 'budget.csv';
 
     function formatBudget(value) {
       let num = parseFloat(value.replace(/[^\d.-]/g, ''));
@@ -64,6 +57,9 @@
       if (num >= 1e6) return '$' + (num / 1e6).toFixed(1) + 'M';
       return '$' + num.toFixed(0);
     }
+
+    // Initialize pym Child (declare here to be accessible in functions)
+    let pymChild;
 
     Papa.parse(csvUrl, {
       download: true,
@@ -75,7 +71,6 @@
 
         data.forEach(row => {
           const change2025 = parseFloat(row['% change from prior year_1']) || 0;
-
           const tr = $('<tr></tr>');
           tr.append(`<td>${row['Name'] || 'N/A'}</td>`);
           tr.append(`<td>${row['2024-2025 budget'] ? formatBudget(row['2024-2025 budget']) : 'N/A'}</td>`);
@@ -87,31 +82,36 @@
           tbody.append(tr);
         });
 
+        // Initialize DataTable
         const table = $('#budgetTable').DataTable({
           responsive: true,
           pageLength: 10,
           order: [[0, 'asc']],
           drawCallback: function() {
+            console.log('DataTable redrawn; sending height');
             sendHeightSafely();
           }
         });
 
-        // Initialize Pym.js child
-        const pymChild = new pym.Child();
+        // Initialize pym child
+        pymChild = new pym.Child();
 
         function sendHeightSafely() {
           requestAnimationFrame(() => {
             setTimeout(() => {
+              const height = document.body.scrollHeight;
+              console.log('Sending height:', height);
               pymChild.sendHeight();
             }, 150);
           });
         }
 
-        // Send initial height after DataTable is ready and painted
+        // Initial height send after DataTable initialized
         sendHeightSafely();
 
-        // Update height on window resize
+        // Send height on window resize inside iframe
         $(window).on('resize', function() {
+          console.log('Window resized; sending height');
           pymChild.sendHeight();
         });
       }
