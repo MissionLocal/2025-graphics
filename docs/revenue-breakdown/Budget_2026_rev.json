@@ -35,8 +35,8 @@
   },
   {
     "name": "flare.Charges.Fines, Forfeiture, & Penalties",
-    "size": 7363659,
-    "change": -96.35014726132731
+    "size": 167363659,
+    "change": -17.044948828370277
   },
   {
     "name": "flare.Other.Interest & Investment Income",
@@ -59,7 +59,7 @@
     "change": -10.368331075386795
   },
   {
-    "name": "flare.Taxes.Local Taxes",
+    "name": "flare.Taxes.Other Local Taxes",
     "size": 1182960000,
     "change": 2.478539852332353
   },
@@ -79,7 +79,7 @@
     "change": 8.483441780102366
   },
   {
-    "name": "flare.Prior Year.Prior Year Balance",
+    "name": "flare.Prior Year.Prior Year Fund Balance",
     "size": 1098921470,
     "change": 210.56700474446905
   },

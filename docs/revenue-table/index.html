@@ -39,7 +39,8 @@
       <thead>
         <tr>
           <th>Source</th>
-          <th>Revenue</th>
+          <th>2023-2024 revenue</th>
+          <th>2024-2025 revenue</th>
           <th>Change</th>
         </tr>
       </thead>
@@ -82,22 +83,23 @@
       complete: function (results) {
         const data = results.data;
         const tbody = $('#budgetTable tbody');
-
         data.forEach(row => {
-          const tr = $('<tr></tr>');
-          tr.append(`<td>${row['character'] || 'N/A'}</td>`);
-          tr.append(`<td>${row['budget 2024-2025'] ? formatBudget(row['budget 2024-2025']) : 'N/A'}</td>`);
+  const tr = $('<tr></tr>');
+  tr.append(`<td>${row['character'] || 'N/A'}</td>`);
+  tr.append(`<td>${row['budget 2023-2024'] ? formatBudget(row['budget 2023-2024']) : 'N/A'}</td>`);
+  tr.append(`<td>${row['budget 2024-2025'] ? formatBudget(row['budget 2024-2025']) : 'N/A'}</td>`);
 
-          if (row['change']) {
-            const num = parseFloat(row['change']);
-            const cls = num > 0 ? 'positive-change' : num < 0 ? 'negative-change' : '';
-            tr.append(`<td class="${cls}">${num.toFixed(2)}%</td>`);
-          } else {
-            tr.append('<td>N/A</td>');
-          }
+  if (row['change']) {
+    const num = parseFloat(row['change']);
+    const cls = num > 0 ? 'positive-change' : num < 0 ? 'negative-change' : '';
+    tr.append(`<td class="${cls}">${num.toFixed(2)}%</td>`);
+  } else {
+    tr.append('<td>N/A</td>');
+  }
 
-          tbody.append(tr);
-        });
+  tbody.append(tr);
+});
+
 
         const table = $('#budgetTable').DataTable({
           responsive: true,
