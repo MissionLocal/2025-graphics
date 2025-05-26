@@ -240,7 +240,18 @@
         "rgba(74, 134, 232, 0.6)"
       ];
 
-      const orgGroups = Array.from(new Set(flatData.map(d => d.name?.split('.')[1]).filter(Boolean))).sort();
+      // Step 1: Calculate totals by group
+      const groupTotals = d3.rollups(
+        flatData,
+        v => d3.sum(v, d => d.size || 0),
+        d => d.name?.split('.')[1]
+      ).filter(([group]) => group); // remove null/undefined
+
+      // Step 2: Sort groups by total descending
+      groupTotals.sort((a, b) => b[1] - a[1]);
+
+      // Step 3: Extract sorted group names
+      const orgGroups = groupTotals.map(([group]) => group);
 
       const colorScale = d3.scaleOrdinal()
         .domain(orgGroups)
