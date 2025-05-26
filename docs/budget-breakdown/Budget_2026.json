@@ -116,7 +116,7 @@
     "department_code": "DPA"
   },
   {
-    "name": "flare.Welfare & Neighborhood Development.Dept of Early Childhood",
+    "name": "flare.Welfare & Neighborhood Development.Early Childhood",
     "size": 336660759.0,
     "description": "Helps parents and guardians with child care, parenting support, and child development.",
     "change": "-2.5538010435837433",
@@ -179,7 +179,7 @@
     "department_code": "FIR"
   },
   {
-    "name": "flare.General City Responsibilities.General City - Unallocated",
+    "name": "flare.General City Responsibilities.General City Responsibility",
     "size": 1656487698.0,
     "description": "General City Responsibility Expenditures not directly attributable to one City department, such as reserve deposits and debt service.",
     "change": "-9.495101471084103",
