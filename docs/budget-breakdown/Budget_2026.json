@@ -186,14 +186,14 @@
     "department_code": "GEN"
   },
   {
-    "name": "flare.Administration & Finance.GSA - City Administrator",
+    "name": "flare.Administration & Finance.General Services Agency - City Administrator",
     "size": 616895884.0,
     "description": "A broad array of departments, divisions, programs, and offices reporting to the Office of the City Administrator.",
     "change": "3.413848701371637",
     "department_code": "ADM"
   },
   {
-    "name": "flare.Administration & Finance.GSA - Technology",
+    "name": "flare.Administration & Finance.General Services Agency - Technology",
     "size": 168555616.0,
     "description": "A broad array of departments, divisions, programs, and offices with the aim of improving city tech.",
     "change": "1.3482767966783742",
