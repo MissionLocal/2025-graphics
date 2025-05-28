@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>San Francisco Federal Funding by Department</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- DataTables + Responsive CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
+
+  <style>
+    body {
+      font-family: Barlow, sans-serif;
+      margin: 20px;
+      padding-bottom: 30px;
+    }
+
+    table.dataTable thead th {
+      background-color: #f5f5f5;
+    }
+
+    .positive-change {
+      background-color: rgba(13, 214, 199, 0.6);
+    }
+
+    .negative-change {
+      background-color: rgba(239, 159, 106, 0.6);
+    }
+
+    #budget-table-container {
+      padding-bottom: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="budget-table-container">
+    <table id="budgetTable" class="display responsive nowrap" style="max-width: 600px; width: 100%;">
+      <thead>
+        <tr>
+          <th>Department</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- JS Libraries -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+
+  <script>
+    const csvUrl = 'revenue.csv'; // Update with your actual CSV path
+    let pymChild;
+
+    function formatBudget(value) {
+      let num = parseFloat(value.replace(/[^\d.-]/g, ''));
+      if (isNaN(num)) return 'N/A';
+      if (num >= 1e9) return '$' + (num / 1e9).toFixed(1) + 'B';
+      if (num >= 1e6) return '$' + (num / 1e6).toFixed(1) + 'M';
+      return '$' + num.toFixed(0);
+    }
+
+    function sendHeightSafely() {
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const height = document.body.scrollHeight + 30;
+          pymChild.sendHeight(height);
+        }, 150);
+      });
+    }
+
+    Papa.parse(csvUrl, {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        const data = results.data;
+        const tbody = $('#budgetTable tbody');
+        data.forEach(row => {
+          const tr = $('<tr></tr>');
+          tr.append(`<td>${row['department'] || 'N/A'}</td>`);
+          tr.append(`<td>${row['amount'] ? formatBudget(row['amount']) : 'N/A'}</td>`);
+          tbody.append(tr);
+        });
+
+
+
+        const table = $('#budgetTable').DataTable({
+          responsive: true,
+          paging: false,         // No pagination
+          lengthChange: false,   // No "Show X entries"
+          searching: false,      // No search box
+          info: false,           // No "Showing X of Y entries"
+          ordering: false,       // Disable all sorting
+          dom: 't',              // Only show the table (no controls)
+          drawCallback: function () {
+            sendHeightSafely();
+          }
+        });
+
+        pymChild = new pym.Child();
+
+        table.on('responsive-display', function () {
+          sendHeightSafely();
+        });
+
+        $(window).on('resize', function () {
+          sendHeightSafely();
+        });
+
+        sendHeightSafely();
+      }
+    });
+  </script>
+</body>
+
+</html>
