@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scrollytelling with Smooth Crossfade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    #scrolly {
+      position: relative;
+    }
+
+    .article {
+      position: relative;
+      margin: 0 auto;
+      z-index: 25;
+    }
+
+    .articleInner {
+      max-width: 28rem;
+      margin: auto;
+      line-height: 2em;
+    }
+
+    .sticky-thing {
+      position: sticky;
+      top: 5vh;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .background-layer {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: opacity 0.6s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .background-layer.visible {
+      opacity: 1;
+    }
+
+    .step {
+      margin: 0 auto 35rem auto;
+      padding-left: 10px;
+      padding-right: 10px;
+      color: black;
+      height: 60vh;
+    }
+
+    .step:last-child {
+      height: 10vh;
+      margin-bottom: 0;
+      opacity: 0;
+    }
+
+    .step p {
+      text-align: left;
+      padding: 1rem;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.885);
+      box-shadow: 1px 1px 5px #cecece;
+    }
+
+    ::-webkit-scrollbar {
+      height: 0px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="mainScrolly">
+    <!-- Preload images -->
+    <img src="images/slide_1.svg" style="display: none;" />
+    <img src="images/slide_2.svg" style="display: none;" />
+    <img src="images/slide_3.svg" style="display: none;" />
+    <img src="images/slide_4.svg" style="display: none;" />
+    <img src="images/slide_5.svg" style="display: none;" />
+
+    <section id="scrolly">
+      <div class="sticky-thing">
+        <div class="background-layer" id="layer1"></div>
+        <div class="background-layer" id="layer2"></div>
+      </div>
+
+      <article class="article">
+        <div class="step" data-step="1" data-img="slide_1.svg">
+          <p class="articleInner">Slide 1 content goes here.</p>
+        </div>
+        <div class="step" data-step="2" data-img="slide_2.svg">
+          <p class="articleInner">Slide 2 content goes here.</p>
+        </div>
+        <div class="step" data-step="3" data-img="slide_3.svg">
+          <p class="articleInner">Slide 3 content goes here.</p>
+        </div>
+        <div class="step" data-step="4" data-img="slide_4.svg">
+          <p class="articleInner">Slide 4 content goes here.</p>
+        </div>
+        <div class="step" data-step="5" data-img="slide_5.svg">
+          <p class="articleInner">Slide 5 content goes here.</p>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <!-- Scrollama -->
+  <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.js"></script>
+  <script>
+    const layer1 = document.getElementById('layer1');
+    const layer2 = document.getElementById('layer2');
+    let isLayer1Active = true;
+
+    function handleStepEnter(response) {
+      const imgUrl = `url('images/${response.element.dataset.img}')`;
+
+      if (isLayer1Active) {
+        layer2.style.backgroundImage = imgUrl;
+        layer2.classList.add('visible');
+        layer1.classList.remove('visible');
+      } else {
+        layer1.style.backgroundImage = imgUrl;
+        layer1.classList.add('visible');
+        layer2.classList.remove('visible');
+      }
+
+      isLayer1Active = !isLayer1Active;
+    }
+
+    function init() {
+      scrollama()
+        .setup({
+          step: "#scrolly article .step",
+          offset: 1,
+          debug: false
+        })
+        .onStepEnter(handleStepEnter);
+
+      window.addEventListener("resize", () => scrollama().resize());
+    }
+
+    init();
+  </script>
+
+</body>
+</html>
