@@ -1,186 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Scrollytelling with Smooth Crossfade</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <title>What does the mayor have a say over in S.F.'s budget?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Barlow', sans-serif;
+        }
 
-  <!-- Styles -->
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Barlow', sans-serif;
-    }
+        #scrolly {
+            position: relative;
+        }
 
-    #scrolly {
-      position: relative;
-    }
+        .article1 {
+            position: relative;
+            padding: 0;
+            margin: 0 auto;
+            z-index: 25;
+        }
 
-    .article {
-      position: relative;
-      margin: 0 auto;
-      z-index: 25;
-    }
+        .articleInner {
+            max-width: 28rem;
+            margin: auto;
+            line-height: 2em;
+        }
 
-    .articleInner {
-      max-width: 28rem;
-      margin: auto;
-      line-height: 2em;
-    }
+        .sticky-thing {
+            transition: 0.12s linear;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 5vh;
+            height: 90vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            /* vertical centering */
+            justify-content: center;
+            /* horizontal centering */
+            z-index: -1;
+        }
 
-    .sticky-thing {
-      position: sticky;
-      top: 5vh;
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: -1;
-      overflow: hidden;
-    }
 
-    .background-layer {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      transition: opacity 0.6s ease;
-      opacity: 0;
-      pointer-events: none;
-    }
+        .sticky-thing img {
+            max-width: 400px;
+            max-height: 80vh;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
 
-    .background-layer.visible {
-      opacity: 1;
-    }
+        #chart-image {
+            max-width: 400px;
+            max-height: 80vh;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+        }
 
-    .step {
-      margin: 0 auto 35rem auto;
-      padding-left: 10px;
-      padding-right: 10px;
-      color: black;
-      height: 60vh;
-    }
 
-    .step:last-child {
-      height: 10vh;
-      margin-bottom: 0;
-      opacity: 0;
-    }
+        .chart-image.show {
+            opacity: 1;
+        }
 
-    .step p {
-      text-align: left;
-      padding: 1rem;
-      font-size: 16px;
-      background-color: rgba(255, 255, 255, 1);
-      box-shadow: 1px 1px 5px #cecece;
-    }
 
-    ::-webkit-scrollbar {
-      height: 0px;
-    }
+        .step {
+            margin: 0 auto 2rem auto;
+            margin-bottom: 35rem;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: rgb(0, 0, 0);
+            height: 60vh;
+        }
 
-    ::-webkit-scrollbar-track {
-      background-color: #f1f1f1;
-    }
+        .step:last-child {
+            height: 10vh;
+            margin-bottom: 0;
+            opacity: 0;
+        }
 
-    ::-webkit-scrollbar-thumb {
-      background-color: #888;
-    }
-  </style>
+        .step p {
+            text-align: left;
+            padding: 1rem;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 1px 1px 5px #cecece;
+            border-radius: 6px;
+            /* or any other radius you prefer */
+
+        }
+
+        .customFont {
+            font-family: 'Barlow', sans-serif;
+        }
+
+        .site-content {
+            overflow: visible !important;
+        }
+
+        .stop-flickering {
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+
+        .chart-fade {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* true centering */
+            max-width: 400px;
+            max-height: 80vh;
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 0;
+        }
+
+        .chart-fade.show {
+            opacity: 1;
+            z-index: 1;
+        }
+    </style>
 </head>
+
 <body>
 
-  <div id="mainScrolly">
-    <!-- Preload images -->
-    <img src="images/slide_1.svg" style="display: none;" />
-    <img src="images/slide_2.svg" style="display: none;" />
-    <img src="images/slide_3.svg" style="display: none;" />
-    <img src="images/slide_4.svg" style="display: none;" />
-    <img src="images/slide_5.svg" style="display: none;" />
-    <img src="images/slide_6.svg" style="display: none;" />
-    <img src="images/slide_7.svg" style="display: none;" />
+    <div id="mainScrolly">
+        <!-- Preload Images -->
+        <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/05/slide_1.svg"
+            style="display: none;" class="chart-image" />
+        <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/05/slide_2.svg"
+            style="display: none;" class="chart-image" />
+        <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/05/slide_3.svg"
+            style="display: none;" class="chart-image" />
+        <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/05/slide_4.svg"
+            style="display: none;" class="chart-image" />
+        <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/05/slide_5.svg"
+            style="display: none;" class="chart-image" />
+        <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/05/slide_6.svg"
+            style="display: none;" class="chart-image" />
+        <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/05/slide_7.svg"
+            style="display: none;" class="chart-image" />
+
+        <section id="scrolly">
+            <div class="sticky-thing">
+                <img id="chart-image-1" class="chart-fade" src="" alt="Budget Chart" />
+                <img id="chart-image-2" class="chart-fade" src="" alt="Budget Chart" />
+            </div>
 
 
+            <article class="article1 customFont">
+                <div class="step" data-img="slide_1.svg">
+                    <p class="articleInner">San Francisco's overall budget for 2024-2025 is $15.9 billion.</p>
+                </div>
+                <div class="step" data-img="slide_2.svg">
+                    <p class="articleInner">Out of that $15.9 billion, $9.1 billion is income from “enterprise
+                        departments,” that generate revenue and get to keep that revenue.<br><br>Those departments
+                        include the SFMTA, the PUC, the airport and the port.</p>
+                </div>
+                <div class="step" data-img="slide_3.svg">
+                    <p class="articleInner">The remaining $6.8 billion goes into the "general fund," essentially a vast
+                        pool of money that pays for most day-to-day city operations. That includes all other city
+                        departments, and administrative costs.</p>
+                </div>
+                <div class="step" data-img="slide_4.svg">
+                    <p class="articleInner">$2.3 billion of the general fund is earmarked for specific programs such as
+                        Medicaid, and CalFresh.</p>
+                </div>
+                <div class="step" data-img="slide_5.svg">
+                    <p class="articleInner">That leaves $4.5 billion in the general fund.</p>
+                </div>
+                <div class="step" data-img="slide_6.svg">
+                    <p class="articleInner">But out of that $4.5 billion, another $2.2 billion is baked into the budget,
+                        largely because of voter mandates such as one that sets aside gross receipts tax revenue to fund
+                        homelessness services, or another that allocates discretionary fund revenue to fund the public
+                        libraries.</p>
+                </div>
+                <div class="step" data-img="slide_7.svg">
+                    <p class="articleInner">That leaves the mayor with $2.3 billion in discretionary funds, or about 15
+                        percent of the overall budget.</p>
+                </div>
+                <div class="step" data-img="slide_7.svg">
+                    <p class="articleInner">TK TK TK</p>
+                </div>
+            </article>
+        </section>
+    </div>
 
-    <section id="scrolly">
-      <div class="sticky-thing">
-        <div class="background-layer" id="layer1"></div>
-        <div class="background-layer" id="layer2"></div>
-      </div>
+    <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.js"></script>
+    <script>
+        const chartImage = document.getElementById('chart-image');
+        const basePath = 'https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/05/';
 
-      <article class="article">
-        <div class="step" data-step="1" data-img="slide_1.svg">
-          <p class="articleInner">San Francisco's overall budget for 2024-2025 is $15.9 billion.</p>
-        </div>
-        <div class="step" data-step="2" data-img="slide_2.svg">
-          <p class="articleInner">Out of that $15.9 billion, $9.1 billion is income from “enterprise departments,” that generate revenue and get to keep that revenue.<br><br>Those departments are the SFMTA, the PUC, the airport and the port.
-          </p>
-        </div>
-        <div class="step" data-step="3" data-img="slide_3.svg">
-          <p class="articleInner">The remaining $6.8 billion goes into the "general fund," essentially a vast pool of money that pays for most day-to-day city operations. That includes all other city departments, and administrative costs.</p>
-        </div>
-        <div class="step" data-step="4" data-img="slide_4.svg">
-          <p class="articleInner">$2.3 billion of the general fund  is earmarked for specific programs such as Medicaid, and CalFresh.</p>
-        </div>
-        <div class="step" data-step="5" data-img="slide_5.svg">
-          <p class="articleInner">That leaves $4.5 billion in the general fund.</p>
-        </div>
-        <div class="step" data-step="6" data-img="slide_6.svg">
-            <p class="articleInner">But out of that $4.5 billion, another $2.2 billion is baked into the budget, largely because of voter mandates such as one that sets aside gross receipts tax revenue to fund homelessness services, or another that allocates discretionary fund revenue to fund the public libraries.</p>
-          </div>
-          <div class="step" data-step="7" data-img="slide_7.svg">
-            <p class="articleInner">That leaves the mayor with $2.3 billion in discretionary funds, or about 15 percent of the overall budget.</p>
-          </div>
-          <div class="step" data-step="7" data-img="slide_7.svg">
-            <p class="articleInner">TK TK TK</p>
-          </div>
-      </article>
-    </section>
-  </div>
+        const img1 = document.getElementById('chart-image-1');
+        const img2 = document.getElementById('chart-image-2');
+        let showingFirst = true;
 
-  <!-- Scrollama -->
-  <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.js"></script>
-  <script>
-    const layer1 = document.getElementById('layer1');
-    const layer2 = document.getElementById('layer2');
-    let isLayer1Active = true;
+        function handleStepEnter(response) {
+            const imageName = response.element.getAttribute("data-img");
+            const newSrc = `${basePath}${imageName}`;
 
-    function handleStepEnter(response) {
-      const imgUrl = `url('images/${response.element.dataset.img}')`;
+            const incomingImg = showingFirst ? img2 : img1;
+            const outgoingImg = showingFirst ? img1 : img2;
 
-      if (isLayer1Active) {
-        layer2.style.backgroundImage = imgUrl;
-        layer2.classList.add('visible');
-        layer1.classList.remove('visible');
-      } else {
-        layer1.style.backgroundImage = imgUrl;
-        layer1.classList.add('visible');
-        layer2.classList.remove('visible');
-      }
+            incomingImg.onload = () => {
+                incomingImg.classList.add('show');
+                outgoingImg.classList.remove('show');
+                showingFirst = !showingFirst;
+            };
 
-      isLayer1Active = !isLayer1Active;
-    }
+            // Start loading
+            incomingImg.src = newSrc;
+        }
 
-    function init() {
-      scrollama()
-        .setup({
-          step: "#scrolly article .step",
-          offset: 1,
-          debug: false
-        })
-        .onStepEnter(handleStepEnter);
+        function init() {
+            const scroller = scrollama();
 
-      window.addEventListener("resize", () => scrollama().resize());
-    }
+            scroller
+                .setup({
+                    step: "#scrolly .step",
+                    offset: 0.75,
+                    debug: false
+                })
+                .onStepEnter(handleStepEnter);
+            const firstStep = document.querySelector(".step");
+            if (firstStep) {
+                const initialSrc = `${basePath}${firstStep.dataset.img}`;
+                img1.src = initialSrc;
+                img1.classList.add('show'); // Make sure it's visible
+            }
 
-    init();
-  </script>
+
+            window.addEventListener("resize", scroller.resize);
+        }
+
+        init();
+    </script>
 
 </body>
+
 </html>
