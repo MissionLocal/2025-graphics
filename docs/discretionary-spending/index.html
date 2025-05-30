@@ -36,7 +36,8 @@
             transition: 0.12s linear;
             position: -webkit-sticky;
             position: sticky;
-            top: 5vh;
+            top: 15vh;
+            /* Default for desktop */
             height: 90vh;
             width: 100%;
             display: flex;
@@ -47,6 +48,12 @@
             z-index: -1;
         }
 
+        /* Mobile override */
+        @media (max-width: 768px) {
+            .sticky-thing {
+                top: 5vh;
+            }
+        }
 
         .sticky-thing img {
             max-width: 400px;
@@ -132,6 +139,11 @@
             opacity: 1;
             z-index: 1;
         }
+
+        #mainScrolly {
+            padding-top: 2rem;
+            /* or any value like 20px */
+        }
     </style>
 </head>
 
@@ -167,7 +179,7 @@
                 </div>
                 <div class="step" data-img="slide_2.svg">
                     <p class="articleInner">Out of that $15.9 billion, $9.1 billion is income from “enterprise
-                        departments,” that generate revenue and get to keep that revenue.<br><br>Those departments
+                        departments” that generate their own revenue (and some also contribute to the general fund).<br><br>Those enterprise departments
                         include the SFMTA, the PUC, the airport and the port.</p>
                 </div>
                 <div class="step" data-img="slide_3.svg">
