@@ -3,263 +3,181 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>SF Protest Scrolly Map</title>
+  <title>SF ICE timeline</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Mapbox & Scrollama -->
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
-  <script src="https://unpkg.com/scrollama"></script>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
       font-family: 'Barlow', sans-serif;
-      overflow: hidden;
+      background-color: #000;
+      overflow-x: hidden;
     }
 
-    #map {
+    #mainScrolly {
+      position: relative;
+      height: 100vh;
+      overflow-y: scroll;
+    }
+
+    #background {
       position: fixed;
       top: 0;
       left: 0;
-      height: 100%;
-      width: 100%;
-      z-index: 0;
-    }
-
-    #scrolly-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      pointer-events: none;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.6s ease-in-out;
+      background-color: #ccc;
     }
 
     #scrolly {
-      width: 100%;
-      height: 100%;
-      overflow-y: scroll;
-      padding: 4vh 1rem;
-      box-sizing: border-box;
-      pointer-events: auto;
+      position: relative;
     }
 
     .step {
-      max-width: 500px;
-      margin: 0 auto 60vh auto;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 1.2rem;
-      border-left: 4px solid #333;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-content {
+      max-width: 28rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 1.5rem;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+ 
 
-    .step h2 {
+    }
+    @media (max-width: 768px) {
+  .step-content {
+    margin: 0 1rem;
+  }
+}
+
+    .step-content h2 {
       margin-top: 0;
-      font-size: 1.2rem;
-      font-weight: 700;
     }
 
-    .step p {
-      font-size: 1.05rem;
-      margin-top: 0.3rem;
-      line-height: 1.6;
-    }
-
-    .step a {
+    .step-content a {
       display: inline-block;
-      font-size: 1rem;
-      margin-top: 0.8rem;
+      margin-top: 0.5rem;
+      font-weight: 600;
       color: #333;
       text-decoration: underline;
-      font-weight: 600;
-    }
-
-    .step img,
-    .step video {
-      width: 100%;
-      margin-top: 0.5rem;
-      border-radius: 6px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-    }
-
-    .step:first-child {
-      margin-top: 40vh;
-    }
-
-    @media (max-width: 600px) {
-      #scrolly {
-        max-width: 100%;
-        padding: 1rem;
-      }
     }
   </style>
 </head>
 
 <body>
-  <div id="map"></div>
-  <div id="scrolly-container">
-    <div id="scrolly"></div>
+  <div id="mainScrolly">
+    <div id="background"></div>
+    <section id="scrolly">
+      <article id="steps-container">
+        <!-- steps go here -->
+      </article>
+    </section>
   </div>
 
+  <script src="https://unpkg.com/scrollama"></script>
   <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ';
+    const placeholder = 'https://via.placeholder.com/800x600/eeeeee/666666?text=No+Image+Available';
 
     const data = [
       {
-        date: "Monday June 2, 2025",
-        title: "39-year-old mother detained by ICE",
-        lat: 37.79573060,
-        lon: -122.40171448,
-        zoom: 16,
-        text: "A 39-year-old mother showed up at an immigration check-in at San Francisco’s ICE field office at 630 Sansome Street. She was swiftly put in detention and sent to a facility in Texas.",
-        link: "https://missionlocal.org/2025/06/ice-mother-detained/",
+        title: "Woman detained by ICE",
+        date: "Monday, June 2, 2025",
+        text: "A 39-year-old mother showed up at an immigration check-in at San Francisco’s ICE field office at 630 Sansome St. She was swiftly sent to a detention center in Texas.",
+        photo: "./images/1.png",
+        link: "https://missionlocal.org/2025/06/ice-mother-detained/"
       },
       {
-        date: "Wednesday June 4, 2025",
         title: "15 people arrested by ICE agents",
-        lat: 37.79573060,
-        lon: -122.40171448,
-        zoom: 16,
-        text: "Another 15 people were arrested at the ICE field office in San Francisco, prompting widespread fear and confusion in the Bay Area.",
-        link: "https://missionlocal.org/2025/06/ice-arrest-san-francisco-toddler/",
+        date: "Wednesday, June 4, 2025",
+        text: "15 people were arrested at the ICE field office in San Francisco, prompting widespread fear and confusion in the Bay Area.",
+        photo: "./images/1.png",
+        link: "https://missionlocal.org/2025/06/ice-arrest-san-francisco-toddler/"
       },
       {
-        date: "Sunday June 8, 2025",
-        title: "150 people arrested by SFPD after protest",
-        lat: 37.79573060,
-        lon: -122.40171448,
-        zoom: 16,
-        text: "150 were arrested following a protest outside the ICE field office. The protest escalated once participants noticed police riot gear.",
-        link: "https://missionlocal.org/2025/06/sf-ice-deportation-protests-sfpd-standoff/", 
-        image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/IMG_5446-scaled.jpg"
+        title: "154 people arrested by SFPD after protest",
+        date: "Sunday, June 8, 2025",
+        text: "154 people were arrested following a protest outside the ICE field office. The protest escalated once participants noticed police in riot gear.",
+        photo: "./images/3.png",
+        link: "https://missionlocal.org/2025/06/sf-ice-deportation-protests-sfpd-standoff/"
       },
       {
-        date: "Monday June 9, 2025",
-        title: "Anti-ICE march",
-        lat: 37.7522628,
-        lon: -122.4181814,
-        zoom: 15,
-        text: "Thousands gathered in the Mission to protest the federal administration’s crackdown on undocumented immigrants.",
-        link: "https://missionlocal.org/2025/06/sf-mission-march-mobilized-thousands-against-ice/",
-        image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/img_4362-1.jpg"
+        title: "Thousands gather to protest ICE",
+        date: "Monday, June 9, 2025",
+        text: "Thousands gathered in the Mission to protest the federal administration’s crackdown on undocumented immigrants. ",
+        photo: "./images/4.png",
+        link: "https://missionlocal.org/2025/06/sf-mission-march-mobilized-thousands-against-ice/"
       },
       {
-        date: "Monday June 9, 2025",
         title: "Over 92 people arrested by SFPD",
-        lat: 37.776431,
-        lon: -122.4176962,
-        zoom: 15,
-        text: "After an hours-long peaceful protest, a contingent of protestors moved to Civic Center; shortly after, officers declared “unlawful assembly.” Dozens of officers proceeded to encircle protesters, several of whom were tackled to the ground and targeted with pepper-spray. 92 people were arrested.",
-        link: "https://missionlocal.org/2025/06/sf-mission-march-mobilized-thousands-against-ice/",
-        video: "https://videos.files.wordpress.com/9nAClLPm/3326794349257333451img_3253-2.mov"
+        date: "Monday, June 9, 2025",
+        text: "After an hours-long peaceful protest, a contingent of protesters moved from the Mission to Civic Center. By 10 p.m., officers declared an “unlawful assembly.” Dozens of officers proceeded to encircle protesters, several of whom were tackled to the ground and targeted with less-lethal projectiles. Ninety-two people were arrested.",
+        photo: "./images/5.png",
+        link: "https://missionlocal.org/2025/06/sf-mission-march-mobilized-thousands-against-ice/"
       },
       {
-        date: "Tuesday June 10, 2025",
         title: "S.F. immigration court shuts down after ICE protests",
-        lat: 37.79003875,
-        lon:  -122.40223096,
-        zoom: 16,
-        text: "San Francisco’s immigration court shut down after some 200 people gathered to protest ICE raids. The same morning, video captured by Mission Local showed plainclothes ICE agents taking away a man in a silver mini van.",
+        date: "Tuesday, June 10, 2025",
+        text: "San Francisco’s immigration court shut down after some 200 people gathered to protest ICE raids. The same morning, video captured by Mission Local showed plainclothes ICE agents taking away a man in a silver minivan.",
+        photo: "./images/6.png",
         link: "https://missionlocal.org/2025/06/video-ice-agents-arrest-people-outside-s-f-courthouse/"
       },
       {
-        date: "Wednesday June 11, 2025",
-        title: "U.S. customs detains two Palestinians with valid visas",
-        lat: 37.615628,
-        lon: -122.3871828,
-        zoom: 15,
-        text: "Customs and Border Protection officers detained two Palestinian men with valid tourist visas who came to the United States on a humanitarian trip. Their visas were cancelled on the spot and both individuals were informed they would be deported.",
-        link: "https://missionlocal.org/2025/06/sf-airport-palestinians-detained-us-customs/",
-        image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/IMG_5628-scaled.jpg"
+        title: "U.S. Customs detains two Palestinians with valid visas",
+        date: "Wednesday, June 11, 2025",
+        text: "At SFO, Customs and Border Protection officers detained two Palestinian men with valid tourist visas who came to the United States on a humanitarian trip. Their visas were cancelled on the spot and both individuals were informed they would be deported.",
+        photo: "./images/7.png",
+        link: "https://missionlocal.org/2025/06/sf-airport-palestinians-detained-us-customs/"
       },
       {
-        date: "Thursday June 12, 2025",
         title: "Two arrested by ICE",
-        lat: 37.79573060,
-        lon: -122.40171448,
-        zoom: 16,
+        date: "Thursday June 12, 2025",
         text: "Another two people were arrested at the ICE field office at 630 Sansome Street. Once again, a group of protestors gathered to demonstrate against the arrests.",
-        link: "https://missionlocal.org/2025/06/sf-ice-two-arrested-thursday/",
-        image: "https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/ICE-arrest-0612-4-scaled.jpg"
+        photo: "./images/8.png",
+        link: "https://missionlocal.org/2025/06/sf-ice-two-arrested-thursday/"
       }
     ];
 
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mlnow/clyoppnvh01ae01pt9ktscssy',
-      center: [data[0].lon, data[0].lat],
-      zoom: data[0].zoom
-    });
+    const stepsContainer = document.getElementById("steps-container");
+    const bg = document.getElementById("background");
 
-    map.on('load', () => {
-      map.addSource('highlights', {
-        type: 'geojson',
-        data: 'locations.geojson'
-      });
-
-      map.addLayer({
-        id: 'highlight-layer',
-        type: 'fill',
-        source: 'highlights',
-        paint: {
-          'fill-color': '#ffcc00',
-          'fill-opacity': 0.5
-        }
-      });
-    });
-
-    const scrolly = document.getElementById('scrolly');
-
-    data.forEach(event => {
-      const step = document.createElement('div');
-      step.className = 'step';
-      step.setAttribute('data-lat', event.lat);
-      step.setAttribute('data-lng', event.lon);
-      step.setAttribute('data-zoom', event.zoom);
+    data.forEach((event) => {
+      const step = document.createElement("div");
+      step.className = "step";
+      const bgUrl = event.photo || placeholder;
+      step.setAttribute("data-bg", bgUrl);
 
       step.innerHTML = `
-        <h2>${event.date}</h2>
-        <p><strong>${event.title}</strong></p>
-        <p>${event.text}</p>
-        ${event.image ? `<img src="${event.image}" alt="Image for ${event.title}" />` : ''}
-        ${event.video ? `
-          <video controls>
-            <source src="${event.video}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>` : ''}
-        ${event.link ? `<p><a href="${event.link}" target="_blank">Read more →</a></p>` : ''}
+        <div class="step-content">
+          <h2>${event.date}</h2>
+          <p><strong>${event.title}</strong></p>
+          <p>${event.text}</p>
+          <p><a href="${event.link}" target="_blank">Read more →</a></p>
+        </div>
       `;
 
-      scrolly.appendChild(step);
+      stepsContainer.appendChild(step);
     });
 
     const scroller = scrollama();
 
     scroller
-      .setup({
-        step: ".step",
-        offset: 0.5,
-        debug: false
-      })
+      .setup({ step: ".step", offset: 0.5, debug: false })
       .onStepEnter(response => {
-        const el = response.element;
-        const lat = parseFloat(el.getAttribute("data-lat"));
-        const lng = parseFloat(el.getAttribute("data-lng"));
-        const zoom = parseFloat(el.getAttribute("data-zoom")) || 14;
-
-        map.flyTo({
-          center: [lng, lat],
-          zoom: zoom,
-          speed: 0.6
-        });
+        const bgUrl = response.element.getAttribute("data-bg");
+        if (bgUrl) bg.style.backgroundImage = `url('${bgUrl}')`;
       });
+
+    window.addEventListener("resize", scroller.resize);
   </script>
 </body>
+
 </html>
