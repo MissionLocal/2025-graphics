@@ -50,14 +50,13 @@
       padding: 1.5rem;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
- 
-
     }
+
     @media (max-width: 768px) {
-  .step-content {
-    margin: 0 1rem;
-  }
-}
+      .step-content {
+        margin: 0 1rem;
+      }
+    }
 
     .step-content h2 {
       margin-top: 0;
@@ -70,6 +69,10 @@
       color: #333;
       text-decoration: underline;
     }
+
+    #preload-images {
+      display: none;
+    }
   </style>
 </head>
 
@@ -81,6 +84,7 @@
         <!-- steps go here -->
       </article>
     </section>
+    <div id="preload-images"></div>
   </div>
 
   <script src="https://unpkg.com/scrollama"></script>
@@ -148,6 +152,7 @@
 
     const stepsContainer = document.getElementById("steps-container");
     const bg = document.getElementById("background");
+    const preloadContainer = document.getElementById("preload-images");
 
     data.forEach((event) => {
       const step = document.createElement("div");
@@ -165,6 +170,10 @@
       `;
 
       stepsContainer.appendChild(step);
+
+      const img = document.createElement("img");
+      img.src = bgUrl;
+      preloadContainer.appendChild(img);
     });
 
     const scroller = scrollama();
