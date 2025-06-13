@@ -16,8 +16,7 @@
 
     #mainScrolly {
       position: relative;
-      height: 100vh;
-      overflow-y: scroll;
+      height: auto;
     }
 
     #background {
@@ -35,10 +34,12 @@
 
     #scrolly {
       position: relative;
+      z-index: 1;
     }
 
     .step {
-      height: 100vh;
+      min-height: 100vh;
+      padding: 4rem 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -50,16 +51,16 @@
       padding: 1.5rem;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 768px) {
-      .step-content {
-        margin: 0 1rem;
-      }
+      font-size: 16px;
     }
 
     .step-content h2 {
       margin-top: 0;
+      font-size: 20px;
+    }
+
+    .step-content p {
+      font-size: 16px;
     }
 
     .step-content a {
@@ -68,6 +69,13 @@
       font-weight: 600;
       color: #333;
       text-decoration: underline;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .step-content {
+        margin: 0 1rem;
+      }
     }
 
     #preload-images {
