@@ -26,12 +26,12 @@
     position: sticky;
     left: 0;
     max-width: 100%;
-    top: 5vh;
+    top: 15vh;
     height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/1.png');
+    background-image: url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/1.jpeg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
@@ -57,16 +57,23 @@
   }
 
   .step p {
-  text-align: left;
-  padding: 1.5rem;
-  font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.95);
-  font-family: 'Barlow', sans-serif;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  max-width: 28rem;
-  margin: 0 auto;
-  line-height: 1.6;
+    text-align: left;
+    padding: 1.5rem;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.95);
+    font-family: 'Barlow', sans-serif;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-width: 28rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .step p strong:nth-of-type(2) {
+  font-size: 20px;
+  display: block;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 
@@ -82,113 +89,150 @@
   .stop-flickering {
     -webkit-transform: translate3d(0, 0, 0);
   }
+
+  @media (max-width: 768px) {
+  .step p {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sticky-thing {
+    top: 11vh;
+  }
+}
+
 </style>
 
 <div id="mainScrolly">
 
-  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/1.png"
+  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/1.jpeg"
     style="display: none;">
-  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/3.png"
+  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/3.jpeg"
     style="display: none;">
-  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/4.png"
+  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/4.jpeg"
     style="display: none;">
-  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/5.png"
+  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/5.jpeg"
     style="display: none;">
-  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/6.png"
+  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/6.jpeg"
     style="display: none;">
-  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/7.png"
+  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/7.jpeg"
     style="display: none;">
-  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/8.png"
+  <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/8.jpeg"
     style="display: none;">
 
   <section id="scrolly">
     <div class="sticky-thing">
       <p></p>
     </div>
-<article1 class="customFont">
-  <div class="step" data-step="1" data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/1.png')">
-    <p class="articleInner">
-      <strong>Monday, June 2, 2025</strong><br>
-      <strong>Woman detained by ICE</strong><br>
-<br>
-      A 39-year-old mother showed up at an immigration check-in at San Francisco’s ICE field office at 630 Sansome St. She was swiftly sent to a detention center in Texas.<br><br>
-      <a href="https://missionlocal.org/2025/06/ice-mother-detained/" target="_blank">Read more →</a>
-    </p>
-  </div>
+    <article1 class="customFont">
+      <div class="step" data-step="1"
+        data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/1.jpeg')">
+        <p class="articleInner">
+          <strong>Monday, June 2, 2025</strong><br>
+          <strong>Woman detained by ICE</strong><br>
 
-  <div class="step" data-step="2" data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/1.png')">
-    <p class="articleInner">
-      <strong>Wednesday, June 4, 2025</strong><br>
-      <strong>15 people arrested by ICE agents</strong><br>
-  <br>
-      15 people were arrested at the ICE field office in San Francisco, prompting widespread fear and confusion in the Bay Area.<br><br>
-      <a href="https://missionlocal.org/2025/06/ice-arrest-san-francisco-toddler/" target="_blank">Read more →</a>
-    </p>
-  </div>
+          A 39-year-old mother received a notification to check-in at San Francisco’s ICE field office at 630 Sansome St. Less than 36 hours later she was sent to a detention center in Texas. <br><br>
+          <a href="https://missionlocal.org/2025/06/ice-mother-detained/" target="_blank">Read more →</a>
+        </p>
+      </div>
 
-  <div class="step" data-step="3" data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/3.png')">
-    <p class="articleInner">
-      <strong>Sunday, June 8, 2025</strong><br>
-      <strong>154 people arrested by SFPD after protest</strong><br>
- <br>
-      154 people were arrested following a protest outside the ICE field office. The protest escalated once participants noticed police in riot gear.<br><br>
-      <a href="https://missionlocal.org/2025/06/sf-ice-deportation-protests-sfpd-standoff/" target="_blank">Read more →</a>
-    </p>
-  </div>
+      <div class="step" data-step="2"
+        data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/1.jpeg')">
+        <p class="articleInner">
+          <strong>Wednesday, June 4, 2025</strong><br>
+          <strong>15 people arrested by ICE agents</strong><br>
 
-  <div class="step" data-step="4" data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/4.png')">
-    <p class="articleInner">
-      <strong>Monday, June 9, 2025</strong><br>
-      <strong>Thousands gather to protest ICE</strong><br>
-    <br>
-      Thousands gathered in the Mission to protest the federal administration’s crackdown on undocumented immigrants.<br><br>
-      <a href="https://missionlocal.org/2025/06/sf-mission-march-mobilized-thousands-against-ice/" target="_blank">Read more →</a>
-    </p>
-  </div>
+          15 people were arrested at the ICE field office in San Francisco, prompting widespread fear and confusion in the Bay Area.<br><br>
+          <a href="https://missionlocal.org/2025/06/ice-arrest-san-francisco-toddler/" target="_blank">Read more →</a>
+        </p>
+      </div>
 
-  <div class="step" data-step="5" data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/5.png')">
-    <p class="articleInner">
-      <strong>Monday, June 9, 2025</strong><br>
-      <strong>Over 92 people arrested by SFPD</strong><br>
-     <br>
-      After an hours-long peaceful protest, officers declared an “unlawful assembly.” Protesters were tackled and targeted with less-lethal projectiles. 92 people were arrested.<br><br>
-      <a href="https://missionlocal.org/2025/06/sf-mission-march-mobilized-thousands-against-ice/" target="_blank">Read more →</a>
-    </p>
-  </div>
+      <div class="step" data-step="3"
+        data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/3.jpeg')">
+        <p class="articleInner">
+          <strong>Sunday, June 8, 2025</strong><br>
+          <strong>154 people arrested by SFPD after protest</strong><br>
 
-  <div class="step" data-step="6" data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/6.png')">
-    <p class="articleInner">
-      <strong>Tuesday, June 10, 2025</strong><br>
-      <strong>S.F. immigration court shuts down after ICE protests</strong><br>
-  <br>
-      San Francisco’s immigration court shut down after some 200 people gathered to protest ICE raids. Video showed plainclothes ICE agents taking a man in a silver minivan.<br><br>
-      <a href="https://missionlocal.org/2025/06/video-ice-agents-arrest-people-outside-s-f-courthouse/" target="_blank">Read more →</a>
-    </p>
-  </div>
+          154 people were arrested following a protest outside the ICE field office. The protest escalated once participants noticed police in riot gear. <br><br>
+          <a href="https://missionlocal.org/2025/06/sf-ice-deportation-protests-sfpd-standoff/" target="_blank">Read
+            more →</a>
+        </p>
+      </div>
 
-  <div class="step" data-step="7" data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/7.png')">
-    <p class="articleInner">
-      <strong>Wednesday, June 11, 2025</strong><br>
-      <strong>U.S. Customs detains two Palestinians with valid visas</strong><br>
-      <br>
-      At SFO, Customs officers detained two Palestinian men with valid tourist visas. Their visas were cancelled and both were told they would be deported.<br><br>
-      <a href="https://missionlocal.org/2025/06/sf-airport-palestinians-detained-us-customs/" target="_blank">Read more →</a>
-    </p>
-  </div>
+      <div class="step" data-step="4"
+        data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/4.jpeg')">
+        <p class="articleInner">
+          <strong>Monday, June 9, 2025</strong><br>
+          <strong>Thousands gather to protest ICE</strong><br>
 
-  <div class="step" data-step="8" data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/8.png')">
-    <p class="articleInner">
-      <strong>Thursday, June 12, 2025</strong><br>
-      <strong>Two arrested by ICE</strong><br>
- <br>
-      Another two people were arrested at the ICE field office. Once again, protestors gathered to demonstrate against the arrests.<br><br>
-      <a href="https://missionlocal.org/2025/06/sf-ice-two-arrested-thursday/" target="_blank">Read more →</a>
-    </p>
-  </div>
-</article1>
+          Thousands gathered in the Mission District to protest the federal administration’s crackdown on undocumented immigrants. <br><br>
+          <a href="https://missionlocal.org/2025/06/sf-mission-march-mobilized-thousands-against-ice/"
+            target="_blank">Read more →</a>
+        </p>
+      </div>
 
- 
-</section>
+      <div class="step" data-step="5"
+        data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/5.jpeg')">
+        <p class="articleInner">
+          <strong>Monday, June 9, 2025</strong><br>
+          <strong>Over 92 people arrested by SFPD</strong><br>
+          After an hours-long peaceful protest, a contingent of protesters moved from the Mission to Civic Center. By 10 p.m., officers declared an “unlawful assembly.” Dozens of officers proceeded to encircle protesters, several of whom were tackled to the ground and targeted with less-lethal projectiles. Ninety-two people were arrested.  <br><br>
+          <a href="https://missionlocal.org/2025/06/sf-mission-march-mobilized-thousands-against-ice/"
+            target="_blank">Read more →</a>
+        </p>
+      </div>
+
+      <div class="step" data-step="6"
+        data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/6.jpeg')">
+        <p class="articleInner">
+          <strong>Tuesday, June 10, 2025</strong><br>
+          <strong>S.F. immigration court shuts down after ICE protests</strong><br>
+
+          San Francisco’s immigration court shut down after some 200 people gathered to protest ICE raids. The same morning, video captured by <em>Mission Local</em> showed plainclothes ICE agents taking away a man in a silver minivan.<br><br>
+          <a href="https://missionlocal.org/2025/06/video-ice-agents-arrest-people-outside-s-f-courthouse/"
+            target="_blank">Read more →</a>
+        </p>
+      </div>
+
+      <div class="step" data-step="7"
+        data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/7.jpeg')">
+        <p class="articleInner">
+          <strong>Wednesday, June 11, 2025</strong><br>
+          <strong>U.S. Customs detains two Palestinians with valid visas</strong><br>
+
+          At SFO, Customs and Border Protection officers detained two Palestinian men with valid tourist visas who came to the United States on a humanitarian trip. Their visas were cancelled on the spot and both individuals were deported.<br><br>
+          <a href="https://missionlocal.org/2025/06/sf-airport-palestinians-detained-us-customs/" target="_blank">Read
+            more →</a>
+        </p>
+      </div>
+
+      <div class="step" data-step="8"
+        data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/8.jpeg')">
+        <p class="articleInner">
+          <strong>Thursday, June 12, 2025</strong><br>
+          <strong>Two arrested by ICE</strong><br>
+
+          Another two people were arrested at the ICE field office at 630 Sansome St. Once again, a group of protestors gathered to demonstrate against the arrests.<br><br>
+          <a href="https://missionlocal.org/2025/06/sf-ice-two-arrested-thursday/" target="_blank">Read more →</a>
+        </p>
+      </div>
+
+      <div class="step" data-step="8"
+      data-img="url('https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/06/8.jpeg')">
+      <p class="articleInner">
+        <strong>Thursday, June 12, 2025</strong><br>
+        <strong>Two arrested by ICE</strong><br>
+
+        Another two people were arrested at the ICE field office at 630 Sansome St. Once again, a group of protestors gathered to demonstrate against the arrests.<br><br>
+        <a href="https://missionlocal.org/2025/06/sf-ice-two-arrested-thursday/" target="_blank">Read more →</a>
+      </p>
+    </div>
+    </article1>
+
+
+  </section>
 
 </div>
 
@@ -209,7 +253,15 @@
   function handleStepEnter(response) {
     // response = { element, direction, index }
     var el = response.element;
-    sticky.style.backgroundImage = el.dataset.img;
+    var isMobile = window.innerWidth < 768;
+    var baseURL = el.dataset.img.slice(5, -2); // remove url('...') wrapper
+    if (isMobile) {
+      var mobileURL = baseURL.replace(/(\d+)\.jpeg$/, '$1-mobile.jpeg');
+      sticky.style.backgroundImage = "url('" + mobileURL + "')";
+    } else {
+      sticky.style.backgroundImage = el.dataset.img;
+    }
+
   }
 
   function init() {
