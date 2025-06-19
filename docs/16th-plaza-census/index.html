@@ -24,6 +24,8 @@
 
     table.display {
         margin-bottom: 40px;
+        max-width: 600px; 
+        width: 100%;
     }
 
     /* Set consistent column widths for all tables */
@@ -54,7 +56,7 @@
 </style>
 
 <body>
-    <!-- <div class="table-section-scroll"> -->
+    <div id="table-section-scroll">
     <table id="race" class="display">
         <thead>
             <tr>
@@ -291,7 +293,7 @@
             </tr>
         </tbody>
     </table>
-    <!-- </div> -->
+    </div>
     <!-- jQuery (required for DataTables) -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
