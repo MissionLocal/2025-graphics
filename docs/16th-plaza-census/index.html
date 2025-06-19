@@ -299,19 +299,30 @@
 
     <!-- DataTables JS (include after jQuery) -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
 
     <!-- Initialize the DataTable -->
     <script>
-        $('#race, #disability, #income, #education, #housing, #vehicles, #crime').DataTable({
-            paging: false,
-            searching: false,
-            ordering: false,
-            info: false,
-            responsive: true,
-        });
+        $(document).ready(function () {
+            $('#race, #disability, #income, #education, #housing, #vehicles, #crime').DataTable({
+                paging: false,
+                searching: false,
+                ordering: false,
+                info: false,
+                responsive: true,
+            });
 
-        var pymChild = new pym.Child();
+            // Notify pym that the iframe size might change
+            var pymChild = new pym.Child();
+
+            // Re-send height after a small delay in case DataTables finishes rendering late
+            setTimeout(function () {
+                pymChild.sendHeight();
+            }, 500);
+        });
     </script>
+
 </body>
 
 </html>
