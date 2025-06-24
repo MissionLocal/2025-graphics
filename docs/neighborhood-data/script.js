@@ -235,9 +235,9 @@ function generateChart(datasetKey, data, selectedAreas, populationData) {
                 <div class="progress-container">
                     <div class="progress-citywide" style="width: ${Math.min(cityRates[i], 100)}%"></div>
                     <div class="progress-local" style="width: ${Math.min(localRates[i], 100)}%"></div>
-                    <span class="progress-percentage overall-highlight" style="left: calc(${Math.min(cityRates[i], 100)}% + 6px)">${cityValue}</span>
+                    <span class="progress-percentage overall-highlight" style="left: calc(${Math.min(cityRates[i], 90)}% + 6px)">${cityValue}</span>
                 </div>
-                <div class="mark-text local-highlight" style="left: calc(${Math.min(localRates[i], 100)}% + 2px)">${localValue}</div>
+                <div class="mark-text local-highlight" style="left: calc(${Math.min(localRates[i], 90)}% + 2px)">${localValue}</div>
             </div>
         `;
     });
