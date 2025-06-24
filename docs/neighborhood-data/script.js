@@ -161,10 +161,10 @@ function generate(datasets, populationData, selectedAreas) {
     clearButton.addEventListener("click", clear);
 
     // Check minimum population requirement
-    if (local_population < 500) {
-        results.innerHTML = "Please select areas with a combined <strong>population of more than 500</strong> to see results.";
-        return;
-    }
+    //if (local_population < 500) {
+    //    results.innerHTML = "Please select areas with a combined <strong>population of more than 500</strong> to see results.";
+    //    return;
+    //}
 
     // Process each dataset
     Object.keys(datasetInfo).forEach(datasetKey => {
@@ -496,5 +496,5 @@ this.map.once('load', () => {
     this.map.resize();
 });
 
-//set everything off
+// set everything off
 main();

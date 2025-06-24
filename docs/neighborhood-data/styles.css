@@ -125,13 +125,13 @@ hr.solid {
     padding: 7px;
     margin-top: 10px;
     margin-bottom: 15px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .mark-text.local-highlight {
     padding-left: 0px;
     margin: 6px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .turnout-label {
@@ -145,7 +145,7 @@ hr.solid {
 .progress-percentage {
     position: absolute;
     top: -1px;  /* Adjust the vertical position (make it slightly higher or lower as needed) */
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .progress-container {
