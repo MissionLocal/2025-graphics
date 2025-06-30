@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Gambling Raids in the Tenderloin</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Barlow, sans-serif;
+    }
+
+    .cont {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #map {
+      width: 100vw;
+      max-width: 700px;
+      height: 500px;
+      margin: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .mapboxgl-popup {
+      max-width: 350px;
+      z-index: 5;
+      overflow-wrap: break-word;
+      white-space: normal;
+      pointer-events: auto;
+    }
+
+    .mapboxgl-popup-content {
+      background-color: rgba(255, 255, 255);
+      border-radius: 5px;
+      color: #333;
+      font-family: Barlow, sans-serif;
+      font-size: 16px;
+      line-height: 1.2;
+      max-height: 280px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 1rem 1rem 1.5rem 1rem;
+      box-sizing: border-box;
+    }
+
+    .mapboxgl-popup-tip {
+      display: none;
+    }
+
+    .mapboxgl-popup-close-button {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 20px;
+      background: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    @media (max-width: 600px) {
+      #map {
+        height: 650px;
+      }
+
+      .mapboxgl-popup-content {
+        max-height: 80vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cont">
+    <div id="map"></div>
+  </div>
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ';
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [-122.41599480, 37.78406804],
+      zoom: 15.2,
+      maxBounds: [
+        [-122.5247, 37.6946],
+        [-122.3482, 37.8299]
+      ]
+    });
+
+    map.on('load', () => {
+      map.addSource('locations', {
+        type: 'geojson',
+        data: 'locations.geojson'
+      });
+
+      map.addLayer({
+        id: 'raids',
+        type: 'circle',
+        source: 'locations',
+        paint: {
+          'circle-radius': 9,
+          'circle-opacity': 0.9,
+          'circle-color': [
+            'match',
+            ['get', 'Raided'],
+            'pink', '#e60073',
+            'gray', '#999999',
+            '#cccccc'
+          ]
+        }
+      });
+
+      map.on('click', 'raids', (e) => {
+        const p = e.features[0].properties;
+
+        let content = `<h2>${p['Name'] || ''}</h2>`;
+        content += `<p>${p['Address'] || ''}</p>`;
+
+        const hasDetails = p['Raid Date'] || p['Raid findings'] || p['Arrests/citations'] || p['Lawsuit'];
+        if (hasDetails) content += `<hr>`;
+
+        if (p['Raid Date']) content += `<p><strong>Raid date:</strong> ${p['Raid Date']}</p>`;
+        if (p['Raid findings']) content += `<p><strong>Findings:</strong> ${p['Raid findings']}</p>`;
+        if (p['Arrests/citations']) content += `<p><strong>Arrests/citations:</strong> ${p['Arrests/citations']}</p>`;
+        if (p['Lawsuit']) content += `<p><strong>Lawsuit:</strong> ${p['Lawsuit']}</p>`;
+
+        new mapboxgl.Popup({
+          closeOnClick: true,
+          offset: [0, -100]  // shift the popup upward to avoid bottom clipping
+        })
+          .setLngLat(e.lngLat)
+          .setHTML(content)
+          .setMaxWidth("350px")
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'raids', () => {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+
+      map.on('mouseleave', 'raids', () => {
+        map.getCanvas().style.cursor = '';
+      });
+    });
+  </script>
+</body>
+</html>
