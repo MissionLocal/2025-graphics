@@ -18,6 +18,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
     #map {
@@ -26,35 +27,38 @@
       height: 500px;
       margin: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
 
-    .mapboxgl-popup {
-      max-width: 350px;
-      z-index: 5;
-      overflow-wrap: break-word;
-      white-space: normal;
-      pointer-events: auto;
-    }
+    #custom-popup {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 350px;
+  max-height: calc(100% - 40px); /* Prevent overflow beyond map box */
+  background-color: rgba(255, 255, 255);
+  border-radius: 5px;
+  color: #333;
+  font-family: Barlow, sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  padding: 1rem 1rem 1.5rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: none;
+  overflow-y: auto; /* <--- Enables scrolling */
+}
 
-    .mapboxgl-popup-content {
-      background-color: rgba(255, 255, 255);
-      border-radius: 5px;
-      color: #333;
-      font-family: Barlow, sans-serif;
-      font-size: 16px;
-      line-height: 1.2;
-      max-height: 280px;
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding: 1rem 1rem 1.5rem 1rem;
-      box-sizing: border-box;
-    }
+@media (min-height: 700px) {
+  #custom-popup {
+    max-height: 600px;
+  }
+}
 
-    .mapboxgl-popup-tip {
-      display: none;
-    }
 
-    .mapboxgl-popup-close-button {
+    #custom-popup .close-btn {
       position: absolute;
       top: 8px;
       right: 10px;
@@ -62,8 +66,8 @@
       background: white;
       border-radius: 50%;
       padding: 2px 6px;
+      cursor: pointer;
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-      z-index: 10;
     }
 
     @media (max-width: 600px) {
@@ -71,8 +75,8 @@
         height: 650px;
       }
 
-      .mapboxgl-popup-content {
-        max-height: 80vh;
+      #custom-popup {
+        max-width: 90vw;
       }
     }
   </style>
@@ -80,6 +84,10 @@
 <body>
   <div class="cont">
     <div id="map"></div>
+    <div id="custom-popup">
+      <span class="close-btn">&times;</span>
+      <div id="popup-content"></div>
+    </div>
   </div>
 
   <script>
@@ -133,14 +141,8 @@
         if (p['Arrests/citations']) content += `<p><strong>Arrests/citations:</strong> ${p['Arrests/citations']}</p>`;
         if (p['Lawsuit']) content += `<p><strong>Lawsuit:</strong> ${p['Lawsuit']}</p>`;
 
-        new mapboxgl.Popup({
-          closeOnClick: true,
-          offset: [0, -100]  // shift the popup upward to avoid bottom clipping
-        })
-          .setLngLat(e.lngLat)
-          .setHTML(content)
-          .setMaxWidth("350px")
-          .addTo(map);
+        document.getElementById('popup-content').innerHTML = content;
+        document.getElementById('custom-popup').style.display = 'block';
       });
 
       map.on('mouseenter', 'raids', () => {
@@ -150,6 +152,10 @@
       map.on('mouseleave', 'raids', () => {
         map.getCanvas().style.cursor = '';
       });
+    });
+
+    document.querySelector('#custom-popup .close-btn').addEventListener('click', () => {
+      document.getElementById('custom-popup').style.display = 'none';
     });
   </script>
 </body>
