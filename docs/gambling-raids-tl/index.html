@@ -31,32 +31,25 @@
     }
 
     #custom-popup {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 350px;
-  max-height: 450px; /* Prevent overflow beyond map box */
-  background-color: rgba(255, 255, 255);
-  border-radius: 5px;
-  color: #333;
-  font-family: Barlow, sans-serif;
-  font-size: 16px;
-  line-height: 1.2;
-  padding: 1rem 1rem 1.5rem 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-  display: none;
-  overflow-y: auto; /* <--- Enables scrolling */
-}
-
-@media (min-height: 700px) {
-  #custom-popup {
-    max-height: 600px;
-  }
-}
-
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 350px;
+      max-height: none; /* will be dynamically set */
+      background-color: rgba(255, 255, 255);
+      border-radius: 5px;
+      color: #333;
+      font-family: Barlow, sans-serif;
+      font-size: 16px;
+      line-height: 1.2;
+      padding: 1rem 1rem 1.5rem 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      display: none;
+      overflow-y: auto;
+    }
 
     #custom-popup .close-btn {
       position: absolute;
@@ -141,8 +134,16 @@
         if (p['Arrests/citations']) content += `<p><strong>Arrests/citations:</strong> ${p['Arrests/citations']}</p>`;
         if (p['Lawsuit']) content += `<p><strong>Lawsuit:</strong> ${p['Lawsuit']}</p>`;
 
+        const popupEl = document.getElementById('custom-popup');
+        const mapEl = document.getElementById('map');
+
         document.getElementById('popup-content').innerHTML = content;
-        document.getElementById('custom-popup').style.display = 'block';
+
+        // Set max-height dynamically
+        const mapHeight = mapEl.offsetHeight;
+        popupEl.style.maxHeight = (mapHeight - 60) + 'px';
+        popupEl.scrollTop = 0; // scroll to top on new content
+        popupEl.style.display = 'block';
       });
 
       map.on('mouseenter', 'raids', () => {
@@ -154,8 +155,19 @@
       });
     });
 
+    // Close popup
     document.querySelector('#custom-popup .close-btn').addEventListener('click', () => {
       document.getElementById('custom-popup').style.display = 'none';
+    });
+
+    // Update popup max height on window resize
+    window.addEventListener('resize', () => {
+      const popupEl = document.getElementById('custom-popup');
+      const mapEl = document.getElementById('map');
+      if (popupEl.style.display === 'block') {
+        const mapHeight = mapEl.offsetHeight;
+        popupEl.style.maxHeight = (mapHeight - 40) + 'px';
+      }
     });
   </script>
 </body>
