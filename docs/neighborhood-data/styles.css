@@ -1,52 +1,79 @@
-body {
+body,
+html {
     margin: 0;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    overflow-y: auto;
+    /* Allow scrolling if content exceeds viewport height */
     overflow-x: hidden;
-    font-family: "Barlow", sans-serif;
-}
-
-a {
-    text-decoration: underline;
-    color: #5E5E5E;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #f220de;
+    font-family: Barlow, sans-serif;
 }
 
 #main-container {
     padding: 10px 0px 10px 0px;
+    max-width: 600px;
+    margin: 10px 0px 10px 0px;
 }
 
 .container {
-    padding: 10px;
+    padding: 10px 10px 10px 10px;
     max-width: none;
 }
 
-#map {
-    position: relative;
+/* #map {
     height: 550px;
     margin-top: 10px;
     margin-bottom: 10px;
+} */
+
+.expand-collapse-indicator {
+    margin-left: 10px;
+    /* Adds space between the heading and the indicator */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    /* Makes the indicator look clickable */
+}
+
+
+#map {
+    width: 100vw;
+    max-width: 550px;
+    height: 500px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 #text-container {
     position: relative;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 25px;
 }
 
 /* charts */
 
+hr.solid {
+    border-top: 2px solid #bbbbbb1c;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .glass {
     width: 100%;
     padding-top: 25px;
+    padding-bottom: 25px !important;
     height: 75px;
     background: #c5c5c500;
-    float: left;
-    overflow: hidden;
+    display: block;
     position: relative;
+    overflow: hidden;
+}
+
+.h4 {
+    padding-top: 10px !important;
+    border-bottom: 1px solid #bbbbbb1c;
 }
 
 .chunk {
@@ -55,16 +82,36 @@ a:hover {
 }
 
 .mark-text {
-    font-size: small;
-    position: relative;
-    text-align: left;
-    margin-left: 5px;
-    color: #000000c7;
-    margin-top: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(37%);
+    z-index: 1;
+    white-space: nowrap;
+    padding-left: 5px;
+}
+
+.citywide-label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-200%);  /* Vertically center */
+    z-index: 1;
+    white-space: nowrap;
+    padding-left: 5px;  /* Optional, to create a small gap from the edge */
+}
+
+.city-text {
+    position: absolute;
+    top: 50%;
+    /* Vertically center the text */
+    transform: translateY(37%);
+    /* Fine-tune vertical centering */
+    z-index: 1;
+    white-space: nowrap;
+    padding-left: 5px;
 }
 
 .bar-label {
-    font-size: small;
+    font-size: 14px;
     position: absolute;
     margin-top: -22px;
 }
@@ -74,43 +121,71 @@ a:hover {
 }
 
 .legend-label {
-    font-size: small;
     position: relative;
-    padding: 2px 5px 5px 5px;
+    padding: 7px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.mark-text.local-highlight {
+    padding-left: 0px;
+    margin: 6px;
+    font-size: 14px;
+}
+
+.turnout-label {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-style: italic;
+
+}
+
+.progress-percentage {
+    position: absolute;
+    top: -1px;  /* Adjust the vertical position (make it slightly higher or lower as needed) */
+    font-size: 14px;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+.progress-citywide,
+.progress-local {
+    height: 20px;
+    border-radius: 5px;
 }
 
 .progress-citywide {
-    float: left;
-    height: 40px;
-    background: #c7c7c76c;
-    position: absolute;
+    background-color: #80808057;
 }
 
 .progress-local {
-    float: left;
-    height: 20px;
-    background: #f220de;
-    position: absolute;
-    margin-top: 10px;
+    background-color: #f220de;
 }
 
 .local-highlight {
     background: linear-gradient(#f220de61, #f220de61),
-                linear-gradient(white, white);
+        linear-gradient(white, white);
 }
 
 .bar-highlight {
     padding: 2px;
+    font-size: 14px !important;
 }
 
 .overall-highlight {
     background: linear-gradient(#c7c7c761, #c7c7c761),
-                linear-gradient(white, white);
+        linear-gradient(white, white);
 }
 
-.tract {
+.area {
     background-color: #c7c7c761;
     border-radius: 2px;
     border: 1px solid #404040;
@@ -118,7 +193,7 @@ a:hover {
     font-size: 16px;
     margin: 2px;
     display: inline-block;
-    box-shadow: #808080 0.5px 0.5px 0.5px;
+    box-shadow: #808080 1px 1px 1px;
 }
 
 #clear-button {
@@ -132,21 +207,21 @@ a:hover {
     box-shadow: #808080 1px 1px 1px;
 }
 
-#tract-list {
+#area-list {
     margin-top: 15px;
 }
 
-.footnote { 
+.footnote {
     font-size: small;
 }
 
 .map-overlay {
     position: absolute;
-    top: 5px;
-    left: 20px;
+    top: 60px;
+    left: 25px;
     background: #fff;
     margin-right: 20px;
-    font-family: "Barlow", sans-serif;
+    font-family: Barlow, sans-serif;
     overflow: auto;
     border-radius: 3px;
 }
@@ -162,20 +237,6 @@ a:hover {
     line-height: 0px;
 }
 
-#download-button {
-    border-radius: 2px;
-    border: 1px solid #000000;
-    padding: 5px;
-    font-size: 16px;
-    margin: 2px 2px 4px 2px;
-    display: inline-block;
-    box-shadow: #808080 1px 1px 1px;
-}
-  
-#download-button:active {
-    transform: scale(0.95);
-}
-
 #dataset-dropdown {
     font-size: 16px;
     /* Increase font size for better readability */
@@ -183,7 +244,7 @@ a:hover {
     /* Rounded corners */
     border: 0px solid gray;
     /* Border for visibility */
-    margin: 2px auto 4px auto;
+    margin: 0 auto;
     /* Center the dropdown itself */
     font-family: Barlow, sans-serif;
     width: 100vw;
@@ -192,11 +253,47 @@ a:hover {
     /* Match legend background */
     padding: 5px;
     /* Add padding similar to legend */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Add subtle shadow */
     appearance: none;
     /* Remove default styling in some browsers */
     position: relative;
     padding-right: 30px;
     /* Space for arrow */
+}
+
+.contest-title {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#results {
+    margin-top: 25px;
+    margin-bottom: 0;
+    /* Or other appropriate value */
+    padding-bottom: 0;
+
+}
+
+/* Mobile Styles */
+@media (max-width: 500px) {
+    .main-container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .map {
+        padding-right: 10px;
+    }
+    .body {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .map-overlay {
+        position: absolute;
+        top: 60px;
+        left: 25px;
+    }
 }
