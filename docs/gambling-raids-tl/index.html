@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <title>Gambling Raids in the Tenderloin</title>
@@ -17,17 +18,31 @@
     .cont {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       position: relative;
     }
 
-    #map {
-      width: 100vw;
+    .map-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       max-width: 700px;
+      width: 100%;
+    }
+
+    #map {
+      width: 100%;
       height: 500px;
       margin: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       position: relative;
+    }
+
+    .credit {
+      font-size: 14px;
+      color: #555;
+      margin: 0 10px 20px 10px;
+      text-align: left;
     }
 
     #custom-popup {
@@ -37,11 +52,9 @@
       transform: translateX(-50%);
       width: 90%;
       max-width: 350px;
-      max-height: none; /* will be dynamically set */
       background-color: rgba(255, 255, 255);
       border-radius: 5px;
       color: #333;
-      font-family: Barlow, sans-serif;
       font-size: 16px;
       line-height: 1.2;
       padding: 1rem 1rem 1.5rem 1rem;
@@ -74,16 +87,28 @@
     }
   </style>
 </head>
+
 <body>
   <div class="cont">
-    <div id="map"></div>
+    <div class="map-wrapper">
+      <div id="map"></div>
+      <p class="credit">Source: Data compiled by Eleni Balakrishnan using records from the police department, city attorney's office, court documents and Google Maps. Map by Kelly Waldron.</p>
+    </div>
+
     <div id="custom-popup">
       <span class="close-btn">&times;</span>
       <div id="popup-content"></div>
     </div>
   </div>
 
+  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
   <script>
+    const pymChild = new pym.Child();
+
+    function sendHeight() {
+      pymChild.sendHeight();
+    }
+
     mapboxgl.accessToken = 'pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ';
 
     const map = new mapboxgl.Map({
@@ -139,11 +164,13 @@
 
         document.getElementById('popup-content').innerHTML = content;
 
-        // Set max-height dynamically
+        // Dynamically set max height
         const mapHeight = mapEl.offsetHeight;
         popupEl.style.maxHeight = (mapHeight - 60) + 'px';
-        popupEl.scrollTop = 0; // scroll to top on new content
+        popupEl.scrollTop = 0;
         popupEl.style.display = 'block';
+
+        sendHeight();
       });
 
       map.on('mouseenter', 'raids', () => {
@@ -153,61 +180,26 @@
       map.on('mouseleave', 'raids', () => {
         map.getCanvas().style.cursor = '';
       });
+
+      sendHeight();
     });
 
-    // Close popup
     document.querySelector('#custom-popup .close-btn').addEventListener('click', () => {
       document.getElementById('custom-popup').style.display = 'none';
+      sendHeight();
     });
 
-    // Update popup max height on window resize
+    window.addEventListener('load', sendHeight);
     window.addEventListener('resize', () => {
       const popupEl = document.getElementById('custom-popup');
       const mapEl = document.getElementById('map');
       if (popupEl.style.display === 'block') {
         const mapHeight = mapEl.offsetHeight;
-        popupEl.style.maxHeight = (mapHeight - 40) + 'px';
+        popupEl.style.maxHeight = (mapHeight - 60) + 'px';
       }
+      sendHeight();
     });
   </script>
-
-</script>
-
-<script src="https://pym.nprapps.org/pym.v1.min.js"></script>
-<script>
-  const pymChild = new pym.Child();
-
-  function sendHeight() {
-    pymChild.sendHeight();
-  }
-
-  window.addEventListener('load', sendHeight);
-  window.addEventListener('resize', sendHeight);
-
-  document.querySelector('#custom-popup .close-btn').addEventListener('click', () => {
-    document.getElementById('custom-popup').style.display = 'none';
-    sendHeight();
-  });
-
-  map.on('click', 'raids', (e) => {
-    const p = e.features[0].properties;
-
-    let content = `<h2>${p['Name'] || ''}</h2>`;
-    content += `<p>${p['Address'] || ''}</p>`;
-
-    const hasDetails = p['Raid Date'] || p['Raid findings'] || p['Arrests/citations'] || p['Lawsuit'];
-    if (hasDetails) content += `<hr>`;
-
-    if (p['Raid Date']) content += `<p><strong>Raid date:</strong> ${p['Raid Date']}</p>`;
-    if (p['Raid findings']) content += `<p><strong>Findings:</strong> ${p['Raid findings']}</p>`;
-    if (p['Arrests/citations']) content += `<p><strong>Arrests/citations:</strong> ${p['Arrests/citations']}</p>`;
-    if (p['Lawsuit']) content += `<p><strong>Lawsuit:</strong> ${p['Lawsuit']}</p>`;
-
-    document.getElementById('popup-content').innerHTML = content;
-    document.getElementById('custom-popup').style.display = 'block';
-    sendHeight();
-  });
-</script>
-
 </body>
+
 </html>
