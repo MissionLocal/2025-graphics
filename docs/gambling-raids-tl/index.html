@@ -157,10 +157,10 @@
         let content = `<h2>${p['Name'] || ''}</h2>`;
         content += `<p>${p['Address'] || ''}</p>`;
 
-        const hasDetails = p['Raid Date'] || p['Raid findings'] || p['Arrests/citations'] || p['Lawsuit'];
+        const hasDetails = p['Date:'] || p['Findings:'] || p['Arrests/citations'] || p['Lawsuit'];
         if (hasDetails) content += `<hr>`;
-        if (p['Raid Date']) content += `<p><strong>Raid date:</strong> ${p['Raid Date']}</p>`;
-        if (p['Raid findings']) content += `<p><strong>Findings:</strong> ${p['Raid findings']}</p>`;
+        if (p['Date:']) content += `<p><strong>Raid date(s):</strong> ${p['Date:']}</p>`;
+        if (p['Findings:']) content += `<p><strong>Findings:</strong> ${p['Findings:']}</p>`;
         if (p['Arrests/citations']) content += `<p><strong>Arrests/citations:</strong> ${p['Arrests/citations']}</p>`;
         if (p['Lawsuit']) content += `<p><strong>Lawsuit:</strong> ${p['Lawsuit']}</p>`;
 
