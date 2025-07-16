@@ -37,7 +37,7 @@ Promise.all([
 .then(function([missionData, missionPlanData, plazasData, marketsData, vendorsData, otherVendorsData]) {
     var config = {
         style: 'mapbox://styles/mapbox/dark-v9',
-        accessToken: 'pk.eyJ1IjoibWxub3ciLCJhIjoiY21kNmt1MzVlMDE5dDJrb3Y5eGNjM2NjcSJ9.qnNHmQpBn1GEYLcWvvyFZQ',
+        accessToken: 'pk.eyJ1IjoibWxub3ciLCJhIjoiY21kNmw1aTAyMDFkbTJqb3Z2dTN0YzRjMyJ9.4abRTnHdhMI-RE48dHNtYw',
         showMarkers: false,
         theme: 'dark',
         chapters: [
