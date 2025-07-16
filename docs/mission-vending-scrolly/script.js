@@ -36,8 +36,8 @@ Promise.all([
 
 .then(function([missionData, missionPlanData, plazasData, marketsData, vendorsData, otherVendorsData]) {
     var config = {
-        style: 'mapbox://styles/mlnow/cm8eyuc3u00xn01sqacf479t3',
-        accessToken: 'pk.eyJ1IjoibWxub3ciLCJhIjoiY21kNmw1aTAyMDFkbTJqb3Z2dTN0YzRjMyJ9.4abRTnHdhMI-RE48dHNtYw',
+        style: 'mapbox://styles/mapbox/dark-v9',
+        accessToken: 'pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ',
         showMarkers: false,
         theme: 'dark',
         chapters: [
