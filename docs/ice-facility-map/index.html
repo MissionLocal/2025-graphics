@@ -95,7 +95,7 @@
     
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/light-v11',
+            style: 'mapbox://styles/mlnow/cmcp945qr000t01rf5rskhxsm',
             center: [-98, 39], // Center of US
             zoom: 3
         });
@@ -139,7 +139,7 @@
     
                 new mapboxgl.Popup()
                     .setLngLat(feature.geometry.coordinates)
-                    .setHTML(`<div class="popup-header">Facility: ${props.detention_facility}</div>
+                    .setHTML(`<div class="popup-header"><strong>${props.detention_facility}</strong></div>
                               <div class="popup-text">Book ins: ${props.book_in_count}</div>`)
                     .addTo(map);
             });
