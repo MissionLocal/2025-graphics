@@ -97,7 +97,7 @@
             container: 'map',
             style: 'mapbox://styles/mapbox/light-v11',
             center: [-98, 39], // Center of US
-            zoom: 3
+            zoom: 3.25
         });
     
         map.on('load', () => {
@@ -114,7 +114,7 @@
                     'circle-radius': [
                         'interpolate',
                         ['linear'],
-                        ['get', 'count'],
+                        ['get', 'book_in_count'],
                         1, 4,
                         10, 10,
                         100, 20
