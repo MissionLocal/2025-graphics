@@ -133,8 +133,8 @@
     
                 new mapboxgl.Popup()
                     .setLngLat(feature.geometry.coordinates)
-                    .setHTML(`<div class="popup-header">${props.name || 'Facility'}</div>
-                              <div class="popup-text">Count: ${props.book_in_count}</div>`)
+                    .setHTML(`<div class="popup-header">Facility: ${props.dentetion_facility}</div>
+                              <div class="popup-text">Book ins: ${props.book_in_count}</div>`)
                     .addTo(map);
             });
     
