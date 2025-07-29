@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Facility counts</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        padding-bottom: 20px;
+    }
+
+    #map {
+        width: 100vw;
+        max-width: 600px;
+        height: 500px;
+        margin: 10px 10px 10px 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Add subtle shadow */
+
+    }
+
+    .cont {
+        display: flex;
+        justify-content: center;
+        /* Center the container horizontally */
+        align-items: center;
+        /* Center the container vertically, if needed */
+    }
+
+    /* Container layout */
+    .dropdownContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 10px 10px 10px 10px;
+
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+        .legend-container {
+            flex-direction: column;
+            /* Stack boxes on mobile */
+            align-items: center;
+            /* Center boxes horizontally */
+        }
+
+    }
+
+    .popup-header {
+        margin: 2px 0;
+        /* Reduce top and bottom margins */
+        font-size: 16px;
+        /* Adjust header font size */
+        font-family: Barlow, sans-serif;
+    }
+
+    .popup-text {
+        margin: 2px 0;
+        /* Reduce margins on text elements */
+        font-size: 14px;
+        /* Adjust text font size */
+        line-height: 1.3;
+        /* Adjust line height */
+        font-family: Barlow, sans-serif;
+
+    }
+
+    .mapboxgl-popup-content {
+        background-color: rgba(255, 255, 255);
+        /* 0.8 for 80% opacity */
+        border-radius: 5px;
+        /* Optional: adds rounded corners */
+        color: #333;
+        /* Text color to ensure readability */
+    }
+</style>
+
+<body>
+    <div class="cont">
+        <div id='map'></div>
+    </div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWxub3ciLCJhIjoiY21kNmw1aTAyMDFkbTJqb3Z2dTN0YzRjMyJ9.4abRTnHdhMI-RE48dHNtYw';
+    
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/light-v11',
+            center: [-98, 39], // Center of US
+            zoom: 4
+        });
+    
+        map.on('load', () => {
+            map.addSource('facilities', {
+                type: 'geojson',
+                data: 'data.geojson' // <-- Replace with your actual file path or object
+            });
+    
+            map.addLayer({
+                id: 'facilities-layer',
+                type: 'circle',
+                source: 'facilities',
+                paint: {
+                    'circle-radius': [
+                        'interpolate',
+                        ['linear'],
+                        ['get', 'count'],
+                        1, 4,
+                        10, 10,
+                        100, 20
+                    ],
+                    'circle-color': '#3174ad',
+                    'circle-opacity': 0.8,
+                    'circle-stroke-width': 1,
+                    'circle-stroke-color': '#fff'
+                }
+            });
+    
+            // Optional: Add popups on click
+            map.on('click', 'facilities-layer', (e) => {
+                const feature = e.features[0];
+                const props = feature.properties;
+    
+                new mapboxgl.Popup()
+                    .setLngLat(feature.geometry.coordinates)
+                    .setHTML(`<div class="popup-header">${props.name || 'Facility'}</div>
+                              <div class="popup-text">Count: ${props.count}</div>`)
+                    .addTo(map);
+            });
+    
+            // Change cursor on hover
+            map.on('mouseenter', 'facilities-layer', () => {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', 'facilities-layer', () => {
+                map.getCanvas().style.cursor = '';
+            });
+        });
+    </script>
+    
+    <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+
+</body>
+
+</html>
