@@ -91,6 +91,7 @@
     </div>
 
     <script>
+
         mapboxgl.accessToken = 'pk.eyJ1IjoibWxub3ciLCJhIjoiY21kNmw1aTAyMDFkbTJqb3Z2dTN0YzRjMyJ9.4abRTnHdhMI-RE48dHNtYw';
     
         const map = new mapboxgl.Map({
@@ -152,9 +153,23 @@
                 map.getCanvas().style.cursor = '';
             });
         });
+
+
     </script>
     
     <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+    <script>
+        const pymChild = new pym.Child();
+    
+        window.onload = () => {
+            pymChild.sendHeight();
+            setTimeout(() => pymChild.sendHeight(), 1000); // for late DOM changes
+        };
+    
+        window.onresize = () => {
+            pymChild.sendHeight();
+        };
+    </script>
 
 </body>
 
