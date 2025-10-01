@@ -1,11 +1,15 @@
-// map.js — multiline segments colored by "staffing"
+// map.js — multiline segments colored by "staffing" + TITLE
 document.addEventListener('DOMContentLoaded', async () => {
     const pymChild = new pym.Child();
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21mZDE2anltMDRkbDJtcHM1Y2M0eTFjNCJ9.nmMGLA-zX7BqznSJ2po65g";
   
+    // --- Title text (edit me) ---
+    const MAP_TITLE = 'San Francisco foot patrol beats';
+  
     // DOM
     const infoBox  = document.getElementById('info-box');
     const legendEl = document.getElementById('legend');
+    const mapEl    = document.getElementById('map');
   
     // Hide info box on load ✅
     if (infoBox) infoBox.style.display = 'none';
@@ -13,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
-      center: [-122.4267806, 37.7685798], // SF-ish center 37.7670478,-122.4267806
+      center: [-122.4267806, 37.7685798],
       zoom: 11
     });
   
@@ -35,9 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       return `
         <div><strong>${name || 'Unnamed segment'}</strong></div>
         <div class="info-stats">
-          ${station ? `${station}` : ''}
-          ${station && division ? ' • ' : ''}
-          ${division ? `${division}` : ''}
+          ${station ? `${station}` : ''}${station && division ? ' • ' : ''}${division ? `${division}` : ''}
         </div>
         <div class="info-stats">Staffing: ${staffing || 'N/A'}</div>
       `;
@@ -54,17 +56,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const gj = await fetch(dataUrl).then(r => r.json());
   
     // ---- Styling: staffing → color -------------------------------------------
-    // Colors chosen to be distinct + readable on your basemap
-    //   Filled → green, Filled with Overtime → amber, Not Filled → red, other/N/A → gray
-    const COLOR_FILLED = '#66c2a5';
-    const COLOR_UNFIL  = '#fc8d62';
-    const COLOR_NA     = '#BDBDBD';
+    const COLOR_FILLED = '#66c2a5';  // teal
+    const COLOR_UNFIL  = '#fc8d62';  // orange
+    const COLOR_NA     = '#BDBDBD';  // neutral
   
     const staffingColor = [
       'match', ['get', 'staffing'],
-      'Filled with On-Duty', COLOR_FILLED,
-      'Filled with Overtime', COLOR_FILLED,
-      'Not Filled', COLOR_UNFIL,
+      'Filled with On-Duty',   COLOR_FILLED,
+      'Filled with Overtime',  COLOR_FILLED,
+      'Not Filled',            COLOR_UNFIL,
       COLOR_NA // fallback
     ];
   
@@ -73,6 +73,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     const hoverLineWidth = 2.5;
   
     map.on('load', () => {
+      // --- Inject a title pill (no HTML change needed) ---
+      const host = (legendEl && legendEl.parentElement) || mapEl.parentElement;
+      let titleEl = host.querySelector('.map-title');
+      if (!titleEl) {
+        titleEl = document.createElement('div');
+        titleEl.className = 'map-title';
+        titleEl.textContent = MAP_TITLE;
+        host.appendChild(titleEl);
+      } else {
+        titleEl.textContent = MAP_TITLE;
+      }
+      // Nudge legend down so it sits under the title
+      if (legendEl) {
+        legendEl.style.top = '56px';
+        legendEl.style.left = '14px';
+      }
+  
       // Source
       map.addSource('segments', { type: 'geojson', data: gj });
   
@@ -86,10 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           'line-width': baseLineWidth,
           'line-opacity': 1
         },
-        layout: {
-          'line-cap': 'round',
-          'line-join': 'round'
-        }
+        layout: { 'line-cap': 'round', 'line-join': 'round' }
       });
   
       // Thin white casing to pop against basemap
@@ -102,49 +116,30 @@ document.addEventListener('DOMContentLoaded', async () => {
           'line-width': ['+', baseLineWidth, 1.5],
           'line-opacity': 0.25
         },
-        layout: {
-          'line-cap': 'round',
-          'line-join': 'round'
-        }
+        layout: { 'line-cap': 'round', 'line-join': 'round' }
       });
   
-      // Hover highlight (thick white underlay)
+      // Hover highlight (white)
       map.addLayer({
         id: 'segments-hover',
         type: 'line',
         source: 'segments',
-        paint: {
-          'line-color': '#FFFFFF',
-          'line-width': hoverLineWidth,
-          'line-opacity': 0.7
-        },
-        layout: {
-          'line-cap': 'round',
-          'line-join': 'round'
-        },
-        filter: ['==', ['get', 'name'], '__none__'] // start with nothing selected
+        paint: { 'line-color': '#FFFFFF', 'line-width': hoverLineWidth, 'line-opacity': 0.7 },
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        filter: ['==', ['get', 'name'], '__none__']
       });
   
-      // Hover color overlay (re-draw the segment color on top, thicker)
+      // Hover color overlay (thicker)
       map.addLayer({
         id: 'segments-hover-color',
         type: 'line',
         source: 'segments',
-        paint: {
-          'line-color': staffingColor,
-          'line-width': ['+', hoverLineWidth, 1],
-          'line-opacity': 1.0
-        },
-        layout: {
-          'line-cap': 'round',
-          'line-join': 'round'
-        },
+        paint: { 'line-color': staffingColor, 'line-width': ['+', hoverLineWidth, 1], 'line-opacity': 1.0 },
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
         filter: ['==', ['get', 'name'], '__none__']
       });
   
       // ---- Interactions ------------------------------------------------------
-  
-      // Hover → thicken the segment under the pointer
       map.on('mousemove', 'segments-line', e => {
         if (!e.features?.length) return;
         const f = e.features[0];
@@ -172,7 +167,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         infoBox.style.display = 'block';
         infoBox.innerHTML = tplInfo(props);
   
-        // Keep the clicked feature highlighted
         const name = props.name ?? '';
         const station = props.station ?? '';
         const filter = featureKeyExpr(name, station);
@@ -185,7 +179,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Click anywhere else → hide card + clear highlight
       map.on('click', e => {
         const feats = map.queryRenderedFeatures(e.point, { layers: ['segments-line'] });
-        if (feats.length) return; // clicked a segment
+        if (feats.length) return;
         infoBox.style.display = 'none';
         map.setFilter('segments-hover', ['==', ['get', 'name'], '__none__']);
         map.setFilter('segments-hover-color', ['==', ['get', 'name'], '__none__']);
@@ -196,23 +190,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       const legendHTML = `
         <div class="legend-title">Staffing</div>
         <div class="legend-list">
-          <div class="legend-item">
-            <span class="legend-line" style="background:${COLOR_FILLED}"></span>
-            <span>Filled</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-line" style="background:${COLOR_UNFIL}"></span>
-            <span>Not Filled</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-line" style="background:${COLOR_NA}"></span>
-            <span>Other</span>
-          </div>
+          <div class="legend-item"><span class="legend-line" style="background:${COLOR_FILLED}"></span><span>Filled</span></div>
+          <div class="legend-item"><span class="legend-line" style="background:${COLOR_UNFIL}"></span><span>Not Filled</span></div>
+          <div class="legend-item"><span class="legend-line" style="background:${COLOR_NA}"></span><span>Other</span></div>
         </div>
       `;
       if (legendEl) legendEl.innerHTML = legendHTML;
   
-      // Attempt to keep labels above vectors (won’t throw if not present)
       try {
         if (map.getLayer('road-label-navigation')) map.moveLayer('road-label-navigation');
         if (map.getLayer('settlement-subdivision-label')) map.moveLayer('settlement-subdivision-label');

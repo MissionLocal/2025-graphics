@@ -54,3 +54,19 @@ body { margin:0; padding:0 0 20px 0; font-family:'Barlow',sans-serif; }
   .legend{ top:14px; left:14px; }
   .info-box{ width:calc(100% - 12px); max-width:460px; }
 }
+
+.map-title{
+  position:absolute; top:14px; left:14px; z-index:3;
+  background:rgba(255,255,255,.95);
+  border-radius:4px;
+  box-shadow:0 1px 2px rgba(0,0,0,.12);
+  padding:6px 8px;
+  font-family:'Barlow', sans-serif;
+  font-weight:600;
+  font-size:13px;
+  color:#333;
+  pointer-events:none; /* lets you drag map under it */
+}
+
+/* Place legend under the title when present */
+.map-container .legend{ top:56px; left:14px; }
