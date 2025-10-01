@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ];
   
     // Base line widths and hover emphasis
-    const baseLineWidth  = 3;
+    const baseLineWidth  = 2;
     const hoverLineWidth = 6;
   
     map.on('load', () => {
