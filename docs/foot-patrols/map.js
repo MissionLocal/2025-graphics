@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       container: 'map',
       style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
       center: [-122.4267806, 37.7685798], // SF-ish center 37.7670478,-122.4267806
-      zoom: 11.2
+      zoom: 11
     });
   
     // ---- Helpers --------------------------------------------------------------
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     // Base line widths and hover emphasis
     const baseLineWidth  = 2;
-    const hoverLineWidth = 6;
+    const hoverLineWidth = 2.5;
   
     map.on('load', () => {
       // Source
