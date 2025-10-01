@@ -36,6 +36,21 @@ body { margin:0; padding:0 0 20px 0; font-family:'Barlow',sans-serif; }
   flex:0 0 32px;
 }
 
+/* dashed stroke swatch used for districts in legend */
+.legend .legend-stroke{
+  display:inline-block;
+  width:32px;           /* swatch length */
+  height:0;             /* it's a line, not a chip */
+  border-top:2.5px solid #777;   /* color overridden inline from JS if needed */
+  border-radius:0;
+  box-shadow:none;      /* no inset outline for strokes */
+}
+.legend .legend-stroke--dashed{
+  border-top-style:dashed;        /* matches the map's dashed boundary */
+  border-top-width:2.5px;
+}
+
+
 /* info card (bottom centered) */
 .info-box{
   position:absolute; left:50%; transform:translateX(-50%);

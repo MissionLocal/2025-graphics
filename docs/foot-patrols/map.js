@@ -186,14 +186,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   
       // Legend
       const legendHTML = `
-        <div class="legend-title">Staffing</div>
-        <div class="legend-list">
-          <div class="legend-item"><span class="legend-line" style="background:${COLOR_FILLED}"></span><span>Filled</span></div>
-          <div class="legend-item"><span class="legend-line" style="background:${COLOR_UNFIL}"></span><span>Not Filled</span></div>
-          <div class="legend-item"><span class="legend-line" style="background:${COLOR_NA}"></span><span>Other</span></div>
-          <div class="legend-item"><span class="legend-line" style="background:#777"></span><span>Police district boundaries</span></div>
+      <div class="legend-title">Staffing</div>
+      <div class="legend-list">
+        <div class="legend-item">
+          <span class="legend-line" style="background:${COLOR_FILLED}"></span>
+          <span>Filled</span>
         </div>
-      `;
+        <div class="legend-item">
+          <span class="legend-line" style="background:${COLOR_UNFIL}"></span>
+          <span>Not Filled</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-line" style="background:${COLOR_NA}"></span>
+          <span>Other</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-stroke legend-stroke--dashed" style="border-color:#777"></span>
+          <span>Police districts</span>
+        </div>
+      </div>
+    `;
+    if (legendEl) legendEl.innerHTML = legendHTML;
+    
       if (legendEl) legendEl.innerHTML = legendHTML;
   
       try {
