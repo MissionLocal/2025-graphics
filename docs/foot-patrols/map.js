@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mlnow/cmbgyvcll009801sn6ygk6kzo',
+      style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
       center: [-122.4267806, 37.7685798], // SF-ish center 37.7670478,-122.4267806
       zoom: 11
     });
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     const staffingColor = [
       'match', ['get', 'staffing'],
-      'Filled', COLOR_FILLED,
+      'Filled with On-Duty', COLOR_FILLED,
       'Filled with Overtime', COLOR_OT,
       'Not Filled', COLOR_UNFIL,
       COLOR_NA // fallback
