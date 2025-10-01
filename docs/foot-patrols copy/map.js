@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ---- Styling: staffing → color -------------------------------------------
     // Colors chosen to be distinct + readable on your basemap
     //   Filled → green, Filled with Overtime → amber, Not Filled → red, other/N/A → gray
-    const COLOR_FILLED = '#66c2a5';
-    const COLOR_UNFIL  = '#fc8d62';
+    const COLOR_FILLED = '#0dd6c7';
+    const COLOR_UNFIL  = '#d2f4f1';
     const COLOR_NA     = '#BDBDBD';
   
     const staffingColor = [
