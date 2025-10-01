@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21mZDE2anltMDRkbDJtcHM1Y2M0eTFjNCJ9.nmMGLA-zX7BqznSJ2po65g";
   
     // Title text
-    const MAP_TITLE = 'Which beats are staffed';
+    const MAP_TITLE = 'Foot patrol beats';
   
     // DOM
     const infoBox  = document.getElementById('info-box');
