@@ -56,15 +56,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ---- Styling: staffing → color -------------------------------------------
     // Colors chosen to be distinct + readable on your basemap
     //   Filled → green, Filled with Overtime → amber, Not Filled → red, other/N/A → gray
-    const COLOR_FILLED = '#66c2a5';
-    const COLOR_OT     = '#8da0cb';
-    const COLOR_UNFIL  = '#fc8d62';
+    const COLOR_FILLED = '#0dd6c7';
+    const COLOR_UNFIL  = '#d2f4f1';
     const COLOR_NA     = '#BDBDBD';
   
     const staffingColor = [
       'match', ['get', 'staffing'],
       'Filled with On-Duty', COLOR_FILLED,
-      'Filled with Overtime', COLOR_OT,
+      'Filled with Overtime', COLOR_FILLED,
       'Not Filled', COLOR_UNFIL,
       COLOR_NA // fallback
     ];
@@ -200,10 +199,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="legend-item">
             <span class="legend-line" style="background:${COLOR_FILLED}"></span>
             <span>Filled</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-line" style="background:${COLOR_OT}"></span>
-            <span>Filled with Overtime</span>
           </div>
           <div class="legend-item">
             <span class="legend-line" style="background:${COLOR_UNFIL}"></span>
