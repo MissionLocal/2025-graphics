@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       return `
         <div><strong>${name || 'Unnamed segment'}</strong></div>
         <div class="info-stats">
-          ${station ? `Station: ${station}` : ''}
+          ${station ? `${station}` : ''}
           ${station && division ? ' • ' : ''}
-          ${division ? `Division: ${division}` : ''}
+          ${division ? `${division}` : ''}
         </div>
         <div class="info-stats">Staffing: ${staffing || 'N/A'}</div>
       `;
