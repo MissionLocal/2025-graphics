@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     const staffingColor = [
       'match', ['get', 'staffing'],
-      'Filled', COLOR_FILLED,
+      'Filled with On-Duty', COLOR_FILLED,
       'Filled with Overtime', COLOR_OT,
       'Not Filled', COLOR_UNFIL,
       COLOR_NA
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     map1.on('load', () => {
       map1.addSource('segments1', { type: 'geojson', data: gj });
   
-      const baseWidth  = 2.5;
+      const baseWidth  = 2;
       const hoverWidth = 4;
   
       map1.addLayer({
