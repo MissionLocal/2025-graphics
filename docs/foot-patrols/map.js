@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
           <div class="legend-item">
             <span class="legend-line" style="background:${COLOR_NA}"></span>
-            <span>Other / N.A.</span>
+            <span>Other</span>
           </div>
         </div>
       `;
