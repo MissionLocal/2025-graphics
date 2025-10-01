@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ---- Styling: staffing → color -------------------------------------------
     // Colors chosen to be distinct + readable on your basemap
     //   Filled → green, Filled with Overtime → amber, Not Filled → red, other/N/A → gray
-    const COLOR_FILLED = '#2E7D32';
-    const COLOR_OT     = '#F9A825';
-    const COLOR_UNFIL  = '#C62828';
+    const COLOR_FILLED = '#91bfdb';
+    const COLOR_OT     = '#ffffbf';
+    const COLOR_UNFIL  = '#fc8d59';
     const COLOR_NA     = '#BDBDBD';
   
     const staffingColor = [
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         paint: {
           'line-color': staffingColor,
           'line-width': baseLineWidth,
-          'line-opacity': 0.9
+          'line-opacity': 1
         },
         layout: {
           'line-cap': 'round',
