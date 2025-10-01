@@ -1,17 +1,15 @@
-// map.js — multiline segments colored by "staffing" + TITLE
+// map.js — segments colored by "staffing" + TITLE + district boundaries (non-interactive)
 document.addEventListener('DOMContentLoaded', async () => {
     const pymChild = new pym.Child();
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21mZDE2anltMDRkbDJtcHM1Y2M0eTFjNCJ9.nmMGLA-zX7BqznSJ2po65g";
   
-    // --- Title text (edit me) ---
-    const MAP_TITLE = 'San Francisco foot patrol beats';
+    // Title text
+    const MAP_TITLE = 'Which beats are staffed';
   
     // DOM
     const infoBox  = document.getElementById('info-box');
     const legendEl = document.getElementById('legend');
     const mapEl    = document.getElementById('map');
-  
-    // Hide info box on load ✅
     if (infoBox) infoBox.style.display = 'none';
   
     const map = new mapboxgl.Map({
@@ -21,21 +19,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       zoom: 11
     });
   
-    // ---- Helpers --------------------------------------------------------------
+    // Helpers
     const key = v => (v == null ? '' : String(v).trim());
-    const coalesce = (...vals) => {
-      for (const v of vals) {
-        if (v !== undefined && v !== null && `${v}`.trim() !== '') return v;
-      }
-      return '';
-    };
+    const coalesce = (...vals) => { for (const v of vals) if (v != null && `${v}`.trim() !== '') return v; return ''; };
   
     function tplInfo(p = {}) {
       const name     = key(coalesce(p.name));
       const station  = key(coalesce(p.station));
       const division = key(coalesce(p.division));
       const staffing = key(coalesce(p.staffing));
-  
       return `
         <div><strong>${name || 'Unnamed segment'}</strong></div>
         <div class="info-stats">
@@ -45,35 +37,37 @@ document.addEventListener('DOMContentLoaded', async () => {
       `;
     }
   
-    // Make a composite filter key we can use for hover/click selection
     const featureKeyExpr = (name, station) => ['all',
       ['==', ['get', 'name'], name],
       ['==', ['get', 'station'], station]
     ];
   
-    // ---- Load data ------------------------------------------------------------
-    const dataUrl = 'final_map.geojson';
-    const gj = await fetch(dataUrl).then(r => r.json());
+    // Load both datasets
+    const segmentsUrl  = 'final_map.geojson';
+    const districtsUrl = 'districts.geojson'; // <-- your city districts (WGS84 / EPSG:4326)
+    const [segmentsGJ, districtsGJ] = await Promise.all([
+      fetch(segmentsUrl).then(r => r.json()),
+      fetch(districtsUrl).then(r => r.json())
+    ]);
   
-    // ---- Styling: staffing → color -------------------------------------------
+    // Colors
     const COLOR_FILLED = '#66c2a5';  // teal
     const COLOR_UNFIL  = '#fc8d62';  // orange
     const COLOR_NA     = '#BDBDBD';  // neutral
   
     const staffingColor = [
       'match', ['get', 'staffing'],
-      'Filled with On-Duty',   COLOR_FILLED,
-      'Filled with Overtime',  COLOR_FILLED,
-      'Not Filled',            COLOR_UNFIL,
-      COLOR_NA // fallback
+      'Filled with On-Duty',  COLOR_FILLED,
+      'Filled with Overtime', COLOR_FILLED,
+      'Not Filled',           COLOR_UNFIL,
+      COLOR_NA
     ];
   
-    // Base line widths and hover emphasis
     const baseLineWidth  = 2;
     const hoverLineWidth = 2.5;
   
     map.on('load', () => {
-      // --- Inject a title pill (no HTML change needed) ---
+      // Title pill
       const host = (legendEl && legendEl.parentElement) || mapEl.parentElement;
       let titleEl = host.querySelector('.map-title');
       if (!titleEl) {
@@ -84,16 +78,27 @@ document.addEventListener('DOMContentLoaded', async () => {
       } else {
         titleEl.textContent = MAP_TITLE;
       }
-      // Nudge legend down so it sits under the title
-      if (legendEl) {
-        legendEl.style.top = '56px';
-        legendEl.style.left = '14px';
-      }
+      if (legendEl) { legendEl.style.top = '56px'; legendEl.style.left = '14px'; }
   
-      // Source
-      map.addSource('segments', { type: 'geojson', data: gj });
+      // -------- District boundaries (non-interactive) --------
+      // Add BEFORE segments so it sits beneath them and never affects events.
+      map.addSource('districts', { type: 'geojson', data: districtsGJ });
+      map.addLayer({
+        id: 'districts-line',
+        type: 'line',
+        source: 'districts',
+        paint: {
+          'line-color': '#777',           // neutral outline
+          'line-width': 1.2,
+          'line-opacity': 0.8,
+          'line-dasharray': [2, 2]        // subtle dashed boundary
+        },
+        layout: { 'line-cap': 'round', 'line-join': 'round' }
+      });
   
-      // Base segments layer
+      // -------- Segments --------
+      map.addSource('segments', { type: 'geojson', data: segmentsGJ });
+  
       map.addLayer({
         id: 'segments-line',
         type: 'line',
@@ -106,7 +111,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         layout: { 'line-cap': 'round', 'line-join': 'round' }
       });
   
-      // Thin white casing to pop against basemap
       map.addLayer({
         id: 'segments-casing',
         type: 'line',
@@ -119,51 +123,45 @@ document.addEventListener('DOMContentLoaded', async () => {
         layout: { 'line-cap': 'round', 'line-join': 'round' }
       });
   
-      // Hover highlight (white)
       map.addLayer({
         id: 'segments-hover',
         type: 'line',
         source: 'segments',
         paint: { 'line-color': '#FFFFFF', 'line-width': hoverLineWidth, 'line-opacity': 0.7 },
         layout: { 'line-cap': 'round', 'line-join': 'round' },
-        filter: ['==', ['get', 'name'], '__none__']
+        filter: ['==', ['get','name'], '__none__']
       });
   
-      // Hover color overlay (thicker)
       map.addLayer({
         id: 'segments-hover-color',
         type: 'line',
         source: 'segments',
         paint: { 'line-color': staffingColor, 'line-width': ['+', hoverLineWidth, 1], 'line-opacity': 1.0 },
         layout: { 'line-cap': 'round', 'line-join': 'round' },
-        filter: ['==', ['get', 'name'], '__none__']
+        filter: ['==', ['get','name'], '__none__']
       });
   
-      // ---- Interactions ------------------------------------------------------
+      // Interactions (only on segments)
       map.on('mousemove', 'segments-line', e => {
         if (!e.features?.length) return;
         const f = e.features[0];
         const name = f.properties?.name ?? '';
         const station = f.properties?.station ?? '';
         const filter = featureKeyExpr(name, station);
-  
         map.setFilter('segments-hover', filter);
         map.setFilter('segments-hover-color', filter);
         map.getCanvas().style.cursor = 'pointer';
       });
   
       map.on('mouseleave', 'segments-line', () => {
-        map.setFilter('segments-hover', ['==', ['get', 'name'], '__none__']);
-        map.setFilter('segments-hover-color', ['==', ['get', 'name'], '__none__']);
+        map.setFilter('segments-hover', ['==', ['get','name'], '__none__']);
+        map.setFilter('segments-hover-color', ['==', ['get','name'], '__none__']);
         map.getCanvas().style.cursor = '';
       });
   
-      // Click → show info card
       map.on('click', 'segments-line', e => {
         if (!e.features?.length) return;
-        const f = e.features[0];
-        const props = f.properties || {};
-  
+        const props = e.features[0].properties || {};
         infoBox.style.display = 'block';
         infoBox.innerHTML = tplInfo(props);
   
@@ -176,23 +174,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         pymChild.sendHeight();
       });
   
-      // Click anywhere else → hide card + clear highlight
+      // Click elsewhere → hide
       map.on('click', e => {
         const feats = map.queryRenderedFeatures(e.point, { layers: ['segments-line'] });
         if (feats.length) return;
         infoBox.style.display = 'none';
-        map.setFilter('segments-hover', ['==', ['get', 'name'], '__none__']);
-        map.setFilter('segments-hover-color', ['==', ['get', 'name'], '__none__']);
+        map.setFilter('segments-hover', ['==', ['get','name'], '__none__']);
+        map.setFilter('segments-hover-color', ['==', ['get','name'], '__none__']);
         pymChild.sendHeight();
       });
   
-      // ---- Legend ------------------------------------------------------------
+      // Legend
       const legendHTML = `
         <div class="legend-title">Staffing</div>
         <div class="legend-list">
           <div class="legend-item"><span class="legend-line" style="background:${COLOR_FILLED}"></span><span>Filled</span></div>
           <div class="legend-item"><span class="legend-line" style="background:${COLOR_UNFIL}"></span><span>Not Filled</span></div>
           <div class="legend-item"><span class="legend-line" style="background:${COLOR_NA}"></span><span>Other</span></div>
+          <div class="legend-item"><span class="legend-line" style="background:#777"></span><span>Police district boundaries</span></div>
         </div>
       `;
       if (legendEl) legendEl.innerHTML = legendHTML;
@@ -205,7 +204,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       pymChild.sendHeight();
     });
   
-    // Keep responsive + update embed height
     window.addEventListener('resize', () => {
       map.resize();
       pymChild.sendHeight();
