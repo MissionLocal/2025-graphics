@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     const staffingColor = [
       'match', ['get', 'staffing'],
-      'Filled with On-Duty',  COLOR_FILLED,
-      'Filled with Overtime', COLOR_FILLED,
-      'Not Filled',           COLOR_UNFIL,
+      'Filled with on-duty',  COLOR_FILLED,
+      'Filled with overtime', COLOR_FILLED,
+      'Not filled',           COLOR_UNFIL,
       COLOR_NA
     ];
   
