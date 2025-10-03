@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>
         <div class="legend-item">
           <span class="legend-line" style="background:${COLOR_UNFIL}"></span>
-          <span>Not Filled</span>
+          <span>Not filled</span>
         </div>
         <div class="legend-item">
           <span class="legend-stroke legend-stroke--dashed" style="border-color:#777"></span>
