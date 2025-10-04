@@ -1,7 +1,7 @@
 // map.js — segments colored by "staffing" + TITLE + district boundaries (non-interactive)
 document.addEventListener('DOMContentLoaded', async () => {
     const pymChild = new pym.Child();
-    mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21mZDE2anltMDRkbDJtcHM1Y2M0eTFjNCJ9.nmMGLA-zX7BqznSJ2po65g";
+    mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21kNmw1aTAyMDFkbTJqb3Z2dTN0YzRjMyJ9.4abRTnHdhMI-RE48dHNtYw";
   
     // Title text
     const MAP_TITLE = 'Foot patrol beats';
