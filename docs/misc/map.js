@@ -181,6 +181,7 @@
           ["heightbu_1", p.heightbu_1],
           ["RC", p.RC],
           ["UNITS", p.UNITS],
+          ["RP1CLACDE", p.RP1CLACDE],
           ["YRBLT", p.YRBLT],
           ["sup_dist", p.sup_dist]
         ].map(([k, v]) => `<tr><th>${k}</th><td>${val(v)}</td></tr>`).join("");
