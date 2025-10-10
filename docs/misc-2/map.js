@@ -61,15 +61,15 @@
       });
 
       // Outline layer
-      map.addLayer({
-        id: 'supe-line',
-        type: 'line',
-        source: 'supe',
-        paint: {
-          'line-color': '#066a62',
-          'line-width': 1.25
-        }
-      });
+      // map.addLayer({
+      //   id: 'supe-line',
+      //   type: 'line',
+      //   source: 'supe',
+      //   paint: {
+      //     'line-color': '#066a62',
+      //     'line-width': 1.25
+      //   }
+      // });
 
       // 5) Fit map to the data bounds
       const bounds = computeGeoJSONBounds(data);
