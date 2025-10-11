@@ -1,4 +1,4 @@
-// map.js — Proposed heights, Mission Local embed style (single-layer filtering)
+// map.js — Proposed heights, Mission Local embed style (single-layer filtering + safe info box)
 document.addEventListener('DOMContentLoaded', async () => {
     const pymChild = new pym.Child();
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21mZDE2anltMDRkbDJtcHM1Y2M0eTFjNCJ9.nmMGLA-zX7BqznSJ2po65g";
@@ -29,6 +29,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="legend-ends"><span>${leftLabel}</span><span>${rightLabel}</span></div>
       `;
     }
+  
+    // ======= Info-box spill protection (your working pattern) =======
+    function ensureInfoBoxInside() {
+      const cont = document.querySelector('.map-container');
+      if (!cont || !infoBox || infoBox.style.display === 'none') return;
+  
+      // reset to default baseline (matches CSS)
+      infoBox.style.bottom = '22px';
+  
+      requestAnimationFrame(() => {
+        const c = cont.getBoundingClientRect();
+        const b = infoBox.getBoundingClientRect();
+        const spill = (b.bottom + 8) - c.bottom; // +8px safety
+        if (spill > 0) {
+          const base = 22;
+          infoBox.style.bottom = `${base + spill}px`;
+        }
+      });
+    }
+  
+    function revealInfoBox(html) {
+      infoBox.innerHTML = html;
+      infoBox.style.display = 'block';
+      ensureInfoBoxInside();
+      requestAnimationFrame(() => pymChild.sendHeight());
+    }
+    // ===============================================
   
     // Helpers
     function computeHeightStats(geojson) {
@@ -155,8 +182,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       map.on('click','parcels-fill', e => {
         const f = e.features?.[0];
         if (!f) return;
-        infoBox.style.display = 'block';
-        infoBox.innerHTML = tplInfo(f.properties || {});
+        revealInfoBox(tplInfo(f.properties || {}));
+      });
+  
+      // Hide card when clicking blank map area
+      map.on('click', e => {
+        const hits = map.queryRenderedFeatures(e.point, { layers:['parcels-fill'] });
+        if (hits.length) return;
+        infoBox.style.display = 'none';
+        infoBox.style.bottom = '22px'; // reset baseline for next open
         pymChild.sendHeight();
       });
   
@@ -186,16 +220,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Filter by strict truthiness for the chosen property
             map.setFilter('parcels-fill', robustClassFilter(key));
           }
-  
-          // keep outline/hover visible
-          if (map.getLayer('outline')) map.setLayoutProperty('outline', 'visibility', 'visible');
-          if (map.getLayer('hover'))   map.setLayoutProperty('hover',   'visibility', 'visible');
         });
       }
     });
   
-    // Resize + pym
-    window.addEventListener('resize', () => { map.resize(); pymChild.sendHeight(); });
+    // Resize + pym — also recheck the card position after layout changes
+    window.addEventListener('resize', () => {
+      map.resize();
+      ensureInfoBoxInside();
+      pymChild.sendHeight();
+    });
   
     // Minimal bbox (no Turf dependency)
     function simpleBbox(geo){
@@ -211,8 +245,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         return [];
       };
       if (geo.type==='FeatureCollection') geo.features.forEach(f=>coords(f.geometry).forEach(scan));
-      else if (geo.type && geo.coordinates) coords(geo).forEach(scan);
       else if (geo.type==='Feature') coords(geo.geometry).forEach(scan);
+      else if (geo.type && geo.coordinates) coords(geo).forEach(scan);
       if (minX===Infinity) return null;
       return [[minX,minY],[maxX,maxY]];
     }
