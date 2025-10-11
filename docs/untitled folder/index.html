@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zoning Height Filter Map</title>
+  <!-- Mapbox GL JS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
+  <style>
+    :root { --bg:#0b1020; --card:#11162a; --muted:#9aa3b2; --accent:#0d6efd; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; background:#0b1020; color: #e8edf5; }
+
+    .wrap { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+
+    header { padding: 12px 16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0)); border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
+
+    h1 { font-size: 16px; margin: 0 8px 0 0; letter-spacing:.3px; font-weight: 600; color:#f0f4ff; }
+
+    .btns { display:flex; gap:8px; flex-wrap:wrap; }
+    .btn {
+      appearance: none; border: 1px solid rgba(255,255,255,0.15); background: #0f1730; color: #e8edf5; padding: 8px 12px; border-radius: 999px; cursor: pointer; font-weight: 600; letter-spacing:.2px; font-size: 13px;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease; user-select:none;
+    }
+    .btn:hover { background:#152048; }
+    .btn:active { transform: translateY(1px) scale(0.99); }
+    .btn.active { background:#183469; border-color:#3a6ff2; box-shadow: inset 0 0 0 1px rgba(58,111,242,.6); }
+
+    #map { width: 100%; height: 100%; }
+
+    .legend { position: absolute; right: 14px; bottom: 14px; z-index: 5; background: #0f1730; border:1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px 12px; width: 220px; box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+    .legend h3 { margin: 0 0 8px; font-size: 12px; font-weight:700; color:#dbe6ff; letter-spacing:.4px; text-transform:uppercase; }
+    .gradient { height: 10px; border-radius: 6px; background: linear-gradient(90deg, #deebf7, #c6dbef, #9ecae1, #6baed6, #3182bd, #08519c); }
+    .legend-scale { display:flex; justify-content: space-between; margin-top:6px; color:#b9c3d5; font-size: 12px; }
+    .legend-note { margin-top:6px; color:#8fa0b8; font-size:11px; }
+
+    .keyline { position:absolute; inset:0; pointer-events:none; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Proposed Height (ft) — Filter by Class</h1>
+      <div class="btns" id="layerButtons">
+        <button class="btn active" data-layer="all">ALL</button>
+        <button class="btn" data-layer="RC">RC</button>
+        <button class="btn" data-layer="SRES">SRES</button>
+        <button class="btn" data-layer="MRES">MRES</button>
+        <button class="btn" data-layer="COMM">COMM</button>
+      </div>
+    </header>
+
+    <div style="position:relative">
+      <div id="map"></div>
+      <div class="keyline"></div>
+
+      <div class="legend" id="legend">
+        <h3>Height scale</h3>
+        <div class="gradient"></div>
+        <div class="legend-scale"><span id="minH">0</span><span id="midH">–</span><span id="maxH">0</span></div>
+        <div class="legend-note">Darker = taller (by <code>proposed_height</code>)</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== CONFIG ======
+    // Use your access token
+    mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21mZDE2anltMDRkbDJtcHM1Y2M0eTFjNCJ9.nmMGLA-zX7BqznSJ2po65g";
+
+    // Data loading strategy:
+    // 1) If a global `window.ZONING_DATA` exists, use it directly.
+    // 2) Otherwise, fetch from DATA_URL.
+    const DATA_URL = "gdf_supe_with_categories.geojson"; // ← replace with your path if not inlining
+
+    async function loadData() {
+      if (window.ZONING_DATA) return window.ZONING_DATA;
+      try {
+        const res = await fetch(DATA_URL);
+        if (!res.ok) throw new Error("Failed to fetch GeoJSON");
+        return await res.json();
+      } catch (err) {
+        console.error(err);
+        // As a last resort, seed with a tiny sample using the structure you provided
+        return {
+          type: "FeatureCollection",
+          features: [
+            { type:"Feature", properties: { RP1PRCLID:"0040014", heightbulk:"40-X", heightbu_1:"50//85-R-4", proposed_height:50.0, height_difference:20.0, RC:true, SRES:false, MRES:true, COMM:false, UNITS:3.0, RP1CLACDE:"F", class_desc:"Flats & Duplex", YRBLT:1914.0, sup_dist:"3" }, geometry: { type:"Polygon", coordinates: [[[-122.41143319834065,37.805028969225916],[-122.4114692027236,37.8052079618394],[-122.4114707020932,37.805215419389704],[-122.41139234677364,37.80522522290252],[-122.41135484205432,37.80503877183175],[-122.41143319834065,37.805028969225916]]] } }
+          ]
+        };
+      }
+    }
+
+    function computeHeightStats(geojson) {
+      const vals = geojson.features
+        .map(f => Number(f.properties?.proposed_height))
+        .filter(v => Number.isFinite(v));
+      const min = vals.length ? Math.min(...vals) : 0;
+      const max = vals.length ? Math.max(...vals) : 100;
+      const mid = (min + max) / 2;
+      return {min, max, mid};
+    }
+
+    function makeStops(min, max, n = 6) {
+      // Create evenly spaced stops between min and max (inclusive)
+      const stops = [];
+      for (let i = 0; i < n; i++) {
+        const t = i / (n - 1);
+        stops.push(min + t * (max - min));
+      }
+      return stops;
+    }
+
+    function blueRamp(n = 6) {
+      // Light → dark blues (ColorBrewer-ish)
+      const blues = ["#deebf7","#c6dbef","#9ecae1","#6baed6","#3182bd","#08519c"];
+      if (n === blues.length) return blues;
+      // Simple resample if needed
+      const out = [];
+      for (let i = 0; i < n; i++) {
+        out.push(blues[Math.round(i * (blues.length - 1) / (n - 1))]);
+      }
+      return out;
+    }
+
+    function makeInterpolateExpr(min, max) {
+      const stops = makeStops(min, max, 6);
+      const colors = blueRamp(6);
+      const expr = ["interpolate", ["linear"], ["to-number", ["get", "proposed_height"]]];
+      for (let i = 0; i < stops.length; i++) expr.push(stops[i], colors[i]);
+      return expr;
+    }
+
+    function layerPaint(fillColorExpr) {
+      return {
+        "fill-color": [
+          "case",
+          ["!", ["to-boolean", ["get", "proposed_height"]]],
+          "#cbd5e1", // fallback if missing
+          fillColorExpr
+        ],
+        "fill-opacity": 0.75,
+        "fill-outline-color": "#0b1020"
+      };
+    }
+
+    function classFilter(key) {
+      // e.g. key = "RC" | "SRES" | "MRES" | "COMM"
+      return ["==", ["to-boolean", ["get", key]], true];
+    }
+
+    function updateLegend({min, max, mid}) {
+      document.getElementById("minH").textContent = Math.round(min);
+      document.getElementById("midH").textContent = Math.round(mid);
+      document.getElementById("maxH").textContent = Math.round(max);
+    }
+
+    (async function init() {
+      const data = await loadData();
+      const {min, max, mid} = computeHeightStats(data);
+      updateLegend({min, max, mid});
+
+      const colorExpr = makeInterpolateExpr(min, max);
+
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/light-v11",
+        center: [-122.431, 37.76], // SF-ish default
+        zoom: 11.2,
+        minZoom: 9
+      });
+
+      map.addControl(new mapboxgl.NavigationControl({ showCompass:false }));
+
+      map.on("load", () => {
+        map.addSource("parcels", { type: "geojson", data });
+
+        // ALL layer (no filter)
+        map.addLayer({
+          id: "all",
+          type: "fill",
+          source: "parcels",
+          paint: layerPaint(colorExpr)
+        },);
+
+        // Class-specific layers
+        ["RC","SRES","MRES","COMM"].forEach(id => {
+          map.addLayer({
+            id,
+            type: "fill",
+            source: "parcels",
+            filter: classFilter(id),
+            paint: layerPaint(colorExpr)
+          });
+          // Hidden by default; we start on ALL
+          map.setLayoutProperty(id, "visibility", "none");
+        });
+
+        // Fit to data bounds (if valid)
+        try {
+          const bbox = turf.bbox(data); // requires Turf – we will inline a tiny helper below if Turf isn't loaded
+          if (bbox && bbox.every(Number.isFinite)) {
+            map.fitBounds([[bbox[0],bbox[1]],[bbox[2],bbox[3]]], { padding: 40, maxZoom: 14 });
+          }
+        } catch (e) { /* ignore if turf missing or geometry invalid */ }
+      });
+
+      // Button interactions
+      const btns = document.getElementById('layerButtons');
+      btns.addEventListener('click', (e) => {
+        const b = e.target.closest('button.btn');
+        if (!b) return;
+        const layer = b.dataset.layer;
+        // toggle active class
+        [...btns.querySelectorAll('.btn')].forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        // show only the selected layer
+        const layers = ["all","RC","SRES","MRES","COMM"];
+        layers.forEach(id => {
+          const vis = (id === layer) ? "visible" : "none";
+          map.setLayoutProperty(id, "visibility", vis);
+        });
+      });
+    })();
+  </script>
+
+  <!-- Minimal Turf bbox fallback (optional): if Turf isn't available, provide a tiny bbox util -->
+  <script>
+    // If turf isn't present, define a minimal bbox helper for simple GeoJSON
+    if (typeof turf === 'undefined') {
+      window.turf = {
+        bbox: function(geo) {
+          let minX= Infinity, minY= Infinity, maxX= -Infinity, maxY= -Infinity;
+          function scanCoord(c) {
+            const x = +c[0], y = +c[1];
+            if (!Number.isFinite(x) || !Number.isFinite(y)) return;
+            if (x < minX) minX = x; if (x > maxX) maxX = x; if (y < minY) minY = y; if (y > maxY) maxY = y;
+          }
+          function coords(g) {
+            const t = g.type;
+            if (t === 'Point') return [g.coordinates];
+            if (t === 'MultiPoint' || t === 'LineString') return g.coordinates;
+            if (t === 'MultiLineString' || t === 'Polygon') return g.coordinates.flat();
+            if (t === 'MultiPolygon') return g.coordinates.flat(2);
+            return [];
+          }
+          if (geo.type === 'FeatureCollection') {
+            geo.features.forEach(f => coords(f.geometry).forEach(scanCoord));
+          } else if (geo.type === 'Feature') {
+            coords(geo.geometry).forEach(scanCoord);
+          } else if (geo.type && geo.coordinates) {
+            coords(geo).forEach(scanCoord);
+          }
+          return [minX, minY, maxX, maxY];
+        }
+      }
+    }
+  </script>
+</body>
+</html>

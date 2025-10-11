@@ -1,0 +1,75 @@
+/* base */
+body { margin:0; padding:0 0 20px 0; font-family:'Barlow',sans-serif; }
+
+/* layout */
+.cont { display:flex; justify-content:center; align-items:center; }
+.map-container { position:relative; width:100vw; max-width:400px; margin:10px auto; }
+.map { width:100vw; max-width:400px; height:500px; box-shadow:0 4px 8px rgba(0,0,0,.1); }
+
+/* button bar (above map) */
+.btns{
+  display:flex; gap:6px; flex-wrap:wrap;
+  margin:0 0 8px 0; justify-content:center;
+}
+.btn{
+  appearance:none; border:1px solid #ddd; background:#fff; color:#333;
+  padding:6px 10px; border-radius:999px; cursor:pointer; font-weight:600; font-size:12.5px;
+}
+.btn:hover{ background:#f3f3f3; }
+.btn.active{ background:#0b64d8; color:#fff; border-color:#0b64d8; }
+
+/* legend (top-left) */
+/* legend (top-left) */
+/* legend (top-left) */
+.legend{
+    position:absolute;
+    top:46px;          /* clears the button row */
+    left:10px;
+    z-index:5;         /* sit above mapbox controls */
+    background:rgba(255,255,255,.95);
+    border-radius:2px;
+    box-shadow:0 1px 2px rgba(0,0,0,.12);
+    padding:6px 8px;
+    font-size:11.5px;
+    line-height:1.1;
+    display:inline-block;
+    max-width:240px;
+    pointer-events:none;
+  }
+  .legend .legend-title{ color:#333; margin-bottom:4px; }
+  .legend .legend-row { display:flex; gap:3px; flex-wrap:wrap; }
+  .legend .legend-swatch{
+    display:inline-block; width:10px; height:10px; border-radius:2px;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.1);
+  }
+  .legend .legend-ends{
+    display:flex; justify-content:space-between; margin-top:4px; width:100%; color:#222;
+  }
+  /* (optional) make ends a bit bolder */
+  .legend .legend-ends span:first-child,
+  .legend .legend-ends span:last-child { font-weight:600; }
+  
+  /* ensure mapbox controls don't cover legend */
+  .mapboxgl-ctrl-top-right { z-index:4; }
+  
+/* info card (bottom centered) */
+.info-box{
+  position:absolute; left:50%; transform:translateX(-50%);
+  bottom:14px; z-index:2;
+  width:calc(100% - 12px); max-width:460px; box-sizing:border-box;
+  padding:8px 10px; background:rgba(255,255,255,.98);
+  border-radius:2px; box-shadow:0 2px 4px rgba(0,0,0,.1);
+  font-size:13px; line-height:1.35; max-height:40%; overflow-y:auto;
+}
+.info-box .info-stats{ white-space:nowrap; }
+
+/* mobile */
+@media (max-width:768px){
+  .map-container{ max-width:400px; }
+  .map{ height:500px; }
+  .legend{ top:14px; left:14px; }
+  .info-box{ width:calc(100% - 12px); max-width:460px; }
+}
+
+/* hide any old static legend block if left in the HTML */
+.legend-container { display:none !important; }
