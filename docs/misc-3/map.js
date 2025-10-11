@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           ["!", ["to-boolean", ["get", "proposed_height"]]], "#BFC7D1", // N/A gray
           fillColorExpr
         ],
-        "fill-opacity": 0.85,
-        "fill-outline-color": "#9fb3c8"
+        "fill-opacity": 0.85
+        // "fill-outline-color": "#9fb3c8"
       };
     }
   
