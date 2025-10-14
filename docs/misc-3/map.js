@@ -115,24 +115,30 @@ document.addEventListener('DOMContentLoaded', async () => {
   map.on('error', e => console.error('Mapbox GL error:', e && e.error));
 
   map.on('load', () => {
+    // Find the first symbol (label) layer in the style
+    const layers = map.getStyle().layers;
+    const firstSymbolId = (layers.find(l => l.type === 'symbol') || {}).id;
+  
+    // Source
     map.addSource('parcels', { type: 'vector', url: TILESET_URL });
-
+  
+    // Add your layers BEFORE the first label layer so labels stay on top
     map.addLayer({
       id: 'parcels-fill',
       type: 'fill',
       source: 'parcels',
       'source-layer': SOURCE_LAYER,
       paint: layerPaint()
-    });
-
+    }, firstSymbolId);
+  
     map.addLayer({
       id: 'outline',
       type: 'line',
       source: 'parcels',
       'source-layer': SOURCE_LAYER,
       paint: { 'line-color':'#ffffff', 'line-width': 0.4 }
-    });
-
+    }, firstSymbolId);
+  
     map.addLayer({
       id: 'hover',
       type: 'line',
@@ -140,7 +146,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       'source-layer': SOURCE_LAYER,
       paint: { 'line-color':'#ffffff', 'line-width': 2.0 },
       filter: ['==', ['get','RP1PRCLID'], '']
-    });
+    }, firstSymbolId);
+    
 
     map.on('mousemove','parcels-fill', e => {
       if (!e.features?.length) return;
