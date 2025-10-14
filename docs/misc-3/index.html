@@ -5,21 +5,37 @@
   <title>Proposed heights</title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet" />
+  <!-- Geocoder plugin CSS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.1/mapbox-gl-geocoder.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* quick nice layout for controls */
+    .controls-row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:8px 8px 0; }
+    .controls-row label { font:500 14px/1.2 Barlow, sans-serif; color:#223; }
+    .controls-row select { padding:6px 8px; border:1px solid #ccc; border-radius:6px; font:500 14px Barlow, sans-serif; }
+    #search .mapboxgl-ctrl-geocoder { min-width:260px; }
+  </style>
 </head>
 <body>
   <div class="cont">
     <div class="map-container">
-      <!-- buttons -->
-      <div id="layerButtons" class="btns">
-        <button class="btn active" data-layer="all">ALL</button>
-        <button class="btn" data-layer="RC">RC</button>
-        <button class="btn" data-layer="SRES">SRES</button>
-        <button class="btn" data-layer="MRES">MRES</button>
-        <button class="btn" data-layer="COMM">COMM</button>
+      <!-- NEW controls row: dropdown + search -->
+      <div class="controls-row">
+        <label for="layerSelect">Show:</label>
+        <select id="layerSelect">
+          <option value="all" selected>All</option>
+          <option value="RC">RC</option>
+          <option value="SRES">SRES</option>
+          <option value="MRES">MRES</option>
+          <option value="COMM">COMM</option>
+        </select>
+
+        <!-- Address search will mount here -->
+        <div id="search"></div>
       </div>
 
+      <!-- Map + legend + info -->
       <div id="map" class="map"></div>
       <div id="legend" class="legend"></div>
       <div id="info-box" class="info-box"></div>
@@ -31,6 +47,8 @@
   </div>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+  <!-- Geocoder plugin JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.1/mapbox-gl-geocoder.min.js"></script>
   <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
   <script src="map.js"></script>
 </body>
