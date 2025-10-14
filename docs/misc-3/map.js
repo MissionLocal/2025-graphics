@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const pymChild = new pym.Child();
 
   // Use a PUBLIC token (pk.*) locked to your domains in Mapbox token settings
-  mapboxgl.accessToken = "sk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjFhZWh6MDE3bjJqcG9xNjJ0ZWJ3ayJ9.6dPwB2GwDZxlp9W9ILCs2Q";
+  mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
 
   // Tileset + source-layer
   const TILESET_URL  = "mapbox://mlnow.cmqyrusg";
