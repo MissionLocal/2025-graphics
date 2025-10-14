@@ -131,13 +131,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       paint: layerPaint()
     }, firstSymbolId);
   
-    map.addLayer({
-      id: 'outline',
-      type: 'line',
-      source: 'parcels',
-      'source-layer': SOURCE_LAYER,
-      paint: { 'line-color':'#ffffff', 'line-width': 0.4 }
-    }, firstSymbolId);
+    // map.addLayer({
+    //   id: 'outline',
+    //   type: 'line',
+    //   source: 'parcels',
+    //   'source-layer': SOURCE_LAYER,
+    //   paint: { 'line-color':'#ffffff', 'line-width': 0.4 }
+    // }, firstSymbolId);
   
     map.addLayer({
       id: 'hover',
