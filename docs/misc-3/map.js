@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const pymChild = new pym.Child();
   // Public token (pk.*)
-  mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21kODNwdml3MHMyNDJscTEweHVwN2h5NCJ9.yrrmyFjlsQSY-nGA98wCqA";
+  mapboxgl.accessToken = "sk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjFhZWh6MDE3bjJqcG9xNjJ0ZWJ3ayJ9.6dPwB2GwDZxlp9W9ILCs2Q";
 
   // ======= Tileset + source-layer (from Mapbox Studio) =======
   const TILESET_URL  = "mapbox://mlnow.cmqyrusg";             // must start with mapbox://
@@ -121,8 +121,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
-    center: [-122.496, 37.750],
-    zoom: 12.2
+    center: [-122.4411568, 37.7564758],
+    zoom: 12.14
   });
   map.addControl(new mapboxgl.NavigationControl({ showCompass:false }));
 
