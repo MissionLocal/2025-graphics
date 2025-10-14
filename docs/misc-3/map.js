@@ -1,80 +1,65 @@
 // map.js — Proposed heights using Mapbox vector tileset
-// Tweaked palette: much lighter at 40 ft, strong contrast at 65/85+.
+// Discrete bins on the map; gradient legend with min/max; DROPDOWN filter.
 document.addEventListener('DOMContentLoaded', async () => {
   const pymChild = new pym.Child();
 
-  // IMPORTANT: use a PUBLIC token (pk.*) locked to your domains
+  // PUBLIC token (pk.*) locked to your domains
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
 
-  // Tileset + source-layer (from Mapbox Studio)
+  // Tileset + source-layer
   const TILESET_URL  = "mapbox://mlnow.cmqyrusg";
   const SOURCE_LAYER = "gdf_supe_with_categories";
-
-  // If you want, keep these for reference; the color ramp below uses explicit breaks.
-  const HEIGHT_MIN = 0;
-  const HEIGHT_MAX = 400;
 
   // DOM refs
   const infoBox  = document.getElementById('info-box');
   const legendEl = document.getElementById('legend');
-  const btns     = document.getElementById('layerButtons');
+  const selectEl = document.getElementById('layerSelect'); // dropdown
   if (infoBox) infoBox.style.display = 'none';
 
-  // ===== Color breaks + colors (lighter ≤40; strong mid/highs) =====
-  // Breaks you care about: 40, 65, 85, then broader bands.
-  const HEIGHT_BREAKS = [40, 65, 85, 120, 200, 400];
+  // ===== Discrete bins (step expression) =====
+  const HEIGHT_BREAKS = [40, 50, 65, 85, 105, 120, 130, 140, 160, 180, 240, 250, 300, 350, 450, 490, 500, 650];
   const HEIGHT_COLORS = [
-    "#EFFFFA", // ≤ 40  (much lighter so 40ft stands out)
-    "#9DF4D9", // 65
-    "#00C6C4", // 85
-    "#007DBC", // 120
-    "#005A8C", // 200
-    "#000F19"  // 400+
+    "#9DF4D9","#00C6C4","#00C6C4","#00C6C4",
+    "#007DBC","#007DBC","#007DBC","#007DBC",
+    "#005A8C","#005A8C","#005A8C",
+    "#000F19","#000F19","#000F19","#000F19","#000F19","#000F19","#000F19"
   ];
+  const BASE_BELOW_FIRST = "#EFFFFA"; // < 40
 
-  // Legend (swatches reflect the bins above)
-  function legendSquaresHTML(title){
-    const row = `<div class="legend-row">${
-      HEIGHT_COLORS.map(c => `<span class="legend-swatch" style="background:${c}"></span>`).join('')
-    }</div>`;
-    const labels = ["≤40", "65", "85", "120", "200", "400+"];
+  function makeHeightColorExprStep() {
+    const v = ["to-number", ["get", "proposed_height"]];
+    const expr = ["step", v, BASE_BELOW_FIRST];
+    for (let i = 0; i < HEIGHT_BREAKS.length; i++) expr.push(HEIGHT_BREAKS[i], HEIGHT_COLORS[i]);
+    return expr;
+  }
+
+  // Gradient legend with only min/max labels
+  function legendGradientHTML(title){
+    const gradientColors = [BASE_BELOW_FIRST, ...HEIGHT_COLORS].join(',');
+    const minLabel = `${HEIGHT_BREAKS[0]}`;
+    const maxLabel = `${HEIGHT_BREAKS[HEIGHT_BREAKS.length - 1]}`;
     return `
       <div class="legend-title">${title}</div>
-      ${row}
-      <div class="legend-ends">
-        <span>${labels[0]} ft</span>
-        <span>${labels[labels.length - 1]} ft</span>
+      <div class="legend-gradient"
+           style="width:100%;height:10px;border-radius:6px;background:linear-gradient(90deg, ${gradientColors});box-shadow:inset 0 0 0 1px rgba(0,0,0,0.08);margin:6px 0 4px;">
       </div>
-    `;
+      <div class="legend-ends" style="display:flex;justify-content:space-between;">
+        <span>${minLabel}</span><span>${maxLabel}</span>
+      </div>`;
   }
 
-  // Make a smooth-ish ramp emphasizing separation near 40→65→85
-  function makeHeightColorExpr() {
-    const v = ["to-number", ["get", "proposed_height"]];
-    return [
-      "interpolate", ["exponential", 1.6], v,
-      HEIGHT_BREAKS[0], HEIGHT_COLORS[0],
-      HEIGHT_BREAKS[1], HEIGHT_COLORS[1],
-      HEIGHT_BREAKS[2], HEIGHT_COLORS[2],
-      HEIGHT_BREAKS[3], HEIGHT_COLORS[3],
-      HEIGHT_BREAKS[4], HEIGHT_COLORS[4],
-      HEIGHT_BREAKS[5], HEIGHT_COLORS[5]
-    ];
-  }
-
-  // Paint using the new color expression
   function layerPaint() {
     return {
       "fill-color": [
         "case",
-        ["!", ["to-boolean", ["get", "proposed_height"]]], "#CECECE", // N/A gray
-        makeHeightColorExpr()
+        ["!", ["to-boolean", ["get", "proposed_height"]]], "#CECECE",
+        makeHeightColorExprStep()
       ],
       "fill-opacity": 0.9
     };
   }
 
-  // Info-box spill protection
+  // Info-box helpers
   function ensureInfoBoxInside() {
     const cont = document.querySelector('.map-container');
     if (!cont || !infoBox || infoBox.style.display === 'none') return;
@@ -93,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     requestAnimationFrame(() => pymChild.sendHeight());
   }
 
-  // Robust class filter: true OR "true"/"True" OR 1
+  // Filter helpers
   const robustClassFilter = (key) => [
     "any",
     ["==", ["get", key], true],
@@ -114,10 +99,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     return `<div><strong>Parcel ${id}</strong></div><div class="info-stats">${bits.join(' • ')}</div>`;
   }
 
-  // Legend
+  // Legend (gradient + min/max only)
   if (legendEl) {
     legendEl.style.display = 'inline-block';
-    legendEl.innerHTML = legendSquaresHTML('Proposed height (ft)');
+    legendEl.innerHTML = legendGradientHTML('Proposed height (ft)');
   }
 
   // Map
@@ -127,14 +112,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     center: [-122.4411568, 37.7564758],
     zoom: 12.14
   });
-  map.addControl(new mapboxgl.NavigationControl({ showCompass:false }));
   map.on('error', e => console.error('Mapbox GL error:', e && e.error));
 
   map.on('load', () => {
-    // Vector tiles source
     map.addSource('parcels', { type: 'vector', url: TILESET_URL });
 
-    // Fill
     map.addLayer({
       id: 'parcels-fill',
       type: 'fill',
@@ -143,7 +125,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       paint: layerPaint()
     });
 
-    // Outline + hover
     map.addLayer({
       id: 'outline',
       type: 'line',
@@ -151,6 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       'source-layer': SOURCE_LAYER,
       paint: { 'line-color':'#ffffff', 'line-width': 0.4 }
     });
+
     map.addLayer({
       id: 'hover',
       type: 'line',
@@ -160,24 +142,24 @@ document.addEventListener('DOMContentLoaded', async () => {
       filter: ['==', ['get','RP1PRCLID'], '']
     });
 
-    // Interactions
     map.on('mousemove','parcels-fill', e => {
       if (!e.features?.length) return;
       const pid = e.features[0].properties?.RP1PRCLID ?? '';
       map.setFilter('hover', ['==',['get','RP1PRCLID'], pid]);
       map.getCanvas().style.cursor = 'pointer';
     });
+
     map.on('mouseleave','parcels-fill', () => {
       map.setFilter('hover', ['==',['get','RP1PRCLID'],'']);
       map.getCanvas().style.cursor = '';
     });
+
     map.on('click','parcels-fill', e => {
       const f = e.features?.[0];
       if (!f) return;
       revealInfoBox(tplInfo(f.properties || {}));
     });
 
-    // Hide card on blank click
     map.on('click', e => {
       const hits = map.queryRenderedFeatures(e.point, { layers:['parcels-fill'] });
       if (hits.length) return;
@@ -185,21 +167,18 @@ document.addEventListener('DOMContentLoaded', async () => {
       pymChild.sendHeight();
     });
 
-    // Buttons → filter (unchanged)
-    if (btns) {
-      btns.addEventListener('click', (e) => {
-        const b = e.target.closest('button.btn');
-        if (!b) return;
-        const key = b.dataset.layer; // "all" | "RC" | "SRES" | "MRES" | "COMM"
-        [...btns.querySelectorAll('.btn')].forEach(x => x.classList.remove('active'));
-        b.classList.add('active');
+    // Dropdown → filter
+    if (selectEl) {
+      const applyFilter = () => {
+        const key = selectEl.value; // "all" | "RC" | "SRES" | "MRES" | "COMM"
         if (!map.getLayer('parcels-fill')) return;
         map.setFilter('parcels-fill', key === 'all' ? null : robustClassFilter(key));
-      });
+      };
+      selectEl.addEventListener('change', applyFilter);
+      applyFilter(); // initial state
     }
   });
 
-  // Resize + pym
   window.addEventListener('resize', () => {
     map.resize();
     ensureInfoBoxInside();

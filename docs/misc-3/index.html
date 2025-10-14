@@ -11,17 +11,22 @@
 <body>
   <div class="cont">
     <div class="map-container">
-      <!-- buttons -->
-      <div id="layerButtons" class="btns">
-        <button class="btn active" data-layer="all">ALL</button>
-        <button class="btn" data-layer="RC">RC</button>
-        <button class="btn" data-layer="SRES">SRES</button>
-        <button class="btn" data-layer="MRES">MRES</button>
-        <button class="btn" data-layer="COMM">COMM</button>
+      <!-- Stacked UI wrapper (dropdown + legend) -->
+      <div class="map-ui">
+        <div class="controls-row">
+          <label for="layerSelect">Show:</label>
+          <select id="layerSelect">
+            <option value="all" selected>All</option>
+            <option value="RC">Rent control eligible</option>
+            <option value="SRES">Single-family</option>
+            <option value="MRES">Multi-family</option>
+            <option value="COMM">Commercial</option>
+          </select>
+        </div>
+        <div id="legend" class="legend"></div>
       </div>
 
       <div id="map" class="map"></div>
-      <div id="legend" class="legend"></div>
       <div id="info-box" class="info-box"></div>
     </div>
   </div>
