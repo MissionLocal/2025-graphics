@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const pymChild = new pym.Child();
 
   // IMPORTANT: use a PUBLIC token (pk.*), not sk.*
-  mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21kODNwdml3MHMyNDJscTEweHVwN2h5NCJ9.yrrmyFjlsQSY-nGA98wCqA";
+  mapboxgl.accessToken = "sk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjFhZWh6MDE3bjJqcG9xNjJ0ZWJ3ayJ9.6dPwB2GwDZxlp9W9ILCs2Q";
 
   // Tileset + source-layer (from Mapbox Studio)
   const TILESET_URL  = "mapbox://mlnow.cmqyrusg";
