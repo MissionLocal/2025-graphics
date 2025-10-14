@@ -1,14 +1,15 @@
-// map.js — Proposed heights using Mapbox vector tileset (fast load)
+// map.js — Proposed heights using Mapbox vector tileset (fast + bright palette)
 document.addEventListener('DOMContentLoaded', async () => {
   const pymChild = new pym.Child();
-  // Public token (pk.*)
+
+  // IMPORTANT: use a PUBLIC token (pk.*), not sk.*
   mapboxgl.accessToken = "sk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjFhZWh6MDE3bjJqcG9xNjJ0ZWJ3ayJ9.6dPwB2GwDZxlp9W9ILCs2Q";
 
-  // ======= Tileset + source-layer (from Mapbox Studio) =======
-  const TILESET_URL  = "mapbox://mlnow.cmqyrusg";             // must start with mapbox://
-  const SOURCE_LAYER = "gdf_supe_with_categories";            // exact, case-sensitive
+  // Tileset + source-layer (from Mapbox Studio)
+  const TILESET_URL  = "mapbox://mlnow.cmqyrusg";
+  const SOURCE_LAYER = "gdf_supe_with_categories";
 
-  // ======= Legend/scale domain (we're not scanning the whole GeoJSON anymore) =======
+  // Height domain (since we don't scan the whole GeoJSON anymore)
   const HEIGHT_MIN = 0;
   const HEIGHT_MAX = 400;
 
@@ -18,10 +19,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   const btns     = document.getElementById('layerButtons');
   if (infoBox) infoBox.style.display = 'none';
 
-  // Color ramp (light → dark). Legend + scale use this.
+  // ✨ Brighter color ramp (light → dark)
+  // Based on your suggested scheme, arranged as a smooth gradient.
   const COLOR_STOPS = [
-    "#dbe8f9", "#b9d3f3", "#95bceb", "#73a5e2",
-    "#4f8bd7", "#2f74ce", "#165fc4", "#0a4ea8"
+    "#9DF4D9", "#65EAD0", "#0DD6C7", "#0DC1D3",
+    "#00A4BF", "#007DBC", "#005A8C", "#003F5C",
+    "#00233B", "#001F2A", "#001622", "#000F19"
   ];
 
   // Legend HTML (squares)
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
   }
 
-  // ======= Info-box spill protection =======
+  // Info-box spill protection
   function ensureInfoBoxInside() {
     const cont = document.querySelector('.map-container');
     if (!cont || !infoBox || infoBox.style.display === 'none') return;
@@ -48,7 +51,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (spill > 0) infoBox.style.bottom = `${22 + spill}px`;
     });
   }
-
   function revealInfoBox(html) {
     infoBox.innerHTML = html;
     infoBox.style.display = 'block';
@@ -65,7 +67,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     return stops;
   }
-
   function makeInterpolateExpr(min, max) {
     const n = COLOR_STOPS.length;
     const stops = makeStops(min, max, n);
@@ -73,18 +74,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     for (let i = 0; i < n; i++) expr.push(stops[i], COLOR_STOPS[i]);
     return expr;
   }
-
   function layerPaint(fillColorExpr) {
     return {
       "fill-color": [
         "case",
-        ["!", ["to-boolean", ["get", "proposed_height"]]], "#BFC7D1", // N/A gray
+        ["!", ["to-boolean", ["get", "proposed_height"]]], "#CECECE", // N/A gray (your fallback)
         fillColorExpr
       ],
-      "fill-opacity": 0.85
+      "fill-opacity": 0.9
     };
   }
-
   // Robust class filter: true OR "true"/"True" OR 1
   const robustClassFilter = (key) => [
     "any",
@@ -92,26 +91,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     ["==", ["downcase", ["coalesce", ["to-string", ["get", key]], ""]], "true"],
     ["==", ["coalesce", ["to-number", ["get", key]], 0], 1]
   ];
-
-  // Info card (Units hidden if 0, “Type” label)
   function tplInfo(p = {}) {
     const id   = p?.RP1PRCLID ?? "—";
     const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
     const hNum = Number(p?.proposed_height);
     const hTxt = Number.isFinite(hNum) ? `${Math.round(hNum)} ft` : "N/A";
     const unitsNum = Number(p?.UNITS);
-
     const bits = [`Proposed height: ${hTxt}`];
     if (Number.isFinite(unitsNum) && unitsNum > 0) bits.push(`Units: ${Math.round(unitsNum)}`);
     bits.push(`Type: ${type}`);
-
-    return `
-      <div><strong>Parcel ${id}</strong></div>
-      <div class="info-stats">${bits.join(' • ')}</div>
-    `;
+    return `<div><strong>Parcel ${id}</strong></div><div class="info-stats">${bits.join(' • ')}</div>`;
   }
 
-  // Show legend immediately
+  // Legend
   if (legendEl) {
     legendEl.style.display = 'inline-block';
     legendEl.innerHTML = legendSquaresHTML('Proposed height (ft)', Math.round(HEIGHT_MIN), Math.round(HEIGHT_MAX));
@@ -125,20 +117,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     zoom: 12.14
   });
   map.addControl(new mapboxgl.NavigationControl({ showCompass:false }));
-
-  // Helpful error logger
   map.on('error', e => console.error('Mapbox GL error:', e && e.error));
 
   map.on('load', () => {
     const colorExpr = makeInterpolateExpr(HEIGHT_MIN, HEIGHT_MAX);
 
-    // === Vector tiles source instead of GeoJSON ===
-    map.addSource('parcels', {
-      type: 'vector',
-      url: TILESET_URL
-    });
+    // Vector tiles source
+    map.addSource('parcels', { type: 'vector', url: TILESET_URL });
 
-    // Fill layer
+    // Fill
     map.addLayer({
       id: 'parcels-fill',
       type: 'fill',
@@ -153,16 +140,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       type: 'line',
       source: 'parcels',
       'source-layer': SOURCE_LAYER,
-      paint: { 'line-color':'#fff','line-width':0.4 }
+      paint: { 'line-color':'#ffffff', 'line-width': 0.4 }
     });
-
     map.addLayer({
       id: 'hover',
       type: 'line',
       source: 'parcels',
       'source-layer': SOURCE_LAYER,
-      paint: { 'line-color':'#fff','line-width':2.0 },
-      filter: ['==',['get','RP1PRCLID'],'']
+      paint: { 'line-color':'#ffffff', 'line-width': 2.0 },
+      filter: ['==', ['get','RP1PRCLID'], '']
     });
 
     // Interactions
@@ -172,38 +158,35 @@ document.addEventListener('DOMContentLoaded', async () => {
       map.setFilter('hover', ['==',['get','RP1PRCLID'], pid]);
       map.getCanvas().style.cursor = 'pointer';
     });
-
     map.on('mouseleave','parcels-fill', () => {
       map.setFilter('hover', ['==',['get','RP1PRCLID'],'']);
       map.getCanvas().style.cursor = '';
     });
-
     map.on('click','parcels-fill', e => {
       const f = e.features?.[0];
       if (!f) return;
       revealInfoBox(tplInfo(f.properties || {}));
     });
 
-    // Hide card when clicking blank map area
+    // Hide card on blank click
     map.on('click', e => {
       const hits = map.queryRenderedFeatures(e.point, { layers:['parcels-fill'] });
       if (hits.length) return;
-      infoBox.style.display = 'none';
-      infoBox.style.bottom = '22px';
+      if (infoBox) {
+        infoBox.style.display = 'none';
+        infoBox.style.bottom = '22px';
+      }
       pymChild.sendHeight();
     });
 
-    // Buttons → apply filter on single fill layer
+    // Buttons → filter
     if (btns) {
       btns.addEventListener('click', (e) => {
         const b = e.target.closest('button.btn');
         if (!b) return;
         const key = b.dataset.layer; // "all" | "RC" | "SRES" | "MRES" | "COMM"
-
-        // button UI
         [...btns.querySelectorAll('.btn')].forEach(x => x.classList.remove('active'));
         b.classList.add('active');
-
         if (!map.getLayer('parcels-fill')) return;
         map.setFilter('parcels-fill', key === 'all' ? null : robustClassFilter(key));
       });
