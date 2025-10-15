@@ -200,8 +200,8 @@ function makeHeightColorExprStep() {
   const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
-    center: [-122.4411568, 37.7564758],
-    zoom: 12.14
+    center: [-122.4411568, 37.765044],
+    zoom: 11.85
   });
   map.on('error', e => console.error('Mapbox GL error:', e && e.error));
 
