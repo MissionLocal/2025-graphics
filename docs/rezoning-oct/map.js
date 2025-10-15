@@ -17,76 +17,67 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (infoBox) infoBox.style.display = 'none';
 
   // ===== Breaks & Colors =====
-  // Bins: 41–49, 50–64, 65–69, 70–74, 75–79, 80–84, 85–104, 105–119, ...
   const HEIGHT_BREAKS = [
     40, 50, 65, 70, 75, 80, 85, 105, 120, 130, 140, 160, 180, 240, 250, 300, 350, 450, 490, 500, 650
   ];
-
-  // One color per bin after the <40/default bucket
   const HEIGHT_COLORS = [
-    "#9DF4D9", // 41–49
-    "#66D9CF", // 50–64
-    "#3CCDC9", // 65–69
-    "#22BFC3", // 70–74
-    "#12ADBA", // 75–79
-    "#008FA4", // 80–84
-    "#007DBC", // 85–104
-    "#006FB0", // 105–119
-    "#0062A1", // 120–129
-    "#005892", // 130–139
-    "#004F84", // 140–159
-    "#004676", // 160–179
-    "#003C66", // 180–239
-    "#003459", // 240–249
-    "#002C4D", // 250–299
-    "#00233F", // 300–349
-    "#001C31", // 350–449
-    "#001724", // 450–489
-    "#001319", // 490–499
-    "#000F19", // 500–649
-    "#000C13"  // 650+
+    "#9DF4D9", "#66D9CF", "#3CCDC9", "#22BFC3", "#12ADBA",
+    "#008FA4", "#007DBC", "#006FB0", "#0062A1", "#005892",
+    "#004F84", "#004676", "#003C66", "#003459", "#002C4D",
+    "#00233F", "#001C31", "#001724", "#001319", "#000F19", "#000C13"
   ];
+  const BASE_BELOW_FIRST  = "#EFFFFA"; // numeric but < 40
+  const EXACT_FORTY_COLOR = "#9e9e9e"; // exactly 40
+  const MISSING_COLOR     = "#E6E6E6"; // non-numeric / NaN / empty / missing
 
-  const BASE_BELOW_FIRST  = "#EFFFFA"; // < 40 (and missing)
-  const EXACT_FORTY_COLOR = "#9e9e9e"; // 40 ft special case (grey)
-
-  // Map color expression:
-  // - exactly 40 → grey
-  // - <40 and missing → BASE_BELOW_FIRST
-  // - else step() through thresholds (incl. 70/75/80)
+  // Color expression:
+  // - invalid/missing (NaN or null) -> MISSING_COLOR
+  // - exactly 40 -> EXACT_FORTY_COLOR
+  // - < 40 -> BASE_BELOW_FIRST
+  // - else -> step() bins
   function makeHeightColorExprStep() {
-    const v = ["to-number", ["coalesce", ["get", "proposed_height"], 0]];
+    const raw = ["get", "proposed_height"];
+    const v   = ["to-number", raw]; // yields NaN for non-numeric strings like "NaN", "140/450", "", etc.
+
     return [
       "case",
+      // v != v is only true for NaN; also treat null/missing as invalid
+      ["any",
+        ["==", raw, null],
+        ["!=", v, v]
+      ], MISSING_COLOR,
+
       ["==", v, 40], EXACT_FORTY_COLOR,
+      ["<",  v, 40], BASE_BELOW_FIRST,
+
       ["step", v,
-        BASE_BELOW_FIRST,        // < 40 (and missing)
-        40, HEIGHT_COLORS[0],    // 41–49
-        50, HEIGHT_COLORS[1],    // 50–64
-        65, HEIGHT_COLORS[2],    // 65–69
-        70, HEIGHT_COLORS[3],    // 70–74
-        75, HEIGHT_COLORS[4],    // 75–79
-        80, HEIGHT_COLORS[5],    // 80–84
-        85, HEIGHT_COLORS[6],    // 85–104
-        105, HEIGHT_COLORS[7],   // 105–119
-        120, HEIGHT_COLORS[8],   // 120–129
-        130, HEIGHT_COLORS[9],   // 130–139
-        140, HEIGHT_COLORS[10],  // 140–159
-        160, HEIGHT_COLORS[11],  // 160–179
-        180, HEIGHT_COLORS[12],  // 180–239
-        240, HEIGHT_COLORS[13],  // 240–249
-        250, HEIGHT_COLORS[14],  // 250–299
-        300, HEIGHT_COLORS[15],  // 300–349
-        350, HEIGHT_COLORS[16],  // 350–449
-        450, HEIGHT_COLORS[17],  // 450–489
-        490, HEIGHT_COLORS[18],  // 490–499
-        500, HEIGHT_COLORS[19],  // 500–649
-        650, HEIGHT_COLORS[20]   // 650+
+        BASE_BELOW_FIRST,
+        40, HEIGHT_COLORS[0],
+        50, HEIGHT_COLORS[1],
+        65, HEIGHT_COLORS[2],
+        70, HEIGHT_COLORS[3],
+        75, HEIGHT_COLORS[4],
+        80, HEIGHT_COLORS[5],
+        85, HEIGHT_COLORS[6],
+        105, HEIGHT_COLORS[7],
+        120, HEIGHT_COLORS[8],
+        130, HEIGHT_COLORS[9],
+        140, HEIGHT_COLORS[10],
+        160, HEIGHT_COLORS[11],
+        180, HEIGHT_COLORS[12],
+        240, HEIGHT_COLORS[13],
+        250, HEIGHT_COLORS[14],
+        300, HEIGHT_COLORS[15],
+        350, HEIGHT_COLORS[16],
+        450, HEIGHT_COLORS[17],
+        490, HEIGHT_COLORS[18],
+        500, HEIGHT_COLORS[19],
+        650, HEIGHT_COLORS[20]
       ]
     ];
   }
 
-  // Legend: discrete 40 swatch + gradient (41→max)
+  // Legend: discrete 40 swatch + gradient (no extra “invalid” key)
   function legendHTML(title){
     const gradientColors = HEIGHT_COLORS.join(',');
     const minActive = HEIGHT_BREAKS[0] + 1; // 41
@@ -96,13 +87,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       <div class="legend-keys" style="display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 6px;">
         <div class="k" style="display:flex;align-items:center;gap:6px;">
-          <span class="sw" style="width:12px;height:12px;border-radius:2px;background:${EXACT_FORTY_COLOR};box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);"></span>
+          <span class="sw" style="width:12px;height:12px;border-radius:2px;background:${EXACT_FORTY_COLOR};
+                 box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);"></span>
           <span>40</span>
         </div>
       </div>
 
       <div class="legend-gradient"
-           style="width:100%;height:10px;border-radius:6px;background:linear-gradient(90deg, ${gradientColors});box-shadow:inset 0 0 0 1px rgba(0,0,0,0.08);margin:4px 0 4px;">
+           style="width:100%;height:10px;border-radius:6px;background:linear-gradient(90deg, ${gradientColors});
+                  box-shadow:inset 0 0 0 1px rgba(0,0,0,0.08);margin:4px 0 4px;">
       </div>
       <div class="legend-ends" style="display:flex;justify-content:space-between;">
         <span>${minActive}</span><span>${maxLabel}</span>
@@ -110,10 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function layerPaint() {
-    return {
-      "fill-color": makeHeightColorExprStep(),
-      "fill-opacity": 0.9
-    };
+    return { "fill-color": makeHeightColorExprStep(), "fill-opacity": 0.9 };
   }
 
   // ---------- Info-box helpers ----------
@@ -144,13 +134,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   ];
 
   // ---------- Info card ----------
-  // robust numeric parsing
   function num(v){
     if (v === null || v === undefined) return null;
     if (typeof v === "number") return Number.isFinite(v) ? v : null;
     if (typeof v === "string"){
       const s = v.trim();
-      if (!s || /^(null|na|n\/a|none|undefined)$/i.test(s)) return null;
+      if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
       const m = s.match(/^[+-]?\d+(\.\d+)?/);
       return m ? Number(m[0]) : null;
     }
@@ -161,8 +150,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     return Number.isInteger(n) ? `${n} ft` : `${n.toFixed(1)} ft`;
   }
   function fallbackChange(p){
-    const proposed = num(p?.proposed_height);
-    const existing = num(p?.heightdist); // existing from your GeoJSON (string like "40")
+    const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
+    const existing = num(p?.heightdist);
     if (proposed !== null && existing !== null) return proposed - existing;
     return null;
   }
@@ -170,41 +159,57 @@ document.addEventListener('DOMContentLoaded', async () => {
   function tplInfo(p = {}) {
     const id   = p?.RP1PRCLID ?? "—";
     const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
-
-    const propH   = num(p?.proposed_height);
-    const propTxt = fmtFt(propH);
-
-    // Prefer 'change' from GeoJSON; include 0 as valid
+  
+    // Decide what to show for "Proposed height"
+    const rawPH = (p?.proposed_height ?? "").toString().trim();
+    const nums  = (rawPH.match(/[+-]?\d+(\.\d+)?/g) || []);
+    const isNaNString = /^\s*nan\s*$/i.test(rawPH);
+    const hasSeparators = /[;/]/.test(rawPH) || /\/\//.test(rawPH);
+    const hasMultipleNums = nums.length > 1;
+    // 👉 Treat empty/null as "multiple" too (since that's what you want to display)
+    const isEmpty = rawPH.length === 0;
+  
+    const isMultiple = isEmpty || isNaNString || hasSeparators || hasMultipleNums;
+  
+    const propStr = isMultiple
+      ? "multiple"
+      : rawPH; // single numeric or any other single-value text like "No change"
+  
+    // Prefer 'change' from data; include 0 as valid; else compute from ints/strings
     let ch = num(p?.change);
-    if (ch === null) ch = fallbackChange(p);
-
-    // Format change; show "0 ft" if zero
+    if (ch === null) ch = (function(){
+      const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
+      const existing = num(p?.heightdist);
+      return (proposed !== null && existing !== null) ? proposed - existing : null;
+    })();
+  
     let changeTxt = "—";
     if (ch !== null) {
       const rounded = Math.abs(ch % 1) === 0 ? Math.trunc(ch) : Math.round(ch * 10) / 10;
       const sign = ch > 0 ? "+" : ch < 0 ? "−" : "";
       changeTxt = `${sign}${Number.isInteger(rounded) ? rounded : rounded.toFixed(1)} ft`;
     }
-
+  
     const unitsNum = num(p?.UNITS);
-
-    // Header: Parcel • Type (same line)
+  
     const header = `
       <div class="info-header">
         <strong>Parcel ${id}</strong>
         <span class="sep"> • </span>
         <span class="bldg-type">${type ?? "—"}</span>
       </div>`;
-
+  
     const bits = [
-      `Proposed height: ${propTxt}`,
-      `Change: ${changeTxt}`, // will be "0 ft" if zero
+      `Proposed height: ${propStr}`,
+      `Change: ${changeTxt}`,
     ];
     if (unitsNum !== null && unitsNum > 0) bits.push(`Units: ${Math.round(unitsNum)}`);
-
+  
     return `${header}<div class="info-stats">${bits.join(' • ')}</div>`;
   }
-
+  
+  
+  
   // Init legend
   if (legendEl) {
     legendEl.style.display = 'inline-block';
@@ -221,14 +226,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   map.on('error', e => console.error('Mapbox GL error:', e && e.error));
 
   map.on('load', () => {
-    // Find the first symbol (label) layer in the style
     const layers = map.getStyle().layers;
     const firstSymbolId = (layers.find(l => l.type === 'symbol') || {}).id;
 
-    // Source
     map.addSource('parcels', { type: 'vector', url: TILESET_URL });
 
-    // Add your layers BEFORE the first label layer so labels stay on top
     map.addLayer({
       id: 'parcels-fill',
       type: 'fill',
@@ -279,15 +281,16 @@ document.addEventListener('DOMContentLoaded', async () => {
       pymChild.sendHeight();
     });
 
-    // Dropdown → filter
     if (selectEl) {
       const applyFilter = () => {
         const key = selectEl.value; // "all" | "RC" | "SRES" | "MRES" | "COMM"
         if (!map.getLayer('parcels-fill')) return;
-        map.setFilter('parcels-fill', key === 'all' ? null : robustClassFilter(key));
+        const filt = (key === 'all') ? null : robustClassFilter(key);
+        map.setFilter('parcels-fill', filt);
+        if (map.getLayer('outline')) map.setFilter('outline', filt);
       };
       selectEl.addEventListener('change', applyFilter);
-      applyFilter(); // initial state
+      applyFilter();
     }
   });
 
