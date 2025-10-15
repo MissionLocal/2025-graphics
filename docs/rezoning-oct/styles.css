@@ -128,7 +128,7 @@
    
    /* Mobile: fill visible viewport safely, avoid 100vw overflow */
    @media (max-width: 767px){
-     :root { --gutter: 8px; } /* tweak 8–20px */
+     :root { --gutter: 3px; } /* tweak 8–20px */
    
      .map-container{
        width: 100%;
