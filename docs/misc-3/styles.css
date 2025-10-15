@@ -70,12 +70,25 @@ body{margin:0;padding:0 0 20px 0;font-family:'Barlow',sans-serif}
   .map{max-width:720px;height:560px}
 }
 
-/* Mobile: fill the viewport height (leaves room for UI/footer) */
+/* Mobile: inset the map with side padding and avoid 100vw overflow */
 @media (max-width:767px){
-  .map-container{max-width:none;width:100vw}
+  :root { --gutter: 5px; } /* tweak 12–20px to taste */
+
+  .map-container{
+    width:100%;
+    max-width:none;
+    padding-left:max(var(--gutter), env(safe-area-inset-left));
+    padding-right:max(var(--gutter), env(safe-area-inset-right));
+    box-sizing:border-box;
+  }
+
   .map{
-    width:100vw;max-width:none;
+    width:100%;          /* fill padded container instead of 100vw */
+    max-width:none;
     height:calc(100dvh - 120px); /* adjust if your header/footer changes */
+    border-radius:10px;  /* optional nicety */
+    overflow:hidden;     /* keep tiles inside the radius */
+    box-shadow:0 4px 8px rgba(0,0,0,.1);
   }
 }
 
