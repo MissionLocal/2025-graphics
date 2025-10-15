@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="k" style="display:flex;align-items:center;gap:6px;">
           <span class="sw" style="width:12px;height:12px;border-radius:2px;background:${EXACT_FORTY_COLOR};
                  box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);"></span>
-          <span>40</span>
+          <span>40 (no change)</span>
         </div>
       </div>
 
