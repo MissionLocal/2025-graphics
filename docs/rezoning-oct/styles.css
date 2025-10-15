@@ -116,13 +116,13 @@
        width: 100%;
        max-width: none;
        margin: 8px auto;
-       padding: 0;            /* avoid 100vw overflow */
+       padding: 4px;            /* avoid 100vw overflow */
      }
      .map {
        width: 100% !important;
        max-width: none !important;
-       height: 300px !important;     /* fixed height on phones */
-       min-height: 300px !important; /* guard against collapse */
+       height: 500px !important;     /* fixed height on phones */
+       min-height: 500px !important; /* guard against collapse */
        border-radius: 10px;
      }
      .legend { max-width: none; }
