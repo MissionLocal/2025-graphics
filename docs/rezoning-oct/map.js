@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
 
   // Tileset + source-layer
-  const TILESET_URL  = "mapbox://mlnow.9lq77t5d";
+  const TILESET_URL = "mapbox://mlnow.9lq77t5d";
   const SOURCE_LAYER = "gdf_supe_with_categories";
 
   // DOM refs
-  const infoBox  = document.getElementById('info-box');
+  const infoBox = document.getElementById('info-box');
   const legendEl = document.getElementById('legend');
   const selectEl = document.getElementById('layerSelect'); // dropdown
   if (infoBox) infoBox.style.display = 'none';
@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     "#004F84", "#004676", "#003C66", "#003459", "#002C4D",
     "#00233F", "#001C31", "#001724", "#001319", "#000F19", "#000C13"
   ];
-  const BASE_BELOW_FIRST  = "#EFFFFA"; // numeric but < 40
+  const BASE_BELOW_FIRST = "#EFFFFA"; // numeric but < 40
   const EXACT_FORTY_COLOR = "#9e9e9e"; // exactly 40
-  const MISSING_COLOR     = "#E6E6E6"; // non-numeric / NaN / empty / missing
+  const MISSING_COLOR = "#E6E6E6"; // non-numeric / NaN / empty / missing
 
   // Color expression:
   // - invalid/missing (NaN or null) -> MISSING_COLOR
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // - else -> step() bins
   function makeHeightColorExprStep() {
     const raw = ["get", "proposed_height"];
-    const v   = ["to-number", raw]; // yields NaN for non-numeric strings like "NaN", "140/450", "", etc.
+    const v = ["to-number", raw]; // yields NaN for non-numeric strings like "NaN", "140/450", "", etc.
 
     return [
       "case",
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       ], MISSING_COLOR,
 
       ["==", v, 40], EXACT_FORTY_COLOR,
-      ["<",  v, 40], BASE_BELOW_FIRST,
+      ["<", v, 40], BASE_BELOW_FIRST,
 
       ["step", v,
         BASE_BELOW_FIRST,
@@ -78,10 +78,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Legend: discrete 40 swatch + gradient (no extra “invalid” key)
-  function legendHTML(title){
+  function legendHTML(title) {
     const gradientColors = HEIGHT_COLORS.join(',');
     const minActive = HEIGHT_BREAKS[0] + 10; // 41
-    const maxLabel  = `${HEIGHT_BREAKS[HEIGHT_BREAKS.length - 1]}`;
+    const maxLabel = `${HEIGHT_BREAKS[HEIGHT_BREAKS.length - 1]}`;
     return `
       <div class="legend-title">${title}</div>
 
@@ -134,10 +134,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   ];
 
   // ---------- Info card ----------
-  function num(v){
+  function num(v) {
     if (v === null || v === undefined) return null;
     if (typeof v === "number") return Number.isFinite(v) ? v : null;
-    if (typeof v === "string"){
+    if (typeof v === "string") {
       const s = v.trim();
       if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
       const m = s.match(/^[+-]?\d+(\.\d+)?/);
@@ -145,11 +145,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     return null;
   }
-  function fmtFt(n){
+  function fmtFt(n) {
     if (n === null) return "N/A";
     return Number.isInteger(n) ? `${n} ft` : `${n.toFixed(1)} ft`;
   }
-  function fallbackChange(p){
+  function fallbackChange(p) {
     const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
     const existing = num(p?.heightdist);
     if (proposed !== null && existing !== null) return proposed - existing;
@@ -157,59 +157,59 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function tplInfo(p = {}) {
-    const id   = p?.RP1PRCLID ?? "—";
+    const id = p?.RP1PRCLID ?? "—";
     const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
-  
+
     // Decide what to show for "Proposed height"
     const rawPH = (p?.proposed_height ?? "").toString().trim();
-    const nums  = (rawPH.match(/[+-]?\d+(\.\d+)?/g) || []);
+    const nums = (rawPH.match(/[+-]?\d+(\.\d+)?/g) || []);
     const isNaNString = /^\s*nan\s*$/i.test(rawPH);
     const hasSeparators = /[;/]/.test(rawPH) || /\/\//.test(rawPH);
     const hasMultipleNums = nums.length > 1;
     // 👉 Treat empty/null as "multiple" too (since that's what you want to display)
     const isEmpty = rawPH.length === 0;
-  
+
     const isMultiple = isEmpty || isNaNString || hasSeparators || hasMultipleNums;
-  
+
     const propStr = isMultiple
       ? "multiple"
       : rawPH; // single numeric or any other single-value text like "No change"
-  
+
     // Prefer 'change' from data; include 0 as valid; else compute from ints/strings
     let ch = num(p?.change);
-    if (ch === null) ch = (function(){
+    if (ch === null) ch = (function () {
       const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
       const existing = num(p?.heightdist);
       return (proposed !== null && existing !== null) ? proposed - existing : null;
     })();
-  
+
     let changeTxt = "—";
     if (ch !== null) {
       const rounded = Math.abs(ch % 1) === 0 ? Math.trunc(ch) : Math.round(ch * 10) / 10;
       const sign = ch > 0 ? "+" : ch < 0 ? "−" : "";
       changeTxt = `${sign}${Number.isInteger(rounded) ? rounded : rounded.toFixed(1)} ft`;
     }
-  
+
     const unitsNum = num(p?.UNITS);
-  
+
     const header = `
       <div class="info-header">
         <strong>Parcel ${id}</strong>
         <span class="sep"> • </span>
         <span class="bldg-type">${type ?? "—"}</span>
       </div>`;
-  
+
     const bits = [
       `Proposed height: ${propStr}`,
       `Change: ${changeTxt}`,
     ];
     if (unitsNum !== null && unitsNum > 0) bits.push(`Units: ${Math.round(unitsNum)}`);
-  
+
     return `${header}<div class="info-stats">${bits.join(' • ')}</div>`;
   }
-  
-  
-  
+
+
+
   // Init legend
   if (legendEl) {
     legendEl.style.display = 'inline-block';
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       type: 'line',
       source: 'parcels',
       'source-layer': SOURCE_LAYER,
-      paint: { 'line-color':'#ffffff', 'line-width': 0.2 }
+      paint: { 'line-color': '#ffffff', 'line-width': 0.2 }
     }, firstSymbolId);
 
     map.addLayer({
@@ -252,30 +252,30 @@ document.addEventListener('DOMContentLoaded', async () => {
       type: 'line',
       source: 'parcels',
       'source-layer': SOURCE_LAYER,
-      paint: { 'line-color':'#ffffff', 'line-width': 2.0 },
-      filter: ['==', ['get','RP1PRCLID'], '']
+      paint: { 'line-color': '#ffffff', 'line-width': 2.0 },
+      filter: ['==', ['get', 'RP1PRCLID'], '']
     }, firstSymbolId);
 
-    map.on('mousemove','parcels-fill', e => {
+    map.on('mousemove', 'parcels-fill', e => {
       if (!e.features?.length) return;
       const pid = e.features[0].properties?.RP1PRCLID ?? '';
-      map.setFilter('hover', ['==',['get','RP1PRCLID'], pid]);
+      map.setFilter('hover', ['==', ['get', 'RP1PRCLID'], pid]);
       map.getCanvas().style.cursor = 'pointer';
     });
 
-    map.on('mouseleave','parcels-fill', () => {
-      map.setFilter('hover', ['==',['get','RP1PRCLID'],'']);
+    map.on('mouseleave', 'parcels-fill', () => {
+      map.setFilter('hover', ['==', ['get', 'RP1PRCLID'], '']);
       map.getCanvas().style.cursor = '';
     });
 
-    map.on('click','parcels-fill', e => {
+    map.on('click', 'parcels-fill', e => {
       const f = e.features?.[0];
       if (!f) return;
       revealInfoBox(tplInfo(f.properties || {}));
     });
 
     map.on('click', e => {
-      const hits = map.queryRenderedFeatures(e.point, { layers:['parcels-fill'] });
+      const hits = map.queryRenderedFeatures(e.point, { layers: ['parcels-fill'] });
       if (hits.length) return;
       if (infoBox) { infoBox.style.display = 'none'; infoBox.style.bottom = '22px'; }
       pymChild.sendHeight();
@@ -293,6 +293,35 @@ document.addEventListener('DOMContentLoaded', async () => {
       applyFilter();
     }
   });
+
+  // --- Robust resize handling for mobile/webviews ---
+  function debounce(fn, ms = 120) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+  const safeResize = debounce(() => {
+    try {
+      map.resize();
+      pymChild && pymChild.sendHeight && pymChild.sendHeight();
+    } catch (e) { /* noop */ }
+  }, 120);
+
+  // Kick after map is fully styled/rendered
+  map.once('load', () => {
+    // Run a couple times to catch URL-bar animations
+    safeResize();
+    setTimeout(safeResize, 250);
+    setTimeout(safeResize, 800);
+  });
+
+  // Orientation / URL bar show-hide
+  window.addEventListener('orientationchange', () => setTimeout(safeResize, 250), { passive: true });
+  window.addEventListener('resize', safeResize, { passive: true });
+
+  // When tab/webview becomes visible again
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') setTimeout(safeResize, 150);
+  });
+
+  // If your map lives in an iframe (pym), nudging height after style idle helps
+  map.on('idle', safeResize);
 
   window.addEventListener('resize', () => {
     map.resize();
