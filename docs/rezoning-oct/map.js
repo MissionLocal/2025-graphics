@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Legend: discrete 40 swatch + gradient (no extra “invalid” key)
   function legendHTML(title){
     const gradientColors = HEIGHT_COLORS.join(',');
-    const minActive = HEIGHT_BREAKS[0] + 1; // 41
+    const minActive = HEIGHT_BREAKS[0] + 10; // 41
     const maxLabel  = `${HEIGHT_BREAKS[HEIGHT_BREAKS.length - 1]}`;
     return `
       <div class="legend-title">${title}</div>
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="k" style="display:flex;align-items:center;gap:6px;">
           <span class="sw" style="width:12px;height:12px;border-radius:2px;background:${EXACT_FORTY_COLOR};
                  box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);"></span>
-          <span>40 (no change)</span>
+          <span>40, no change</span>
         </div>
       </div>
 
