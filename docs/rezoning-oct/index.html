@@ -17,11 +17,12 @@
           <label for="layerSelect">Show:</label>
           <select id="layerSelect">
             <option value="all" selected>All</option>
-            <option value="RC">Rent control eligible</option>
+            <option value="AMEND">Amended proposal</option> <!-- NEW -->
+            <option value="RC">All rent control eligible</option>
             <option value="SRES">Single-family / condo</option>
             <option value="MRES">Multi-family</option>
             <option value="COMM">Commercial</option>
-          </select>
+          </select>          
         </div>
         <div id="legend" class="legend"></div>
       </div>
@@ -32,7 +33,7 @@
   </div>
 
   <div id="last-updated" style="text-align:center; font-family:'Barlow', sans-serif; font-size:0.9em; color:#555;">
-    Last updated: <span id="update-date">October 15, 2025</span>
+    Map by Kelly Waldron. Data from the San Francisco Planning Department and the Assessor-Recorder's Office.
   </div>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>

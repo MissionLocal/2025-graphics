@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
 
   // Tileset + source-layer
-  const TILESET_URL = "mapbox://mlnow.9lq77t5d";
+  const TILESET_URL = "mapbox://mlnow.a2ep9f7m";
   const SOURCE_LAYER = "gdf_supe_with_categories";
 
   // DOM refs
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ["==", ["coalesce", ["to-number", ["get", key]], 0], 1]
   ];
 
-  // ---------- Info card ----------
+  // ---------- Info card utils ----------
   function num(v) {
     if (v === null || v === undefined) return null;
     if (typeof v === "number") return Number.isFinite(v) ? v : null;
@@ -155,10 +155,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (proposed !== null && existing !== null) return proposed - existing;
     return null;
   }
+  function boolish(v) {
+    if (v === true || v === 1) return true;
+    if (v === false || v === 0 || v === null || v === undefined) return false;
+    if (typeof v === "string") {
+      const s = v.trim().toLowerCase();
+      if (!s) return false;
+      if (s === "true" || s === "1" || s === "yes" || s === "y") return true;
+      if (s === "false" || s === "0" || s === "no" || s === "n" || s === "null" || s === "nan") return false;
+    }
+    if (typeof v === "number") return v !== 0 && Number.isFinite(v);
+    return false;
+  }
 
+  // ---------- Info card ----------
   function tplInfo(p = {}) {
     const id = p?.RP1PRCLID ?? "—";
     const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
+    const amend = boolish(p?.AMEND);
 
     // Decide what to show for "Proposed height"
     const rawPH = (p?.proposed_height ?? "").toString().trim();
@@ -166,22 +180,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isNaNString = /^\s*nan\s*$/i.test(rawPH);
     const hasSeparators = /[;/]/.test(rawPH) || /\/\//.test(rawPH);
     const hasMultipleNums = nums.length > 1;
-    // 👉 Treat empty/null as "multiple" too (since that's what you want to display)
     const isEmpty = rawPH.length === 0;
-
     const isMultiple = isEmpty || isNaNString || hasSeparators || hasMultipleNums;
+    const propStr = isMultiple ? "multiple" : rawPH;
 
-    const propStr = isMultiple
-      ? "multiple"
-      : rawPH; // single numeric or any other single-value text like "No change"
-
-    // Prefer 'change' from data; include 0 as valid; else compute from ints/strings
+    // Prefer 'change' from data; include 0 as valid; else compute
     let ch = num(p?.change);
-    if (ch === null) ch = (function () {
+    if (ch === null) {
       const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
       const existing = num(p?.heightdist);
-      return (proposed !== null && existing !== null) ? proposed - existing : null;
-    })();
+      ch = (proposed !== null && existing !== null) ? proposed - existing : null;
+    }
 
     let changeTxt = "—";
     if (ch !== null) {
@@ -197,6 +206,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <strong>Parcel ${id}</strong>
         <span class="sep"> • </span>
         <span class="bldg-type">${type ?? "—"}</span>
+        ${amend ? `<span class="sep"> • </span><span class="badge">AMEND</span>` : ``}
       </div>`;
 
     const bits = [
@@ -207,8 +217,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     return `${header}<div class="info-stats">${bits.join(' • ')}</div>`;
   }
-
-
 
   // Init legend
   if (legendEl) {
@@ -283,7 +291,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (selectEl) {
       const applyFilter = () => {
-        const key = selectEl.value; // "all" | "RC" | "SRES" | "MRES" | "COMM"
+        // "all" | "RC" | "SRES" | "MRES" | "COMM" | "AMEND"
+        const key = selectEl.value;
         if (!map.getLayer('parcels-fill')) return;
         const filt = (key === 'all') ? null : robustClassFilter(key);
         map.setFilter('parcels-fill', filt);
