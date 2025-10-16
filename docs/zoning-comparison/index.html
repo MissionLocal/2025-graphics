@@ -7,8 +7,8 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    html, body { height: 100%; }
-    body { margin: 0; padding: 0 0 20px 0; font-family: Barlow, system-ui, sans-serif; }
+    html, body { min-height:100%; }
+    body { margin:0; padding:0 0 20px 0; font-family:Barlow,system-ui,sans-serif; }
 
     /* layout */
     .maps-wrapper{
@@ -17,7 +17,7 @@
     }
     .map-container{ position:relative; flex:0 0 320px; width:320px; }
     .map{
-      position: relative; /* ensure stacking context for overlays */
+      position:relative; /* stacking context for overlays */
       width:100%; height:500px; border-radius:10px; overflow:hidden;
       box-shadow:0 4px 8px rgba(0,0,0,.1);
       background:#f5f5f5;
@@ -29,7 +29,7 @@
       border-radius:2px; box-shadow:0 1px 2px rgba(0,0,0,.12); pointer-events:none;
     }
 
-    /* legend (only on the left) */
+    /* legend (left only) */
     .legend{
       position:absolute; top:46px; left:8px; z-index:3;
       background:rgba(255,255,255,.95); border:1px solid #ddd; border-radius:8px;
@@ -40,21 +40,20 @@
     .legend-gradient{ height:10px; border-radius:6px; box-shadow:inset 0 0 0 1px rgba(0,0,0,.08); }
     .legend-ends{ display:flex; justify-content:space-between; margin-top:4px; color:#222; }
     .legend-ends span{ color:#555; font-weight:400; }
-    .legend .sw{ width:12px; height:12px; border-radius:2px; box-shadow:inset 0 0 0 1px rgba(0,0,0,.12); }
 
-    /* info box (LEFT ONLY) */
+    /* info box (left only) */
     .info-box{
       position:absolute; left:8px; bottom:8px; z-index:4;
       width:calc(100% - 16px); max-width:300px; box-sizing:border-box;
       padding:8px 10px; background:rgba(255,255,255,.98); border-radius:2px;
       box-shadow:0 2px 4px rgba(0,0,0,.1); font-size:13px; line-height:1.35;
       max-height:42%; overflow-y:auto; white-space:normal; display:none;
-      pointer-events:auto; /* allow scroll inside */
+      pointer-events:auto;
     }
 
     .mapboxgl-ctrl-top-right{ z-index:2; }
 
-    /* mobile: stack, 300px tall */
+    /* mobile */
     @media (max-width:640px){
       .maps-wrapper{ width:auto; max-width:100%; flex-direction:column; gap:10px; padding:0 10px; }
       .map-container{ flex:0 0 auto; width:100%; }
@@ -70,19 +69,17 @@
     <div class="map-container">
       <h3>Current zoning proposal</h3>
       <div id="mapL" class="map"></div>
-      <div id="legend-left" class="legend"></div>   <!-- only legend -->
-      <div id="info-left" class="info-box"></div>   <!-- only info box -->
+      <div id="legend-left" class="legend"></div>
+      <div id="info-left" class="info-box"></div>
     </div>
 
     <div class="map-container">
       <h3>Amended proposal</h3>
       <div id="mapR" class="map"></div>
-      <!-- no info box on the right -->
     </div>
   </div>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
-
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIG ---
@@ -189,7 +186,6 @@
       return feats && feats[0] ? feats[0].properties : null;
     }
 
-    // Info-box number parsing + template
     const num = (v) => {
       if (v==null) return null;
       if (typeof v==="number") return Number.isFinite(v)?v:null;
@@ -229,27 +225,22 @@
       if (props){
         infoLeft.innerHTML = tplInfo(props);
         infoLeft.style.display = 'block';
-        freezeHeight();  // keep parent from growing forever
-      } else {
-        console.warn('No properties for PID', pid);
       }
     }
     function clearSelection(){
       setHover('');
       if (infoLeft.style.display !== 'none') {
         infoLeft.style.display = 'none';
-        freezeHeight();
       }
     }
 
-    // Sync cameras
     function sync(a,b){
       let sa=false,sb=false;
       a.on('move',()=>{ if(sa) return; sb=true; b.jumpTo({center:a.getCenter(),zoom:a.getZoom(),bearing:a.getBearing(),pitch:a.getPitch()}); sb=false;});
       b.on('move',()=>{ if(sb) return; sa=true; a.jumpTo({center:b.getCenter(),zoom:b.getZoom(),bearing:b.getBearing(),pitch:b.getPitch()}); sa=false;});
     }
 
-    // --- Build maps, wire interactions ---
+    // --- Build maps ---
     Promise.all([ new Promise(r=>mapL.on('load',r)), new Promise(r=>mapR.on('load',r)) ]).then(()=>{
       addLayers(mapL, undefined, 'L');                  // ALL
       addLayers(mapR, robustClassFilter('AMEND'), 'R'); // AMEND = true
@@ -269,83 +260,59 @@
       });
       mapR.on('mouseleave', 'parcels-fill-R', ()=> setHover(''));
 
-      // clicks with console verification
+      // clicks
       mapL.on('click', 'parcels-fill-L', e=>{
         const f = e.features?.[0]; if (!f) return;
-        const pid = f.properties?.RP1PRCLID;
-        console.log('mapL clicked', pid);
-        if (pid) setSelection(pid);
+        const pid = f.properties?.RP1PRCLID; if (pid) setSelection(pid);
       });
       mapR.on('click', 'parcels-fill-R', e=>{
         const f = e.features?.[0]; if (!f) return;
-        const pid = f.properties?.RP1PRCLID;
-        console.log('mapR clicked', pid);
-        if (pid) setSelection(pid);
+        const pid = f.properties?.RP1PRCLID; if (pid) setSelection(pid);
       });
 
-      // Background clicks clear (with log to debug)
+      // background clicks clear
       mapL.on('click', e=>{
         const hit = mapL.queryRenderedFeatures(e.point, { layers:['parcels-fill-L'] });
-        if (!hit.length) {
-          console.log('Background click on L -> hiding info box');
-          clearSelection();
-        }
+        if (!hit.length) clearSelection();
       });
       mapR.on('click', e=>{
         const hit = mapR.queryRenderedFeatures(e.point, { layers:['parcels-fill-R'] });
-        if (!hit.length) {
-          console.log('Background click on R -> hiding info box');
-          clearSelection();
-        }
+        if (!hit.length) clearSelection();
       });
 
-      // Only left legend
+      // legend
       if (legendL){
         legendL.innerHTML = legendHTML('Proposed height (ft)');
         legendL.style.display='inline-block';
       }
 
-      // Starter message so you can see the box
-      if (infoLeft) {
+      // starter info box
+      if (infoLeft){
         infoLeft.innerHTML = '<div>Click a parcel to see details.</div>';
         infoLeft.style.display = 'block';
       }
 
-      // Sync cameras
+      // sync cameras
       sync(mapL,mapR);
 
-      // Resize debounce + height freeze (prevents runaway parent resizing)
+      // resize maps only (no Pym, no height freezer)
       const onResize = (() => {
-        let t = null;
+        let t=null;
         return () => {
           clearTimeout(t);
           t = setTimeout(() => {
             try { mapL.resize(); mapR.resize(); } catch {}
-            freezeHeight();
-          }, 150);
+          }, 120);
         };
       })();
-      window.addEventListener('resize', onResize, { passive: true });
-
-      // Initial height freeze after first paint
-      requestAnimationFrame(() => freezeHeight());
+      window.addEventListener('resize', onResize, { passive:true });
     }).catch(err=>{
       console.error('INIT ERROR:',err);
       if (infoLeft) {
         infoLeft.style.display = 'block';
         infoLeft.innerHTML = `<div style="color:#b00">Error loading maps: ${err?.message || err}</div>`;
-        freezeHeight();
       }
     });
-
-    // --- Height freezer: stabilizes scrollHeight to stop "infinite growth" embeds ---
-    function freezeHeight(){
-      const wrapper = document.querySelector('.maps-wrapper');
-      if (!wrapper) return;
-      const h = Math.ceil(wrapper.getBoundingClientRect().height);
-      document.documentElement.style.height = h + 'px';
-      document.body.style.height = h + 'px';
-    }
   });
   </script>
 </body>
