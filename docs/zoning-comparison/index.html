@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Two Maps — All vs AMEND</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    html, body { height: 100%; }
+    body { margin: 0; padding: 0 0 20px 0; font-family: Barlow, system-ui, sans-serif; }
+
+    /* two fixed 320px maps on desktop */
+    .maps-wrapper{
+      width:650px; max-width:650px; margin:10px auto;
+      display:flex; gap:10px; justify-content:center; align-items:stretch; padding:0 10px;
+    }
+    .map-container{ position:relative; flex:0 0 320px; width:320px; }
+    .map{
+      width:100%; height:500px; border-radius:10px; overflow:hidden;
+      box-shadow:0 4px 8px rgba(0,0,0,.1);
+    }
+
+    .map-container h3{
+      position:absolute; top:8px; left:8px; z-index:2; margin:0; padding:6px 8px;
+      font-size:14px; font-weight:600; color:#333; background:rgba(255,255,255,.95);
+      border-radius:2px; box-shadow:0 1px 2px rgba(0,0,0,.12); pointer-events:none;
+    }
+
+    /* legend (only on the left) */
+    .legend{
+      position:absolute; top:46px; left:8px; z-index:2;
+      background:rgba(255,255,255,.95); border:1px solid #ddd; border-radius:8px;
+      padding:8px 10px; box-shadow:0 1px 2px rgba(0,0,0,.06);
+      font-size:11.5px; line-height:1.1; display:inline-block; max-width:260px; pointer-events:none;
+    }
+    .legend-title{ font-weight:600; color:#222; margin-bottom:4px; }
+    .legend-gradient{ height:10px; border-radius:6px; box-shadow:inset 0 0 0 1px rgba(0,0,0,.08); }
+    .legend-ends{ display:flex; justify-content:space-between; margin-top:4px; color:#222; }
+    .legend-ends span{ color:#555; font-weight:400; }
+    .legend .sw{ width:12px; height:12px; border-radius:2px; box-shadow:inset 0 0 0 1px rgba(0,0,0,.12); }
+
+    /* info box (LEFT ONLY) */
+    .info-box{
+      position:absolute; left:8px; bottom:8px; z-index:2;
+      width:calc(100% - 16px); max-width:300px; box-sizing:border-box;
+      padding:8px 10px; background:rgba(255,255,255,.98); border-radius:2px;
+      box-shadow:0 2px 4px rgba(0,0,0,.1); font-size:13px; line-height:1.35;
+      max-height:42%; overflow-y:auto; white-space:normal; display:none;
+    }
+
+    .mapboxgl-ctrl-top-right{ z-index:1; }
+
+    /* mobile: stack, 300px tall */
+    @media (max-width:640px){
+      .maps-wrapper{ width:auto; max-width:100%; flex-direction:column; gap:10px; padding:0 10px; }
+      .map-container{ flex:0 0 auto; width:100%; }
+      .map{ height:300px; min-height:300px; }
+      .legend{ top:40px; padding:6px 8px; font-size:11px; max-width:240px; }
+      .info-box{ max-width:none; font-size:12.5px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="maps-wrapper">
+    <div class="map-container">
+      <h3>Current zoning proposal</h3>
+      <div id="mapL" class="map"></div>
+      <div id="legend-left" class="legend"></div>   <!-- only legend -->
+      <div id="info-left" class="info-box"></div>   <!-- only info box -->
+    </div>
+
+    <div class="map-container">
+      <h3>Amended proposal</h3>
+      <div id="mapR" class="map"></div>
+      <!-- no info box on the right -->
+    </div>
+  </div>
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const pymChild = new pym.Child();
+
+    mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
+    const TILESET_URL  = "mapbox://mlnow.a2ep9f7m";
+    const SOURCE_LAYER = "gdf_supe_with_categories";
+
+    const infoLeft  = document.getElementById('info-left');
+    const legendL   = document.getElementById('legend-left');
+
+    const HEIGHT_BREAKS = [40,50,65,70,75,80,85,105,120,130,140,160,180,240,250,300,350,450,490,500,650];
+    const HEIGHT_COLORS = ["#9DF4D9","#66D9CF","#3CCDC9","#22BFC3","#12ADBA","#008FA4","#007DBC","#006FB0","#0062A1","#005892","#004F84","#004676","#003C66","#003459","#002C4D","#00233F","#001C31","#001724","#001319","#000F19","#000C13"];
+    const BASE_BELOW_FIRST = "#EFFFFA";
+    const EXACT_FORTY_COLOR = "#9e9e9e";
+    const MISSING_COLOR = "#E6E6E6";
+
+    function makeHeightColorExprStep(){
+      const raw=["get","proposed_height"];
+      const v=["to-number",raw];
+      return ["case",
+        ["any",["==",raw,null],["!=",v,v]], MISSING_COLOR,
+        ["==",v,40], EXACT_FORTY_COLOR,
+        ["<", v,40], BASE_BELOW_FIRST,
+        ["step", v,
+          BASE_BELOW_FIRST,
+          40,HEIGHT_COLORS[0],50,HEIGHT_COLORS[1],65,HEIGHT_COLORS[2],
+          70,HEIGHT_COLORS[3],75,HEIGHT_COLORS[4],80,HEIGHT_COLORS[5],
+          85,HEIGHT_COLORS[6],105,HEIGHT_COLORS[7],120,HEIGHT_COLORS[8],
+          130,HEIGHT_COLORS[9],140,HEIGHT_COLORS[10],160,HEIGHT_COLORS[11],
+          180,HEIGHT_COLORS[12],240,HEIGHT_COLORS[13],250,HEIGHT_COLORS[14],
+          300,HEIGHT_COLORS[15],350,HEIGHT_COLORS[16],450,HEIGHT_COLORS[17],
+          490,HEIGHT_COLORS[18],500,HEIGHT_COLORS[19],650,HEIGHT_COLORS[20]
+        ]
+      ];
+    }
+
+    const robustClassFilter = (key) => [
+      "any",
+      ["==", ["get", key], true],
+      ["==", ["downcase", ["coalesce", ["to-string", ["get", key]], ""]], "true"],
+      ["==", ["coalesce", ["to-number", ["get", key]], 0], 1]
+    ];
+
+    function legendHTML(title){
+      const min = HEIGHT_BREAKS[0]+1, max = HEIGHT_BREAKS.at(-1);
+      return `
+        <div class="legend-title">${title}</div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 6px;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span class="sw" style="display:inline-block;width:12px;height:12px;border-radius:2px;background:${EXACT_FORTY_COLOR};box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);"></span>
+            <span>40, no change</span>
+          </div>
+        </div>
+        <div class="legend-gradient" style="width:100%;height:10px;border-radius:6px;background:linear-gradient(90deg, ${HEIGHT_COLORS.join(',')});box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);margin:4px 0 4px;"></div>
+        <div class="legend-ends" style="display:flex;justify-content:space-between;"><span>${min}</span><span>${max}</span></div>
+      `;
+    }
+
+    // Info-box formatting (same as your single-map version)
+    const num = (v) => {
+      if (v==null) return null;
+      if (typeof v==="number") return Number.isFinite(v)?v:null;
+      const s = String(v).trim();
+      if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
+      const m = s.match(/^[+-]?\d+(\.\d+)?/);
+      return m ? Number(m[0]) : null;
+    };
+    const fallbackChange = (p) => {
+      const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
+      const existing = num(p?.heightdist);
+      return proposed!=null && existing!=null ? proposed-existing : null;
+    };
+    function tplInfo(p={}){
+      const id = p?.RP1PRCLID ?? "—";
+      const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
+      const rawPH = (p?.proposed_height ?? "").toString().trim();
+      const nums  = rawPH.match(/[+-]?\d+(\.\d+)?/g) || [];
+      const isMultiple = !rawPH || /^\s*nan\s*$/i.test(rawPH) || /[;/]/.test(rawPH) || nums.length>1;
+      const propStr = isMultiple ? "multiple" : (rawPH || "N/A");
+      let ch = num(p?.change); if (ch==null) ch = fallbackChange(p);
+      let changeTxt = "—";
+      if (ch!=null){ const r = Math.abs(ch%1)===0 ? Math.trunc(ch) : Math.round(ch*10)/10; const sign = ch>0?"+":ch<0?"−":""; changeTxt = `${sign}${Number.isInteger(r)?r:r.toFixed(1)} ft`; }
+      return `
+        <div class="info-header"><strong>Parcel ${id}</strong><span class="sep"> • </span><span class="bldg-type">${type}</span></div>
+        <div class="info-stats">Proposed height: ${propStr} • Change: ${changeTxt}</div>
+      `;
+    }
+
+    const center = [-122.4411568, 37.765044];
+    const zoom = window.matchMedia('(max-width: 640px)').matches ? 11.5 : 11.85;
+    const mapL = new mapboxgl.Map({ container:'mapL', style:'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21', center, zoom });
+    const mapR = new mapboxgl.Map({ container:'mapR', style:'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21', center, zoom });
+
+    function addLayers(map, filterExpr, side){
+      const firstSymbolId = (map.getStyle().layers.find(l=>l.type==='symbol')||{}).id;
+      map.addSource('parcels', { type:'vector', url:TILESET_URL });
+
+      const fill = {
+        id:`parcels-fill-${side}`, type:'fill', source:'parcels', 'source-layer':SOURCE_LAYER,
+        paint:{ 'fill-color': makeHeightColorExprStep(), 'fill-opacity':0.9 }
+      };
+      if (filterExpr) fill.filter = filterExpr;
+      map.addLayer(fill, firstSymbolId);
+
+      const outline = {
+        id:`outline-${side}`, type:'line', source:'parcels', 'source-layer':SOURCE_LAYER,
+        paint:{ 'line-color':'#fff','line-width':0.2 }
+      };
+      if (filterExpr) outline.filter = filterExpr;
+      map.addLayer(outline, firstSymbolId);
+
+      map.addLayer({
+        id:`hover-${side}`, type:'line', source:'parcels', 'source-layer':SOURCE_LAYER,
+        paint:{ 'line-color':'#fff','line-width':2.0 },
+        filter:['==',['get','RP1PRCLID'],'' ]
+      }, firstSymbolId);
+    }
+
+    // --- synchronized hover across BOTH maps ---
+    function setHover(pid){
+      mapL.setFilter('hover-L', ['==',['get','RP1PRCLID'], pid || '']);
+      mapR.setFilter('hover-R', ['==',['get','RP1PRCLID'], pid || '']);
+      const cur = pid ? 'pointer' : '';
+      mapL.getCanvas().style.cursor = cur;
+      mapR.getCanvas().style.cursor = cur;
+    }
+    function wireHoverSync(map, side){
+      map.on('mousemove', `parcels-fill-${side}`, e=>{
+        if (!e.features?.length) return;
+        const pid = e.features[0].properties?.RP1PRCLID ?? '';
+        setHover(pid); // applies to BOTH maps
+      });
+      map.on('mouseleave', `parcels-fill-${side}`, ()=> setHover(''));
+    }
+
+    // Get properties by parcel id from a map
+    function getPropsByPid(map, pid){
+      const feats = map.querySourceFeatures('parcels', {
+        sourceLayer: SOURCE_LAYER,
+        filter: ['==', ['get','RP1PRCLID'], pid]
+      });
+      return feats && feats[0] ? feats[0].properties : null;
+    }
+
+    // Click: update left info box; keep highlight on both maps
+    function setSelection(pid){
+      setHover(pid);
+      const props = getPropsByPid(mapL, pid) || getPropsByPid(mapR, pid);
+      if (props){
+        infoLeft.innerHTML = tplInfo(props);
+        infoLeft.style.display = 'block';
+        pymChild.sendHeight();
+      }
+    }
+    function clearSelection(){
+      setHover('');
+      infoLeft.style.display = 'none';
+      pymChild.sendHeight();
+    }
+
+    // Sync cameras
+    function sync(a,b){
+      let sa=false,sb=false;
+      a.on('move',()=>{ if(sa) return; sb=true; b.jumpTo({center:a.getCenter(),zoom:a.getZoom(),bearing:a.getBearing(),pitch:a.getPitch()}); sb=false;});
+      b.on('move',()=>{ if(sb) return; sa=true; a.jumpTo({center:b.getCenter(),zoom:b.getZoom(),bearing:b.getBearing(),pitch:b.getPitch()}); sa=false;});
+    }
+
+    Promise.all([ new Promise(r=>mapL.on('load',r)), new Promise(r=>mapR.on('load',r)) ]).then(()=>{
+      addLayers(mapL, undefined, 'L');                  // ALL
+      addLayers(mapR, robustClassFilter('AMEND'), 'R'); // AMEND = true
+      wireHoverSync(mapL,'L');
+      wireHoverSync(mapR,'R');
+      sync(mapL,mapR);
+
+      // Click on either map -> left info box + bold outline on both
+      mapL.on('click', 'parcels-fill-L', e=>{
+        const f = e.features?.[0]; if (!f) return;
+        const pid = f.properties?.RP1PRCLID; if (pid) setSelection(pid);
+      });
+      mapR.on('click', 'parcels-fill-R', e=>{
+        const f = e.features?.[0]; if (!f) return;
+        const pid = f.properties?.RP1PRCLID; if (pid) setSelection(pid);
+      });
+
+      // Background click clears
+      mapL.on('click', e=>{
+        const hit = mapL.queryRenderedFeatures(e.point, { layers:['parcels-fill-L'] });
+        if (!hit.length) clearSelection();
+      });
+      mapR.on('click', e=>{
+        const hit = mapR.queryRenderedFeatures(e.point, { layers:['parcels-fill-R'] });
+        if (!hit.length) clearSelection();
+      });
+
+      // Only left legend
+      if (legendL){ legendL.innerHTML = legendHTML('Proposed height (ft)'); legendL.style.display='inline-block'; }
+
+      // resize/height housekeeping
+      const deb=(fn,ms=120)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}};
+      const rez=deb(()=>{ try{mapL.resize();mapR.resize();}catch{} pymChild.sendHeight(); },120);
+      window.addEventListener('resize', rez, {passive:true});
+      window.addEventListener('orientationchange', ()=>setTimeout(rez,200), {passive:true});
+      mapL.on('idle', rez); mapR.on('idle', rez);
+      requestAnimationFrame(()=>pymChild.sendHeight());
+    }).catch(err=>console.error('INIT ERROR:',err));
+  });
+  </script>
+</body>
+</html>
