@@ -19,6 +19,7 @@
     .map{
       width:100%; height:500px; border-radius:10px; overflow:hidden;
       box-shadow:0 4px 8px rgba(0,0,0,.1);
+      background:#f5f5f5;
     }
 
     .map-container h3{
@@ -86,7 +87,7 @@
     const pymChild = new pym.Child();
 
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
-    const TILESET_URL  = "mapbox://mlnow.a2ep9f7m";
+    const TILESET_URL  = "mapbox://mlnow.a2ep9f7m";   // (as in your last message)
     const SOURCE_LAYER = "gdf_supe_with_categories";
 
     const infoLeft  = document.getElementById('info-left');
@@ -102,7 +103,7 @@
       const raw=["get","proposed_height"];
       const v=["to-number",raw];
       return ["case",
-        ["any",["==",raw,null],["!=",v,v]], MISSING_COLOR,
+        ["any",["==",raw,null],["!=",v,v]], MISSING_COLOR,   // null or NaN
         ["==",v,40], EXACT_FORTY_COLOR,
         ["<", v,40], BASE_BELOW_FIRST,
         ["step", v,
@@ -140,7 +141,7 @@
       `;
     }
 
-    // Info-box formatting (same as your single-map version)
+    // Info-box formatting
     const num = (v) => {
       if (v==null) return null;
       if (typeof v==="number") return Number.isFinite(v)?v:null;
@@ -170,6 +171,7 @@
       `;
     }
 
+    // ---------- Maps ----------
     const center = [-122.4609288, 37.7800873];
     const zoom = window.matchMedia('(max-width: 640px)').matches ? 14.5 : 14.5;
     const mapL = new mapboxgl.Map({ container:'mapL', style:'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21', center, zoom });
@@ -233,13 +235,15 @@
       if (props){
         infoLeft.innerHTML = tplInfo(props);
         infoLeft.style.display = 'block';
-        pymChild.sendHeight();
+        sendPym();  // send height only here if box size changes
       }
     }
     function clearSelection(){
       setHover('');
-      infoLeft.style.display = 'none';
-      pymChild.sendHeight();
+      if (infoLeft.style.display !== 'none') {
+        infoLeft.style.display = 'none';
+        sendPym();
+      }
     }
 
     // Sync cameras
@@ -248,6 +252,15 @@
       a.on('move',()=>{ if(sa) return; sb=true; b.jumpTo({center:a.getCenter(),zoom:a.getZoom(),bearing:a.getBearing(),pitch:a.getPitch()}); sb=false;});
       b.on('move',()=>{ if(sb) return; sa=true; a.jumpTo({center:b.getCenter(),zoom:b.getZoom(),bearing:b.getBearing(),pitch:b.getPitch()}); sa=false;});
     }
+
+    // ---- Pym: only on initial load & on resize ----
+    const sendPym = (() => {
+      let t = null;
+      return (delay=0) => {
+        clearTimeout(t);
+        t = setTimeout(() => pymChild.sendHeight(), delay);
+      };
+    })();
 
     Promise.all([ new Promise(r=>mapL.on('load',r)), new Promise(r=>mapR.on('load',r)) ]).then(()=>{
       addLayers(mapL, undefined, 'L');                  // ALL
@@ -279,13 +292,22 @@
       // Only left legend
       if (legendL){ legendL.innerHTML = legendHTML('Proposed height (ft)'); legendL.style.display='inline-block'; }
 
-      // resize/height housekeeping
-      const deb=(fn,ms=120)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}};
-      const rez=deb(()=>{ try{mapL.resize();mapR.resize();}catch{} pymChild.sendHeight(); },120);
-      window.addEventListener('resize', rez, {passive:true});
-      window.addEventListener('orientationchange', ()=>setTimeout(rez,200), {passive:true});
-      mapL.on('idle', rez); mapR.on('idle', rez);
-      requestAnimationFrame(()=>pymChild.sendHeight());
+      // Initial single-shot send after both maps report 'idle' once
+      Promise.all([ new Promise(r=>mapL.once('idle', r)), new Promise(r=>mapR.once('idle', r)) ])
+        .then(()=> sendPym(0));
+
+      // Window resize: resize maps + send height (debounced)
+      const onResize = (() => {
+        let t=null;
+        return () => {
+          clearTimeout(t);
+          t = setTimeout(() => {
+            try { mapL.resize(); mapR.resize(); } catch {}
+            sendPym(0);
+          }, 120);
+        };
+      })();
+      window.addEventListener('resize', onResize, { passive:true });
     }).catch(err=>console.error('INIT ERROR:',err));
   });
   </script>
