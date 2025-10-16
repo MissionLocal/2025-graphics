@@ -235,14 +235,12 @@
       if (props){
         infoLeft.innerHTML = tplInfo(props);
         infoLeft.style.display = 'block';
-        sendPym();  // send height only here if box size changes
       }
     }
     function clearSelection(){
       setHover('');
       if (infoLeft.style.display !== 'none') {
         infoLeft.style.display = 'none';
-        sendPym();
       }
     }
 
@@ -292,9 +290,9 @@
       // Only left legend
       if (legendL){ legendL.innerHTML = legendHTML('Proposed height (ft)'); legendL.style.display='inline-block'; }
 
-      // Initial single-shot send after both maps report 'idle' once
-      Promise.all([ new Promise(r=>mapL.once('idle', r)), new Promise(r=>mapR.once('idle', r)) ])
-        .then(()=> sendPym(0));
+    //   // Initial single-shot send after both maps report 'idle' once
+    //   Promise.all([ new Promise(r=>mapL.once('idle', r)), new Promise(r=>mapR.once('idle', r)) ])
+    //     .then(()=> sendPym(0));
 
       // Window resize: resize maps + send height (debounced)
       const onResize = (() => {
