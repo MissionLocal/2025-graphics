@@ -169,54 +169,64 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // ---------- Info card ----------
-  function tplInfo(p = {}) {
-    const id = p?.RP1PRCLID ?? "—";
-    const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
-    const amend = boolish(p?.AMEND);
+ // ---------- Info card ----------
+function tplInfo(p = {}) {
+  const id = p?.RP1PRCLID ?? "—";
+  const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
 
-    // Decide what to show for "Proposed height"
-    const rawPH = (p?.proposed_height ?? "").toString().trim();
-    const nums = (rawPH.match(/[+-]?\d+(\.\d+)?/g) || []);
-    const isNaNString = /^\s*nan\s*$/i.test(rawPH);
-    const hasSeparators = /[;/]/.test(rawPH) || /\/\//.test(rawPH);
-    const hasMultipleNums = nums.length > 1;
-    const isEmpty = rawPH.length === 0;
-    const isMultiple = isEmpty || isNaNString || hasSeparators || hasMultipleNums;
-    const propStr = isMultiple ? "multiple" : rawPH;
+  // Decide what to show for "Proposed height"
+  const rawPH = (p?.proposed_height ?? "").toString().trim();
+  const nums = (rawPH.match(/[+-]?\d+(\.\d+)?/g) || []);
+  const isNaNString = /^\s*nan\s*$/i.test(rawPH);
+  const hasSeparators = /[;/]/.test(rawPH) || /\/\//.test(rawPH);
+  const hasMultipleNums = nums.length > 1;
+  const isEmpty = rawPH.length === 0;
+  const isMultiple = isEmpty || isNaNString || hasSeparators || hasMultipleNums;
+  const propStr = isMultiple ? "multiple" : rawPH;
 
-    // Prefer 'change' from data; include 0 as valid; else compute
-    let ch = num(p?.change);
-    if (ch === null) {
-      const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
-      const existing = num(p?.heightdist);
-      ch = (proposed !== null && existing !== null) ? proposed - existing : null;
+  // Prefer 'change' from data; include 0 as valid; else compute
+  function num(v) {
+    if (v === null || v === undefined) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v === "string") {
+      const s = v.trim();
+      if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
+      const m = s.match(/^[+-]?\d+(\.\d+)?/);
+      return m ? Number(m[0]) : null;
     }
-
-    let changeTxt = "—";
-    if (ch !== null) {
-      const rounded = Math.abs(ch % 1) === 0 ? Math.trunc(ch) : Math.round(ch * 10) / 10;
-      const sign = ch > 0 ? "+" : ch < 0 ? "−" : "";
-      changeTxt = `${sign}${Number.isInteger(rounded) ? rounded : rounded.toFixed(1)} ft`;
-    }
-
-    const unitsNum = num(p?.UNITS);
-
-    const header = `
-      <div class="info-header">
-        <strong>Parcel ${id}</strong>
-        <span class="sep"> • </span>
-        <span class="bldg-type">${type ?? "—"}</span>
-        ${amend ? `<span class="sep"> • </span><span class="badge">AMEND</span>` : ``}
-      </div>`;
-
-    const bits = [
-      `Proposed height: ${propStr}`,
-      `Change: ${changeTxt}`,
-    ];
-    if (unitsNum !== null && unitsNum > 0) bits.push(`Units: ${Math.round(unitsNum)}`);
-
-    return `${header}<div class="info-stats">${bits.join(' • ')}</div>`;
+    return null;
   }
+  let ch = num(p?.change);
+  if (ch === null) {
+    const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
+    const existing = num(p?.heightdist);
+    ch = (proposed !== null && existing !== null) ? proposed - existing : null;
+  }
+  let changeTxt = "—";
+  if (ch !== null) {
+    const rounded = Math.abs(ch % 1) === 0 ? Math.trunc(ch) : Math.round(ch * 10) / 10;
+    const sign = ch > 0 ? "+" : ch < 0 ? "−" : "";
+    changeTxt = `${sign}${Number.isInteger(rounded) ? rounded : rounded.toFixed(1)} ft`;
+  }
+
+  const unitsNum = num(p?.UNITS);
+
+  const header = `
+    <div class="info-header">
+      <strong>Parcel ${id}</strong>
+      <span class="sep"> • </span>
+      <span class="bldg-type">${type ?? "—"}</span>
+    </div>`;
+
+  const bits = [
+    `Proposed height: ${propStr}`,
+    `Change: ${changeTxt}`,
+  ];
+  if (unitsNum !== null && unitsNum > 0) bits.push(`Units: ${Math.round(unitsNum)}`);
+
+  return `${header}<div class="info-stats">${bits.join(' • ')}</div>`;
+}
+
 
   // Init legend
   if (legendEl) {
