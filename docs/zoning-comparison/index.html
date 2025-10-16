@@ -80,15 +80,11 @@
   </div>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
-  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // --- New Pym bootstrap ---
-    const pymChild = new pym.Child();
-
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
-    const TILESET_URL  = "mapbox://mlnow.a2ep9f7m";
+    const TILESET_URL  = "mapbox://mlnow.a2ep9f7m";   // (as in your last message)
     const SOURCE_LAYER = "gdf_supe_with_categories";
 
     const infoLeft  = document.getElementById('info-left');
@@ -236,15 +232,12 @@
       if (props){
         infoLeft.innerHTML = tplInfo(props);
         infoLeft.style.display = 'block';
-        // nudge iframe height after reveal
-        requestAnimationFrame(() => pymChild.sendHeight());
       }
     }
     function clearSelection(){
       setHover('');
       if (infoLeft.style.display !== 'none') {
         infoLeft.style.display = 'none';
-        requestAnimationFrame(() => pymChild.sendHeight());
       }
     }
 
@@ -255,54 +248,6 @@
       b.on('move',()=>{ if(sb) return; sa=true; a.jumpTo({center:b.getCenter(),zoom:b.getZoom(),bearing:b.getBearing(),pitch:b.getPitch()}); sa=false;});
     }
 
-    // --- Robust Pym height sync (maps + DOM/layout changes) ---
-    (function robustPym() {
-      // Tiny sentinel so bottom-positioned overlays don't get clipped
-      const sentinel = document.createElement('div');
-      sentinel.style.cssText = 'height:1px;margin-top:32px;';
-      document.body.appendChild(sentinel);
-
-      // Burst sender (handles late reflows/tiles/fonts)
-      const sendBurst = (ms = 1800, every = 150) => {
-        const end = performance.now() + ms;
-        const tick = () => {
-          pymChild.sendHeight();
-          if (performance.now() < end) setTimeout(tick, every);
-        };
-        requestAnimationFrame(tick);
-      };
-
-      // Throttled sender for observers/events
-      let tId = null;
-      const sendThrottled = () => {
-        if (tId) return;
-        tId = setTimeout(() => { tId = null; pymChild.sendHeight(); }, 100);
-      };
-
-      // After both maps go idle and fonts are ready, measure + burst
-      Promise.all([
-        new Promise(r => mapL.once('idle', r)),
-        new Promise(r => mapR.once('idle', r)),
-        (document.fonts?.ready ?? Promise.resolve())
-      ]).then(() => {
-        requestAnimationFrame(() => {
-          pymChild.sendHeight();  // precise first measure
-          sendBurst();            // belt & suspenders
-        });
-      });
-
-      // Observe size and DOM mutations
-      new ResizeObserver(sendThrottled).observe(document.body);
-      const mo = new MutationObserver(sendThrottled);
-      mo.observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true });
-
-      // Orientation change: resize maps and send a brief burst
-      window.addEventListener('orientationchange', () => {
-        setTimeout(() => { try { mapL.resize(); mapR.resize(); } catch {} sendBurst(1000, 150); }, 200);
-      });
-    })();
-
-    // ---- Build maps ----
     Promise.all([ new Promise(r=>mapL.on('load',r)), new Promise(r=>mapR.on('load',r)) ]).then(()=>{
       addLayers(mapL, undefined, 'L');                  // ALL
       addLayers(mapR, robustClassFilter('AMEND'), 'R'); // AMEND = true
@@ -333,7 +278,7 @@
       // Only left legend
       if (legendL){ legendL.innerHTML = legendHTML('Proposed height (ft)'); legendL.style.display='inline-block'; }
 
-      // Window resize: only resize maps (robustPym observers handle height)
+      // Window resize: resize maps
       const onResize = (() => {
         let t=null;
         return () => {
@@ -344,24 +289,7 @@
         };
       })();
       window.addEventListener('resize', onResize, { passive:true });
-
-      // --- Single-shot Pym height AFTER both maps idle + fonts ready ---
-      Promise.all([
-        new Promise(r => mapL.once('idle', r)),
-        new Promise(r => mapR.once('idle', r)),
-        (document.fonts?.ready ?? Promise.resolve())
-      ]).then(() => {
-        requestAnimationFrame(() => pymChild.sendHeight());
-      });
-    }).catch(err=>{
-      console.error('INIT ERROR:',err);
-      // Attempt to surface the error for debugging embed height
-      if (infoLeft) {
-        infoLeft.style.display = 'block';
-        infoLeft.innerHTML = `<div style="color:#b00">Error loading maps: ${err?.message || err}</div>`;
-        requestAnimationFrame(() => pymChild.sendHeight());
-      }
-    });
+    }).catch(err=>console.error('INIT ERROR:',err));
   });
   </script>
 </body>
