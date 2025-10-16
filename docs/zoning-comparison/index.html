@@ -80,9 +80,10 @@
   </div>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
-
+  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const pymChild = new pym.Child();
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
     const TILESET_URL  = "mapbox://mlnow.a2ep9f7m";   // (as in your last message)
     const SOURCE_LAYER = "gdf_supe_with_categories";
