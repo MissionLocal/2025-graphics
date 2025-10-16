@@ -10,27 +10,28 @@
     html, body { height: 100%; }
     body { margin: 0; padding: 0 0 20px 0; font-family: Barlow, system-ui, sans-serif; }
 
-    /* two fixed 320px maps on desktop */
+    /* layout */
     .maps-wrapper{
       width:650px; max-width:650px; margin:10px auto;
       display:flex; gap:10px; justify-content:center; align-items:stretch; padding:0 10px;
     }
     .map-container{ position:relative; flex:0 0 320px; width:320px; }
     .map{
+      position: relative; /* ensure stacking context for overlays */
       width:100%; height:500px; border-radius:10px; overflow:hidden;
       box-shadow:0 4px 8px rgba(0,0,0,.1);
       background:#f5f5f5;
     }
 
     .map-container h3{
-      position:absolute; top:8px; left:8px; z-index:2; margin:0; padding:6px 8px;
+      position:absolute; top:8px; left:8px; z-index:3; margin:0; padding:6px 8px;
       font-size:14px; font-weight:600; color:#333; background:rgba(255,255,255,.95);
       border-radius:2px; box-shadow:0 1px 2px rgba(0,0,0,.12); pointer-events:none;
     }
 
     /* legend (only on the left) */
     .legend{
-      position:absolute; top:46px; left:8px; z-index:2;
+      position:absolute; top:46px; left:8px; z-index:3;
       background:rgba(255,255,255,.95); border:1px solid #ddd; border-radius:8px;
       padding:8px 10px; box-shadow:0 1px 2px rgba(0,0,0,.06);
       font-size:11.5px; line-height:1.1; display:inline-block; max-width:260px; pointer-events:none;
@@ -43,14 +44,15 @@
 
     /* info box (LEFT ONLY) */
     .info-box{
-      position:absolute; left:8px; bottom:8px; z-index:2;
+      position:absolute; left:8px; bottom:8px; z-index:4;
       width:calc(100% - 16px); max-width:300px; box-sizing:border-box;
       padding:8px 10px; background:rgba(255,255,255,.98); border-radius:2px;
       box-shadow:0 2px 4px rgba(0,0,0,.1); font-size:13px; line-height:1.35;
       max-height:42%; overflow-y:auto; white-space:normal; display:none;
+      pointer-events:auto; /* allow scroll inside */
     }
 
-    .mapboxgl-ctrl-top-right{ z-index:1; }
+    .mapboxgl-ctrl-top-right{ z-index:2; }
 
     /* mobile: stack, 300px tall */
     @media (max-width:640px){
@@ -80,12 +82,12 @@
   </div>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
-  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const pymChild = new pym.Child();
+    // --- CONFIG ---
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
-    const TILESET_URL  = "mapbox://mlnow.a2ep9f7m";   // (as in your last message)
+    const TILESET_URL  = "mapbox://mlnow.a2ep9f7m";
     const SOURCE_LAYER = "gdf_supe_with_categories";
 
     const infoLeft  = document.getElementById('info-left');
@@ -101,7 +103,7 @@
       const raw=["get","proposed_height"];
       const v=["to-number",raw];
       return ["case",
-        ["any",["==",raw,null],["!=",v,v]], MISSING_COLOR,   // null or NaN
+        ["any",["==",raw,null],["!=",v,v]], MISSING_COLOR,
         ["==",v,40], EXACT_FORTY_COLOR,
         ["<", v,40], BASE_BELOW_FIRST,
         ["step", v,
@@ -139,36 +141,6 @@
       `;
     }
 
-    // Info-box formatting
-    const num = (v) => {
-      if (v==null) return null;
-      if (typeof v==="number") return Number.isFinite(v)?v:null;
-      const s = String(v).trim();
-      if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
-      const m = s.match(/^[+-]?\d+(\.\d+)?/);
-      return m ? Number(m[0]) : null;
-    };
-    const fallbackChange = (p) => {
-      const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
-      const existing = num(p?.heightdist);
-      return proposed!=null && existing!=null ? proposed-existing : null;
-    };
-    function tplInfo(p={}){
-      const id = p?.RP1PRCLID ?? "—";
-      const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
-      const rawPH = (p?.proposed_height ?? "").toString().trim();
-      const nums  = rawPH.match(/[+-]?\d+(\.\d+)?/g) || [];
-      const isMultiple = !rawPH || /^\s*nan\s*$/i.test(rawPH) || /[;/]/.test(rawPH) || nums.length>1;
-      const propStr = isMultiple ? "multiple" : (rawPH || "N/A");
-      let ch = num(p?.change); if (ch==null) ch = fallbackChange(p);
-      let changeTxt = "—";
-      if (ch!=null){ const r = Math.abs(ch%1)===0 ? Math.trunc(ch) : Math.round(ch*10)/10; const sign = ch>0?"+":ch<0?"−":""; changeTxt = `${sign}${Number.isInteger(r)?r:r.toFixed(1)} ft`; }
-      return `
-        <div class="info-header"><strong>Parcel ${id}</strong><span class="sep"> • </span><span class="bldg-type">${type}</span></div>
-        <div class="info-stats">Proposed height: ${propStr} • Change: ${changeTxt}</div>
-      `;
-    }
-
     // ---------- Maps ----------
     const center = [-122.4609288, 37.7800873];
     const zoom = window.matchMedia('(max-width: 640px)').matches ? 14.5 : 14.5;
@@ -200,7 +172,7 @@
       }, firstSymbolId);
     }
 
-    // --- synchronized hover across BOTH maps ---
+    // --- Hover + selection helpers ---
     function setHover(pid){
       mapL.setFilter('hover-L', ['==',['get','RP1PRCLID'], pid || '']);
       mapR.setFilter('hover-R', ['==',['get','RP1PRCLID'], pid || '']);
@@ -208,16 +180,7 @@
       mapL.getCanvas().style.cursor = cur;
       mapR.getCanvas().style.cursor = cur;
     }
-    function wireHoverSync(map, side){
-      map.on('mousemove', `parcels-fill-${side}`, e=>{
-        if (!e.features?.length) return;
-        const pid = e.features[0].properties?.RP1PRCLID ?? '';
-        setHover(pid); // applies to BOTH maps
-      });
-      map.on('mouseleave', `parcels-fill-${side}`, ()=> setHover(''));
-    }
 
-    // Get properties by parcel id from a map
     function getPropsByPid(map, pid){
       const feats = map.querySourceFeatures('parcels', {
         sourceLayer: SOURCE_LAYER,
@@ -226,19 +189,56 @@
       return feats && feats[0] ? feats[0].properties : null;
     }
 
-    // Click: update left info box; keep highlight on both maps
+    // Info-box number parsing + template
+    const num = (v) => {
+      if (v==null) return null;
+      if (typeof v==="number") return Number.isFinite(v)?v:null;
+      const s = String(v).trim();
+      if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
+      const m = s.match(/^[+-]?\d+(\.\d+)?/);
+      return m ? Number(m[0]) : null;
+    };
+    const fallbackChange = (p) => {
+      const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
+      const existing = num(p?.heightdist);
+      return proposed!=null && existing!=null ? proposed-existing : null;
+    };
+    function tplInfo(p={}){
+      const id = p?.RP1PRCLID ?? "—";
+      const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
+      const rawPH = (p?.proposed_height ?? "").toString().trim();
+      const nums  = rawPH.match(/[+-]?\d+(\.\d+)?/g) || [];
+      const isMultiple = !rawPH || /^\s*nan\s*$/i.test(rawPH) || /[;/]/.test(rawPH) || nums.length>1;
+      const propStr = isMultiple ? "multiple" : (rawPH || "N/A");
+      let ch = num(p?.change); if (ch==null) ch = fallbackChange(p);
+      let changeTxt = "—";
+      if (ch!=null){
+        const r = Math.abs(ch%1)===0 ? Math.trunc(ch) : Math.round(ch*10)/10;
+        const sign = ch>0?"+":ch<0?"−":"";
+        changeTxt = `${sign}${Number.isInteger(r)?r:r.toFixed(1)} ft`;
+      }
+      return `
+        <div class="info-header"><strong>Parcel ${id}</strong><span class="sep"> • </span><span class="bldg-type">${type}</span></div>
+        <div class="info-stats">Proposed height: ${propStr} • Change: ${changeTxt}</div>
+      `;
+    }
+
     function setSelection(pid){
       setHover(pid);
       const props = getPropsByPid(mapL, pid) || getPropsByPid(mapR, pid);
       if (props){
         infoLeft.innerHTML = tplInfo(props);
         infoLeft.style.display = 'block';
+        freezeHeight();  // keep parent from growing forever
+      } else {
+        console.warn('No properties for PID', pid);
       }
     }
     function clearSelection(){
       setHover('');
       if (infoLeft.style.display !== 'none') {
         infoLeft.style.display = 'none';
+        freezeHeight();
       }
     }
 
@@ -249,48 +249,103 @@
       b.on('move',()=>{ if(sb) return; sa=true; a.jumpTo({center:b.getCenter(),zoom:b.getZoom(),bearing:b.getBearing(),pitch:b.getPitch()}); sa=false;});
     }
 
+    // --- Build maps, wire interactions ---
     Promise.all([ new Promise(r=>mapL.on('load',r)), new Promise(r=>mapR.on('load',r)) ]).then(()=>{
       addLayers(mapL, undefined, 'L');                  // ALL
       addLayers(mapR, robustClassFilter('AMEND'), 'R'); // AMEND = true
-      wireHoverSync(mapL,'L');
-      wireHoverSync(mapR,'R');
-      sync(mapL,mapR);
 
-      // Click on either map -> left info box + bold outline on both
+      // hover sync
+      mapL.on('mousemove', 'parcels-fill-L', e=>{
+        if (!e.features?.length) return;
+        const pid = e.features[0].properties?.RP1PRCLID ?? '';
+        setHover(pid);
+      });
+      mapL.on('mouseleave', 'parcels-fill-L', ()=> setHover(''));
+
+      mapR.on('mousemove', 'parcels-fill-R', e=>{
+        if (!e.features?.length) return;
+        const pid = e.features[0].properties?.RP1PRCLID ?? '';
+        setHover(pid);
+      });
+      mapR.on('mouseleave', 'parcels-fill-R', ()=> setHover(''));
+
+      // clicks with console verification
       mapL.on('click', 'parcels-fill-L', e=>{
         const f = e.features?.[0]; if (!f) return;
-        const pid = f.properties?.RP1PRCLID; if (pid) setSelection(pid);
+        const pid = f.properties?.RP1PRCLID;
+        console.log('mapL clicked', pid);
+        if (pid) setSelection(pid);
       });
       mapR.on('click', 'parcels-fill-R', e=>{
         const f = e.features?.[0]; if (!f) return;
-        const pid = f.properties?.RP1PRCLID; if (pid) setSelection(pid);
+        const pid = f.properties?.RP1PRCLID;
+        console.log('mapR clicked', pid);
+        if (pid) setSelection(pid);
       });
 
-      // Background click clears
+      // Background clicks clear (with log to debug)
       mapL.on('click', e=>{
         const hit = mapL.queryRenderedFeatures(e.point, { layers:['parcels-fill-L'] });
-        if (!hit.length) clearSelection();
+        if (!hit.length) {
+          console.log('Background click on L -> hiding info box');
+          clearSelection();
+        }
       });
       mapR.on('click', e=>{
         const hit = mapR.queryRenderedFeatures(e.point, { layers:['parcels-fill-R'] });
-        if (!hit.length) clearSelection();
+        if (!hit.length) {
+          console.log('Background click on R -> hiding info box');
+          clearSelection();
+        }
       });
 
       // Only left legend
-      if (legendL){ legendL.innerHTML = legendHTML('Proposed height (ft)'); legendL.style.display='inline-block'; }
+      if (legendL){
+        legendL.innerHTML = legendHTML('Proposed height (ft)');
+        legendL.style.display='inline-block';
+      }
 
-      // Window resize: resize maps
+      // Starter message so you can see the box
+      if (infoLeft) {
+        infoLeft.innerHTML = '<div>Click a parcel to see details.</div>';
+        infoLeft.style.display = 'block';
+      }
+
+      // Sync cameras
+      sync(mapL,mapR);
+
+      // Resize debounce + height freeze (prevents runaway parent resizing)
       const onResize = (() => {
-        let t=null;
+        let t = null;
         return () => {
           clearTimeout(t);
           t = setTimeout(() => {
             try { mapL.resize(); mapR.resize(); } catch {}
-          }, 120);
+            freezeHeight();
+          }, 150);
         };
       })();
-      window.addEventListener('resize', onResize, { passive:true });
-    }).catch(err=>console.error('INIT ERROR:',err));
+      window.addEventListener('resize', onResize, { passive: true });
+
+      // Initial height freeze after first paint
+      requestAnimationFrame(() => freezeHeight());
+    }).catch(err=>{
+      console.error('INIT ERROR:',err);
+      if (infoLeft) {
+        infoLeft.style.display = 'block';
+        infoLeft.innerHTML = `<div style="color:#b00">Error loading maps: ${err?.message || err}</div>`;
+        freezeHeight();
+      }
+    });
+
+    // --- Height freezer: stabilizes scrollHeight to stop "infinite growth" embeds ---
+    function freezeHeight(){
+      const wrapper = document.querySelector('.maps-wrapper');
+      if (!wrapper) return;
+      const h = Math.ceil(wrapper.getBoundingClientRect().height);
+      document.documentElement.style.height = h + 'px';
+      document.body.style.height = h + 'px';
+    }
   });
   </script>
 </body>
