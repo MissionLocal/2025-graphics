@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
-  <!-- Minimal Pym parent/child handshake -->
+  <!-- Optional: parent may provide Pym; if not, this just won’t run -->
   <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
   <style>
     html, body { min-height: 100%; }
@@ -15,6 +15,7 @@
     .maps-wrapper{
       width:650px; max-width:650px; margin:10px auto;
       display:flex; gap:10px; justify-content:center; align-items:stretch; padding:0 10px;
+      overflow:visible; /* make sure overlays can extend */
     }
     .map-container{ position:relative; flex:0 0 320px; width:320px; }
     .map{
@@ -52,6 +53,8 @@
 
     .mapboxgl-ctrl-top-right{ z-index:2; }
 
+    .bottom-spacer{ height: 24px; } /* prevents last pixels from clipping in some embeds */
+
     @media (max-width:640px){
       .maps-wrapper{ width:auto; max-width:100%; flex-direction:column; gap:10px; padding:0 10px; }
       .map-container{ flex:0 0 auto; width:100%; }
@@ -63,7 +66,7 @@
 </head>
 <body>
 
-  <div class="maps-wrapper">
+  <div class="maps-wrapper" id="mapsWrapper">
     <div class="map-container">
       <h3>Current zoning proposal</h3>
       <div id="mapL" class="map"></div>
@@ -76,15 +79,23 @@
       <div id="mapR" class="map"></div>
     </div>
   </div>
+  <div class="bottom-spacer" aria-hidden="true"></div>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Minimal Pym child
+    // Pym (optional)
     let pymChild = null;
-    try { pymChild = new pym.Child(); } catch(e) {}
+    try { if (window.pym) pymChild = new pym.Child(); } catch(_) {}
+    const sendHeight = () => { try { if (pymChild) pymChild.sendHeight(); } catch(_) {} };
 
-    const sendHeight = () => { try { pymChild && pymChild.sendHeight(); } catch(e) {} };
+    const wrapper = document.getElementById('mapsWrapper');
+    const ensureWrapperHeight = () => {
+      if (!wrapper) return;
+      const h = Math.ceil(wrapper.getBoundingClientRect().height);
+      // Only set min-height on the wrapper (never on <body>), so we don't fight the host page
+      wrapper.style.minHeight = h + 'px';
+    };
 
     // --- CONFIG ---
     mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
@@ -228,14 +239,16 @@
       if (props){
         infoLeft.innerHTML = tplInfo(props);
         infoLeft.style.display = 'block';
-        sendHeight(); // update parent after reveal
+        sendHeight();
+        ensureWrapperHeight();
       }
     }
     function clearSelection(){
       setHover('');
       if (infoLeft.style.display !== 'none') {
         infoLeft.style.display = 'none';
-        sendHeight(); // update parent after hide
+        sendHeight();
+        ensureWrapperHeight();
       }
     }
 
@@ -245,7 +258,7 @@
       b.on('move',()=>{ if(sb) return; sa=true; a.jumpTo({center:b.getCenter(),zoom:b.getZoom(),bearing:b.getBearing(),pitch:b.getPitch()}); sa=false;});
     }
 
-    // --- Build maps, then send height ONLY after both are idle ---
+    // --- Build maps, then signal height only when truly idle ---
     Promise.all([
       new Promise(r=>mapL.on('load',r)),
       new Promise(r=>mapR.on('load',r))
@@ -290,7 +303,7 @@
         legendL.style.display='inline-block';
       }
 
-      // starter box so you can see it in place
+      // starter box helps stabilize initial height
       if (infoLeft){
         infoLeft.innerHTML = '<div>Click a parcel to see details.</div>';
         infoLeft.style.display = 'block';
@@ -298,30 +311,34 @@
 
       sync(mapL,mapR);
 
-      // Debounced resize: resize maps then send height
+      // Debounced resize: resize maps then update height/min-height
       let rT = null;
       window.addEventListener('resize', () => {
         clearTimeout(rT);
         rT = setTimeout(() => {
           try { mapL.resize(); mapR.resize(); } catch {}
+          ensureWrapperHeight();
           sendHeight();
         }, 150);
       }, { passive:true });
 
-      // === SEND HEIGHT ONLY AFTER BOTH MAPS ARE REALLY READY ===
+      // Wait for BOTH maps to go truly idle + fonts, then send once (with a tiny buffer)
       Promise.all([
         new Promise(r => mapL.once('idle', r)),
         new Promise(r => mapR.once('idle', r)),
         (document.fonts?.ready ?? Promise.resolve())
       ]).then(() => {
-        // allow one paint tick so legend/box are laid out
-        requestAnimationFrame(sendHeight);
+        requestAnimationFrame(() => {
+          ensureWrapperHeight();
+          setTimeout(() => { sendHeight(); }, 120); // small buffer prevents early cut-off
+        });
       });
     }).catch(err=>{
       console.error('INIT ERROR:',err);
       if (infoLeft) {
         infoLeft.style.display = 'block';
         infoLeft.innerHTML = `<div style="color:#b00">Error loading maps: ${err?.message || err}</div>`;
+        ensureWrapperHeight();
         sendHeight();
       }
     });
