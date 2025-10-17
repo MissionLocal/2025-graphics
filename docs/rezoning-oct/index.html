@@ -9,30 +9,33 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="cont">
-    <div class="map-container">
-      <!-- Stacked UI wrapper (dropdown + legend) -->
-      <div class="map-ui">
-        <div class="controls-row">
-          <label for="layerSelect">Show:</label>
-          <select id="layerSelect">
-            <option value="AMEND" selected>Current proposal</option> <!-- NEW -->
-            <option value="RC">Rent control eligible</option>
-            <option value="SRES">Single-family / condo</option>
-            <option value="MRES">Multi-family</option>
-            <option value="COMM">Commercial</option>
-          </select>          
+  <!-- Everything that affects height is inside mapsWrapper -->
+  <div id="mapsWrapper">
+    <div class="cont">
+      <div class="map-container">
+        <!-- Stacked UI wrapper (dropdown + legend) -->
+        <div class="map-ui">
+          <div class="controls-row">
+            <label for="layerSelect">Show:</label>
+            <select id="layerSelect">
+              <option value="AMEND" selected>Current proposal</option>
+              <option value="RC">Rent control eligible</option>
+              <option value="SRES">Single-family / condo</option>
+              <option value="MRES">Multi-family</option>
+              <option value="COMM">Commercial</option>
+            </select>
+          </div>
+          <div id="legend" class="legend"></div>
         </div>
-        <div id="legend" class="legend"></div>
+
+        <div id="map" class="map"></div>
+        <div id="info-box" class="info-box"></div>
       </div>
-
-      <div id="map" class="map"></div>
-      <div id="info-box" class="info-box"></div>
     </div>
-  </div>
 
-  <div id="last-updated" style="text-align:center; font-family:'Barlow', sans-serif; font-size:0.9em; color:#555;">
-    This map reflects the recent amendment that excludes rent-controlled buildings with three or more units. Map by Kelly Waldron. Data from the San Francisco Planning Department and the Assessor-Recorder's Office.
+    <div id="last-updated" style="text-align:center; font-family:'Barlow', sans-serif; font-size:0.9em; color:#555; margin-top:8px;">
+      This map reflects the recent amendment that excludes rent-controlled buildings with three or more units. Map by Kelly Waldron. Data from the San Francisco Planning Department and the Assessor-Recorder's Office.
+    </div>
   </div>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
