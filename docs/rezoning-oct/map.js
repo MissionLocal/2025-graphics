@@ -1,7 +1,16 @@
 // map.js — Proposed heights using Mapbox vector tileset
 // Discrete bins on the map; gradient legend (starts at 41); DROPDOWN filter.
-document.addEventListener('DOMContentLoaded', async () => {
-  const pymChild = new pym.Child();
+document.addEventListener('DOMContentLoaded', () => {
+  // ---- Minimal Pym child (optional if parent has Pym) ----
+  let pymChild = null;
+  try { if (window.pym) pymChild = new pym.Child(); } catch (_) {}
+  const sendHeight = (() => {
+    let t = null;
+    return (delay = 0) => {
+      clearTimeout(t);
+      t = setTimeout(() => { try { pymChild && pymChild.sendHeight(); } catch (_) {} }, delay);
+    };
+  })();
 
   // PUBLIC token (pk.*) locked to your domains
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
@@ -30,26 +39,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   const EXACT_FORTY_COLOR = "#9e9e9e"; // exactly 40
   const MISSING_COLOR = "#E6E6E6"; // non-numeric / NaN / empty / missing
 
-  // Color expression:
-  // - invalid/missing (NaN or null) -> MISSING_COLOR
-  // - exactly 40 -> EXACT_FORTY_COLOR
-  // - < 40 -> BASE_BELOW_FIRST
-  // - else -> step() bins
   function makeHeightColorExprStep() {
     const raw = ["get", "proposed_height"];
-    const v = ["to-number", raw]; // yields NaN for non-numeric strings like "NaN", "140/450", "", etc.
+    const v = ["to-number", raw];
 
     return [
       "case",
-      // v != v is only true for NaN; also treat null/missing as invalid
-      ["any",
-        ["==", raw, null],
-        ["!=", v, v]
-      ], MISSING_COLOR,
-
+      ["any", ["==", raw, null], ["!=", v, v]], MISSING_COLOR,
       ["==", v, 40], EXACT_FORTY_COLOR,
       ["<", v, 40], BASE_BELOW_FIRST,
-
       ["step", v,
         BASE_BELOW_FIRST,
         40, HEIGHT_COLORS[0],
@@ -80,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Legend: discrete 40 swatch + gradient (no extra “invalid” key)
   function legendHTML(title) {
     const gradientColors = HEIGHT_COLORS.join(',');
-    const minActive = HEIGHT_BREAKS[0] + 10; // 41
+    const minActive = HEIGHT_BREAKS[0] + 1; // 41
     const maxLabel = `${HEIGHT_BREAKS[HEIGHT_BREAKS.length - 1]}`;
     return `
       <div class="legend-title">${title}</div>
@@ -119,10 +117,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
   function revealInfoBox(html) {
+    if (!infoBox) return;
     infoBox.innerHTML = html;
     infoBox.style.display = 'block';
     ensureInfoBoxInside();
-    requestAnimationFrame(() => pymChild.sendHeight());
+    // nudge parent after the box is visible
+    requestAnimationFrame(() => sendHeight(0));
+  }
+  function hideInfoBox() {
+    if (!infoBox) return;
+    infoBox.style.display = 'none';
+    infoBox.style.bottom = '22px';
+    requestAnimationFrame(() => sendHeight(0));
   }
 
   // ---------- Filter helpers ----------
@@ -169,64 +175,46 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // ---------- Info card ----------
- // ---------- Info card ----------
-function tplInfo(p = {}) {
-  const id = p?.RP1PRCLID ?? "—";
-  const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
+  function tplInfo(p = {}) {
+    const id = p?.RP1PRCLID ?? "—";
+    const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
 
-  // Decide what to show for "Proposed height"
-  const rawPH = (p?.proposed_height ?? "").toString().trim();
-  const nums = (rawPH.match(/[+-]?\d+(\.\d+)?/g) || []);
-  const isNaNString = /^\s*nan\s*$/i.test(rawPH);
-  const hasSeparators = /[;/]/.test(rawPH) || /\/\//.test(rawPH);
-  const hasMultipleNums = nums.length > 1;
-  const isEmpty = rawPH.length === 0;
-  const isMultiple = isEmpty || isNaNString || hasSeparators || hasMultipleNums;
-  const propStr = isMultiple ? "multiple" : rawPH;
+    const rawPH = (p?.proposed_height ?? "").toString().trim();
+    const nums = (rawPH.match(/[+-]?\d+(\.\d+)?/g) || []);
+    const isNaNString = /^\s*nan\s*$/i.test(rawPH);
+    const hasSeparators = /[;/]/.test(rawPH) || /\/\//.test(rawPH);
+    const hasMultipleNums = nums.length > 1;
+    const isEmpty = rawPH.length === 0;
+    const isMultiple = isEmpty || isNaNString || hasSeparators || hasMultipleNums;
+    const propStr = isMultiple ? "multiple" : rawPH;
 
-  // Prefer 'change' from data; include 0 as valid; else compute
-  function num(v) {
-    if (v === null || v === undefined) return null;
-    if (typeof v === "number") return Number.isFinite(v) ? v : null;
-    if (typeof v === "string") {
-      const s = v.trim();
-      if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
-      const m = s.match(/^[+-]?\d+(\.\d+)?/);
-      return m ? Number(m[0]) : null;
+    let ch = num(p?.change);
+    if (ch === null) {
+      const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
+      const existing = num(p?.heightdist);
+      ch = (proposed !== null && existing !== null) ? proposed - existing : null;
     }
-    return null;
+    let changeTxt = "—";
+    if (ch !== null) {
+      const r = Math.abs(ch % 1) === 0 ? Math.trunc(ch) : Math.round(ch * 10) / 10;
+      const sign = ch > 0 ? "+" : ch < 0 ? "−" : "";
+      changeTxt = `${sign}${Number.isInteger(r) ? r : r.toFixed(1)} ft`;
+    }
+
+    const unitsNum = num(p?.UNITS);
+    const bits = [
+      `Proposed height: ${propStr}`,
+      `Change: ${changeTxt}`,
+    ];
+    if (unitsNum !== null && unitsNum > 0) bits.push(`Units: ${Math.round(unitsNum)}`);
+
+    return `
+      <div class="info-header">
+        <strong>Parcel ${id}</strong><span class="sep"> • </span><span class="bldg-type">${type ?? "—"}</span>
+      </div>
+      <div class="info-stats">${bits.join(' • ')}</div>
+    `;
   }
-  let ch = num(p?.change);
-  if (ch === null) {
-    const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
-    const existing = num(p?.heightdist);
-    ch = (proposed !== null && existing !== null) ? proposed - existing : null;
-  }
-  let changeTxt = "—";
-  if (ch !== null) {
-    const rounded = Math.abs(ch % 1) === 0 ? Math.trunc(ch) : Math.round(ch * 10) / 10;
-    const sign = ch > 0 ? "+" : ch < 0 ? "−" : "";
-    changeTxt = `${sign}${Number.isInteger(rounded) ? rounded : rounded.toFixed(1)} ft`;
-  }
-
-  const unitsNum = num(p?.UNITS);
-
-  const header = `
-    <div class="info-header">
-      <strong>Parcel ${id}</strong>
-      <span class="sep"> • </span>
-      <span class="bldg-type">${type ?? "—"}</span>
-    </div>`;
-
-  const bits = [
-    `Proposed height: ${propStr}`,
-    `Change: ${changeTxt}`,
-  ];
-  if (unitsNum !== null && unitsNum > 0) bits.push(`Units: ${Math.round(unitsNum)}`);
-
-  return `${header}<div class="info-stats">${bits.join(' • ')}</div>`;
-}
-
 
   // Init legend
   if (legendEl) {
@@ -294,9 +282,7 @@ function tplInfo(p = {}) {
 
     map.on('click', e => {
       const hits = map.queryRenderedFeatures(e.point, { layers: ['parcels-fill'] });
-      if (hits.length) return;
-      if (infoBox) { infoBox.style.display = 'none'; infoBox.style.bottom = '22px'; }
-      pymChild.sendHeight();
+      if (!hits.length) hideInfoBox();
     });
 
     if (selectEl) {
@@ -307,44 +293,39 @@ function tplInfo(p = {}) {
         const filt = (key === 'all') ? null : robustClassFilter(key);
         map.setFilter('parcels-fill', filt);
         if (map.getLayer('outline')) map.setFilter('outline', filt);
+        // changing filters can change height (legend wrap on mobile), so nudge parent
+        sendHeight(0);
       };
       selectEl.addEventListener('change', applyFilter);
       applyFilter();
     }
   });
 
-  // --- Robust resize handling for mobile/webviews ---
-  function debounce(fn, ms = 120) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
-  const safeResize = debounce(() => {
-    try {
-      map.resize();
-      pymChild && pymChild.sendHeight && pymChild.sendHeight();
-    } catch (e) { /* noop */ }
-  }, 120);
+  // ---- Debounced resize: resize map, then update parent height ----
+  const debouncedResize = (() => {
+    let t = null;
+    return () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        try { map.resize(); } catch (_) {}
+        sendHeight(0);
+      }, 150);
+    };
+  })();
+  window.addEventListener('resize', debouncedResize, { passive: true });
+  window.addEventListener('orientationchange', () => setTimeout(debouncedResize, 150), { passive: true });
 
-  // Kick after map is fully styled/rendered
-  map.once('load', () => {
-    // Run a couple times to catch URL-bar animations
-    safeResize();
-    setTimeout(safeResize, 250);
-    setTimeout(safeResize, 800);
+  // ---- Send height ONLY after map is truly ready ----
+  Promise.all([
+    new Promise(res => map.once('idle', res)),
+    (document.fonts?.ready ?? Promise.resolve())
+  ]).then(() => {
+    // Give layout a tick (legend/inbox wrapping), then signal
+    requestAnimationFrame(() => sendHeight(100));
   });
 
-  // Orientation / URL bar show-hide
-  window.addEventListener('orientationchange', () => setTimeout(safeResize, 250), { passive: true });
-  window.addEventListener('resize', safeResize, { passive: true });
-
-  // When tab/webview becomes visible again
+  // (Optional) When tab becomes visible again, nudge once
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') setTimeout(safeResize, 150);
-  });
-
-  // If your map lives in an iframe (pym), nudging height after style idle helps
-  map.on('idle', safeResize);
-
-  window.addEventListener('resize', () => {
-    map.resize();
-    ensureInfoBoxInside();
-    pymChild.sendHeight();
+    if (document.visibilityState === 'visible') sendHeight(100);
   });
 });
