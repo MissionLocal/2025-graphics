@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
 
   // Tileset + source-layer
-  const TILESET_URL = "mapbox://mlnow.a2ep9f7m";
+  const TILESET_URL = "mapbox://mlnow.01iokrpa";
   const SOURCE_LAYER = "gdf_supe_with_categories";
 
   // DOM refs
