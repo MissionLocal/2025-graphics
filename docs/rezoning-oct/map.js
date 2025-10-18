@@ -2,29 +2,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   var pymChild = new pym.Child();
 
-  // Helper: send once after style load + fonts (no 'idle')
-  function sendOnceAfterStyleLoad(map) {
-    if (!pymChild) return;
-
-    const onStyleLoad = new Promise(res => {
-      // If style is already loaded, resolve immediately
-      if (map.isStyleLoaded && map.isStyleLoaded()) res();
-      else map.once('load', res);
-    });
-
-    Promise.all([
-      onStyleLoad,
-      (document.fonts?.ready ?? Promise.resolve())
-    ]).then(() => {
-      // Two RAFs + tiny delay to let attribution/logo/legend wrap stabilize
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setTimeout(() => { try { pymChild.sendHeight(); } catch {} }, 60);
-        });
-      });
-    });
-  }
-
   // --- Map config (yours) ---
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
   const TILESET_URL  = "mapbox://mlnow.01iokrpa";
@@ -155,16 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     pymChild.sendHeight();
   });
 
-  // >>> ONE send after style load + fonts (no 'idle')
-  sendOnceAfterStyleLoad(map);
-
-  // Keep map responsive (no Pym on resize)
-  window.addEventListener('resize', () => {
-    try { map.resize(); } catch {}
-  }, { passive: true });
-
-  // Optional: manual one-off during testing
-  window.forcePymHeight = () => { try { pymChild?.sendHeight(); } catch {} };
 
   pymChild.sendHeight();
 
