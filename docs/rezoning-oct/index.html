@@ -1,42 +1,354 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Proposed heights</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Zoning — Single Map with Filter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Optional: parent may provide Pym; if not, this just won’t run -->
+  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+  <style>
+    html, body { min-height: 100%; }
+    body { margin: 0; padding: 0 0 20px 0; font-family: Barlow, system-ui, sans-serif; }
+
+    .wrapper{
+      width: 520px; max-width: 100%; margin: 10px auto; padding: 0 10px;
+      display: flex; justify-content: center;
+    }
+    .map-container{ position: relative; width: 100%; max-width: 500px; }
+
+    .map{
+      position: relative;
+      width: 100%; height: 500px; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,.1);
+      background: #f5f5f5;
+    }
+
+    /* Dropdown control in the “title” spot */
+    .control{
+      position:absolute; top:8px; left:8px; z-index:3; margin:0; padding:6px 8px;
+      font-size:14px; font-weight:600; color:#333; background:rgba(255,255,255,.95);
+      border-radius:2px; box-shadow:0 1px 2px rgba(0,0,0,.12); pointer-events:auto;
+      display:flex; align-items:center; gap:8px;
+    }
+    .control label{ font-weight:600; font-size:13px; color:#333; }
+    .control select{
+      font-family: inherit; font-size: 13px; font-weight: 600; color:#222;
+      border: 1px solid #ddd; border-radius: 4px; background: #fff; padding: 4px 8px;
+      outline: none;
+    }
+
+    /* Legend (cleaner) */
+    .legend{
+      position:absolute; top:46px; left:8px; z-index:3;
+      background:rgba(255,255,255,.95); border:1px solid #ddd; border-radius:8px;
+      padding:10px 12px; box-shadow:0 1px 2px rgba(0,0,0,.06);
+      font-size:12px; line-height:1.25; display:inline-block; max-width:260px; pointer-events:none;
+    }
+    .legend-title{ font-weight:600; color:#222; margin:0 0 6px 0; }
+    .legend-title .unit{ font-weight:500; color:#666; margin-left:4px; }
+    .legend-chip{ display:flex; align-items:center; gap:8px; margin:4px 0 8px; }
+    .legend-chip .sw{
+      display:inline-block; width:12px; height:12px; border-radius:3px;
+      background:#9e9e9e; box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);
+    }
+    .legend-gradient{
+      width:100%; height:10px; border-radius:6px;
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);
+    }
+    .legend-ends{ display:flex; justify-content:space-between; margin-top:4px; color:#222; }
+    .legend-ends span{ color:#555; font-weight:400; }
+
+    /* Centered info box; taller on mobile */
+    .info-box{
+      position:absolute; left:50%; bottom:12px; transform:translateX(-50%); z-index:4;
+      width:min(92vw, 480px); box-sizing:border-box;
+      padding:10px 12px; background:rgba(255,255,255,.98);
+      backdrop-filter:saturate(140%) blur(2px);
+      border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.12);
+      font-size:13px; line-height:1.35;
+      max-height:42%; overflow-y:auto; white-space:normal; display:none; pointer-events:auto;
+    }
+    .info-header{ display:flex; align-items:center; gap:6px; }
+    .info-header .sep{ opacity:.3; }
+    .bldg-type{ color:#333; }
+    .info-meta{ margin-top:6px; color:#333; }
+
+    .mapboxgl-ctrl-top-right{ z-index:2; }
+
+    @media (max-width:640px){
+      .map{ height:320px; min-height:320px; }
+      .legend{ top:40px; padding:8px 10px; font-size:11.5px; max-width:240px; }
+      .info-box{ max-height:70vh; width:calc(100vw - 24px); font-size:12.5px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="cont">
+  <div class="wrapper">
     <div class="map-container">
-      <!-- Stacked UI wrapper (dropdown + legend) -->
-      <div class="map-ui">
-        <div class="controls-row">
-          <label for="layerSelect">Show:</label>
-          <select id="layerSelect">
-            <option value="AMEND" selected>Current proposal</option> <!-- NEW -->
-            <option value="RC">Rent control eligible</option>
-            <option value="SRES">Single-family / condo</option>
-            <option value="MRES">Multi-family</option>
-            <option value="COMM">Commercial</option>
-          </select>          
-        </div>
-        <div id="legend" class="legend"></div>
+      <!-- Dropdown control -->
+      <div class="control">
+        <label for="classFilter">Filter:</label>
+        <select id="classFilter" aria-label="Filter parcels by property class">
+          <option value="AMEND">AMEND (Amended parcels)</option>
+          <option value="RC">RC (Residential–Commercial)</option>
+          <option value="MRES">MRES (Multi-Residential)</option>
+          <option value="SRES">SRES (Single-Family Residential)</option>
+          <option value="COMM">COMM (Commercial)</option>
+        </select>
       </div>
 
       <div id="map" class="map"></div>
-      <div id="info-box" class="info-box"></div>
+      <div id="legend" class="legend"></div>
+      <div id="info" class="info-box"></div>
     </div>
   </div>
 
   <div id="last-updated" style="text-align:center; font-family:'Barlow', sans-serif; font-size:0.9em; color:#555;">
-    This map reflects the recent amendment to exclude rent-controlled buildings with three or more units. Map by Kelly Waldron. Data from the San Francisco Planning Department and the Assessor-Recorder's Office.
+    Map by Kelly Waldron. Data from the San Francisco Planning Department and the Assessor-Recorder's Office.
   </div>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
-  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
-  <script src="map.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ---- Optional Pym (single-shot height after load) ----
+    let pymChild = null;
+    try { if (window.pym) pymChild = new pym.Child(); } catch {}
+
+    function sendOnceAfterStyleLoad(map){
+      if (!pymChild) return;
+      const onStyleLoad = new Promise(res => {
+        if (map.isStyleLoaded && map.isStyleLoaded()) res();
+        else map.once('load', res);
+      });
+      Promise.all([onStyleLoad, (document.fonts?.ready ?? Promise.resolve())]).then(() => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setTimeout(() => { try { pymChild.sendHeight(); } catch {} }, 80);
+          });
+        });
+      });
+    }
+    function sendHeightNow(){ try { if (pymChild) pymChild.sendHeight(); } catch {} }
+
+    // ---- CONFIG ----
+    mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw"; // PUBLIC
+    const TILESET_URL  = "mapbox://mlnow.a2ep9f7m";              // Your vector tileset (CONFIG)
+    const SOURCE_LAYER = "gdf_supe_with_categories";             // Source layer name (CONFIG)
+    const MAP_STYLE    = "mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21"; // Your style (CONFIG)
+
+    const legendEl = document.getElementById('legend');
+    const infoBox  = document.getElementById('info');
+    const selectEl = document.getElementById('classFilter');
+
+    // Colors & breaks (same as your previous)
+    const HEIGHT_BREAKS = [40,50,65,70,75,80,85,105,120,130,140,160,180,240,250,300,350,450,490,500,650];
+    const HEIGHT_COLORS = ["#9DF4D9","#66D9CF","#3CCDC9","#22BFC3","#12ADBA","#008FA4","#007DBC","#006FB0","#0062A1","#005892","#004F84","#004676","#003C66","#003459","#002C4D","#00233F","#001C31","#001724","#001319","#000F19","#000C13"];
+    const BASE_BELOW_FIRST = "#EFFFFA";
+    const EXACT_FORTY_COLOR = "#9e9e9e";
+    const MISSING_COLOR = "#E6E6E6";
+
+    function makeHeightColorExprStep(){
+      const raw=["get","proposed_height"];
+      const v=["to-number",raw];
+      return ["case",
+        ["any",["==",raw,null],["!=",v,v]], MISSING_COLOR,
+        ["==",v,40], EXACT_FORTY_COLOR,
+        ["<", v,40], BASE_BELOW_FIRST,
+        ["step", v,
+          BASE_BELOW_FIRST,
+          40,HEIGHT_COLORS[0],50,HEIGHT_COLORS[1],65,HEIGHT_COLORS[2],
+          70,HEIGHT_COLORS[3],75,HEIGHT_COLORS[4],80,HEIGHT_COLORS[5],
+          85,HEIGHT_COLORS[6],105,HEIGHT_COLORS[7],120,HEIGHT_COLORS[8],
+          130,HEIGHT_COLORS[9],140,HEIGHT_COLORS[10],160,HEIGHT_COLORS[11],
+          180,HEIGHT_COLORS[12],240,HEIGHT_COLORS[13],250,HEIGHT_COLORS[14],
+          300,HEIGHT_COLORS[15],350,HEIGHT_COLORS[16],450,HEIGHT_COLORS[17],
+          490,HEIGHT_COLORS[18],500,HEIGHT_COLORS[19],650,HEIGHT_COLORS[20]
+        ]
+      ];
+    }
+
+    // Legend (clean)
+    function legendHTML(){
+      const max = HEIGHT_BREAKS.at(-1);
+      return `
+        <div class="legend-title">
+          Proposed height <span class="unit">(ft)</span>
+        </div>
+        <div class="legend-chip">
+          <span class="sw"></span>
+          <span>40, no change</span>
+        </div>
+        <div class="legend-gradient" style="background:linear-gradient(90deg, ${HEIGHT_COLORS.join(',')});"></div>
+        <div class="legend-ends"><span>50</span><span>${max}</span></div>
+      `;
+    }
+    if (legendEl){ legendEl.innerHTML = legendHTML(); }
+
+    // Robust truthy filter for class flags like AMEND/RC/MRES/SRES/COMM
+    const robustClassFilter = (key) => [
+      "any",
+      ["==", ["get", key], true],
+      ["==", ["downcase", ["coalesce", ["to-string", ["get", key]], ""]], "true"],
+      ["==", ["coalesce", ["to-number", ["get", key]], 0], 1]
+    ];
+
+    // Utilities for popup values
+    const num = (v) => {
+      if (v==null) return null;
+      if (typeof v==="number") return Number.isFinite(v)?v:null;
+      const s = String(v).trim();
+      if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
+      const m = s.match(/^[+-]?\d+(\.\d+)?/);
+      return m ? Number(m[0]) : null;
+    };
+    const fallbackChange = (p) => {
+      const proposed = num(p?.proposed_height_int ?? p?.proposed_height);
+      const existing = num(p?.heightdist);
+      return proposed!=null && existing!=null ? proposed-existing : null;
+    };
+
+    // Popup template — now includes Units from UNITS
+    function tplInfo(p={}){
+      const id   = p?.RP1PRCLID ?? "—";
+      const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
+      const unitsRaw = p?.UNITS;
+      const units = (unitsRaw===0 || unitsRaw==='0') ? 0 :
+                    (num(unitsRaw) ?? (String(unitsRaw||'').trim() || "—"));
+
+      const rawPH = (p?.proposed_height ?? "").toString().trim();
+      const numsPH  = rawPH.match(/[+-]?\d+(\.\d+)?/g) || [];
+      const isMultiple = !rawPH || /^\s*nan\s*$/i.test(rawPH) || /[;/]/.test(rawPH) || numsPH.length>1;
+      const propStr = isMultiple ? "multiple" : (rawPH || "N/A");
+
+      let ch = num(p?.change); if (ch==null) ch = fallbackChange(p);
+      let changeTxt = "—";
+      if (ch!=null){
+        const r = Math.abs(ch%1)===0 ? Math.trunc(ch) : Math.round(ch*10)/10;
+        const sign = ch>0?"+":ch<0?"−":"";
+        changeTxt = `${sign}${Number.isInteger(r)?r:r.toFixed(1)} ft`;
+      }
+      return `
+        <div class="info-header"><strong>Parcel ${id}</strong><span class="sep">•</span><span class="bldg-type">${type}</span></div>
+        <div class="info-stats">Proposed height: ${propStr} • Change: ${changeTxt}</div>
+        <div class="info-meta">Units: ${units}</div>
+      `;
+    }
+
+    // Build map
+    const center = [-122.4609288, 37.7800873];
+    const zoom = 14.5;
+    const map = new mapboxgl.Map({
+      container:'map',
+      style: MAP_STYLE,
+      center, zoom
+    });
+
+    // Add layers
+    function addLayers(currentKey){
+      map.addSource('parcels', { type:'vector', url: TILESET_URL });
+
+      const firstSymbolId = (map.getStyle().layers.find(l=>l.type==='symbol')||{}).id;
+
+      map.addLayer({
+        id:'parcels-fill',
+        type:'fill',
+        source:'parcels',
+        'source-layer': SOURCE_LAYER,
+        paint:{ 'fill-color': makeHeightColorExprStep(), 'fill-opacity': 0.9 },
+        filter: robustClassFilter(currentKey)
+      }, firstSymbolId);
+
+      map.addLayer({
+        id:'parcels-outline',
+        type:'line',
+        source:'parcels',
+        'source-layer': SOURCE_LAYER,
+        paint:{ 'line-color':'#fff','line-width':0.2 },
+        filter: robustClassFilter(currentKey)
+      }, firstSymbolId);
+
+      map.addLayer({
+        id:'hover',
+        type:'line',
+        source:'parcels',
+        'source-layer': SOURCE_LAYER,
+        paint:{ 'line-color':'#fff','line-width':2.0 },
+        filter:['==',['get','RP1PRCLID'],'' ]
+      }, firstSymbolId);
+    }
+
+    function setHover(pid){
+      map.setFilter('hover', ['==',['get','RP1PRCLID'], pid || '']);
+      map.getCanvas().style.cursor = pid ? 'pointer' : '';
+    }
+
+    function getPropsByPid(pid){
+      const feats = map.querySourceFeatures('parcels', {
+        sourceLayer: SOURCE_LAYER,
+        filter: ['==', ['get','RP1PRCLID'], pid]
+      });
+      return feats && feats[0] ? feats[0].properties : null;
+    }
+
+    function setSelection(pid){
+      setHover(pid);
+      const props = getPropsByPid(pid);
+      if (props){
+        infoBox.innerHTML = tplInfo(props);
+        infoBox.style.display = 'block';
+        sendHeightNow();
+      }
+    }
+    function clearSelection(){
+      setHover('');
+      if (infoBox.style.display !== 'none') {
+        infoBox.style.display = 'none';
+        sendHeightNow();
+      }
+    }
+
+    map.on('load', () => {
+      // start with AMEND selected (matches dropdown default)
+      addLayers(selectEl.value);
+
+      map.on('mousemove', 'parcels-fill', e=>{
+        if (!e.features?.length) return;
+        const pid = e.features[0].properties?.RP1PRCLID ?? '';
+        setHover(pid);
+      });
+      map.on('mouseleave', 'parcels-fill', ()=> setHover(''));
+
+      map.on('click', 'parcels-fill', e=>{
+        const f = e.features?.[0]; if (!f) return;
+        const pid = f.properties?.RP1PRCLID; if (pid) setSelection(pid);
+      });
+
+      // Hide info box by clicking empty basemap area
+      map.on('click', (e)=>{
+        const hit = map.queryRenderedFeatures(e.point, { layers:['parcels-fill'] });
+        if (!hit.length) clearSelection();
+      });
+
+      // Dropdown filter switching
+      selectEl.addEventListener('change', () => {
+        const key = selectEl.value;
+        const filter = robustClassFilter(key);
+        map.setFilter('parcels-fill', filter);
+        map.setFilter('parcels-outline', filter);
+        clearSelection();
+      }, { passive: true });
+
+      // Send height once after style + fonts are ready
+      sendOnceAfterStyleLoad(map);
+    });
+
+    // Basic resize for the map canvas itself
+    window.addEventListener('resize', () => {
+      try { map.resize(); } catch {}
+    }, { passive:true });
+  });
+  </script>
 </body>
 </html>

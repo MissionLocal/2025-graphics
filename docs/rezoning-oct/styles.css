@@ -157,7 +157,7 @@
    
    /* Very small phones */
    @media (max-width: 380px){
-     .map { height: min(65svh, 520px); min-height: 280px; }
+     .map { height: min(65svh, 520px); min-height: 400px; }
      .info-box { font-size: 12.5px; padding: 8px 9px; }
      .map-ui { gap: 6px; }
      .controls-row label, .controls-row select { font-size: 13px; }
