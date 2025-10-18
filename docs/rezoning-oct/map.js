@@ -1,18 +1,28 @@
-// map.js — single-shot Pym height (send once after map idle + fonts)
+// map.js — single-shot Pym height (no `idle`)
 document.addEventListener('DOMContentLoaded', () => {
   // Safe Pym init
   let pymChild = null;
   try { if (window.pym) pymChild = new pym.Child(); } catch {}
 
-  // Helper: send once after the map fully renders (no loops)
-  function sendOnceAfterMapReady(map) {
+  // Helper: send once after style load + fonts (no 'idle')
+  function sendOnceAfterStyleLoad(map) {
     if (!pymChild) return;
+
+    const onStyleLoad = new Promise(res => {
+      // If style is already loaded, resolve immediately
+      if (map.isStyleLoaded && map.isStyleLoaded()) res();
+      else map.once('load', res);
+    });
+
     Promise.all([
-      new Promise(res => map.once('idle', res)),
+      onStyleLoad,
       (document.fonts?.ready ?? Promise.resolve())
     ]).then(() => {
+      // Two RAFs + tiny delay to let attribution/logo/legend wrap stabilize
       requestAnimationFrame(() => {
-        setTimeout(() => { try { pymChild.sendHeight(); } catch {} }, 60);
+        requestAnimationFrame(() => {
+          setTimeout(() => { try { pymChild.sendHeight(); } catch {} }, 60);
+        });
       });
     });
   }
@@ -81,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     zoom: 11.85
   });
 
-  // Basic interactions
+  // Basic interactions (unchanged)
   const robustClassFilter = (key) => [
     "any",
     ["==", ["get", key], true],
@@ -92,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const asNum = v => { const n=Number(v); return Number.isFinite(n)?n:null; };
   const pickField = (o, ns) => ns.map(n => o?.[n]).find(v => v !== undefined);
   const fallbackChange = p => { const pr=toNum(p?.proposed_height_int ?? p?.proposed_height); const ex=toNum(p?.heightdist); return (pr!=null && ex!=null) ? pr-ex : null; };
-
   function tplInfo(p = {}){
     const id=p?.RP1PRCLID ?? "—";
     const type=p?.class_desc ?? p?.RP1CLACDE ?? "—";
@@ -147,8 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // >>> Send height ONCE after the first complete render <<<
-  sendOnceAfterMapReady(map);
+  // >>> ONE send after style load + fonts (no 'idle')
+  sendOnceAfterStyleLoad(map);
 
   // Keep map responsive (no Pym on resize)
   window.addEventListener('resize', () => {
