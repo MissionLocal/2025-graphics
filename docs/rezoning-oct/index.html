@@ -10,97 +10,70 @@
   <!-- Optional: parent may provide Pym; if not, this just won’t run -->
   <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
   <style>
-/* Base */
+/* ========== Base ========== */
 html, body { min-height: 100%; }
 body {
   margin: 0;
   padding: 0 0 20px 0;
   font-family: Barlow, system-ui, sans-serif;
   background: #faf9f7;
+  overflow-x: hidden; /* belt-and-suspenders against subpixel creep */
 }
 
-/* Layout wrapper with comfy page-edge gutter (incl. safe-area) */
+/* ========== Wrapper (matches footer) ========== */
 .wrapper{
-  width: 520px;
-  max-width: 100%;
+  box-sizing: border-box;     /* padding included in width */
+  width: 100%;
+  max-width: 520px;           /* same visual cap as before */
   margin: 10px auto;
-  padding: 0 16px;
+  padding: 0 16px;            /* comfy desktop/tablet gutters */
   display: flex;
   justify-content: center;
 }
-@supports(padding: max(0px)){
-  .wrapper{
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right:max(16px, env(safe-area-inset-right));
-  }
-}
 
-/* Map container */
+/* ========== Map container/canvas ========== */
 .map-container{
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 500px;           /* map cap inside wrapper */
 }
 
-/* Map canvas */
 .map{
   position: relative;
   width: 100%;
-  height: 500px; /* desktop/tablet height */
+  height: 500px;              /* desktop/tablet height */
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,.1);
   background: #f5f5f5;
 }
 
-/* Dropdown control in the “title” spot */
+/* ========== Dropdown control (in “title” spot) ========== */
 .control{
   position:absolute;
-  top:8px;
-  left:8px;
-  z-index:3;
-  margin:0;
-  padding:4px 8px; /* slimmer */
-  font-size:14px;
-  font-weight:600;
-  color:#333;
+  top:8px; left:8px; z-index:3;
+  margin:0; padding:4px 8px;  /* slimmer */
+  font-size:14px; font-weight:600; color:#333;
   background:rgba(255,255,255,.95);
-  border-radius:2px;
-  box-shadow:0 1px 2px rgba(0,0,0,.12);
+  border-radius:2px; box-shadow:0 1px 2px rgba(0,0,0,.12);
   pointer-events:auto;
-  display:flex;
-  align-items:center;
-  gap:6px;
+  display:flex; align-items:center; gap:6px;
 }
 .control label{ font-weight:600; font-size:13px; color:#333; }
 .control select{
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  color:#222;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fff;
-  padding: 3px 8px;
-  outline: none;
+  font-family: inherit; font-size:13px; font-weight:600; color:#222;
+  border:1px solid #ddd; border-radius:4px; background:#fff;
+  padding:3px 8px; outline:none;
 }
 
-/* Legend (cleaner) — separated further from dropdown */
+/* ========== Legend (cleaner) ========== */
 .legend{
-  position:absolute;
-  top:60px; /* adds vertical gap below dropdown */
-  left:8px;
-  z-index:3;
+  position:absolute; top:60px; left:8px; z-index:3; /* more gap below dropdown */
   background:rgba(255,255,255,.95);
-  border:1px solid #ddd;
-  border-radius:8px;
-  padding:10px 12px;
-  box-shadow:0 1px 2px rgba(0,0,0,.06);
-  font-size:12px;
-  line-height:1.25;
-  display:inline-block;
-  max-width:260px;
-  pointer-events:none;
+  border:1px solid #ddd; border-radius:8px;
+  padding:10px 12px; box-shadow:0 1px 2px rgba(0,0,0,.06);
+  font-size:12px; line-height:1.25;
+  display:inline-block; max-width:260px; pointer-events:none;
 }
 .legend-title{ font-weight:600; color:#222; margin:0 0 6px 0; }
 .legend-title .unit{ font-weight:500; color:#666; margin-left:4px; }
@@ -113,75 +86,55 @@ body {
   width:100%; height:10px; border-radius:6px;
   box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);
 }
-.legend-ends{
-  display:flex; justify-content:space-between; margin-top:4px; color:#222;
-}
+.legend-ends{ display:flex; justify-content:space-between; margin-top:4px; color:#222; }
 .legend-ends span{ color:#555; font-weight:400; }
 
-/* Centered info box; desktop cap; subtle blur */
+/* ========== Centered info box ========== */
 .info-box{
-  position:absolute;
-  left:50%;
-  bottom:12px;
-  transform:translateX(-50%);
-  z-index:4;
-  width:min(92vw, 480px);
-  box-sizing:border-box;
-  padding:10px 12px;
-  background:rgba(255,255,255,.98);
+  position:absolute; left:50%; bottom:12px; transform:translateX(-50%); z-index:4;
+  width:min(92vw, 480px); box-sizing:border-box;
+  padding:10px 12px; background:rgba(255,255,255,.98);
   backdrop-filter:saturate(140%) blur(2px);
-  border-radius:8px;
-  box-shadow:0 2px 6px rgba(0,0,0,.12);
-  font-size:13px;
-  line-height:1.35;
-  max-height:42%;
-  overflow-y:auto;
-  white-space:normal;
-  display:none;
-  pointer-events:auto;
+  border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.12);
+  font-size:13px; line-height:1.35;
+  max-height:42%; overflow-y:auto; white-space:normal; display:none; pointer-events:auto;
 }
 .info-header{ display:flex; align-items:center; gap:6px; }
 .info-header .sep{ opacity:.3; }
 .info-stats .sep{ opacity:.3; margin:0 6px; }
 .bldg-type{ color:#333; }
 
-/* Keep Mapbox default controls below overlays */
+/* Keep Mapbox controls below overlays */
 .mapboxgl-ctrl-top-right{ z-index:2; }
 
-/* Footer aligns with same gutters and width as map */
+/* ========== Footer (matches wrapper sizing) ========== */
 #last-updated{
-  text-align:center;
-  color:#555;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;           /* match wrapper */
+  margin: 10px auto 0;
+  padding: 0 16px;            /* match wrapper gutters */
+  text-align: center;
+  color: #555;
   font-family: Barlow, system-ui, sans-serif;
-  font-size:0.9em;
-  padding:0 16px;
-  margin:10px auto 0;
-  width:520px;
-  max-width:100%;
-}
-@supports(padding: max(0px)){
-  #last-updated{
-    padding-left:max(16px, env(safe-area-inset-left));
-    padding-right:max(16px, env(safe-area-inset-right));
-  }
+  font-size: 0.9em;
 }
 #last-updated .inner{
-  max-width:500px;
-  margin:0 auto;
+  max-width: 500px;           /* line-length aligned with map */
+  margin: 0 auto;
 }
 
-/* ---------- Mobile adjustments ---------- */
+/* ========== Mobile (≤640px) ========== */
 @media (max-width:640px){
-  /* Slightly larger side gutters on phones to avoid right-edge clipping */
+  /* Fixed 10px gutters on phones for wrapper + footer */
   .wrapper{
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
-  @supports(padding: max(0px)){
-    .wrapper{
-      padding-left: max(20px, env(safe-area-inset-left));
-      padding-right: max(20px, env(safe-area-inset-right));
-    }
+  #last-updated{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: 0.85em;
   }
 
   /* Taller map */
@@ -190,23 +143,21 @@ body {
     min-height: 430px;
   }
 
-  /* Legend compact + a bit below the dropdown */
+  /* Legend compact + slightly lower than dropdown */
   .legend{
     top:56px;
     padding:8px 10px;
-    font-size:11.5px;
-    max-width:240px;
+    font-size:11.5px; max-width:240px;
   }
 
-  /* Info box: width relative to the map container, not 100vw */
+  /* Info box: inset relative to map width (matches 10px gutters) */
   .info-box{
-    width: calc(100% - 32px);   /* ~16px inset on each side INSIDE the map */
+    width: calc(100% - 20px); /* 10px inset each side inside the map */
     max-width: 440px;
     max-height: 70vh;
-    font-size:12.5px;
+    font-size: 12.5px;
   }
 }
-
   </style>
 </head>
 
