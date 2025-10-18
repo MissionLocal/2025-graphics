@@ -184,15 +184,22 @@
     });
 
     // ---------- When everything truly settles ----------
-    Promise.all([
-      new Promise(r=>map.once('idle',r)),
-      (document.fonts?.ready ?? Promise.resolve())
-    ]).then(()=>{
-      requestAnimationFrame(()=>{
+// Wait for full layout stability: idle → 3 animation frames → small buffer
+Promise.all([
+  new Promise(r => map.once('idle', r)),
+  (document.fonts?.ready ?? Promise.resolve())
+]).then(() => {
+  // triple frame buffer to let symbols settle
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
         ensureWrapperHeight();
-        setTimeout(()=>{ sendHeight(); },120); // buffer prevents early cut-off
+        setTimeout(() => { sendHeight(); }, 180);
       });
     });
+  });
+});
+
 
     // ---------- On resize ----------
     let rT=null;
