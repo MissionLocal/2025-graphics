@@ -1,11 +1,11 @@
-// map.js — Proposed heights (vector tiles) with stable Pym height reporting
+// map.js — Proposed heights (vector tiles) with stable Pym height reporting + Units in info box
 document.addEventListener('DOMContentLoaded', () => {
   // ----- Minimal Pym child (safe if parent doesn't include Pym) -----
   let pymChild = null;
   try { if (window.pym) pymChild = new pym.Child(); } catch(_) {}
   const sendHeight = () => { try { if (pymChild) pymChild.sendHeight(); } catch(_) {} };
 
-  // Measure & stabilize wrapper height (prevents clipping in non-Pym previews)
+  // Measure & stabilize wrapper height (helps non-Pym previews)
   const wrapper = document.getElementById('mapsWrapper');
   const ensureWrapperMinHeight = () => {
     if (!wrapper) return;
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   map.on('error', e => console.error('Mapbox GL error:', e && e.error));
 
+  // ----- Filters -----
   const robustClassFilter = (key) => [
     "any",
     ["==", ["get", key], true],
@@ -91,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ["==", ["coalesce", ["to-number", ["get", key]], 0], 1]
   ];
 
-  // --- Info box utils ---
+  // ====== Info box helpers (incl. Units) ======
   const toNum = v => {
     if (v==null) return null;
     if (typeof v==="number") return Number.isFinite(v)?v:null;
@@ -100,18 +101,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const m = s.match(/^[+-]?\d+(\.\d+)?/);
     return m ? Number(m[0]) : null;
   };
+  const asNum = v => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  };
+  const pickField = (obj, names) => names.map(n => obj?.[n]).find(v => v !== undefined);
+
   const fallbackChange = p => {
     const proposed = toNum(p?.proposed_height_int ?? p?.proposed_height);
     const existing = toNum(p?.heightdist);
     return (proposed!=null && existing!=null) ? proposed-existing : null;
   };
+
   function tplInfo(p = {}){
     const id   = p?.RP1PRCLID ?? "—";
     const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
+
     const rawPH = (p?.proposed_height ?? "").toString().trim();
     const nums  = rawPH.match(/[+-]?\d+(\.\d+)?/g) || [];
     const isMultiple = !rawPH || /^\s*nan\s*$/i.test(rawPH) || /[;/]/.test(rawPH) || nums.length>1;
     const propStr = isMultiple ? "multiple" : (rawPH || "N/A");
+
     let ch = toNum(p?.change); if (ch==null) ch = fallbackChange(p);
     let changeTxt = "—";
     if (ch!=null){
@@ -119,9 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const sign = ch>0?"+":ch<0?"−":"";
       changeTxt = `${sign}${Number.isInteger(r)?r:r.toFixed(1)} ft`;
     }
+
+    // Units with robust key detection
+    const unitsRaw = pickField(p, ["UNITS","Units","units","UNIT_CT","UNITCOUNT","unit_count","UnitCount"]);
+    const unitsNum = asNum(unitsRaw);
+    const unitsTxt = (unitsNum != null && unitsNum > 0) ? ` • Units: ${Math.round(unitsNum).toLocaleString()}` : "";
+
     return `
       <div class="info-header"><strong>Parcel ${id}</strong><span class="sep"> • </span><span class="bldg-type">${type}</span></div>
-      <div class="info-stats">Proposed height: ${propStr} • Change: ${changeTxt}</div>
+      <div class="info-stats">Proposed height: ${propStr} • Change: ${changeTxt}${unitsTxt}</div>
     `;
   }
 
