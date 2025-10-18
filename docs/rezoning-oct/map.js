@@ -1,55 +1,9 @@
-// map.js — fix Pym height creep: measure a stable root, observe changes, and throttle sends
+// map.js — single map with recycled robust Pym from the working two-map chart
 document.addEventListener('DOMContentLoaded', () => {
-  // Pym (safe if parent didn't include it)
-  let pymChild = null;
-  try { if (window.pym) pymChild = new pym.Child(); } catch (_) {}
+  // Pym (same as the working chart)
+  const pymChild = new pym.Child();
 
-  // Pick a stable root to measure (prefer a known wrapper if you have one)
-  const ROOT =
-    document.getElementById('embed-root') ||      // <div id="embed-root">…</div> if you have it
-    document.querySelector('.maps-wrapper') ||    // or any outer wrapper you use
-    document.body;                                // fallback
-
-  // Only send if height really changed (prevents resize feedback loops)
-  let lastSentH = 0;
-  let sendTimer = null;
-  const TOLERANCE = 4;    // px; ignore tiny reflows
-  const DEBOUNCE  = 120;  // ms; give layout time to settle
-
-  const measure = () => {
-    // Bounding rect is stable; avoids scrollHeight micro-growth
-    const r = ROOT.getBoundingClientRect();
-    // Include any top/bottom margins the rect won't include (rare, but safe):
-    const styles = ROOT === document.body
-      ? window.getComputedStyle(document.documentElement)
-      : window.getComputedStyle(ROOT);
-    const mt = parseFloat(styles.marginTop)  || 0;
-    const mb = parseFloat(styles.marginBottom) || 0;
-    return Math.ceil(r.height + mt + mb);
-  };
-
-  const sendHeightIfChanged = () => {
-    if (!pymChild) return;
-    const h = measure();
-    if (Math.abs(h - lastSentH) > TOLERANCE) {
-      lastSentH = h;
-      try { pymChild.sendHeight(); } catch (_) {}
-    }
-  };
-
-  const queueSend = () => {
-    clearTimeout(sendTimer);
-    sendTimer = setTimeout(() => {
-      // let layout & fonts settle a tick
-      requestAnimationFrame(sendHeightIfChanged);
-    }, DEBOUNCE);
-  };
-
-  // Observe size changes of the root (and the map container once it's created)
-  const ro = new ResizeObserver(queueSend);
-  ro.observe(ROOT);
-
-  // --- Map config (unchanged from your file) ---
+  // --- Map config (yours, unchanged) ---
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
   const TILESET_URL  = "mapbox://mlnow.01iokrpa";
   const SOURCE_LAYER = "gdf_supe_with_categories";
@@ -113,12 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     zoom: 11.85
   });
 
-  // Also observe the map container once it exists (map._container is stable)
-  map.once('load', () => {
-    try { ro.observe(map.getContainer()); } catch (_) {}
-  });
-
-  // Basic interactions (unchanged)
   const robustClassFilter = (key) => [
     "any",
     ["==", ["get", key], true],
@@ -168,11 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     map.on('click', 'parcels-fill', e => {
       const f = e.features?.[0]; if (!f) return;
-      if (infoBox) {
-        infoBox.innerHTML = tplInfo(f.properties || {});
-        infoBox.style.display = 'block';
-        queueSend(); // showing the info box may change height
-      }
+      if (infoBox) { infoBox.innerHTML = tplInfo(f.properties || {}); infoBox.style.display = 'block'; }
     });
 
     if (selectEl){
@@ -181,24 +125,61 @@ document.addEventListener('DOMContentLoaded', () => {
         const filt = (key === 'all') ? null : robustClassFilter(key);
         if (map.getLayer('parcels-fill')) map.setFilter('parcels-fill', filt);
         if (map.getLayer('outline'))      map.setFilter('outline', filt);
-        queueSend(); // filtering can alter legend/info layout → remeasure
       };
       selectEl.addEventListener('change', applyFilter);
       applyFilter();
     }
   });
 
-  // Send once after first full render (+fonts)
-  Promise.all([
-    new Promise(r => map.once('idle', r)),
-    (document.fonts?.ready ?? Promise.resolve())
-  ]).then(() => {
-    setTimeout(queueSend, 60);
-  });
+  // ======= Recycled ROBUST PYM from the working chart =======
+  (function robustPym() {
+    // 1) Tiny bottom sentinel so abs/fixed UI never gets clipped
+    const sentinel = document.createElement('div');
+    sentinel.style.cssText = 'height:1px;margin-top:32px;';
+    document.body.appendChild(sentinel);
 
-  // On window resize: resize map then send (debounced already)
+    // 2) Helpers
+    const sendBurst = (ms = 1400, every = 150) => {
+      const end = performance.now() + ms;
+      const tick = () => {
+        pymChild.sendHeight();
+        if (performance.now() < end) setTimeout(tick, every);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    let tId = null;
+    const sendThrottled = () => {
+      if (tId) return;
+      tId = setTimeout(() => { tId = null; pymChild.sendHeight(); }, 100);
+    };
+
+    // 3) First precise measure AFTER map is idle + fonts ready
+    Promise.all([
+      new Promise(r => map.once('idle', r)),
+      (document.fonts?.ready ?? Promise.resolve())
+    ]).then(() => {
+      requestAnimationFrame(() => {
+        pymChild.sendHeight();  // single accurate send
+        sendBurst();            // belt-and-suspenders for late wraps
+      });
+    });
+
+    // 4) Re-measure on any layout/size change (throttled)
+    new ResizeObserver(sendThrottled).observe(document.body);
+
+    const mo = new MutationObserver(sendThrottled);
+    mo.observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true });
+
+    // 5) Orientation changes → resize map, then burst
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => { map.resize(); sendBurst(1000, 150); }, 200);
+    });
+  })();
+  // ======= end recycled Pym =======
+
+  // Window resize (NO pym send here—same as the working chart)
   window.addEventListener('resize', () => {
     try { map.resize(); } catch {}
-    queueSend();
   }, { passive: true });
 });
