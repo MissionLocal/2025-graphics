@@ -1,18 +1,55 @@
-// map.js — send height once after map is ready, and on resize only
+// map.js — fix Pym height creep: measure a stable root, observe changes, and throttle sends
 document.addEventListener('DOMContentLoaded', () => {
-  // Safe Pym
-  // let pymChild = null;
-  // try { if (window.pym) pymChild = new pym.Child(); } catch (_) {}
-  // const sendHeight = () => { try { if (pymChild) pymChild.sendHeight(); } catch (_) {} };
+  // Pym (safe if parent didn't include it)
+  let pymChild = null;
+  try { if (window.pym) pymChild = new pym.Child(); } catch (_) {}
 
-  // Optional: helps in non-iframe previews
-  const wrapper = document.getElementById('mapsWrapper');
-  const ensureWrapperMinHeight = () => {
-    if (!wrapper) return;
-    wrapper.style.minHeight = Math.ceil(wrapper.getBoundingClientRect().height) + 'px';
+  // Pick a stable root to measure (prefer a known wrapper if you have one)
+  const ROOT =
+    document.getElementById('embed-root') ||      // <div id="embed-root">…</div> if you have it
+    document.querySelector('.maps-wrapper') ||    // or any outer wrapper you use
+    document.body;                                // fallback
+
+  // Only send if height really changed (prevents resize feedback loops)
+  let lastSentH = 0;
+  let sendTimer = null;
+  const TOLERANCE = 4;    // px; ignore tiny reflows
+  const DEBOUNCE  = 120;  // ms; give layout time to settle
+
+  const measure = () => {
+    // Bounding rect is stable; avoids scrollHeight micro-growth
+    const r = ROOT.getBoundingClientRect();
+    // Include any top/bottom margins the rect won't include (rare, but safe):
+    const styles = ROOT === document.body
+      ? window.getComputedStyle(document.documentElement)
+      : window.getComputedStyle(ROOT);
+    const mt = parseFloat(styles.marginTop)  || 0;
+    const mb = parseFloat(styles.marginBottom) || 0;
+    return Math.ceil(r.height + mt + mb);
   };
 
-  // ----- Map config (your existing logic unchanged) -----
+  const sendHeightIfChanged = () => {
+    if (!pymChild) return;
+    const h = measure();
+    if (Math.abs(h - lastSentH) > TOLERANCE) {
+      lastSentH = h;
+      try { pymChild.sendHeight(); } catch (_) {}
+    }
+  };
+
+  const queueSend = () => {
+    clearTimeout(sendTimer);
+    sendTimer = setTimeout(() => {
+      // let layout & fonts settle a tick
+      requestAnimationFrame(sendHeightIfChanged);
+    }, DEBOUNCE);
+  };
+
+  // Observe size changes of the root (and the map container once it's created)
+  const ro = new ResizeObserver(queueSend);
+  ro.observe(ROOT);
+
+  // --- Map config (unchanged from your file) ---
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
   const TILESET_URL  = "mapbox://mlnow.01iokrpa";
   const SOURCE_LAYER = "gdf_supe_with_categories";
@@ -28,28 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const EXACT_FORTY_COLOR = "#9e9e9e";
   const MISSING_COLOR = "#E6E6E6";
 
-  function makeHeightColorExprStep(){
-    const raw=["get","proposed_height"];
-    const v=["to-number",raw];
+  function makeHeightColorExprStep() {
+    const raw = ["get", "proposed_height"];
+    const v = ["to-number", raw];
     return ["case",
-      ["any",["==",raw,null],["!=",v,v]], MISSING_COLOR,
-      ["==",v,40], EXACT_FORTY_COLOR,
-      ["<", v,40], BASE_BELOW_FIRST,
+      ["any", ["==", raw, null], ["!=", v, v]], MISSING_COLOR,
+      ["==", v, 40], EXACT_FORTY_COLOR,
+      ["<", v, 40], BASE_BELOW_FIRST,
       ["step", v,
         BASE_BELOW_FIRST,
-        40,HEIGHT_COLORS[0],50,HEIGHT_COLORS[1],65,HEIGHT_COLORS[2],
-        70,HEIGHT_COLORS[3],75,HEIGHT_COLORS[4],80,HEIGHT_COLORS[5],
-        85,HEIGHT_COLORS[6],105,HEIGHT_COLORS[7],120,HEIGHT_COLORS[8],
-        130,HEIGHT_COLORS[9],140,HEIGHT_COLORS[10],160,HEIGHT_COLORS[11],
-        180,HEIGHT_COLORS[12],240,HEIGHT_COLORS[13],250,HEIGHT_COLORS[14],
-        300,HEIGHT_COLORS[15],350,HEIGHT_COLORS[16],450,HEIGHT_COLORS[17],
-        490,HEIGHT_COLORS[18],500,HEIGHT_COLORS[19],650,HEIGHT_COLORS[20]
+        40, HEIGHT_COLORS[0], 50, HEIGHT_COLORS[1], 65, HEIGHT_COLORS[2],
+        70, HEIGHT_COLORS[3], 75, HEIGHT_COLORS[4], 80, HEIGHT_COLORS[5],
+        85, HEIGHT_COLORS[6], 105, HEIGHT_COLORS[7], 120, HEIGHT_COLORS[8],
+        130, HEIGHT_COLORS[9], 140, HEIGHT_COLORS[10], 160, HEIGHT_COLORS[11],
+        180, HEIGHT_COLORS[12], 240, HEIGHT_COLORS[13], 250, HEIGHT_COLORS[14],
+        300, HEIGHT_COLORS[15], 350, HEIGHT_COLORS[16], 450, HEIGHT_COLORS[17],
+        490, HEIGHT_COLORS[18], 500, HEIGHT_COLORS[19], 650, HEIGHT_COLORS[20]
       ]
     ];
   }
 
   function legendHTML(title){
-    const min = HEIGHT_BREAKS[0] + 1; // 41
+    const min = HEIGHT_BREAKS[0] + 1;
     const max = HEIGHT_BREAKS.at(-1);
     return `
       <div class="legend-title">${title}</div>
@@ -75,21 +112,24 @@ document.addEventListener('DOMContentLoaded', () => {
     center: [-122.4411568, 37.765044],
     zoom: 11.85
   });
-  map.on('error', e => console.error('Mapbox GL error:', e?.error));
 
+  // Also observe the map container once it exists (map._container is stable)
+  map.once('load', () => {
+    try { ro.observe(map.getContainer()); } catch (_) {}
+  });
+
+  // Basic interactions (unchanged)
   const robustClassFilter = (key) => [
     "any",
     ["==", ["get", key], true],
     ["==", ["downcase", ["coalesce", ["to-string", ["get", key]], ""]], "true"],
     ["==", ["coalesce", ["to-number", ["get", key]], 0], 1]
   ];
-
-  // Info helpers (unchanged) ...
   const toNum = v => { if (v==null) return null; if (typeof v==="number") return Number.isFinite(v)?v:null; const s=String(v).trim(); if(!s||/^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null; const m=s.match(/^[+-]?\d+(\.\d+)?/); return m?Number(m[0]):null; };
-  const asNum = v => { const n = Number(v); return Number.isFinite(n) ? n : null; };
+  const asNum = v => { const n=Number(v); return Number.isFinite(n)?n:null; };
   const pickField = (o, ns) => ns.map(n => o?.[n]).find(v => v !== undefined);
   const fallbackChange = p => { const pr=toNum(p?.proposed_height_int ?? p?.proposed_height); const ex=toNum(p?.heightdist); return (pr!=null && ex!=null) ? pr-ex : null; };
-  function tplInfo(p={}){
+  function tplInfo(p = {}){
     const id=p?.RP1PRCLID ?? "—";
     const type=p?.class_desc ?? p?.RP1CLACDE ?? "—";
     const rawPH=(p?.proposed_height ?? "").toString().trim();
@@ -107,28 +147,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   map.on('load', () => {
     const firstSymbolId = (map.getStyle().layers.find(l => l.type === 'symbol') || {}).id;
-    map.addSource('parcels', { type:'vector', url:TILESET_URL });
-    map.addLayer({ id:'parcels-fill', type:'fill', source:'parcels', 'source-layer':SOURCE_LAYER,
-                   paint:{ 'fill-color': makeHeightColorExprStep(), 'fill-opacity': 0.9 } }, firstSymbolId);
-    map.addLayer({ id:'outline', type:'line', source:'parcels', 'source-layer':SOURCE_LAYER,
-                   paint:{ 'line-color':'#ffffff','line-width':0.2 } }, firstSymbolId);
-    map.addLayer({ id:'hover', type:'line', source:'parcels', 'source-layer':SOURCE_LAYER,
-                   paint:{ 'line-color':'#ffffff','line-width':2.0 }, filter:['==',['get','RP1PRCLID'],'' ] }, firstSymbolId);
+    map.addSource('parcels', { type: 'vector', url: TILESET_URL });
 
-    map.on('mousemove','parcels-fill', e => {
+    map.addLayer({ id:'parcels-fill', type:'fill', source:'parcels', 'source-layer':SOURCE_LAYER,
+                   paint:{ 'fill-color': makeHeightColorExprStep(), 'fill-opacity':0.9 } }, firstSymbolId);
+    map.addLayer({ id:'outline', type:'line', source:'parcels', 'source-layer':SOURCE_LAYER,
+                   paint:{ 'line-color':'#ffffff', 'line-width':0.2 } }, firstSymbolId);
+    map.addLayer({ id:'hover', type:'line', source:'parcels', 'source-layer':SOURCE_LAYER,
+                   paint:{ 'line-color':'#ffffff', 'line-width':2.0 }, filter:['==',['get','RP1PRCLID'],'' ] }, firstSymbolId);
+
+    map.on('mousemove', 'parcels-fill', e => {
       if (!e.features?.length) return;
       const pid = e.features[0].properties?.RP1PRCLID ?? '';
       map.setFilter('hover', ['==', ['get','RP1PRCLID'], pid]);
       map.getCanvas().style.cursor = 'pointer';
     });
-    map.on('mouseleave','parcels-fill', () => {
+    map.on('mouseleave', 'parcels-fill', () => {
       map.setFilter('hover', ['==', ['get','RP1PRCLID'], '' ]);
       map.getCanvas().style.cursor = '';
     });
-
-    map.on('click','parcels-fill', e => {
+    map.on('click', 'parcels-fill', e => {
       const f = e.features?.[0]; if (!f) return;
-      if (infoBox){ infoBox.innerHTML = tplInfo(f.properties || {}); infoBox.style.display = 'block'; }
+      if (infoBox) {
+        infoBox.innerHTML = tplInfo(f.properties || {});
+        infoBox.style.display = 'block';
+        queueSend(); // showing the info box may change height
+      }
     });
 
     if (selectEl){
@@ -137,31 +181,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const filt = (key === 'all') ? null : robustClassFilter(key);
         if (map.getLayer('parcels-fill')) map.setFilter('parcels-fill', filt);
         if (map.getLayer('outline'))      map.setFilter('outline', filt);
+        queueSend(); // filtering can alter legend/info layout → remeasure
       };
       selectEl.addEventListener('change', applyFilter);
       applyFilter();
     }
   });
 
-  // Send height ONCE after first idle + fonts ready
-  // Promise.all([
-  //   new Promise(r => map.once('idle', r)),
-  //   (document.fonts?.ready ?? Promise.resolve())
-  // ]).then(() => {
-  //   requestAnimationFrame(() => {
-  //     ensureWrapperMinHeight();
-  //     sendHeight(); // once
-  //   });
-  // });
+  // Send once after first full render (+fonts)
+  Promise.all([
+    new Promise(r => map.once('idle', r)),
+    (document.fonts?.ready ?? Promise.resolve())
+  ]).then(() => {
+    setTimeout(queueSend, 60);
+  });
 
-  // // Send again ONLY on window resize (debounced)
-  // let rT = null;
-  // window.addEventListener('resize', () => {
-  //   clearTimeout(rT);
-  //   rT = setTimeout(() => {
-  //     try { map.resize(); } catch {}
-  //     ensureWrapperMinHeight();
-  //     sendHeight();
-  //   }, 150);
-  // }, { passive: true });
+  // On window resize: resize map then send (debounced already)
+  window.addEventListener('resize', () => {
+    try { map.resize(); } catch {}
+    queueSend();
+  }, { passive: true });
 });
