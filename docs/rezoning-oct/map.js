@@ -229,14 +229,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   // Initial send only after map is truly idle + fonts are ready
-  Promise.all([
-    new Promise(r => map.once('idle', r)),
-    (document.fonts?.ready ?? Promise.resolve())
-  ]).then(() => {
-    requestAnimationFrame(() => {
-      ensureWrapperMinHeight();
-      setTimeout(() => { sendHeight(); }, 120);
-    });
+  // Promise.all([
+  //   new Promise(r => map.once('idle', r)),
+  //   (document.fonts?.ready ?? Promise.resolve())
+  // ]).then(() => {
+  //   requestAnimationFrame(() => {
+  //     ensureWrapperMinHeight();
+  //     setTimeout(() => { sendHeight(); }, 120);
+  //   });
     pymChild.sendHeight();
 
   });
