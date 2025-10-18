@@ -1,43 +1,21 @@
-// map.js — Proposed heights (vector tiles) with *stable* Pym height reporting
+// map.js — Proposed heights (vector tiles) with stable Pym height reporting
 document.addEventListener('DOMContentLoaded', () => {
-  // ---------- Stable Pym sender ----------
+  // ----- Minimal Pym child (safe if parent doesn't include Pym) -----
   let pymChild = null;
-  try { if (window.pym) pymChild = new pym.Child(); } catch (_) {}
+  try { if (window.pym) pymChild = new pym.Child(); } catch(_) {}
+  const sendHeight = () => { try { if (pymChild) pymChild.sendHeight(); } catch(_) {} };
 
-  // Measure only the content that should drive the iframe height
-  const WRAPPER_ID = 'mapsWrapper';
-  const wrapperEl = () => document.getElementById(WRAPPER_ID) || document.body;
+  // Measure & stabilize wrapper height (prevents clipping in non-Pym previews)
+  const wrapper = document.getElementById('mapsWrapper');
+  const ensureWrapperMinHeight = () => {
+    if (!wrapper) return;
+    const h = Math.ceil(wrapper.getBoundingClientRect().height);
+    wrapper.style.minHeight = h + 'px';
+  };
 
-  // Round to reduce 1px thrash from fractional layout/font hints
-  const quantize = (n, step = 8) => Math.ceil(n / step) * step;
-
-  let lastSentH = 0;
-  let lastSentAt = 0;
-  let timer = null;
-
-  function sendHeightStable(minDelta = 12, settleMs = 120, maxRateMs = 900) {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      const el = wrapperEl();
-      const raw = Math.max(
-        el.getBoundingClientRect().height,
-        el.scrollHeight || 0
-      );
-      const h = quantize(raw, 8);
-      const now = performance.now();
-
-      if (Math.abs(h - lastSentH) < minDelta) return;            // ignore tiny changes
-      if (now - lastSentAt < maxRateMs) return;                  // rate limit
-
-      try { if (pymChild) pymChild.sendHeight(); } catch (_) {}
-      lastSentH = h;
-      lastSentAt = now;
-    }, settleMs);
-  }
-
-  // ---------- Map config ----------
+  // ----- Map config -----
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
-  const TILESET_URL = "mapbox://mlnow.01iokrpa";
+  const TILESET_URL  = "mapbox://mlnow.01iokrpa";
   const SOURCE_LAYER = "gdf_supe_with_categories";
 
   const infoBox  = document.getElementById('info-box');
@@ -61,53 +39,39 @@ document.addEventListener('DOMContentLoaded', () => {
       ["<", v, 40], BASE_BELOW_FIRST,
       ["step", v,
         BASE_BELOW_FIRST,
-        40, HEIGHT_COLORS[0],
-        50, HEIGHT_COLORS[1],
-        65, HEIGHT_COLORS[2],
-        70, HEIGHT_COLORS[3],
-        75, HEIGHT_COLORS[4],
-        80, HEIGHT_COLORS[5],
-        85, HEIGHT_COLORS[6],
-        105, HEIGHT_COLORS[7],
-        120, HEIGHT_COLORS[8],
-        130, HEIGHT_COLORS[9],
-        140, HEIGHT_COLORS[10],
-        160, HEIGHT_COLORS[11],
-        180, HEIGHT_COLORS[12],
-        240, HEIGHT_COLORS[13],
-        250, HEIGHT_COLORS[14],
-        300, HEIGHT_COLORS[15],
-        350, HEIGHT_COLORS[16],
-        450, HEIGHT_COLORS[17],
-        490, HEIGHT_COLORS[18],
-        500, HEIGHT_COLORS[19],
-        650, HEIGHT_COLORS[20]
+        40, HEIGHT_COLORS[0], 50, HEIGHT_COLORS[1], 65, HEIGHT_COLORS[2],
+        70, HEIGHT_COLORS[3], 75, HEIGHT_COLORS[4], 80, HEIGHT_COLORS[5],
+        85, HEIGHT_COLORS[6], 105, HEIGHT_COLORS[7], 120, HEIGHT_COLORS[8],
+        130, HEIGHT_COLORS[9], 140, HEIGHT_COLORS[10], 160, HEIGHT_COLORS[11],
+        180, HEIGHT_COLORS[12], 240, HEIGHT_COLORS[13], 250, HEIGHT_COLORS[14],
+        300, HEIGHT_COLORS[15], 350, HEIGHT_COLORS[16], 450, HEIGHT_COLORS[17],
+        490, HEIGHT_COLORS[18], 500, HEIGHT_COLORS[19], 650, HEIGHT_COLORS[20]
       ]
     ];
   }
 
-  function legendHTML(title) {
-    const gradientColors = HEIGHT_COLORS.join(',');
-    const minActive = HEIGHT_BREAKS[0] + 1; // 41
-    const maxLabel  = HEIGHT_BREAKS.at(-1);
+  function legendHTML(title){
+    const min = HEIGHT_BREAKS[0] + 1; // 41
+    const max = HEIGHT_BREAKS.at(-1);
     return `
       <div class="legend-title">${title}</div>
       <div class="legend-keys" style="display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 6px;">
         <div class="k" style="display:flex;align-items:center;gap:6px;">
           <span class="sw" style="width:12px;height:12px;border-radius:2px;background:${EXACT_FORTY_COLOR};
-                box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);"></span>
+                 box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);"></span>
           <span>40, no change</span>
         </div>
       </div>
       <div class="legend-gradient"
-           style="width:100%;height:10px;border-radius:6px;background:linear-gradient(90deg, ${gradientColors});
+           style="width:100%;height:10px;border-radius:6px;background:linear-gradient(90deg, ${HEIGHT_COLORS.join(',')});
                   box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);margin:4px 0 4px;"></div>
       <div class="legend-ends" style="display:flex;justify-content:space-between;">
-        <span>${minActive}</span><span>${maxLabel}</span>
-      </div>`;
+        <span>${min}</span><span>${max}</span>
+      </div>
+    `;
   }
 
-  if (legendEl) {
+  if (legendEl){
     legendEl.style.display = 'inline-block';
     legendEl.innerHTML = legendHTML('Proposed height (ft)');
   }
@@ -118,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     center: [-122.4411568, 37.765044],
     zoom: 11.85
   });
+  map.on('error', e => console.error('Mapbox GL error:', e && e.error));
 
   const robustClassFilter = (key) => [
     "any",
@@ -126,20 +91,22 @@ document.addEventListener('DOMContentLoaded', () => {
     ["==", ["coalesce", ["to-number", ["get", key]], 0], 1]
   ];
 
-  // --- Info card helpers ---
+  // --- Info box utils ---
   const toNum = v => {
     if (v==null) return null;
     if (typeof v==="number") return Number.isFinite(v)?v:null;
-    const s=String(v).trim(); if(!s||/^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
-    const m=s.match(/^[+-]?\d+(\.\d+)?/); return m?Number(m[0]):null;
+    const s = String(v).trim();
+    if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
+    const m = s.match(/^[+-]?\d+(\.\d+)?/);
+    return m ? Number(m[0]) : null;
   };
   const fallbackChange = p => {
     const proposed = toNum(p?.proposed_height_int ?? p?.proposed_height);
     const existing = toNum(p?.heightdist);
     return (proposed!=null && existing!=null) ? proposed-existing : null;
   };
-  function tplInfo(p={}){
-    const id = p?.RP1PRCLID ?? "—";
+  function tplInfo(p = {}){
+    const id   = p?.RP1PRCLID ?? "—";
     const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
     const rawPH = (p?.proposed_height ?? "").toString().trim();
     const nums  = rawPH.match(/[+-]?\d+(\.\d+)?/g) || [];
@@ -149,7 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let changeTxt = "—";
     if (ch!=null){
       const r = Math.abs(ch%1)===0 ? Math.trunc(ch) : Math.round(ch*10)/10;
-      const sign = ch>0?"+":ch<0?"−":""; changeTxt = `${sign}${Number.isInteger(r)?r:r.toFixed(1)} ft`;
+      const sign = ch>0?"+":ch<0?"−":"";
+      changeTxt = `${sign}${Number.isInteger(r)?r:r.toFixed(1)} ft`;
     }
     return `
       <div class="info-header"><strong>Parcel ${id}</strong><span class="sep"> • </span><span class="bldg-type">${type}</span></div>
@@ -159,86 +127,101 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Build map & layers ---
   map.on('load', () => {
-    const firstSymbolId = (map.getStyle().layers.find(l=>l.type==='symbol')||{}).id;
+    const layers = map.getStyle().layers;
+    const firstSymbolId = (layers.find(l => l.type === 'symbol') || {}).id;
 
-    map.addSource('parcels', { type:'vector', url:TILESET_URL });
+    map.addSource('parcels', { type: 'vector', url: TILESET_URL });
 
     map.addLayer({
-      id:'parcels-fill', type:'fill', source:'parcels', 'source-layer':SOURCE_LAYER,
-      paint:{ 'fill-color': makeHeightColorExprStep(), 'fill-opacity':0.9 }
+      id: 'parcels-fill',
+      type: 'fill',
+      source: 'parcels',
+      'source-layer': SOURCE_LAYER,
+      paint: { 'fill-color': makeHeightColorExprStep(), 'fill-opacity': 0.9 }
     }, firstSymbolId);
 
     map.addLayer({
-      id:'outline', type:'line', source:'parcels', 'source-layer':SOURCE_LAYER,
-      paint:{ 'line-color':'#ffffff', 'line-width':0.2 }
+      id: 'outline',
+      type: 'line',
+      source: 'parcels',
+      'source-layer': SOURCE_LAYER,
+      paint: { 'line-color': '#ffffff', 'line-width': 0.2 }
     }, firstSymbolId);
 
     map.addLayer({
-      id:'hover', type:'line', source:'parcels', 'source-layer':SOURCE_LAYER,
-      paint:{ 'line-color':'#ffffff', 'line-width':2.0 },
-      filter:['==',['get','RP1PRCLID'],'' ]
+      id: 'hover',
+      type: 'line',
+      source: 'parcels',
+      'source-layer': SOURCE_LAYER,
+      paint: { 'line-color': '#ffffff', 'line-width': 2.0 },
+      filter: ['==', ['get', 'RP1PRCLID'], '']
     }, firstSymbolId);
 
-    map.on('mousemove','parcels-fill', e=>{
+    map.on('mousemove', 'parcels-fill', e => {
       if (!e.features?.length) return;
       const pid = e.features[0].properties?.RP1PRCLID ?? '';
-      map.setFilter('hover', ['==',['get','RP1PRCLID'], pid]);
+      map.setFilter('hover', ['==', ['get', 'RP1PRCLID'], pid]);
       map.getCanvas().style.cursor = 'pointer';
     });
-    map.on('mouseleave','parcels-fill', ()=>{
-      map.setFilter('hover', ['==',['get','RP1PRCLID'], '' ]);
+    map.on('mouseleave', 'parcels-fill', () => {
+      map.setFilter('hover', ['==', ['get', 'RP1PRCLID'], '']);
       map.getCanvas().style.cursor = '';
     });
 
-    map.on('click','parcels-fill', e=>{
-      const f = e.features?.[0]; if (!f) return;
+    map.on('click', 'parcels-fill', e => {
+      const f = e.features?.[0];
+      if (!f) return;
       if (infoBox){
-        infoBox.innerHTML = tplInfo(f.properties||{});
+        infoBox.innerHTML = tplInfo(f.properties || {});
         infoBox.style.display = 'block';
-        requestAnimationFrame(()=> sendHeightStable(12, 100, 900));
+        requestAnimationFrame(() => { sendHeight(); ensureWrapperMinHeight(); });
       }
     });
 
-    // Background click hides
-    map.on('click', e=>{
-      const hit = map.queryRenderedFeatures(e.point, { layers:['parcels-fill'] });
-      if (hit.length) return;
-      if (infoBox && infoBox.style.display!=='none'){
+    // Background click hides info box
+    map.on('click', e => {
+      const hits = map.queryRenderedFeatures(e.point, { layers: ['parcels-fill'] });
+      if (hits.length) return;
+      if (infoBox && infoBox.style.display !== 'none') {
         infoBox.style.display = 'none';
-        requestAnimationFrame(()=> sendHeightStable(12, 100, 900));
+        requestAnimationFrame(() => { sendHeight(); ensureWrapperMinHeight(); });
       }
     });
 
-    // Dropdown filter (if present)
+    // Dropdown filter
     if (selectEl){
       const applyFilter = () => {
-        const key = selectEl.value; // 'AMEND' | 'RC' | 'SRES' | 'MRES' | 'COMM' | 'all'
-        const filt = (key==='all') ? null : robustClassFilter(key);
+        const key = selectEl.value; // 'AMEND' | 'RC' | 'SRES' | 'MRES' | 'COMM'
+        const filt = (key === 'all') ? null : robustClassFilter(key);
         if (map.getLayer('parcels-fill')) map.setFilter('parcels-fill', filt);
         if (map.getLayer('outline'))      map.setFilter('outline', filt);
-        // legend wrap could change → nudge once
-        sendHeightStable(12, 120, 900);
+        // legend wrap can change height
+        requestAnimationFrame(() => { sendHeight(); ensureWrapperMinHeight(); });
       };
       selectEl.addEventListener('change', applyFilter);
       applyFilter();
     }
   });
 
-  // Debounced window resize → resize map → single height send
+  // Debounced resize → map.resize() → sendHeight
   let rT = null;
   window.addEventListener('resize', () => {
     clearTimeout(rT);
     rT = setTimeout(() => {
-      try { map.resize(); } catch(_) {}
-      sendHeightStable(12, 150, 900);
+      try { map.resize(); } catch {}
+      ensureWrapperMinHeight();
+      sendHeight();
     }, 150);
-  }, { passive:true });
+  }, { passive: true });
 
-  // Initial height: only after map is truly idle + fonts are ready
+  // Initial send only after map is truly idle + fonts are ready
   Promise.all([
-    new Promise(res => map.once('idle', res)),
+    new Promise(r => map.once('idle', r)),
     (document.fonts?.ready ?? Promise.resolve())
   ]).then(() => {
-    requestAnimationFrame(() => sendHeightStable(12, 120, 900));
+    requestAnimationFrame(() => {
+      ensureWrapperMinHeight();
+      setTimeout(() => { sendHeight(); }, 120);
+    });
   });
 });
