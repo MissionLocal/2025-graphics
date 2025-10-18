@@ -1,8 +1,6 @@
 // map.js — single-shot Pym height (no `idle`)
 document.addEventListener('DOMContentLoaded', () => {
-  // Safe Pym init
-  let pymChild = null;
-  try { if (window.pym) pymChild = new pym.Child(); } catch {}
+  var pymChild = new pym.Child();
 
   // Helper: send once after style load + fonts (no 'idle')
   function sendOnceAfterStyleLoad(map) {
@@ -154,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       selectEl.addEventListener('change', applyFilter);
       applyFilter();
     }
+    pymChild.sendHeight();
   });
 
   // >>> ONE send after style load + fonts (no 'idle')
@@ -166,4 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Optional: manual one-off during testing
   window.forcePymHeight = () => { try { pymChild?.sendHeight(); } catch {} };
+
+  pymChild.sendHeight();
+
 });
