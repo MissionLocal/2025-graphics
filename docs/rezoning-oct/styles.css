@@ -1,136 +1,169 @@
-/* =========================
+/* =========================================
    Base
-   ========================= */
+   ========================================= */
    html, body { height: 100%; }
    body {
      margin: 0;
      padding: 0 0 20px 0;
      font-family: 'Barlow', sans-serif;
+     min-height: 100svh; /* stable viewport on mobile */
    }
    
-   /* =========================
+   /* =========================================
       Layout
-      ========================= */
+      ========================================= */
    .cont {
      display: flex;
      justify-content: center;
-     align-items: stretch; /* prevent collapse on mobile */
+     align-items: stretch; /* avoid vertical centering collapse on mobile */
    }
    
-   /* Outer container around the map */
+   /* Container around map + overlays */
    .map-container {
      position: relative;
-     width: 100%;
-     max-width: 900px;
+     width: 100vw;
+     max-width: 400px;
      margin: 10px auto;
      box-sizing: border-box;
    }
    
-   #map { width: 100%; max-width: 500px; height: 500px; }
-   .cont { align-items: center; } /* or flex-start; avoid anything that forces odd stretching */
-   
-   /* =========================
-      Map UI (dropdown + legend)
-      ========================= */
-   .map-ui {
-     position: absolute;
-     top: 8px; left: 8px; right: 8px;
-     display: flex;
-     flex-direction: column;
-     gap: 8px;
-     z-index: 5;
+   /* The Mapbox container (the actual #map element) */
+   .map {
+     width: 100vw;
+     max-width: 400px;
+     height: 500px;
+     box-shadow: 0 4px 8px rgba(0,0,0,.1);
+     overflow: hidden; /* keep tiles within rounded corners when used */
    }
    
+   /* (Old) pills — keep only if you use them elsewhere */
+   .btns {
+     display: flex; gap: 6px; flex-wrap: wrap;
+     margin: 0 0 8px 0; justify-content: center;
+   }
+   .btn {
+     appearance: none; border: 1px solid #ddd; background: #fff; color: #333;
+     padding: 6px 10px; border-radius: 999px; cursor: pointer; font-weight: 600; font-size: 12.5px;
+   }
+   .btn:hover { background: #f3f3f3; }
+   .btn.active { background: #9DF4D9; color: #fff; border-color: #9DF4D9; }
+   
+   /* =========================================
+      Stacked Map UI (dropdown + legend)
+      ========================================= */
+   .map-ui {
+     position: absolute; top: 8px; left: 8px; right: 8px;
+     display: flex; flex-direction: column; gap: 8px; z-index: 5;
+   }
    .controls-row {
-     display: flex; align-items: center; gap: 10px;
-     align-self: flex-start;
+     display: flex; align-items: center; gap: 10px; align-self: flex-start;
      background: #fff; border-radius: 999px; border: 1px solid #ddd;
      padding: 6px 10px; box-shadow: 0 1px 2px rgba(0,0,0,.06);
    }
    .controls-row label { font: 500 14px/1.2 Barlow, sans-serif; color: #223; }
    .controls-row select { border: 0; outline: 0; background: transparent; font: 500 14px Barlow, sans-serif; }
    
+   /* Legend card (static inside .map-ui) */
    .legend {
-     position: static;
-     align-self: flex-start;
-     max-width: 280px;
-     background: rgba(255,255,255,.95);
-     border: 1px solid #ddd;
-     border-radius: 8px;
-     padding: 8px 10px;
-     box-shadow: 0 1px 2px rgba(0,0,0,.06);
-     font-size: 11.5px; line-height: 1.1;
-     pointer-events: none;
+     position: static; align-self: flex-start; max-width: 280px;
+     background: rgba(255,255,255,.95); border: 1px solid #ddd; border-radius: 8px;
+     padding: 8px 10px; box-shadow: 0 1px 2px rgba(0,0,0,.06);
+     font-size: 11.5px; line-height: 1.1; pointer-events: none;
    }
    .legend-title { font: 600 12px/1.2 Barlow, sans-serif; color: #222; margin-bottom: 4px; }
-   .legend-gradient { height: 10px; border-radius: 6px; }
-   .legend-ends { display: flex; justify-content: space-between; margin-top: 4px; color: #222; }
-   .legend-ends span { font-weight: 400; color: #555; }
-   
-   .mapboxgl-ctrl-top-right { z-index: 4; } /* keep Mapbox controls under our UI */
-   
-   /* =========================
-      Info card
-      ========================= */
-   .info-box {
-     position: absolute;
-     left: 50%; transform: translateX(-50%);
-     bottom: 14px;
-     z-index: 2;
-     width: calc(100% - 12px);
-     max-width: 460px;
-     box-sizing: border-box;
-     padding: 8px 10px;
-     background: rgba(255,255,255,.98);
-     border-radius: 2px;
-     box-shadow: 0 2px 4px rgba(0,0,0,.1);
-     font-size: 13px; line-height: 1.35;
-     max-height: 40%; overflow-y: auto;
-     white-space: normal;
+   .legend-row { display: flex; gap: 3px; flex-wrap: wrap; }
+   .legend-swatch {
+     display: inline-block; width: 10px; height: 10px; border-radius: 2px;
+     box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
    }
+   .legend-gradient { height: 10px; border-radius: 6px; }
+   .legend-ends { display: flex; justify-content: space-between; margin-top: 4px; width: 100%; color: #222; }
+   .legend-ends span { font-weight: 400; color: #555; } /* numbers not bold */
    
-   /* =========================
-      Responsive sizes
-      ========================= */
+   /* Keep Mapbox controls below our UI */
+   .mapboxgl-ctrl-top-right { z-index: 4; }
+   
+   /* =========================================
+      Info card (bottom centered)
+      ========================================= */
+   .info-box {
+     position: absolute; left: 50%; transform: translateX(-50%);
+     bottom: 14px; z-index: 2; width: calc(100% - 12px); max-width: 460px;
+     box-sizing: border-box; padding: 8px 10px; background: rgba(255,255,255,.98);
+     border-radius: 2px; box-shadow: 0 2px 4px rgba(0,0,0,.1);
+     font-size: 13px; line-height: 1.35; max-height: 40%; overflow-y: auto;
+     white-space: normal; /* allow wrapping on narrow screens */
+   }
+   .info-box .info-stats { white-space: normal; }
+   
+   /* Hide any old static legend wrapper if left in HTML */
+   .legend-container { display: none !important; }
+   
+   /* =========================================
+      Responsive map sizing
+      ========================================= */
+   
+   /* Default bump (small laptops / wide tablets) */
+   .map-container { max-width: 900px; }
+   .map { max-width: 900px; height: 600px; }
    
    /* Large desktop */
    @media (min-width: 1280px){
      .map-container { max-width: 1100px; }
-     .map { height: 700px; }
+     .map { max-width: 1100px; height: 700px; }
    }
    
-   /* Tablet */
-   @media (min-width: 768px) and (max-width: 1279px){
+   /* Tablet-specific */
+   @media (min-width: 768px) and (max-width: 1023px){
      .map-container { max-width: 720px; }
-     .map { height: 560px; }
+     .map { max-width: 720px; height: 560px; }
    }
    
-   /* ---------- Mobile: force fixed 300px height ---------- */
+   /* Tablet base tweaks */
+   @media (max-width: 768px){
+     .map-container { max-width: 400px; }
+     .map { height: 500px; }
+     .info-box { width: calc(100% - 12px); max-width: 460px; }
+   }
+   
+   /* Mobile: fill visible viewport safely, avoid 100vw overflow */
    @media (max-width: 767px){
-     .map-container {
+     :root { --gutter: 8px; } /* tweak 8–20px */
+   
+     .map-container{
        width: 100%;
        max-width: none;
-       margin: 8px auto;
-       padding: 4px;            /* avoid 100vw overflow */
+       padding-left: max(var(--gutter), env(safe-area-inset-left));
+       padding-right: max(var(--gutter), env(safe-area-inset-right));
+       box-sizing: border-box;
      }
-     .map {
-       width: 100% !important;
-       max-width: none !important;
-       height: 500px !important;     /* fixed height on phones */
-       min-height: 500px !important; /* guard against collapse */
+   
+     .map{
+       width: 100%;
+       max-width: none;
+       /* Stable height that won’t collapse when URL bar shows/hides */
+       height: min(70svh, 620px);
+       min-height: 300px;          /* hard floor to prevent collapse */
        border-radius: 10px;
+       overflow: hidden;
+       box-shadow: 0 4px 8px rgba(0,0,0,.1);
      }
+   
      .legend { max-width: none; }
      .legend-title { font-size: 11px; }
      .legend-ends span { font-size: 11px; }
      .legend-gradient { height: 8px; }
-     .info-box { bottom: 8px; }
    }
    
-   /* Very small phones (optional tiny nudge) */
+   /* Very small phones */
    @media (max-width: 380px){
+     .map { height: min(65svh, 520px); min-height: 280px; }
      .info-box { font-size: 12.5px; padding: 8px 9px; }
      .map-ui { gap: 6px; }
      .controls-row label, .controls-row select { font-size: 13px; }
    }
+   
+   /* Optional: if you kept the compass but want to hide +/- zoom
+   .mapboxgl-ctrl-zoom{display:none!important;}
+   */
    
