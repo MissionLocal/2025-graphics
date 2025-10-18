@@ -1,9 +1,23 @@
-// map.js — single map with recycled robust Pym from the working two-map chart
+// map.js — single-shot Pym height (send once after map idle + fonts)
 document.addEventListener('DOMContentLoaded', () => {
-  // Pym (same as the working chart)
-  const pymChild = new pym.Child();
+  // Safe Pym init
+  let pymChild = null;
+  try { if (window.pym) pymChild = new pym.Child(); } catch {}
 
-  // --- Map config (yours, unchanged) ---
+  // Helper: send once after the map fully renders (no loops)
+  function sendOnceAfterMapReady(map) {
+    if (!pymChild) return;
+    Promise.all([
+      new Promise(res => map.once('idle', res)),
+      (document.fonts?.ready ?? Promise.resolve())
+    ]).then(() => {
+      requestAnimationFrame(() => {
+        setTimeout(() => { try { pymChild.sendHeight(); } catch {} }, 60);
+      });
+    });
+  }
+
+  // --- Map config (yours) ---
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
   const TILESET_URL  = "mapbox://mlnow.01iokrpa";
   const SOURCE_LAYER = "gdf_supe_with_categories";
@@ -67,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     zoom: 11.85
   });
 
+  // Basic interactions
   const robustClassFilter = (key) => [
     "any",
     ["==", ["get", key], true],
@@ -77,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const asNum = v => { const n=Number(v); return Number.isFinite(n)?n:null; };
   const pickField = (o, ns) => ns.map(n => o?.[n]).find(v => v !== undefined);
   const fallbackChange = p => { const pr=toNum(p?.proposed_height_int ?? p?.proposed_height); const ex=toNum(p?.heightdist); return (pr!=null && ex!=null) ? pr-ex : null; };
+
   function tplInfo(p = {}){
     const id=p?.RP1PRCLID ?? "—";
     const type=p?.class_desc ?? p?.RP1CLACDE ?? "—";
@@ -131,55 +147,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ======= Recycled ROBUST PYM from the working chart =======
-  (function robustPym() {
-    // 1) Tiny bottom sentinel so abs/fixed UI never gets clipped
-    const sentinel = document.createElement('div');
-    sentinel.style.cssText = 'height:1px;margin-top:32px;';
-    document.body.appendChild(sentinel);
+  // >>> Send height ONCE after the first complete render <<<
+  sendOnceAfterMapReady(map);
 
-    // 2) Helpers
-    const sendBurst = (ms = 1400, every = 150) => {
-      const end = performance.now() + ms;
-      const tick = () => {
-        pymChild.sendHeight();
-        if (performance.now() < end) setTimeout(tick, every);
-      };
-      requestAnimationFrame(tick);
-    };
-
-    let tId = null;
-    const sendThrottled = () => {
-      if (tId) return;
-      tId = setTimeout(() => { tId = null; pymChild.sendHeight(); }, 100);
-    };
-
-    // 3) First precise measure AFTER map is idle + fonts ready
-    Promise.all([
-      new Promise(r => map.once('idle', r)),
-      (document.fonts?.ready ?? Promise.resolve())
-    ]).then(() => {
-      requestAnimationFrame(() => {
-        pymChild.sendHeight();  // single accurate send
-        sendBurst();            // belt-and-suspenders for late wraps
-      });
-    });
-
-    // 4) Re-measure on any layout/size change (throttled)
-    new ResizeObserver(sendThrottled).observe(document.body);
-
-    const mo = new MutationObserver(sendThrottled);
-    mo.observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true });
-
-    // 5) Orientation changes → resize map, then burst
-    window.addEventListener('orientationchange', () => {
-      setTimeout(() => { map.resize(); sendBurst(1000, 150); }, 200);
-    });
-  })();
-  // ======= end recycled Pym =======
-
-  // Window resize (NO pym send here—same as the working chart)
+  // Keep map responsive (no Pym on resize)
   window.addEventListener('resize', () => {
     try { map.resize(); } catch {}
   }, { passive: true });
+
+  // Optional: manual one-off during testing
+  window.forcePymHeight = () => { try { pymChild?.sendHeight(); } catch {} };
 });
