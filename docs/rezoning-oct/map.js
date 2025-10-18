@@ -13,16 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ----- Map config -----
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21ncjMxM2QwMnhjajJvb3ZobnllcDdmOSJ9.dskkEmEIuRIhKPkTh5o_Iw";
-  const TILESET_URL  = "mapbox://mlnow.01iokrpa";
+  const TILESET_URL = "mapbox://mlnow.01iokrpa";
   const SOURCE_LAYER = "gdf_supe_with_categories";
 
-  const infoBox  = document.getElementById('info-box');
+  const infoBox = document.getElementById('info-box');
   const legendEl = document.getElementById('legend');
   const selectEl = document.getElementById('layerSelect');
   if (infoBox) infoBox.style.display = 'none';
 
-  const HEIGHT_BREAKS = [40,50,65,70,75,80,85,105,120,130,140,160,180,240,250,300,350,450,490,500,650];
-  const HEIGHT_COLORS = ["#9DF4D9","#66D9CF","#3CCDC9","#22BFC3","#12ADBA","#008FA4","#007DBC","#006FB0","#0062A1","#005892","#004F84","#004676","#003C66","#003459","#002C4D","#00233F","#001C31","#001724","#001319","#000F19","#000C13"];
+  const HEIGHT_BREAKS = [40, 50, 65, 70, 75, 80, 85, 105, 120, 130, 140, 160, 180, 240, 250, 300, 350, 450, 490, 500, 650];
+  const HEIGHT_COLORS = ["#9DF4D9", "#66D9CF", "#3CCDC9", "#22BFC3", "#12ADBA", "#008FA4", "#007DBC", "#006FB0", "#0062A1", "#005892", "#004F84", "#004676", "#003C66", "#003459", "#002C4D", "#00233F", "#001C31", "#001724", "#001319", "#000F19", "#000C13"];
   const BASE_BELOW_FIRST = "#EFFFFA";
   const EXACT_FORTY_COLOR = "#9e9e9e";
   const MISSING_COLOR = "#E6E6E6";
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
   }
 
-  function legendHTML(title){
+  function legendHTML(title) {
     const min = HEIGHT_BREAKS[0] + 1; // 41
     const max = HEIGHT_BREAKS.at(-1);
     return `
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  if (legendEl){
+  if (legendEl) {
     legendEl.style.display = 'inline-block';
     legendEl.innerHTML = legendHTML('Proposed height (ft)');
   }
@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ====== Info box helpers (incl. Units) ======
   const toNum = v => {
-    if (v==null) return null;
-    if (typeof v==="number") return Number.isFinite(v)?v:null;
+    if (v == null) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
     const s = String(v).trim();
     if (!s || /^(null|na|n\/a|none|undefined|nan)$/i.test(s)) return null;
     const m = s.match(/^[+-]?\d+(\.\d+)?/);
@@ -108,28 +108,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const fallbackChange = p => {
     const proposed = toNum(p?.proposed_height_int ?? p?.proposed_height);
     const existing = toNum(p?.heightdist);
-    return (proposed!=null && existing!=null) ? proposed-existing : null;
+    return (proposed != null && existing != null) ? proposed - existing : null;
   };
 
-  function tplInfo(p = {}){
-    const id   = p?.RP1PRCLID ?? "—";
+  function tplInfo(p = {}) {
+    const id = p?.RP1PRCLID ?? "—";
     const type = p?.class_desc ?? p?.RP1CLACDE ?? "—";
 
     const rawPH = (p?.proposed_height ?? "").toString().trim();
-    const nums  = rawPH.match(/[+-]?\d+(\.\d+)?/g) || [];
-    const isMultiple = !rawPH || /^\s*nan\s*$/i.test(rawPH) || /[;/]/.test(rawPH) || nums.length>1;
+    const nums = rawPH.match(/[+-]?\d+(\.\d+)?/g) || [];
+    const isMultiple = !rawPH || /^\s*nan\s*$/i.test(rawPH) || /[;/]/.test(rawPH) || nums.length > 1;
     const propStr = isMultiple ? "multiple" : (rawPH || "N/A");
 
-    let ch = toNum(p?.change); if (ch==null) ch = fallbackChange(p);
+    let ch = toNum(p?.change); if (ch == null) ch = fallbackChange(p);
     let changeTxt = "—";
-    if (ch!=null){
-      const r = Math.abs(ch%1)===0 ? Math.trunc(ch) : Math.round(ch*10)/10;
-      const sign = ch>0?"+":ch<0?"−":"";
-      changeTxt = `${sign}${Number.isInteger(r)?r:r.toFixed(1)} ft`;
+    if (ch != null) {
+      const r = Math.abs(ch % 1) === 0 ? Math.trunc(ch) : Math.round(ch * 10) / 10;
+      const sign = ch > 0 ? "+" : ch < 0 ? "−" : "";
+      changeTxt = `${sign}${Number.isInteger(r) ? r : r.toFixed(1)} ft`;
     }
 
     // Units with robust key detection
-    const unitsRaw = pickField(p, ["UNITS","Units","units","UNIT_CT","UNITCOUNT","unit_count","UnitCount"]);
+    const unitsRaw = pickField(p, ["UNITS", "Units", "units", "UNIT_CT", "UNITCOUNT", "unit_count", "UnitCount"]);
     const unitsNum = asNum(unitsRaw);
     const unitsTxt = (unitsNum != null && unitsNum > 0) ? ` • Units: ${Math.round(unitsNum).toLocaleString()}` : "";
 
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     map.on('click', 'parcels-fill', e => {
       const f = e.features?.[0];
       if (!f) return;
-      if (infoBox){
+      if (infoBox) {
         infoBox.innerHTML = tplInfo(f.properties || {});
         infoBox.style.display = 'block';
         requestAnimationFrame(() => { sendHeight(); ensureWrapperMinHeight(); });
@@ -203,12 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Dropdown filter
-    if (selectEl){
+    if (selectEl) {
       const applyFilter = () => {
         const key = selectEl.value; // 'AMEND' | 'RC' | 'SRES' | 'MRES' | 'COMM'
         const filt = (key === 'all') ? null : robustClassFilter(key);
         if (map.getLayer('parcels-fill')) map.setFilter('parcels-fill', filt);
-        if (map.getLayer('outline'))      map.setFilter('outline', filt);
+        if (map.getLayer('outline')) map.setFilter('outline', filt);
         // legend wrap can change height
         requestAnimationFrame(() => { sendHeight(); ensureWrapperMinHeight(); });
       };
@@ -222,23 +222,15 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => {
     clearTimeout(rT);
     rT = setTimeout(() => {
-      try { map.resize(); } catch {}
+      try { map.resize(); } catch { }
       ensureWrapperMinHeight();
       sendHeight();
     }, 150);
   }, { passive: true });
 
   // Initial send only after map is truly idle + fonts are ready
-  // Promise.all([
-  //   new Promise(r => map.once('idle', r)),
-  //   (document.fonts?.ready ?? Promise.resolve())
-  // ]).then(() => {
-  //   requestAnimationFrame(() => {
-  //     ensureWrapperMinHeight();
-  //     setTimeout(() => { sendHeight(); }, 120);
-  //   });
+  
+
     pymChild.sendHeight();
 
   });
-
-});
