@@ -172,13 +172,25 @@ body {
 
 /* ---------- Mobile adjustments ---------- */
 @media (max-width:640px){
-  /* Taller map on phones with sane caps */
-  .map{
-    height: min(70vh, 560px);
-    min-height: 420px;
+  /* Slightly larger side gutters on phones to avoid right-edge clipping */
+  .wrapper{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @supports(padding: max(0px)){
+    .wrapper{
+      padding-left: max(20px, env(safe-area-inset-left));
+      padding-right: max(20px, env(safe-area-inset-right));
+    }
   }
 
-  /* Legend compact + slightly lower than dropdown */
+  /* Taller map */
+  .map{
+    height: min(72vh, 580px);
+    min-height: 430px;
+  }
+
+  /* Legend compact + a bit below the dropdown */
   .legend{
     top:56px;
     padding:8px 10px;
@@ -186,18 +198,12 @@ body {
     max-width:240px;
   }
 
-  /* Info box: narrower than map, ~screen-tall when needed */
+  /* Info box: width relative to the map container, not 100vw */
   .info-box{
-    width: calc(100vw - 48px); /* ~24px gutter each side */
+    width: calc(100% - 32px);   /* ~16px inset on each side INSIDE the map */
     max-width: 440px;
     max-height: 70vh;
     font-size:12.5px;
-  }
-
-  /* Footer uses same padding rules */
-  #last-updated{
-    padding:0 16px;
-    font-size:0.85em;
   }
 }
 
