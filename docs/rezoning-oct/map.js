@@ -1,9 +1,9 @@
 // map.js — send height once after map is ready, and on resize only
 document.addEventListener('DOMContentLoaded', () => {
   // Safe Pym
-  let pymChild = null;
-  try { if (window.pym) pymChild = new pym.Child(); } catch (_) {}
-  const sendHeight = () => { try { if (pymChild) pymChild.sendHeight(); } catch (_) {} };
+  // let pymChild = null;
+  // try { if (window.pym) pymChild = new pym.Child(); } catch (_) {}
+  // const sendHeight = () => { try { if (pymChild) pymChild.sendHeight(); } catch (_) {} };
 
   // Optional: helps in non-iframe previews
   const wrapper = document.getElementById('mapsWrapper');
@@ -144,15 +144,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Send height ONCE after first idle + fonts ready
-  Promise.all([
-    new Promise(r => map.once('idle', r)),
-    (document.fonts?.ready ?? Promise.resolve())
-  ]).then(() => {
-    requestAnimationFrame(() => {
-      ensureWrapperMinHeight();
-      sendHeight(); // once
-    });
-  });
+  // Promise.all([
+  //   new Promise(r => map.once('idle', r)),
+  //   (document.fonts?.ready ?? Promise.resolve())
+  // ]).then(() => {
+  //   requestAnimationFrame(() => {
+  //     ensureWrapperMinHeight();
+  //     sendHeight(); // once
+  //   });
+  // });
 
   // // Send again ONLY on window resize (debounced)
   // let rT = null;
