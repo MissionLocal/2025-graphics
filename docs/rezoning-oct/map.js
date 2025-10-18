@@ -1,9 +1,7 @@
 // map.js — Proposed heights (vector tiles) with stable Pym height reporting + Units in info box
 document.addEventListener('DOMContentLoaded', () => {
-  // ----- Minimal Pym child (safe if parent doesn't include Pym) -----
-  let pymChild = null;
-  try { if (window.pym) pymChild = new pym.Child(); } catch(_) {}
-  const sendHeight = () => { try { if (pymChild) pymChild.sendHeight(); } catch(_) {} };
+  var pymChild = new pym.Child();
+  pymChild.sendHeight();
 
   // Measure & stabilize wrapper height (helps non-Pym previews)
   const wrapper = document.getElementById('mapsWrapper');
@@ -239,5 +237,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ensureWrapperMinHeight();
       setTimeout(() => { sendHeight(); }, 120);
     });
+    pymChild.sendHeight();
+
   });
+
 });
