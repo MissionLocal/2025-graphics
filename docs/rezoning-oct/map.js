@@ -154,14 +154,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Send again ONLY on window resize (debounced)
-  let rT = null;
-  window.addEventListener('resize', () => {
-    clearTimeout(rT);
-    rT = setTimeout(() => {
-      try { map.resize(); } catch {}
-      ensureWrapperMinHeight();
-      sendHeight();
-    }, 150);
-  }, { passive: true });
+  // // Send again ONLY on window resize (debounced)
+  // let rT = null;
+  // window.addEventListener('resize', () => {
+  //   clearTimeout(rT);
+  //   rT = setTimeout(() => {
+  //     try { map.resize(); } catch {}
+  //     ensureWrapperMinHeight();
+  //     sendHeight();
+  //   }, 150);
+  // }, { passive: true });
 });
