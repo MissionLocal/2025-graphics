@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- Map
   const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mlnow/cmcl3p51v003g01sqav9fa920',
+    style: 'mapbox://styles/mlnow/cmhcjcs6y003s01smeip27ohd',
     center: [-122.417, 37.754],
     zoom: 11.5
   });
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const END_FIELD   = 'end_time';
 
   // Line styling
-  const LINE_COLOR = '#333';  // base color
+  const LINE_COLOR = '#ff964f';  // base color
   const HOVER_COLOR = '#000'; // hover color emphasis
 
   // ======================= Helpers =======================
