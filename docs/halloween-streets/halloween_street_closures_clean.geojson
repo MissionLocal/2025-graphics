@@ -1,0 +1,3534 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.440309605,
+            37.800301008
+          ],
+          [
+            -122.440508602,
+            37.801281321
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15533267,
+        "case_num": 1369380,
+        "case_name": "Trick or Treat - Avila Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "AVILA ST between CHESTNUT ST and PRADO ST",
+        "cnn": 2567000,
+        "street": "AVILA ST",
+        "from_st": "CHESTNUT ST",
+        "to_st": "ALHAMBRA ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.43430354,
+            37.734528942
+          ],
+          [
+            -122.434714699,
+            37.734617324
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15533839,
+        "case_num": 1285746,
+        "case_name": "Chenery Halloween 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:30:00",
+        "end_dt": "2025/10/31 09:30:00 PM",
+        "loc_desc": "CHENERY ST between ELK ST and DIAMOND ST",
+        "cnn": 3928000,
+        "street": "CHENERY ST",
+        "from_st": "THOR AVE",
+        "to_st": "BROMPTON AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.41454562,
+            37.740346878
+          ],
+          [
+            -122.414661038,
+            37.738942958
+          ],
+          [
+            -122.414558859,
+            37.738881489
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15533877,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "ELLSWORTH ST between CORTLAND AVE and EUGENIA AVE",
+        "cnn": 5196000,
+        "street": "ELLSWORTH ST",
+        "from_st": "EUGENIA AVE",
+        "to_st": "CORTLAND AVE",
+        "direction": "undefined",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.431904325,
+            37.770964427
+          ],
+          [
+            -122.432717263,
+            37.770860911
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15534332,
+        "case_num": 1308605,
+        "case_name": "Waller St Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "WALLER ST between STEINER ST and SCOTT ST",
+        "cnn": 13363000,
+        "street": "WALLER ST",
+        "from_st": "STEINER ST",
+        "to_st": "POTOMAC ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.404937275,
+            37.748222726
+          ],
+          [
+            -122.404896496,
+            37.748152887
+          ],
+          [
+            -122.404991736,
+            37.747600341
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15534875,
+        "case_num": 1348088,
+        "case_name": "Block Party - Howlladay Haunt",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "HOLLADAY AVE between PERALTA AVE and WRIGHT ST",
+        "cnn": 6943101,
+        "street": "HOLLADAY AVE",
+        "from_st": "PERALTA AVE",
+        "to_st": "EVE ST",
+        "direction": "undefined",
+        "veh_imp": "some-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.436114108,
+            37.760823995
+          ],
+          [
+            -122.437190627,
+            37.760758108
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15536176,
+        "case_num": 1335260,
+        "case_name": "Castro Night Market October - Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "11:00:00",
+        "start_dt": "2025/10/31 11:00:00 AM",
+        "end_date": "2025/10/31",
+        "end_time": "23:59:00",
+        "end_dt": "2025/10/31 11:59:00 PM",
+        "loc_desc": "18TH ST between COLLINGWOOD ST and DIAMOND ST",
+        "cnn": 893000,
+        "street": "18TH ST",
+        "from_st": "COLLINGWOOD ST",
+        "to_st": "DIAMOND ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 06:00:00 PM",
+        "end_utc": "2025/11/01 06:59:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.435000702,
+            37.760888933
+          ],
+          [
+            -122.436114108,
+            37.760823995
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15536373,
+        "case_num": 1335260,
+        "case_name": "Castro Night Market October - Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "11:00:00",
+        "start_dt": "2025/10/31 11:00:00 AM",
+        "end_date": "2025/10/31",
+        "end_time": "23:59:00",
+        "end_dt": "2025/10/31 11:59:00 PM",
+        "loc_desc": "18TH ST between CASTRO ST and COLLINGWOOD ST",
+        "cnn": 892000,
+        "street": "18TH ST",
+        "from_st": "CASTRO ST",
+        "to_st": "COLLINGWOOD ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 06:00:00 PM",
+        "end_utc": "2025/11/01 06:59:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.494297081,
+            37.747840997
+          ],
+          [
+            -122.494166942,
+            37.745975372
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15537134,
+        "case_num": 1358956,
+        "case_name": "Block Party - 36th Ave Trick or Treat Birthday",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "15:00:00",
+        "start_dt": "2025/10/31 03:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "36TH AVE between RIVERA ST and QUINTARA ST",
+        "cnn": 1811000,
+        "street": "36TH AVE",
+        "from_st": "QUINTARA ST",
+        "to_st": "RIVERA ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 10:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.435550525,
+            37.734796986
+          ],
+          [
+            -122.435821614,
+            37.734853411
+          ],
+          [
+            -122.436399821,
+            37.734909712
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15537621,
+        "case_num": 1285746,
+        "case_name": "Chenery Halloween 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:30:00",
+        "end_dt": "2025/10/31 09:30:00 PM",
+        "loc_desc": "CHENERY ST between ELK ST and DIAMOND ST",
+        "cnn": 3930000,
+        "street": "CHENERY ST",
+        "from_st": "LIPPARD AVE",
+        "to_st": "CHILTON AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.416519599,
+            37.739061699
+          ],
+          [
+            -122.41589948,
+            37.73900187
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15537647,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "CORTLAND AVE between BENNINGTON ST and GATES ST",
+        "cnn": 4426000,
+        "street": "CORTLAND AVE",
+        "from_st": "ANDOVER ST",
+        "to_st": "MOULTRIE ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.433355765,
+            37.769803357
+          ],
+          [
+            -122.43354716,
+            37.770755232
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15537942,
+        "case_num": 1308605,
+        "case_name": "Waller St Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "PIERCE ST between HAIGHT ST and START: 1-99 BLOCK",
+        "cnn": 10417000,
+        "street": "PIERCE ST",
+        "from_st": "START: 1-99 BLOCK",
+        "to_st": "WALLER ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.415183627,
+            37.738932913
+          ],
+          [
+            -122.415224876,
+            37.738417867
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15538122,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "ANDERSON ST between EUGENIA AVE and JARBOE AVE",
+        "cnn": 2270000,
+        "street": "ANDERSON ST",
+        "from_st": "CORTLAND AVE",
+        "to_st": "JARBOE AVE",
+        "direction": "undefined",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.398880419,
+            37.793843681
+          ],
+          [
+            -122.398970254,
+            37.794284416
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15538959,
+        "case_num": 1370416,
+        "case_name": "Nightmare on Front Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "12:00:00",
+        "start_dt": "2025/10/31 12:00:00 PM",
+        "end_date": "2025/11/01",
+        "end_time": "01:00:00",
+        "end_dt": "2025/11/01 01:00:00 AM",
+        "loc_desc": "FRONT ST between SACRAMENTO ST and CALIFORNIA ST",
+        "cnn": 5870000,
+        "street": "FRONT ST",
+        "from_st": "HALLECK ST",
+        "to_st": "SACRAMENTO ST",
+        "direction": "undefined",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 07:00:00 PM",
+        "end_utc": "2025/11/01 08:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.403683059,
+            37.728944274
+          ],
+          [
+            -122.404099703,
+            37.728834999
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15539183,
+        "case_num": 1357369,
+        "case_name": "Spooky Garden Reverie",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "08:00:00",
+        "start_dt": "2025/10/31 08:00:00 AM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "BURROWS ST between START: 1-99 BLOCK and SAN BRUNO AVE",
+        "cnn": 3404000,
+        "street": "BURROWS ST",
+        "from_st": "START: 1-99 BLOCK",
+        "to_st": "SAN BRUNO AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 03:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.456963372,
+            37.785963787
+          ],
+          [
+            -122.45681322,
+            37.783928912
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15539196,
+        "case_num": 1313253,
+        "case_name": "Jordan Park Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "JORDAN AVE between CALIFORNIA ST and EUCLID AVE",
+        "cnn": 7616000,
+        "street": "JORDAN AVE",
+        "from_st": "CALIFORNIA ST",
+        "to_st": "EUCLID AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.448440976,
+            37.765035908
+          ],
+          [
+            -122.448273953,
+            37.764196132
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15539898,
+        "case_num": 1364959,
+        "case_name": "Trick or Treat - Belvedere",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "BELVEDERE ST between 17TH ST and PARNASSUS AVE",
+        "cnn": 2910000,
+        "street": "BELVEDERE ST",
+        "from_st": "PARNASSUS AVE",
+        "to_st": "GRATTAN ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.439722506,
+            37.735886042
+          ],
+          [
+            -122.438821245,
+            37.735669449
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15540184,
+        "case_num": 1285746,
+        "case_name": "Chenery Halloween 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:30:00",
+        "end_dt": "2025/10/31 09:30:00 PM",
+        "loc_desc": "CHENERY ST between ELK ST and DIAMOND ST",
+        "cnn": 3933000,
+        "street": "CHENERY ST",
+        "from_st": "SURREY ST",
+        "to_st": "ELK ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.423988398,
+            37.751911295
+          ],
+          [
+            -122.423829852,
+            37.750304483
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15540730,
+        "case_num": 1336287,
+        "case_name": "Trick or Treat - Fair Oaks",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "FAIR OAKS ST between 24TH ST and 25TH ST",
+        "cnn": 5384000,
+        "street": "FAIR OAKS ST",
+        "from_st": "24TH ST",
+        "to_st": "25TH ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.434714699,
+            37.734617324
+          ],
+          [
+            -122.435550525,
+            37.734796986
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15541005,
+        "case_num": 1285746,
+        "case_name": "Chenery Halloween 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:30:00",
+        "end_dt": "2025/10/31 09:30:00 PM",
+        "loc_desc": "CHENERY ST between ELK ST and DIAMOND ST",
+        "cnn": 3929000,
+        "street": "CHENERY ST",
+        "from_st": "BROMPTON AVE",
+        "to_st": "LIPPARD AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.398781647,
+            37.7933591
+          ],
+          [
+            -122.398880419,
+            37.793843681
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15541049,
+        "case_num": 1370416,
+        "case_name": "Nightmare on Front Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "12:00:00",
+        "start_dt": "2025/10/31 12:00:00 PM",
+        "end_date": "2025/11/01",
+        "end_time": "01:00:00",
+        "end_dt": "2025/11/01 01:00:00 AM",
+        "loc_desc": "FRONT ST between SACRAMENTO ST and CALIFORNIA ST",
+        "cnn": 5869000,
+        "street": "FRONT ST",
+        "from_st": "CALIFORNIA ST",
+        "to_st": "HALLECK ST",
+        "direction": "undefined",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 07:00:00 PM",
+        "end_utc": "2025/11/01 08:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.404937275,
+            37.748222726
+          ],
+          [
+            -122.404968033,
+            37.748155169
+          ],
+          [
+            -122.405101357,
+            37.747366312
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15541528,
+        "case_num": 1348088,
+        "case_name": "Block Party - Howlladay Haunt",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "HOLLADAY AVE between PERALTA AVE and WRIGHT ST",
+        "cnn": 6943201,
+        "street": "HOLLADAY AVE",
+        "from_st": "PERALTA AVE",
+        "to_st": "WRIGHT ST",
+        "direction": "undefined",
+        "veh_imp": "some-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.44797463,
+            37.762684474
+          ],
+          [
+            -122.447780352,
+            37.761726419
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15541890,
+        "case_num": 1364959,
+        "case_name": "Trick or Treat - Belvedere",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "BELVEDERE ST between 17TH ST and PARNASSUS AVE",
+        "cnn": 2913000,
+        "street": "BELVEDERE ST",
+        "from_st": "RIVOLI ST",
+        "to_st": "17TH ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.43354716,
+            37.770755232
+          ],
+          [
+            -122.433734773,
+            37.771688274
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15543360,
+        "case_num": 1308605,
+        "case_name": "Waller St Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "PIERCE ST between HAIGHT ST and START: 1-99 BLOCK",
+        "cnn": 10418000,
+        "street": "PIERCE ST",
+        "from_st": "WALLER ST",
+        "to_st": "HAIGHT ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.417798643,
+            37.801267348
+          ],
+          [
+            -122.417877488,
+            37.801706751
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15543861,
+        "case_num": 1244947,
+        "case_name": "Leavenworth Street Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "LEAVENWORTH ST between LOMBARD ST and FILBERT ST",
+        "cnn": 8267000,
+        "street": "LEAVENWORTH ST",
+        "from_st": "GREENWICH ST",
+        "to_st": "LURMONT TER",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.428911417,
+            37.741952911
+          ],
+          [
+            -122.428736128,
+            37.740121826
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15543935,
+        "case_num": 1318153,
+        "case_name": "Trick or Treat - Sanchez St",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "SANCHEZ ST between 30TH ST and RANDALL ST",
+        "cnn": 11541000,
+        "street": "SANCHEZ ST",
+        "from_st": "30TH ST",
+        "to_st": "RANDALL ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.404991736,
+            37.747600341
+          ],
+          [
+            -122.404992966,
+            37.747529738
+          ],
+          [
+            -122.40505922,
+            37.747143051
+          ],
+          [
+            -122.405169835,
+            37.746528537
+          ],
+          [
+            -122.405213959,
+            37.746474147
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15544068,
+        "case_num": 1348088,
+        "case_name": "Block Party - Howlladay Haunt",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "HOLLADAY AVE between PERALTA AVE and WRIGHT ST",
+        "cnn": 6943102,
+        "street": "HOLLADAY AVE",
+        "from_st": "EVE ST",
+        "to_st": "YORK ST",
+        "direction": "undefined",
+        "veh_imp": "some-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.451487264,
+            37.767517857
+          ],
+          [
+            -122.451295534,
+            37.766591503
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15544132,
+        "case_num": 1347757,
+        "case_name": "Block Party - Shrader St Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "15:00:00",
+        "start_dt": "2025/10/31 03:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "SHRADER ST between FREDERICK ST and BEULAH ST",
+        "cnn": 11858000,
+        "street": "SHRADER ST",
+        "from_st": "BEULAH ST",
+        "to_st": "FREDERICK ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 10:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.444298409,
+            37.730708221
+          ],
+          [
+            -122.446573476,
+            37.730699251
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15544380,
+        "case_num": 1349161,
+        "case_name": "Trick or Treat - Slow Hearst Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:00:00",
+        "end_dt": "2025/10/31 08:00:00 PM",
+        "loc_desc": "HEARST AVE between EDNA ST and CONGO ST",
+        "cnn": 6864000,
+        "street": "HEARST AVE",
+        "from_st": "DETROIT ST",
+        "to_st": "EDNA ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 03:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.414558859,
+            37.738881489
+          ],
+          [
+            -122.413937708,
+            37.738930424
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15544540,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "CORTLAND AVE between BENNINGTON ST and GATES ST",
+        "cnn": 4429000,
+        "street": "CORTLAND AVE",
+        "from_st": "ELLSWORTH ST",
+        "to_st": "GATES ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.45681322,
+            37.783928912
+          ],
+          [
+            -122.456629211,
+            37.781439142
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15545273,
+        "case_num": 1313253,
+        "case_name": "Jordan Park Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "JORDAN AVE between EUCLID AVE and GEARY BLVD",
+        "cnn": 7617000,
+        "street": "JORDAN AVE",
+        "from_st": "EUCLID AVE",
+        "to_st": "GEARY BLVD",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.504073708,
+            37.74928242
+          ],
+          [
+            -122.503941818,
+            37.747414803
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15545727,
+        "case_num": 1287530,
+        "case_name": "Block Party - 45th Avenue Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "23:00:00",
+        "end_dt": "2025/10/31 11:00:00 PM",
+        "loc_desc": "45TH AVE between PACHECO ST and QUINTARA ST",
+        "cnn": 2006000,
+        "street": "45TH AVE",
+        "from_st": "PACHECO ST",
+        "to_st": "QUINTARA ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 06:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.438791727,
+            37.727211218
+          ],
+          [
+            -122.439617477,
+            37.725965421
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15547036,
+        "case_num": 1370374,
+        "case_name": "Trick or Treat - Otsego Ave",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "OTSEGO AVE between SANTA YSABEL AVE and SAN JUAN AVE",
+        "cnn": 10049000,
+        "street": "OTSEGO AVE",
+        "from_st": "SANTA YSABEL AVE",
+        "to_st": "SAN JUAN AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.486902421,
+            37.76501891
+          ],
+          [
+            -122.486770426,
+            37.763136867
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15547269,
+        "case_num": 1368963,
+        "case_name": "Trick-or-Treat - 28th Ave",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "28TH AVE between LINCOLN WAY and IRVING ST",
+        "cnn": 1583000,
+        "street": "28TH AVE",
+        "from_st": "LINCOLN WAY",
+        "to_st": "IRVING ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.494038473,
+            37.744115445
+          ],
+          [
+            -122.493907039,
+            37.742248653
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15547485,
+        "case_num": 1329247,
+        "case_name": "Sunset Trick-or-Treat",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "13:00:00",
+        "start_dt": "2025/10/31 01:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "23:59:00",
+        "end_dt": "2025/10/31 11:59:00 PM",
+        "loc_desc": "36TH AVE between TARAVAL ST and SANTIAGO ST",
+        "cnn": 1813000,
+        "street": "36TH AVE",
+        "from_st": "SANTIAGO ST",
+        "to_st": "TARAVAL ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 08:00:00 PM",
+        "end_utc": "2025/11/01 06:59:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.427652222,
+            37.739668399
+          ],
+          [
+            -122.427914896,
+            37.739652404
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15548193,
+        "case_num": 1368303,
+        "case_name": "Trick or Treat - Randall St 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "RANDALL ST between WHITNEY ST and SANCHEZ ST",
+        "cnn": 10912000,
+        "street": "RANDALL ST",
+        "from_st": "WHITNEY ST",
+        "to_st": "WHITNEY ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.428736128,
+            37.740121826
+          ],
+          [
+            -122.429840275,
+            37.740752944
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15548982,
+        "case_num": 1320992,
+        "case_name": "Trick or Treat - Randall Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "RANDALL ST between SANCHEZ ST and HARPER ST",
+        "cnn": 10914000,
+        "street": "RANDALL ST",
+        "from_st": "SANCHEZ ST",
+        "to_st": "HARPER ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.432793505,
+            37.761021311
+          ],
+          [
+            -122.433903579,
+            37.760954739
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15550231,
+        "case_num": 1335260,
+        "case_name": "Castro Night Market October - Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "11:00:00",
+        "start_dt": "2025/10/31 11:00:00 AM",
+        "end_date": "2025/10/31",
+        "end_time": "23:59:00",
+        "end_dt": "2025/10/31 11:59:00 PM",
+        "loc_desc": "18TH ST between NOE ST and HARTFORD ST",
+        "cnn": 890000,
+        "street": "18TH ST",
+        "from_st": "NOE ST",
+        "to_st": "HARTFORD ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 06:00:00 PM",
+        "end_utc": "2025/11/01 06:59:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.440508602,
+            37.801281321
+          ],
+          [
+            -122.440780072,
+            37.802618613
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15550640,
+        "case_num": 1369380,
+        "case_name": "Trick or Treat - Avila Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "AVILA ST between CHESTNUT ST and PRADO ST",
+        "cnn": 2568000,
+        "street": "AVILA ST",
+        "from_st": "ALHAMBRA ST",
+        "to_st": "CAPRA WAY",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.417586974,
+            37.800340792
+          ],
+          [
+            -122.417798643,
+            37.801267348
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15551214,
+        "case_num": 1244947,
+        "case_name": "Leavenworth Street Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "LEAVENWORTH ST between LOMBARD ST and FILBERT ST",
+        "cnn": 8266000,
+        "street": "LEAVENWORTH ST",
+        "from_st": "FILBERT ST",
+        "to_st": "GREENWICH ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.415787891,
+            37.740406879
+          ],
+          [
+            -122.41589948,
+            37.73900187
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15551249,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "MOULTRIE ST between CORTLAND AVE and EUGENIA AVE",
+        "cnn": 9414000,
+        "street": "MOULTRIE ST",
+        "from_st": "EUGENIA AVE",
+        "to_st": "CORTLAND AVE",
+        "direction": "undefined",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.398880419,
+            37.793843681
+          ],
+          [
+            -122.40005826,
+            37.793693588
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15551338,
+        "case_num": 1370416,
+        "case_name": "Nightmare on Front Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "12:00:00",
+        "start_dt": "2025/10/31 12:00:00 PM",
+        "end_date": "2025/11/01",
+        "end_time": "01:00:00",
+        "end_dt": "2025/11/01 01:00:00 AM",
+        "loc_desc": "HALLECK ST between BATTERY ST and FRONT ST",
+        "cnn": 6631000,
+        "street": "HALLECK ST",
+        "from_st": "FRONT ST",
+        "to_st": "BATTERY ST",
+        "direction": "undefined",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 07:00:00 PM",
+        "end_utc": "2025/11/01 08:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.502712988,
+            37.760566533
+          ],
+          [
+            -122.502581702,
+            37.758700162
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15551341,
+        "case_num": 1316805,
+        "case_name": "Block Party \ufffd\ufffd\ufffd 43rd Avenue Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "14:00:00",
+        "start_dt": "2025/10/31 02:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "23:00:00",
+        "end_dt": "2025/10/31 11:00:00 PM",
+        "loc_desc": "43RD AVE between JUDAH ST and KIRKHAM ST",
+        "cnn": 1956000,
+        "street": "43RD AVE",
+        "from_st": "JUDAH ST",
+        "to_st": "KIRKHAM ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 09:00:00 PM",
+        "end_utc": "2025/11/01 06:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.454392317,
+            37.75127892
+          ],
+          [
+            -122.454406361,
+            37.751181527
+          ],
+          [
+            -122.454323786,
+            37.75102466
+          ],
+          [
+            -122.454119098,
+            37.750823126
+          ],
+          [
+            -122.454036532,
+            37.750634198
+          ],
+          [
+            -122.45401689,
+            37.74999928
+          ],
+          [
+            -122.45404323,
+            37.749769968
+          ],
+          [
+            -122.45415211,
+            37.749434193
+          ],
+          [
+            -122.454171657,
+            37.749045487
+          ],
+          [
+            -122.454080606,
+            37.748972223
+          ],
+          [
+            -122.453140102,
+            37.748969802
+          ],
+          [
+            -122.45308501,
+            37.749029165
+          ],
+          [
+            -122.453077083,
+            37.749344714
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15552040,
+        "case_num": 1297651,
+        "case_name": "Block Party - Dellbrook Ave Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:30:00",
+        "start_dt": "2025/10/31 05:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "DELLBROOK AVE between OLYMPIA WAY and OLYMPIA WAY",
+        "cnn": 4689000,
+        "street": "DELLBROOK AVE",
+        "from_st": "OLYMPIA WAY",
+        "to_st": "STARVIEW WAY",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:30:00 AM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.439617477,
+            37.725965421
+          ],
+          [
+            -122.439912605,
+            37.725534447
+          ],
+          [
+            -122.44008254,
+            37.725205691
+          ],
+          [
+            -122.440316502,
+            37.724681409
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15552589,
+        "case_num": 1370374,
+        "case_name": "Trick or Treat - Otsego Ave",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "OTSEGO AVE between SAN JUAN AVE and SANTA YNEZ AVE",
+        "cnn": 10050000,
+        "street": "OTSEGO AVE",
+        "from_st": "SAN JUAN AVE",
+        "to_st": "SANTA YNEZ AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.440780072,
+            37.802618613
+          ],
+          [
+            -122.441031574,
+            37.803857503
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15552716,
+        "case_num": 1369380,
+        "case_name": "Trick or Treat - Avila Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "AVILA ST between CHESTNUT ST and PRADO ST",
+        "cnn": 2569000,
+        "street": "AVILA ST",
+        "from_st": "CAPRA WAY",
+        "to_st": "BEACH ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.415168776,
+            37.740376978
+          ],
+          [
+            -122.415277831,
+            37.738991235
+          ],
+          [
+            -122.415183627,
+            37.738932913
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15553047,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "ANDERSON ST between EUGENIA AVE and JARBOE AVE",
+        "cnn": 2269000,
+        "street": "ANDERSON ST",
+        "from_st": "EUGENIA AVE",
+        "to_st": "CORTLAND AVE",
+        "direction": "undefined",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.434404513,
+            37.770646049
+          ],
+          [
+            -122.435184079,
+            37.77054808
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15553322,
+        "case_num": 1308605,
+        "case_name": "Waller St Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "WALLER ST between STEINER ST and SCOTT ST",
+        "cnn": 13366000,
+        "street": "WALLER ST",
+        "from_st": "CARMELITA ST",
+        "to_st": "SCOTT ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.43807771,
+            37.735416252
+          ],
+          [
+            -122.438821245,
+            37.735669449
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15553852,
+        "case_num": 1285746,
+        "case_name": "Chenery Halloween 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:30:00",
+        "end_dt": "2025/10/31 09:30:00 PM",
+        "loc_desc": "CHENERY ST between ELK ST and DIAMOND ST",
+        "cnn": 3932000,
+        "street": "CHENERY ST",
+        "from_st": "BURNSIDE AVE",
+        "to_st": "MIZPAH ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.436399821,
+            37.734909712
+          ],
+          [
+            -122.436604194,
+            37.734929611
+          ],
+          [
+            -122.43807771,
+            37.735416252
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15554349,
+        "case_num": 1285746,
+        "case_name": "Chenery Halloween 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:30:00",
+        "end_dt": "2025/10/31 09:30:00 PM",
+        "loc_desc": "CHENERY ST between ELK ST and DIAMOND ST",
+        "cnn": 3931000,
+        "street": "CHENERY ST",
+        "from_st": "CHILTON AVE",
+        "to_st": "BURNSIDE AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.389607731,
+            37.761710649
+          ],
+          [
+            -122.389485813,
+            37.760435278
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15554359,
+        "case_num": 1365839,
+        "case_name": "La Scuola Halloween Celebration",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "07:00:00",
+        "start_dt": "2025/10/31 07:00:00 AM",
+        "end_date": "2025/10/31",
+        "end_time": "12:00:00",
+        "end_dt": "2025/10/31 12:00:00 PM",
+        "loc_desc": "TENNESSEE ST between 20TH ST and 19TH ST",
+        "cnn": 12484000,
+        "street": "TENNESSEE ST",
+        "from_st": "19TH ST",
+        "to_st": "20TH ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 02:00:00 PM",
+        "end_utc": "2025/10/31 07:00:00 PM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.455865116,
+            37.786104708
+          ],
+          [
+            -122.455711327,
+            37.783978891
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15554682,
+        "case_num": 1313253,
+        "case_name": "Jordan Park Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "COMMONWEALTH AVE between CALIFORNIA ST and EUCLID AVE",
+        "cnn": 4316000,
+        "street": "COMMONWEALTH AVE",
+        "from_st": "CALIFORNIA ST",
+        "to_st": "EUCLID AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.442015664,
+            37.730721768
+          ],
+          [
+            -122.444298409,
+            37.730708221
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15554846,
+        "case_num": 1349161,
+        "case_name": "Trick or Treat - Slow Hearst Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:00:00",
+        "end_dt": "2025/10/31 08:00:00 PM",
+        "loc_desc": "HEARST AVE between EDNA ST and CONGO ST",
+        "cnn": 6863000,
+        "street": "HEARST AVE",
+        "from_st": "CONGO ST",
+        "to_st": "DETROIT ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 03:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.453077083,
+            37.749344714
+          ],
+          [
+            -122.453130376,
+            37.74952353
+          ],
+          [
+            -122.453142514,
+            37.749649443
+          ],
+          [
+            -122.453157615,
+            37.750335818
+          ],
+          [
+            -122.45314598,
+            37.750564885
+          ],
+          [
+            -122.453094575,
+            37.750848327
+          ],
+          [
+            -122.453011241,
+            37.751148647
+          ],
+          [
+            -122.45292933,
+            37.751214771
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15555329,
+        "case_num": 1297651,
+        "case_name": "Block Party - Dellbrook Ave Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:30:00",
+        "start_dt": "2025/10/31 05:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "DELLBROOK AVE between OLYMPIA WAY and OLYMPIA WAY",
+        "cnn": 4690000,
+        "street": "DELLBROOK AVE",
+        "from_st": "STARVIEW WAY",
+        "to_st": "OLYMPIA WAY",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:30:00 AM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.417877488,
+            37.801706751
+          ],
+          [
+            -122.417966229,
+            37.802201309
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15555378,
+        "case_num": 1244947,
+        "case_name": "Leavenworth Street Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "LEAVENWORTH ST between LOMBARD ST and FILBERT ST",
+        "cnn": 8268000,
+        "street": "LEAVENWORTH ST",
+        "from_st": "LURMONT TER",
+        "to_st": "LOMBARD ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.424289762,
+            37.755105763
+          ],
+          [
+            -122.424136235,
+            37.753503075
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15556081,
+        "case_num": 1336287,
+        "case_name": "Trick or Treat - Fair Oaks",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "FAIR OAKS ST between 22ND ST and 23RD ST",
+        "cnn": 5382000,
+        "street": "FAIR OAKS ST",
+        "from_st": "22ND ST",
+        "to_st": "23RD ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.415626197,
+            37.757232409
+          ],
+          [
+            -122.415473275,
+            37.755634108
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15556107,
+        "case_num": 1380646,
+        "case_name": "Trick-or-Treat - Shotwell 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "13:30:00",
+        "start_dt": "2025/10/31 01:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "SHOTWELL ST between 22ND ST and 21ST ST",
+        "cnn": 11839000,
+        "street": "SHOTWELL ST",
+        "from_st": "21ST ST",
+        "to_st": "22ND ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 08:30:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.455711327,
+            37.783978891
+          ],
+          [
+            -122.455523985,
+            37.78143114
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15556324,
+        "case_num": 1313253,
+        "case_name": "Jordan Park Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "COMMONWEALTH AVE between EUCLID AVE and GEARY BLVD",
+        "cnn": 4317000,
+        "street": "COMMONWEALTH AVE",
+        "from_st": "EUCLID AVE",
+        "to_st": "GEARY BLVD",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.501900726,
+            37.764360773
+          ],
+          [
+            -122.501770514,
+            37.762474674
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15556551,
+        "case_num": 1363048,
+        "case_name": "Trick or Treat - 42nd Ave Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "42ND AVE between LINCOLN WAY and IRVING ST",
+        "cnn": 1932000,
+        "street": "42ND AVE",
+        "from_st": "LINCOLN WAY",
+        "to_st": "IRVING ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.452069955,
+            37.785871705
+          ],
+          [
+            -122.452048191,
+            37.7853625
+          ],
+          [
+            -122.452002678,
+            37.784912248
+          ],
+          [
+            -122.451875437,
+            37.784126742
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15556863,
+        "case_num": 1349088,
+        "case_name": "Trick or Treat - Iris Ave",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "15:00:00",
+        "start_dt": "2025/10/31 03:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "IRIS AVE between MAYFAIR DR and EUCLID AVE",
+        "cnn": 7274000,
+        "street": "IRIS AVE",
+        "from_st": "MAYFAIR DR",
+        "to_st": "EUCLID AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 10:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.464693461,
+            37.786670438
+          ],
+          [
+            -122.465760339,
+            37.786627327
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15557438,
+        "case_num": 1368918,
+        "case_name": "Trick-or-Treat - Slow Lake Halloween!",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "15:30:00",
+        "start_dt": "2025/10/31 03:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "LAKE ST between 6TH AVE and 7TH AVE",
+        "cnn": 8014000,
+        "street": "LAKE ST",
+        "from_st": "6TH AVE",
+        "to_st": "TH AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 10:30:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.423829852,
+            37.750304483
+          ],
+          [
+            -122.42367722,
+            37.74871093
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15557847,
+        "case_num": 1336287,
+        "case_name": "Trick or Treat - Fair Oaks",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "FAIR OAKS ST between 25TH ST and 26TH ST",
+        "cnn": 5385000,
+        "street": "FAIR OAKS ST",
+        "from_st": "25TH ST",
+        "to_st": "26TH ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.469653849,
+            37.765782671
+          ],
+          [
+            -122.469521964,
+            37.763895944
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15557854,
+        "case_num": 1380780,
+        "case_name": "Trick-or-Treat - 12th Ave",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "15:00:00",
+        "start_dt": "2025/10/31 03:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "12TH AVE between IRVING ST and LINCOLN WAY",
+        "cnn": 527000,
+        "street": "12TH AVE",
+        "from_st": "LINCOLN WAY",
+        "to_st": "IRVING ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 10:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.415080545,
+            37.711655034
+          ],
+          [
+            -122.41600028,
+            37.711914556
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15558022,
+        "case_num": 1346728,
+        "case_name": "River of Life Halloween Block Party",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "13:00:00",
+        "start_dt": "2025/10/31 01:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "23:00:00",
+        "end_dt": "2025/10/31 11:00:00 PM",
+        "loc_desc": "SUNNYDALE AVE between HAHN ST and SAWYER ST",
+        "cnn": 12266000,
+        "street": "SUNNYDALE AVE",
+        "from_st": "SAWYER ST",
+        "to_st": "HAHN ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 08:00:00 PM",
+        "end_utc": "2025/11/01 06:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.43354716,
+            37.770755232
+          ],
+          [
+            -122.434404513,
+            37.770646049
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15558400,
+        "case_num": 1308605,
+        "case_name": "Waller St Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "WALLER ST between STEINER ST and SCOTT ST",
+        "cnn": 13365000,
+        "street": "WALLER ST",
+        "from_st": "PIERCE ST",
+        "to_st": "CARMELITA ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.441031574,
+            37.803857503
+          ],
+          [
+            -122.44119623,
+            37.804668567
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15558591,
+        "case_num": 1369380,
+        "case_name": "Trick or Treat - Avila Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "AVILA ST between CHESTNUT ST and PRADO ST",
+        "cnn": 2570000,
+        "street": "AVILA ST",
+        "from_st": "BEACH ST",
+        "to_st": "PRADO ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.427914896,
+            37.739652404
+          ],
+          [
+            -122.428736128,
+            37.740121826
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15558901,
+        "case_num": 1368303,
+        "case_name": "Trick or Treat - Randall St 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "RANDALL ST between WHITNEY ST and SANCHEZ ST",
+        "cnn": 10913000,
+        "street": "RANDALL ST",
+        "from_st": "WHITNEY ST",
+        "to_st": "SANCHEZ ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.448109436,
+            37.763367232
+          ],
+          [
+            -122.44797463,
+            37.762684474
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15558920,
+        "case_num": 1364959,
+        "case_name": "Trick or Treat - Belvedere",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "BELVEDERE ST between 17TH ST and PARNASSUS AVE",
+        "cnn": 2912000,
+        "street": "BELVEDERE ST",
+        "from_st": "ALMA ST",
+        "to_st": "RIVOLI ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.41589948,
+            37.73900187
+          ],
+          [
+            -122.415183627,
+            37.738932913
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15559528,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "CORTLAND AVE between BENNINGTON ST and GATES ST",
+        "cnn": 4427000,
+        "street": "CORTLAND AVE",
+        "from_st": "MOULTRIE ST",
+        "to_st": "ANDERSON ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.46751024,
+            37.737947662
+          ],
+          [
+            -122.466713304,
+            37.737733611
+          ],
+          [
+            -122.46627929,
+            37.737592362
+          ],
+          [
+            -122.465715461,
+            37.737392308
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15559546,
+        "case_num": 1261853,
+        "case_name": "Terrace Drive Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "14:00:00",
+        "start_dt": "2025/10/31 02:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "TERRACE DR between PORTOLA DR and SANTA CLARA AVE",
+        "cnn": 12527000,
+        "street": "TERRACE DR",
+        "from_st": "PORTOLA DR",
+        "to_st": "SANTA CLARA AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 09:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.433903579,
+            37.760954739
+          ],
+          [
+            -122.435000702,
+            37.760888933
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15559598,
+        "case_num": 1335260,
+        "case_name": "Castro Night Market October - Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "11:00:00",
+        "start_dt": "2025/10/31 11:00:00 AM",
+        "end_date": "2025/10/31",
+        "end_time": "23:59:00",
+        "end_dt": "2025/10/31 11:59:00 PM",
+        "loc_desc": "18TH ST between HARTFORD ST and CASTRO ST",
+        "cnn": 891000,
+        "street": "18TH ST",
+        "from_st": "HARTFORD ST",
+        "to_st": "CASTRO ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 06:00:00 PM",
+        "end_utc": "2025/11/01 06:59:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.415183627,
+            37.738932913
+          ],
+          [
+            -122.41466598,
+            37.738882852
+          ],
+          [
+            -122.414558859,
+            37.738881489
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15559792,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "CORTLAND AVE between BENNINGTON ST and GATES ST",
+        "cnn": 4428000,
+        "street": "CORTLAND AVE",
+        "from_st": "ANDERSON ST",
+        "to_st": "ELLSWORTH ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.417138819,
+            37.739121438
+          ],
+          [
+            -122.416519599,
+            37.739061699
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15560456,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "CORTLAND AVE between BENNINGTON ST and GATES ST",
+        "cnn": 4425000,
+        "street": "CORTLAND AVE",
+        "from_st": "WOOL ST",
+        "to_st": "ANDOVER ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.417779081,
+            37.739183666
+          ],
+          [
+            -122.417138819,
+            37.739121438
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15560539,
+        "case_num": 1254240,
+        "case_name": "Halloween on Cortland",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:30:00",
+        "start_dt": "2025/10/31 04:30:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "20:30:00",
+        "end_dt": "2025/10/31 08:30:00 PM",
+        "loc_desc": "CORTLAND AVE between BENNINGTON ST and GATES ST",
+        "cnn": 4424000,
+        "street": "CORTLAND AVE",
+        "from_st": "BENNINGTON ST",
+        "to_st": "WOOL ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:30:00 PM",
+        "end_utc": "2025/11/01 03:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.448273953,
+            37.764196132
+          ],
+          [
+            -122.448109436,
+            37.763367232
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15560709,
+        "case_num": 1364959,
+        "case_name": "Trick or Treat - Belvedere",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "22:00:00",
+        "end_dt": "2025/10/31 10:00:00 PM",
+        "loc_desc": "BELVEDERE ST between 17TH ST and PARNASSUS AVE",
+        "cnn": 2911000,
+        "street": "BELVEDERE ST",
+        "from_st": "GRATTAN ST",
+        "to_st": "ALMA ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 05:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.434237687,
+            37.769815505
+          ],
+          [
+            -122.434404513,
+            37.770646049
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15561136,
+        "case_num": 1308605,
+        "case_name": "Waller St Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "CARMELITA ST between WALLER ST and START: 1-99 BLOCK",
+        "cnn": 3703000,
+        "street": "CARMELITA ST",
+        "from_st": "START: 1-99 BLOCK",
+        "to_st": "WALLER ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.432522218,
+            37.769893023
+          ],
+          [
+            -122.432717263,
+            37.770860911
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15561586,
+        "case_num": 1308605,
+        "case_name": "Waller St Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "POTOMAC ST between WALLER ST and START: 1-99 BLOCK",
+        "cnn": 10657000,
+        "street": "POTOMAC ST",
+        "from_st": "START: 1-99 BLOCK",
+        "to_st": "WALLER ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.432717263,
+            37.770860911
+          ],
+          [
+            -122.43354716,
+            37.770755232
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15561697,
+        "case_num": 1308605,
+        "case_name": "Waller St Halloween",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "17:00:00",
+        "start_dt": "2025/10/31 05:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:00:00",
+        "end_dt": "2025/10/31 09:00:00 PM",
+        "loc_desc": "WALLER ST between STEINER ST and SCOTT ST",
+        "cnn": 13364000,
+        "street": "WALLER ST",
+        "from_st": "POTOMAC ST",
+        "to_st": "PIERCE ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/11/01 12:00:00 AM",
+        "end_utc": "2025/11/01 04:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.501639646,
+            37.760613955
+          ],
+          [
+            -122.501505399,
+            37.758747221
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15561710,
+        "case_num": 1310233,
+        "case_name": "Trick or Treat - 42nd Ave",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "14:00:00",
+        "start_dt": "2025/10/31 02:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "23:00:00",
+        "end_dt": "2025/10/31 11:00:00 PM",
+        "loc_desc": "42ND AVE between JUDAH ST and KIRKHAM ST",
+        "cnn": 1934000,
+        "street": "42ND AVE",
+        "from_st": "JUDAH ST",
+        "to_st": "KIRKHAM ST",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 09:00:00 PM",
+        "end_utc": "2025/11/01 06:00:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.433879093,
+            37.734507816
+          ],
+          [
+            -122.43430354,
+            37.734528942
+          ]
+        ]
+      },
+      "properties": {
+        "objectid": 15562186,
+        "case_num": 1285746,
+        "case_name": "Chenery Halloween 2025",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "2025/10/31",
+        "start_time": "16:00:00",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "21:30:00",
+        "end_dt": "2025/10/31 09:30:00 PM",
+        "loc_desc": "CHENERY ST between ELK ST and DIAMOND ST",
+        "cnn": 3927000,
+        "street": "CHENERY ST",
+        "from_st": "DIAMOND ST",
+        "to_st": "THOR AVE",
+        "direction": "both",
+        "veh_imp": "all-lanes-closed",
+        "info": "",
+        "start_utc": "2025/10/31 11:00:00 PM",
+        "end_utc": "2025/11/01 04:30:00 AM",
+        "data_as_of": "2025/10/28 12:01:50 AM",
+        "data_loaded_at": "2025/10/28 01:06:37 PM",
+        "created_date": "2025/10/28 12:01:50 AM",
+        "last_edited_date": "2025/10/28 12:01:50 AM"
+      }
+    }
+  ]
+}
