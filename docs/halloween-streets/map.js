@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Map
   const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mlnow/cmhcjcs6y003s01smeip27ohd',
-    center: [-122.417, 37.754],
-    zoom: 11.5
+    container: "map",
+    style: "mapbox://styles/mlnow/cmhcjcs6y003s01smeip27ohd",
+    center: [-122.433, 37.765],
+    zoom: 12.5,
   });
 
   // ======================= CONFIG =======================
@@ -52,15 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return `
     <div class="info-title-row">
-      <div class="event"><strong>${event}</strong></div>
+      <div class="event"><strong>🎃 ${event}</strong></div>
     </div>
     <div class="info-desc">
       ${
         startDate && startTime && endTime
-          ? `<strong>When:</strong> ${startDate} from ${startTime} to ${endTime}<br/>`
+          ? `<strong>🕐 When:</strong> ${startDate} from ${startTime} to ${endTime}<br/>`
           : ``
       }
-      ${where ? `<strong>Where:</strong> ${where}` : ``}
+      ${where ? `<strong>📍 Where:</strong> ${where}` : ``}
     </div>
   `;
   }
