@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     container: "map",
     style: "mapbox://styles/mlnow/cmhcjcs6y003s01smeip27ohd",
     center: [-122.433, 37.765],
-    zoom: 12.5,
+    zoom: 11.5,
   });
 
   // ======================= CONFIG =======================
