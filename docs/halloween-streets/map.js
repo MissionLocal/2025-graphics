@@ -23,16 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ======================= CONFIG =======================
   // Local GeoJSON path (put the file next to this JS or adjust the path)
-  const GEOJSON_PATH = 'halloween_street_closures_clean.geojson';
+  const GEOJSON_PATH = 'street_closures.geojson';
 
-  // Field names expected on each feature
-  const CASE_FIELD  = 'case_name';
-  const START_FIELD = 'start_time';
-  const END_FIELD   = 'end_time';
+  
 
   // Line styling
   const LINE_COLOR = '#ff964f';  // base color
-  const HOVER_COLOR = '#000'; // hover color emphasis
+  const HOVER_COLOR = '#ffb380'; // hover color emphasis
 
   // ======================= Helpers =======================
   const key  = v => (v == null ? '' : String(v).trim());
@@ -47,21 +44,25 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function tplInfo(p = {}) {
-    const caseName = safe(p, CASE_FIELD) || 'Untitled case';
-    const start    = safe(p, START_FIELD);
-    const end      = safe(p, END_FIELD);
+    const event = safe(p, "cleaned_event") || "Untitled event";
+    const startDate = safe(p, "start_date");
+    const startTime = safe(p, "start_time");
+    const endTime = safe(p, "end_time");
+    const where = safe(p, "cleaned_where");
 
-    // You can format times here if you know they’re ISO strings. For now, show raw.
-    // e.g., new Date(start).toLocaleString('en-US', { dateStyle:'medium', timeStyle:'short' })
     return `
-      <div class="info-title-row">
-        <div class="event"><strong>${caseName}</strong></div>
-      </div>
-      <div class="info-desc">
-        ${start ? `Start: ${start}<br/>` : ``}
-        ${end   ? `End: ${end}` : ``}
-      </div>
-    `;
+    <div class="info-title-row">
+      <div class="event"><strong>${event}</strong></div>
+    </div>
+    <div class="info-desc">
+      ${
+        startDate && startTime && endTime
+          ? `<strong>When:</strong> ${startDate} from ${startTime} to ${endTime}<br/>`
+          : ``
+      }
+      ${where ? `<strong>Where:</strong> ${where}` : ``}
+    </div>
+  `;
   }
 
   // ======================= Map layers =======================
