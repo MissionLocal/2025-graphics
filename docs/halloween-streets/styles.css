@@ -13,11 +13,13 @@ body{margin:0;padding:0 0 2px 0;font-family:'Barlow',sans-serif}
   left:8px;                 /* left aligned */
   transform:none;           /* no centering */
   z-index:4;
-  background:#fff;
+  background:#1a1a1a;
   padding:8px 12px;
+  border: 2px solid #ff964f;
   border-radius:2px;        /* less rounded */
   box-shadow:0 2px 8px rgba(0,0,0,.12);
   font-weight:700;
+  color: #fff;
   font-size:16px;
   line-height:1;
   white-space:nowrap;
@@ -82,8 +84,8 @@ body{margin:0;padding:0 0 2px 0;font-family:'Barlow',sans-serif}
   border:1px solid rgba(0,0,0,.12);flex:0 0 14px
 }
 
-/* ===== Info box (centered near bottom) ===== */
-/* ===== Spooky Info box (centered near bottom) ===== */
+/* ===== Info box (centered near bottom) Halloween theme ===== */
+
 .info-box {
   position: absolute;
   left: 50%;
