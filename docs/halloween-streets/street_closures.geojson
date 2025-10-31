@@ -3721,6 +3721,68 @@
         
         
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.44131691864223,
+            37.775515862626676
+          ],
+          [
+            -122.44461088884232,
+            37.775097829892815
+          ]
+        ]
+      },
+      "properties": {
+        
+        "cleaned_event": "NOPNA Halloween Block Party",
+        "cleaned_where": "Grove Street between Baker Street and Central Avenue",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "Oct. 31",
+        "start_time": "3:00\u202fPM",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "10:00\u202fPM",
+        "end_dt": "2025/10/31 09:30:00 PM"
+        
+        
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.44314444031895,
+            37.77623792791289
+          ],
+          [
+            -122.44277077877791,
+            37.77436586815183
+          ]
+        ]
+      },
+      "properties": {
+        
+        "cleaned_event": "NOPNA Halloween Block Party",
+        "cleaned_where": "Lyon Street between Fulton and Hayes streets",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "Oct. 31",
+        "start_time": "3:00\u202fPM",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "10:00\u202fPM",
+        "end_dt": "2025/10/31 09:30:00 PM"
+        
+        
+      }
     }
 
   ]
