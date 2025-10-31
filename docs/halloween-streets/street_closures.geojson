@@ -3119,7 +3119,7 @@
         "case_num": 1261853,
         "case_name": "Terrace Drive Halloween",
         "cleaned_event": "Terrace Drive Halloween",
-        "cleaned_where": "Terrace Drive between Portola Drive and Santa Clara avenue",
+        "cleaned_where": "Terrace Drive between Portola Drive and Santa Clara Avenue",
         "type": "Special Event",
         "status": "Permitted",
         "start_date": "Oct. 31",
@@ -3597,6 +3597,131 @@
         "created_date": "2025/10/28 12:01:50 AM",
         "last_edited_date": "2025/10/28 12:01:50 AM"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.48036072068034,
+            37.76344190555744
+          ],
+          [
+            -122.48358315329764,
+            37.76328502239866
+          ]
+        ]
+      },
+      "properties": {
+        
+        "cleaned_event": "Halloween Night Bazaar on Irving",
+        "cleaned_where": "Irving Street between 22nd and 25th avenues",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "Oct. 31",
+        "start_time": "12:00\u202fPM",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "11:59\u202fPM",
+        "end_dt": "2025/10/31 09:30:00 PM"
+        
+        
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.48262685885754,
+            37.76515186904352
+          ],
+          [
+            -122.48236257906622,
+            37.76147208128684
+          ]
+        ]
+      },
+      "properties": {
+        
+        "cleaned_event": "Halloween Night Bazaar on Irving",
+        "cleaned_where": "24th Avenue between Lincoln Way and Judah Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "Oct. 31",
+        "start_time": "12:00\u202fPM",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "11:59\u202fPM",
+        "end_dt": "2025/10/31 09:30:00 PM"
+        
+        
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.48262685885754,
+            37.76515186904352
+          ],
+          [
+            -122.48236257906622,
+            37.76147208128684
+          ]
+        ]
+      },
+      "properties": {
+        
+        "cleaned_event": "Halloween Night Bazaar on Irving",
+        "cleaned_where": "24th Avenue between Lincoln Way and Judah Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "Oct. 31",
+        "start_time": "12:00\u202fPM",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "11:59\u202fPM",
+        "end_dt": "2025/10/31 09:30:00 PM"
+        
+        
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -122.48155268938245,
+            37.76519230525433
+          ],
+          [
+            -122.48129693474543,
+            37.7615259989127
+          ]
+        ]
+      },
+      "properties": {
+        
+        "cleaned_event": "Halloween Night Bazaar on Irving",
+        "cleaned_where": "23rd Avenue between Lincoln Way and Judah Street",
+        "type": "Special Event",
+        "status": "Permitted",
+        "start_date": "Oct. 31",
+        "start_time": "12:00\u202fPM",
+        "start_dt": "2025/10/31 04:00:00 PM",
+        "end_date": "2025/10/31",
+        "end_time": "11:59\u202fPM",
+        "end_dt": "2025/10/31 09:30:00 PM"
+        
+        
+      }
     }
+
   ]
 }
