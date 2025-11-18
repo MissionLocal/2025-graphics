@@ -1,6 +1,5 @@
 // mission-map.js — Mission sales tax choropleth from local GeoJSON
 document.addEventListener("DOMContentLoaded", () => {
-  // Optional Pym (safe no-op if not present)
   let pymChild = null;
   try {
     if (window.pym) pymChild = new window.pym.Child();
@@ -15,45 +14,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/mapbox/light-v11", // or your newsroom style
-    center: [-122.4183, 37.7599], // Mission
+    style: "mapbox://styles/mapbox/light-v11",
+    center: [-122.4183, 37.7599],
     zoom: 12.5,
   });
 
-  // ==== CONFIG ====
-  const VALUE_FIELD = "amount"; // <-- change to your actual column name
-  const UID_FIELD = "group_id"; // unique ID field in mission.geojson
+  // === CONFIG ===
+  const VALUE_FIELD = "pct_change";
+  const UID_FIELD = "group_id";
 
-  // breaks + colors for version index (adjust as needed)
-  const BIN_BREAKS = [80, 90, 100, 110, 120]; // example: 2019=100 baseline
-  const COLORS = [
-    "#FFF1FA",
-    "#FFD9F6",
-    "#FFBFF3",
-    "#FF9AEE",
-    "#F67CF6",
-    "#E95AD7",
-  ];
+  const BIN_BREAKS = [-40, -20, 0, 20, 40];
+
+  const COLORS = ["#FF6B35", "#F7B801", "#FAF9F6", "#6A4C93", "#3D2C52"];
 
   const key = (v) => (v == null ? "" : String(v).trim());
   const num = (v) => {
     const n = Number(v);
     return Number.isFinite(n) ? n : null;
   };
-  const fmtNum = (v, d = 1) => (v == null ? "—" : v.toFixed(d));
+
+  // formatter like "$666K", "$2.7M", "$84,000"
+  const fmtMoney = (v) => {
+    if (v == null || isNaN(v)) return "—";
+    if (v >= 1_000_000) return "$" + (v / 1_000_000).toFixed(1) + "M";
+    if (v >= 1_000) return "$" + (v / 1_000).toFixed(0) + "K";
+    return "$" + v.toLocaleString("en-US");
+  };
+
+  const fmtPct = (v) => (v == null ? "—" : v.toFixed(1) + "%");
 
   function buildLegend(el, breaks, colors, titleText) {
     if (!el) return;
 
     const labels = [];
     for (let i = 0; i <= breaks.length; i++) {
-      if (i === 0) {
-        labels.push(`≤ ${breaks[0]}`);
-      } else if (i === breaks.length) {
-        labels.push(`≥ ${breaks[breaks.length - 1]}`);
-      } else {
-        labels.push(`${breaks[i - 1]}–${breaks[i]}`);
-      }
+      if (i === 0) labels.push(`≤ ${breaks[0]}%`);
+      else if (i === breaks.length)
+        labels.push(`≥ ${breaks[breaks.length - 1]}%`);
+      else labels.push(`${breaks[i - 1]}–${breaks[i]}%`);
     }
 
     el.innerHTML = `
@@ -79,23 +77,30 @@ document.addEventListener("DOMContentLoaded", () => {
     return step;
   }
 
+  // === UPDATED TOOLTIP (this is the part you asked to enhance) ===
   function tplInfo(props = {}) {
-    const id = key(props[UID_FIELD]);
-    const vRaw = num(props[VALUE_FIELD]);
-    const qtr = key(props.quarter);
-    const amount = num(props.amount);
+    const pct = num(props.pct_change);
+    const v2019 = num(props["2019Q2"]);
+    const v2025 = num(props["2025Q2"]);
+    const vAdj = num(props["2025Q2_adj_2019"]);
 
     return `
       <div class="info-title-row">
-        <div class="event"><strong>Group ${id || "—"}</strong></div>
-        <div class="when">${qtr || ""}</div>
+        <div class="event"><strong>Group ${props.group_id || "—"}</strong></div>
       </div>
+
       <div class="info-desc">
-        Version index: <strong>${fmtNum(vRaw, 1)}</strong><br/>
-        Sales tax: ${amount == null ? "—" : amount.toLocaleString("en-US")}
+
+        <strong>% Change (real):</strong> ${fmtPct(pct)}<br/>
+
+        <strong>2019 Q2:</strong> ${fmtMoney(v2019)}<br/>
+        <strong>2025 Q2:</strong> ${fmtMoney(v2025)}<br/>
+
+        <strong>2025 Q2 (→ 2019$):</strong> ${fmtMoney(vAdj)}
       </div>
     `;
   }
+  // ===============================================================
 
   const showInfoBox = () => {
     infoBox.style.display = "block";
@@ -111,16 +116,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   map.on("load", () => {
-    // Source: local GeoJSON with Mission polygons
     map.addSource("mission", {
       type: "geojson",
-      data: "mission_trial.geojson", // make sure this file is in the same folder
+      data: "mission_recovery.geojson",
     });
 
     const VALUE_EXPR = ["to-number", ["coalesce", ["get", VALUE_FIELD], 0]];
     const colorExpr = buildStepColor(VALUE_EXPR, BIN_BREAKS, COLORS);
 
-    // Fill layer
     map.addLayer({
       id: "mission-fill",
       type: "fill",
@@ -131,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
 
-    // Outline layer
     map.addLayer({
       id: "mission-outline",
       type: "line",
@@ -143,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
 
-    // Hover outline
     map.addLayer({
       id: "mission-hover",
       type: "line",
@@ -156,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
 
-    // Hover behavior
     map.on("mousemove", "mission-fill", (e) => {
       if (!e.features?.length) return;
       const f = e.features[0];
@@ -170,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
       map.getCanvas().style.cursor = "";
     });
 
-    // Click → info box
     map.on("click", "mission-fill", (e) => {
       if (!e.features?.length) return;
       const props = e.features[0].properties || {};
@@ -178,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
       showInfoBox();
     });
 
-    // Click background → clear info
     map.on("click", (e) => {
       const hit = map.queryRenderedFeatures(e.point, {
         layers: ["mission-fill"],
@@ -189,10 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Legend
-    buildLegend(legendEl, BIN_BREAKS, COLORS, "Sales tax version");
+    buildLegend(legendEl, BIN_BREAKS, COLORS, "% change (real dollars)");
 
-    // Pym sync after idle
     Promise.all([
       new Promise((r) => map.once("idle", r)),
       document.fonts?.ready ?? Promise.resolve(),
