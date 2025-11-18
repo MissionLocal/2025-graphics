@@ -21,47 +21,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === CONFIG ===
   const VALUE_FIELD = "pct_change"; // real $ % change
-  const UID_FIELD = "group_id"; // optional (may be missing)
+  const UID_FIELD = "area"; // use 'area' as ID for highlight
 
-  // continuous gradient color scale
+  // continuous gradient color scale with your palette
   const COLOR_STOPS = [
     -40,
-    "#FF6B35",
+    "#BC4749",
     -20,
-    "#F7B801",
+    "#C97C5D",
     0,
-    "#FAF9F6",
+    "#F5F3F0",
     20,
-    "#6A4C93",
+    "#386641",
     40,
-    "#3D2C52",
+    "#1B4332",
   ];
 
   const fmtMoney = (v) => {
     if (v == null || isNaN(v)) return "—";
-    if (v >= 1_000_000) return "$" + (v / 1_000_000).toFixed(1) + "M";
-    if (v >= 1_000) return "$" + (v / 1_000).toFixed(0) + "K";
-    return "$" + v.toLocaleString("en-US");
+    const n = Number(v);
+    if (n >= 1_000_000) return "$" + (n / 1_000_000).toFixed(1) + "M";
+    if (n >= 1_000) return "$" + (n / 1_000).toFixed(0) + "K";
+    return "$" + n.toLocaleString("en-US");
   };
 
-  const fmtPct = (v) => (v == null || isNaN(v) ? "—" : v.toFixed(1) + "%");
+  const fmtPct = (v) =>
+    v == null || isNaN(v) ? "—" : (v > 0 ? "+" : "") + v.toFixed(1) + "%";
 
-  // Tooltip HTML
+  // Compact tooltip: only the two lines you requested
   function tplInfo(props = {}) {
     const pct = props.pct_change;
-    const v2019 = props["2019Q2"];
     const v2025 = props["2025Q2"];
-    const vAdj = props["CPI_adjusted_2025"];
 
     return `
-      <div class="info-title-row">
-        <div><strong>Group ${props.group_id || "—"}</strong></div>
-      </div>
       <div class="info-desc">
-        <strong>% Change (real):</strong> ${fmtPct(pct)}<br/>
-        <strong>2019 Q2:</strong> ${fmtMoney(v2019)}<br/>
-        <strong>2025 Q2:</strong> ${fmtMoney(v2025)}<br/>
-        <strong>2025 Q2 (→ 2019$):</strong> ${fmtMoney(vAdj)}
+        <div><strong>Percent change in sales tax revenue:</strong> ${fmtPct(
+          pct
+        )}</div>
+        <div><strong>Sales tax revenue in 2025 Q2:</strong> ${fmtMoney(
+          v2025
+        )}</div>
       </div>
     `;
   }
@@ -101,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
 
-    // Outline
+    // Base outline
     map.addLayer({
       id: "mission-outline",
       type: "line",
@@ -113,19 +112,33 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
 
-    // Hover outline
+    // Click-selected outline (thicker highlight)
+    map.addLayer({
+      id: "mission-selected",
+      type: "line",
+      source: "mission",
+      filter: ["==", ["get", UID_FIELD], ""],
+      paint: {
+        "line-color": "#000000",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 2.0, 14, 3.0],
+        "line-opacity": 0.9,
+      },
+    });
+
+    // Subtle hover outline
     map.addLayer({
       id: "mission-hover",
       type: "line",
       source: "mission",
       filter: ["==", ["get", UID_FIELD], ""],
       paint: {
-        "line-color": "#000",
-        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 1.0, 14, 2.0],
+        "line-color": "#000000",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 0.8, 14, 1.5],
+        "line-opacity": 0.6,
       },
     });
 
-    // Hover behavior
+    // Hover behavior (light outline)
     map.on("mousemove", "mission-fill", (e) => {
       if (!e.features?.length) return;
       const f = e.features[0];
@@ -139,21 +152,28 @@ document.addEventListener("DOMContentLoaded", () => {
       map.getCanvas().style.cursor = "";
     });
 
-    // Click → tooltip box
+    // Click → show tooltip + strong highlight
     map.on("click", "mission-fill", (e) => {
       if (!e.features?.length) return;
-      const props = e.features[0].properties;
+      const f = e.features[0];
+      const props = f.properties || {};
+      const uid = props[UID_FIELD] ?? "";
+
+      // highlight the clicked tract
+      map.setFilter("mission-selected", ["==", ["get", UID_FIELD], uid]);
+
       infoBox.innerHTML = tplInfo(props);
       showInfoBox();
     });
 
-    // Background click hides box
+    // Click background → clear selection + hide box
     map.on("click", (e) => {
       const hit = map.queryRenderedFeatures(e.point, {
         layers: ["mission-fill"],
       });
       if (!hit.length) {
         hideInfoBox();
+        map.setFilter("mission-selected", ["==", ["get", UID_FIELD], ""]);
         map.setFilter("mission-hover", ["==", ["get", UID_FIELD], ""]);
       }
     });
