@@ -3,14 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>SF Sales Tax — Base Map Test</title>
+    <title>Mission Sales Tax Map</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-
-    <!-- Mapbox -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet" />
-
-    <!-- Fonts + CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
 </head>
@@ -19,11 +15,17 @@
     <div class="cont">
         <div class="map-container with-map-title">
             <div id="map" class="map"></div>
-            <div class="map-title">SF Sales Tax Polygons (Test View)</div>
+            <div class="map-title">Sales tax in the Mission</div>
+            <div id="legend" class="legend"></div>
+            <div id="info-box" class="info-box"></div>
         </div>
     </div>
 
-    <script src="mission-map.js"></script>
+    <div id="last-updated" style="text-align:center; font-family:'Barlow', sans-serif; font-size:0.9em; color:#555;">
+        Source: San Francisco Controller's Office sales tax data.<br>Map: Your Name.
+    </div>
+
+    <script src="mission_map.js"></script>
 </body>
 
 </html>
