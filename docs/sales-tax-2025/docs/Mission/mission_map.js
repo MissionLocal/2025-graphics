@@ -102,6 +102,74 @@ document.addEventListener("DOMContentLoaded", () => {
     labels[2].textContent = `≥ +${range}%`;
   }
 
+  function hexToRgba(hex, alpha) {
+    const h = hex.replace("#", "");
+    if (h.length !== 6) return `rgba(0,0,0,${alpha})`;
+    const r = parseInt(h.slice(0, 2), 16),
+      g = parseInt(h.slice(2, 4), 16),
+      b = parseInt(h.slice(4, 6), 16);
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+
+  function interpolateColor(color1, color2, factor) {
+    const c1 = color1.replace("#", "");
+    const c2 = color2.replace("#", "");
+
+    const r1 = parseInt(c1.slice(0, 2), 16);
+    const g1 = parseInt(c1.slice(2, 4), 16);
+    const b1 = parseInt(c1.slice(4, 6), 16);
+
+    const r2 = parseInt(c2.slice(0, 2), 16);
+    const g2 = parseInt(c2.slice(2, 4), 16);
+    const b2 = parseInt(c2.slice(4, 6), 16);
+
+    const r = Math.round(r1 + (r2 - r1) * factor);
+    const g = Math.round(g1 + (g2 - g1) * factor);
+    const b = Math.round(b1 + (b2 - b1) * factor);
+
+    return `#${r.toString(16).padStart(2, "0")}${g
+      .toString(16)
+      .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+  }
+
+  function getColorForValue(v, range, colors) {
+    if (v == null || isNaN(v)) return null;
+    const r = range;
+    const [c0, c1, c2, c3, c4] = colors;
+
+    if (v <= -r) return c0;
+    if (v >= r) return c4;
+
+    if (v < -r / 2) {
+      const factor = (v - -r) / (-r / 2 - -r);
+      return interpolateColor(c0, c1, factor);
+    } else if (v < 0) {
+      const factor = (v - -r / 2) / (0 - -r / 2);
+      return interpolateColor(c1, c2, factor);
+    } else if (v < r / 2) {
+      const factor = (v - 0) / (r / 2 - 0);
+      return interpolateColor(c2, c3, factor);
+    } else {
+      const factor = (v - r / 2) / (r - r / 2);
+      return interpolateColor(c3, c4, factor);
+    }
+  }
+
+  function getTextColorForBackground(hexColor) {
+    if (!hexColor || hexColor === "#ccc") return "#000";
+
+    const h = hexColor.replace("#", "");
+    if (h.length !== 6) return "#000";
+
+    const r = parseInt(h.slice(0, 2), 16);
+    const g = parseInt(h.slice(2, 4), 16);
+    const b = parseInt(h.slice(4, 6), 16);
+
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+    return luminance > 0.5 ? "#000" : "#fff";
+  }
+
   const fmtMoney = (v) => {
     if (v == null || isNaN(v)) return "—";
     const n = Number(v);
@@ -117,11 +185,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const pct = Number(props.pct_change);
     const v2025 = props["2025Q2"];
 
+    const col = getColorForValue(pct, currentRange, currentPalette);
+    const chipBg = col || "#ccc";
+    const chipBorder = col || "#999";
+    const textColor = getTextColorForBackground(chipBg);
+
     return `
       <div class="info-desc">
         <div>
           Percent change in sales tax revenue:
-          <strong>${fmtPct(pct)}</strong>
+          <span style="
+            background:${chipBg};
+            color:${textColor};
+            padding:2px 6px;
+            border-radius:3px;
+            margin-left:2px;
+            font-weight:600;
+            white-space:nowrap;
+            border:1px solid ${chipBorder};
+          ">${fmtPct(pct)}</span>
         </div>
         <div>Sales tax revenue in 2025 Q2: <strong>${fmtMoney(
           v2025
@@ -140,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   map.on("load", () => {
-    fetch("mission_corridors_touching.geojson")
+    fetch("mission_corridor_rectangles.geojson")
       .then((r) => r.json())
       .then((data) => {
         map.addSource("mission", { type: "geojson", data });
@@ -161,24 +243,22 @@ document.addEventListener("DOMContentLoaded", () => {
           ...stops,
         ];
 
-        // Find first label layer
-        const labelLayer = map.getStyle().layers.find(
-          (l) => l.type === "symbol"
-        );
+        const labelLayer = map
+          .getStyle()
+          .layers.find((l) => l.type === "symbol");
 
-        // Add polygons BELOW labels
-        map.addLayer(
-          {
-            id: "mission-polygons",
-            type: "fill",
-            source: "mission",
-            paint: {
-              "fill-color": expr,
-              "fill-opacity": 0.55,
-            },
-          },
-          labelLayer.id
-        );
+        const fillLayer = {
+          id: "mission-fill",
+          type: "fill",
+          source: "mission",
+          paint: { "fill-color": expr, "fill-opacity": 0.85 },
+        };
+
+        if (labelLayer) {
+          map.addLayer(fillLayer, labelLayer.id);
+        } else {
+          map.addLayer(fillLayer);
+        }
 
         map.addLayer({
           id: "mission-outline",
@@ -234,21 +314,37 @@ document.addEventListener("DOMContentLoaded", () => {
         updateLegendGradient(currentPalette);
         updateLegendLabelsSym(currentRange);
 
-        // Hover
-        map.on("mousemove", "mission-polygons", (e) => {
+        if (paletteSelect) {
+          paletteSelect.addEventListener("change", (e) => {
+            const name = e.target.value;
+            currentPalette = PALETTES[name];
+
+            const newStops = buildColorStops(currentPalette, currentRange);
+            const newExpr = [
+              "interpolate",
+              ["linear"],
+              ["to-number", ["get", VALUE_FIELD]],
+              ...newStops,
+            ];
+
+            map.setPaintProperty("mission-fill", "fill-color", newExpr);
+            updateLegendGradient(currentPalette);
+          });
+        }
+
+        map.on("mousemove", "mission-fill", (e) => {
           if (!e.features?.length) return;
           const uid = e.features[0].properties?.[UID_FIELD] ?? "";
           map.setFilter("mission-hover", ["==", ["get", UID_FIELD], uid]);
           map.getCanvas().style.cursor = "pointer";
         });
 
-        map.on("mouseleave", "mission-polygons", () => {
+        map.on("mouseleave", "mission-fill", () => {
           map.setFilter("mission-hover", ["==", ["get", UID_FIELD], ""]);
           map.getCanvas().style.cursor = "";
         });
 
-        // Click info
-        map.on("click", "mission-polygons", (e) => {
+        map.on("click", "mission-fill", (e) => {
           if (!e.features?.length) return;
           const f = e.features[0];
           const uid = f.properties?.[UID_FIELD] ?? "";
@@ -260,7 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         map.on("click", (e) => {
           const hit = map.queryRenderedFeatures(e.point, {
-            layers: ["mission-polygons"],
+            layers: ["mission-fill"],
           });
           if (!hit.length) {
             hideInfoBox();
