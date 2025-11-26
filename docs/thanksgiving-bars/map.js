@@ -1,4 +1,4 @@
-// map.js — point locations with bottom info box (like turnout map)
+// map.js — point locations with bottom info box + mobile-friendly hit area
 document.addEventListener('DOMContentLoaded', async () => {
   const pymChild = new pym.Child();
   mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21mZDE2anltMDRkbDJtcHM1Y2M0eTFjNCJ9.nmMGLA-zX7BqznSJ2po65g";
@@ -16,10 +16,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     zoom: 13
   });
 
-  const key = v => (v == null ? '' : String(v).trim());
-  const raw = v => (v === undefined || v === null ? '' : String(v)); // keep punctuation/quotes exactly
+  const raw = v => (v === undefined || v === null ? '' : String(v));
 
-  // Flexible helpers (using your actual column names)
+  // Column helpers
   const getBar = p =>
     raw(p.bar ?? p.Bar ?? p.BAR);
 
@@ -30,20 +29,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     raw(p["hours open"] ?? p.hours_open ?? p.Hours);
 
   const getNotes = p =>
-    raw(p.notes ?? p.Notes ?? p.NOTES); // preserves all quotes
+    raw(p.notes ?? p.Notes ?? p.NOTES); // preserves quotes
 
   // Info box template
-  //   **bar** | address | hours open
-  //   notes
   function tplInfoBox(p = {}) {
     const bar   = getBar(p) || 'Unnamed bar';
     const addr  = getAddress(p);
     const hours = getHours(p);
     const notes = getNotes(p);
 
-    // Build the top line with separators only where values exist
     const parts = [];
-    parts.push(`<strong>${bar}</strong>`); // bar name bold ONLY
+    parts.push(`<strong>${bar}</strong>`); // bold ONLY the bar name
     if (addr)  parts.push(addr);
     if (hours) parts.push(hours);
 
@@ -57,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
   }
 
-  // Load point GeoJSON
+  // Load GeoJSON
   const dataUrl = 'locations.geojson';
   const gj = await fetch(dataUrl).then(r => r.json());
 
@@ -67,31 +63,42 @@ document.addEventListener('DOMContentLoaded', async () => {
       data: gj
     });
 
-    // Circle layer for points
+    // Visible circles
     map.addLayer({
       id: 'locations-circle',
       type: 'circle',
       source: 'locations',
       paint: {
-        'circle-radius': 5,
+        'circle-radius': 7,
         'circle-color': '#f36e57',
         'circle-stroke-color': '#ffffff',
-        'circle-stroke-width': 1
+        'circle-stroke-width': 1.2
       }
     });
 
-    // Hover: just pointer cursor for now
-    map.on('mousemove', 'locations-circle', e => {
+    // Invisible large hit-area for easy tapping
+    map.addLayer({
+      id: 'locations-hit',
+      type: 'circle',
+      source: 'locations',
+      paint: {
+        'circle-radius': 25,                 // big tap target
+        'circle-color': 'rgba(0,0,0,0)'      // fully invisible
+      }
+    });
+
+    // Hover: pointer cursor
+    map.on('mousemove', 'locations-hit', e => {
       if (!e.features?.length) return;
       map.getCanvas().style.cursor = 'pointer';
     });
 
-    map.on('mouseleave', 'locations-circle', () => {
+    map.on('mouseleave', 'locations-hit', () => {
       map.getCanvas().style.cursor = '';
     });
 
-    // Click on point → show bottom info box
-    map.on('click', 'locations-circle', e => {
+    // Click → show bottom info box
+    map.on('click', 'locations-hit', e => {
       if (!e.features?.length) return;
       const feature = e.features[0];
       const props = feature.properties || {};
@@ -101,25 +108,22 @@ document.addEventListener('DOMContentLoaded', async () => {
       pymChild.sendHeight();
     });
 
-    // Click elsewhere on map → hide info box
+    // Click elsewhere → hide box
     map.on('click', e => {
-      const feats = map.queryRenderedFeatures(e.point, { layers: ['locations-circle'] });
-      if (feats.length) return; // click was on a point
+      const feats = map.queryRenderedFeatures(e.point, { layers: ['locations-hit'] });
+      if (feats.length) return; // click was on a bar
       infoBox.style.display = 'none';
       pymChild.sendHeight();
     });
 
-    // Keep labels on top if needed
+    // Keep labels on top
     try {
-      if (map.getLayer('road-label-navigation')) {
+      if (map.getLayer('road-label-navigation'))
         map.moveLayer('road-label-navigation');
-      }
-      if (map.getLayer('settlement-subdivision-label')) {
+
+      if (map.getLayer('settlement-subdivision-label'))
         map.moveLayer('settlement-subdivision-label');
-      }
-    } catch (e) {
-      // ignore
-    }
+    } catch (e) {}
   });
 
   window.addEventListener('resize', () => {
