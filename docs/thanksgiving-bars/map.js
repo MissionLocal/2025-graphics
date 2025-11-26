@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       source: 'locations',
       paint: {
         'circle-radius': 5,
-        'circle-color': '#0DD6C7',
+        'circle-color': '#f36e57',
         'circle-stroke-color': '#ffffff',
         'circle-stroke-width': 1
       }
