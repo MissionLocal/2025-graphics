@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
-    center: [-122.418624, 37.753864],
+    center: [-122.418753, 37.755484],
     zoom: 13
   });
 
