@@ -1,26 +1,27 @@
-bar,called? ,hours open,notes,address,city,Full Address,Latitude,Longitude
-Napper Tandy,called,11-11,"Full-course Thanksgiving dinner service",3200 24th St.,San Francisco,3200 24th St. San Francisco ,37.7524797,-122.4165746
-Delerium,called,10 a.m. to 2 a.m.,"""regular hours."" ",3139 16th St,San Francisco,3139 16th St San Francisco ,37.7646509,-122.4227025
-Kilowatt,called,4 to midnight,"""If you’ve got no place to go or you’re sick and tired of where you’re supposed to be, let’s go!""",3160 16th St. ,San Francisco,3160 16th St.  San Francisco ,37.7650579,-122.4232555
-Knockout,called,9 to midnight,"THE ANNUAL TURKEYOKE KRAZY FOR KARAOKE HOLIDAY EXTRAVAGANZA! UNLOAD THE FAM, AND GRAB THE MIC! WE’RE READY TO PARTY! JOIN US AND LET’S HAVE A NATURAL BALL! | DOORS 8PM | SHOW 9PM TO CLOSE | NO COVER | 21+", 3223 Mission St.,San Francisco, 3223 Mission St. San Francisco ,37.7451489,-122.4199626
-Elixir,called,5 p.m. till whenever,,3200 16th St. ,San Francisco,3200 16th St.  San Francisco ,37.7649919,-122.4243173
-Mother,called,4 p.m. to 2 a.m.,"""The Sapphics need a place to go.""",3079 16th St.,San Francisco,3079 16th St. San Francisco ,37.7646924,-122.4213269
-Dovre Club,called,5 p.m. to midnight,"Anything interesting going on? “I don’t think so. Sorry, but you’re calling in the middle of my shift.”",1498 Valencia St.,San Francisco,1498 Valencia St. San Francisco ,37.7490222,-122.4205845
-St. Mary's Pub,called,6 to midnight,We will be open from six to midnight. Doing our baked potato thing on the night before. Weds. night doing a baked potato bar thing. Bunch of baked potatoes and table full of condiments.,3845 Mission St.,San Francisco,3845 Mission St. San Francisco ,37.7354741,-122.4244058
-Casanova,called,8 p.m. to 2 a.m.,,527 Valencia St,San Francisco,527 Valencia St San Francisco ,37.7643827,-122.4216074
-Pop's bar,called,3 p.m. to late,Pot luck available,2800 24th St.,San Francisco,2800 24th St. San Francisco ,37.7529581,-122.4083202
-Clooney's,In-person,6 a.m. to late,"“6am to closing, have a nice holiday dear- god bless!” from Nichole, a customer at the bar: ""We're like the pitbull of bars. We got a bad reputation, but everyone so nice here.""",1401 Valencia,San Francisco,1401 Valencia San Francisco ,37.7504268,-122.4202389
-The Bar on Dolores,called,"5 p.m. to ""when everyone leaves""","Open for Bears-Eagles game on 11:30 a.m. on Friday. We have a shuffleboard table, pool table change into ping pong if in mood, dart room, pinball. If you can’t have fun here?",1600 Dolores,San Francisco,1600 Dolores San Francisco ,37.7437303,-122.4246468
-,,,,,San Francisco, San Francisco ,37.7749295,-122.4194155
-Lucky Horseshoe,in-person,4 p.m. and onward,"""We'll have food and drink specials, football and merriment.""",453 Cortland Ave,San Francisco,453 Cortland Ave San Francisco ,37.7392753,-122.4167964
-Wild Side West,in-person,3 p.m. to 10 p.m,"""We'll have potluck and also provide some food. Ham, turkey ... classic and traditional Thanksgiving stuff.",424 Cortland Ave,San Francisco,424 Cortland Ave San Francisco ,37.7389946,-122.417194
-El Trebol,in-person,2 p.m. to 2 a.m.,"""Usually my boss feeds our customers, but I haven't heard anything yet.""",3149 22nd St,San Francisco,3149 22nd St San Francisco ,37.75541,-122.417543
-Ruth's,in-person,1 p.m. to 7 p.m.,"""We're not having anything special, but our sister bar, Clooney's, is having a full spread.""",3050 24th St,San Francisco,3050 24th St San Francisco ,37.7527686,-122.4132118
-Sycamore,called,3p.m.- 2a.m.,"""Standard bar and working hours. We'll have wine and some seasonal drinks, nothing to extra--we just want it open for the people,"" bartender Clark.", 2140 Mission St,San Francisco, 2140 Mission St San Francisco ,37.7627696,-122.41974
-Chac Mool Sports Bar Y Botanas,In-person,4 p.m. until late,,2199 Mission,San Francisco,2199 Mission San Francisco ,37.7619557,-122.4192343
-El Trebol #2,in-person,12 p.m. to 2 a.m,"""We're cooking hens ... not too sure how, but that's what I've heard.""",3090 24th St.,San Francisco,3090 24th St. San Francisco ,37.7526515,-122.4137979
-Gestalt,in-person,6 p.m. to late ,"""We're gonna bbq. We'll have bacon wrapped jalapeño shrimp. We're like an orpahanage for adults who don't have a family on holydays. A lot of regulars are counting on us.""",3159 16th St.,San Francisco,3159 16th St. San Francisco ,37.7646324,-122.4233022
-Phone Booth,in-person,6 p.m. to 2 a.m,"""Nothing special. People bring the bartender food.""",1398 S Van Ness Ave,San Francisco,1398 S Van Ness Ave San Francisco ,37.7508634,-122.4163974
-El Farolito Bar,in-person,11 a.m. to 6 p.m,"""Don't know if we'll have anything special.""",2777 Mission St.,San Francisco,2777 Mission St. San Francisco ,37.7526839,-122.4182117
-Mission Bar,in-person,3 p.m. to 2 a.m.,"""Nothing special, just regular hours.""",2696 Mission St.,San Francisco,2696 Mission St. San Francisco ,37.7539792,-122.4188153
-500 Club,in-person,12 p.m. to 2 a.m,"""Regular hours. We'll have a big spread for pour regulars.""",500 Guerrero St.,San Francisco,500 Guerrero St. San Francisco ,37.7630249,-122.4241968
+bar,called? ,hours open,notes,address,city,Full Address,Latitude,Longitude,,,
+Napper Tandy,called,11-11,Full-course Thanksgiving dinner service ,3200 24th St.,San Francisco,3200 24th St. San Francisco ,37.7524797,-122.4165746,,,
+Delerium,called,10 a.m. to 2 a.m.,"""regular hours."" ",3139 16th St,San Francisco,3139 16th St San Francisco ,37.7646509,-122.4227025,,,
+Kilowatt,called,4 to midnight,"""If you’ve got no place to go or you’re sick and tired of where you’re supposed to be, let’s go!""",3160 16th St. ,San Francisco,3160 16th St.  San Francisco ,37.7650579,-122.4232555,,,
+Knockout,called,9 to midnight,"THE ANNUAL TURKEYOKE KRAZY FOR KARAOKE HOLIDAY EXTRAVAGANZA! UNLOAD THE FAM, AND GRAB THE MIC! WE’RE READY TO PARTY! JOIN US AND LET’S HAVE A NATURAL BALL! | DOORS 8PM | SHOW 9PM TO CLOSE | NO COVER | 21+", 3223 Mission St.,San Francisco, 3223 Mission St. San Francisco ,37.7451489,-122.4199626,,,
+Elixir,called,5 p.m. till whenever,,3200 16th St. ,San Francisco,3200 16th St.  San Francisco ,37.7649919,-122.4243173,,,
+Mother,called,4 p.m. to 2 a.m.,"""The Sapphics need a place to go.""",3079 16th St.,San Francisco,3079 16th St. San Francisco ,37.7646924,-122.4213269,,,
+Dovre Club,called,5 p.m. to midnight,"Anything interesting going on? “I don’t think so. Sorry, but you’re calling in the middle of my shift.”",1498 Valencia St.,San Francisco,1498 Valencia St. San Francisco ,37.7490222,-122.4205845,,,
+St. Mary's Pub,called,6 to midnight,"""We will be open from six to midnight. Doing our baked potato thing on the night before. Weds. night doing a baked potato bar thing. Bunch of baked potatoes and table full of condiments.""",3845 Mission St.,San Francisco,3845 Mission St. San Francisco ,37.7354741,-122.4244058,,,
+Casanova,called,8 p.m. to 2 a.m.,,527 Valencia St,San Francisco,527 Valencia St San Francisco ,37.7643827,-122.4216074,,,
+Pop's bar,called,3 p.m. to late,Pot luck available,2800 24th St.,San Francisco,2800 24th St. San Francisco ,37.7529581,-122.4083202,,,
+Clooney's,In-person,6 a.m. to late,"“6am to closing, have a nice holiday dear- god bless!” from Nichole, a customer at the bar: ""We're like the pitbull of bars. We got a bad reputation, but everyone so nice here.""",1401 Valencia,San Francisco,1401 Valencia San Francisco ,37.7504268,-122.4202389,,,
+The Bar on Dolores,called,"5 p.m. to ""when everyone leaves""","""Open for Bears-Eagles game on 11:30 a.m. on Friday. We have a shuffleboard table, pool table change into ping pong if in mood, dart room, pinball. If you can’t have fun here?""
+",1600 Dolores,San Francisco,1600 Dolores San Francisco ,37.7437303,-122.4246468,,,
+,,,,,San Francisco, San Francisco ,37.7749295,-122.4194155,,,
+Lucky Horseshoe,in-person,4 p.m. and onward,"""We'll have food and drink specials, football and merriment.""",453 Cortland Ave,San Francisco,453 Cortland Ave San Francisco ,37.7392753,-122.4167964,,,
+Wild Side West,in-person,3 p.m. to 10 p.m,"""We'll have potluck and also provide some food. Ham, turkey ... classic and traditional Thanksgiving stuff.",424 Cortland Ave,San Francisco,424 Cortland Ave San Francisco ,37.7389946,-122.417194,,,
+El Trebol,in-person,2 p.m. to 2 a.m.,"""Usually my boss feeds our customers, but I haven't heard anything yet.""",3149 22nd St,San Francisco,3149 22nd St San Francisco ,37.75541,-122.417543,,,
+Ruth's,in-person,1 p.m. to 7 p.m.,"""We're not having anything special, but our sister bar, Clooney's, is having a full spread.""",3050 24th St,San Francisco,3050 24th St San Francisco ,37.7527686,-122.4132118,,,
+Sycamore,called,3p.m.- 2a.m.,"""Standard bar and working hours. We'll have wine and some seasonal drinks, nothing to extra--we just want it open for the people."" bartender Clark", 2140 Mission St,San Francisco, 2140 Mission St San Francisco ,37.7627696,-122.41974,confirmed by sage ,,CALL 808 386 4293
+Chac Mool Sports Bar Y Botanas,In-person,4 p.m. until late,,2199 Mission,San Francisco,2199 Mission San Francisco ,37.7619557,-122.4192343,,,
+El Trebol #2,in-person,12 p.m. to 2 a.m,"""We're cooking hens ... not too sure how, but that's what I've heard""",3090 24th St.,San Francisco,3090 24th St. San Francisco ,37.7526515,-122.4137979,,,
+Gestalt,in-person,6 p.m. to late ,"""We're gonna bbq. We'll have bacon wrapped jalapeño shrimp. We're like an orpahanage for adults who don't have a family on holydays. A lot of regulars are counting on us.""",3159 16th St.,San Francisco,3159 16th St. San Francisco ,37.7646324,-122.4233022,,,
+Phone Booth,in-person,6 p.m. to 2 a.m,"""Nothing special. People bring the bartender food.""",1398 S Van Ness Ave,San Francisco,1398 S Van Ness Ave San Francisco ,37.7508634,-122.4163974,,,
+El Farolito Bar,in-person,11 a.m. to 6 p.m,"""Don't know if we'll have anything special""",2777 Mission St.,San Francisco,2777 Mission St. San Francisco ,37.7526839,-122.4182117,,,
+Mission Bar,in-person,3 p.m. to 2 a.m.,"""Nothing special, just regular hours""",2696 Mission St.,San Francisco,2696 Mission St. San Francisco ,37.7539792,-122.4188153,,,
+500 Club,in-person,12 p.m. to 2 a.m,"""Regular hours. We'll have a big spread for pour regulars.""",500 Guerrero St.,San Francisco,500 Guerrero St. San Francisco ,37.7630249,-122.4241968,,,
