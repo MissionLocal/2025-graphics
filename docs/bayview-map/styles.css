@@ -79,4 +79,20 @@ body { margin:0; padding:0 0 20px 0; font-family:'Barlow',sans-serif; }
     border-top-color: #f36e57; /* overridden inline if needed */
     flex-shrink: 0;
   }
+
+  .note-container {
+    max-width: 520px;          /* match your desktop map width */
+    margin: 0 auto;            /* center it */
+    padding: 6px 0;
+    text-align: left;          /* or center if you prefer */
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9em;
+    color: #555;
+  }
+  
+  @media (max-width: 768px) {
+    .note-container {
+      max-width: 400px;         /* match mobile map width */
+    }
+  }
   
