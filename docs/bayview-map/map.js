@@ -1,7 +1,7 @@
 // map.js — Bayview neighborhood + political district outlines
 document.addEventListener('DOMContentLoaded', async () => {
     const pymChild = new pym.Child();
-    mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21mZDE2anltMDRkbDJtcHM1Y2M0eTFjNCJ9.nmMGLA-zX7BqznSJ2po65g";
+    mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21kNmw1aTAyMDFkbTJqb3Z2dTN0YzRjMyJ9.4abRTnHdhMI-RE48dHNtYw";
 
     // DOM
     const infoBox = document.getElementById('info-box');
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mlnow/cmhbcfha1001d01r64e7waldz',
+        style: 'mapbox://styles/mlnow/cmis0bnr0000401sr9iyb6i1a',
         center: [-122.3930439, 37.737747], // Bayview-ish center
         zoom: 12
     });
