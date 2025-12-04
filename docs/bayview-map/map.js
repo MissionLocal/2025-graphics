@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
+        style: 'mapbox://styles/mlnow/cmhbcfha1001d01r64e7waldz',
         center: [-122.3930439, 37.737747], // Bayview-ish center
         zoom: 12
     });
