@@ -13,7 +13,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         container: 'map',
         style: 'mapbox://styles/mlnow/cmis0bnr0000401sr9iyb6i1a',
         center: [-122.3930439, 37.737747], // Bayview-ish center
-        zoom: 12
+        zoom: 12,
+        maxBounds: [
+            [-122.60, 37.68],   // southwest corner
+            [-122.28, 37.88]    // northeast corner
+          ]          
     });
 
     if (window.innerWidth < 768) {
