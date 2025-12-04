@@ -13,7 +13,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     container: 'map',
     style: 'mapbox://styles/mlnow/cm2tndow500co01pw3fho5d21',
     center: [-122.418345, 37.750666],
-    zoom: 13
+    zoom: 13,
+    maxBounds: [
+      [-122.60, 37.68],   // southwest corner
+      [-122.28, 37.88]    // northeast corner
+    ]    
   });
 
   const raw = v => (v === undefined || v === null ? '' : String(v));
