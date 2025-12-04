@@ -44,6 +44,10 @@ body { margin:0; padding:0 0 20px 0; font-family:'Barlow',sans-serif; }
   margin-top:2px;
 }
 
+a {
+  color:#cccccc; text-decoration:none;
+}
+
 /* mobile: keep current sizing */
 @media (max-width:768px){
   .map-container{ max-width:400px; }
