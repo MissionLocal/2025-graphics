@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             type: 'fill',
             source: 'bayview',
             paint: {
-                'fill-color': '#f36e57',
+                'fill-color': '#efbe25',
                 'fill-opacity': 0.12
             }
         });
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             type: 'line',
             source: 'bayview',
             paint: {
-                'line-color': '#f36e57',
+                'line-color': '#efbe25',
                 'line-width': 1.5
             }
         });
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             type: 'line',
             source: 'district',
             paint: {
-                'line-color': '#f36e57',
+                'line-color': '#efbe25',
                 'line-width': 1.5,
                 'line-dasharray': [3, 2]
             }
