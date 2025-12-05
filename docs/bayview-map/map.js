@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     if (window.innerWidth < 768) {
-        map.setZoom(11.8);  // adjust to taste (11.5, 11.7, etc.)
+        map.setZoom(10);  // adjust to taste (11.5, 11.7, etc.)
     }
 
     // Load GeoJSONs
