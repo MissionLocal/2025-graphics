@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         style: 'mapbox://styles/mlnow/cmis0bnr0000401sr9iyb6i1a',
         center: [-122.431297, 37.773972], // San Francisco center
         // center: [-122.3930439, 37.737747], // Bayview-ish center37.763335,-122.4460469
-        zoom: 10,
+        zoom: 11.3,
         maxBounds: [
             [-122.60, 37.68],   // southwest corner
             [-122.28, 37.88]    // northeast corner
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     if (window.innerWidth < 768) {
-        map.setZoom(10);  // adjust to taste (11.5, 11.7, etc.)
+        map.setZoom(11.3);  // adjust to taste (11.5, 11.7, etc.)
     }
 
     // Load GeoJSONs
