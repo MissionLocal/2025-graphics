@@ -1,0 +1,993 @@
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "barlow", sans-serif;
+        font-size: 16px;
+    }
+
+    a {
+        color: #5E5E5E;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    
+    a:hover {
+        color: #5682A9;
+    }
+    
+    a:visited {
+        color: #5E5E5E;
+    }
+
+    /* legend */
+
+    .legend {
+        display: flex;
+        flex-direction: column;
+        max-width: 1000px;
+        margin: 5px auto;
+        padding: 0 20px;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .legend-dot {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .green-dot {
+        background-color: #D0EBC7;
+    }
+
+    .yellow-dot {
+        background-color: #DBC297;
+    }
+
+    .red-dot {
+        background-color: #E8ADAB;
+    }
+
+    .grey-dot {
+        background-color: #858485;
+    }
+
+
+    /* category */
+
+    .portrait-category-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .portrait-category {
+        color: #848484;
+        margin: 15px 0;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .portrait-category::before,
+    .portrait-category::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background-color: #b2b2b2;
+        margin: 0 10px;
+    }
+
+
+    /* Latest */
+
+    .latest-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 40px 0;
+    }
+    .latest-content {
+        display: flex;
+        flex-direction: column;
+        min-width: 275px;
+        max-width: 640px;
+        width: 90%;
+    }
+    .intro-graf {
+        font-size: 18px;
+        line-height: 1.5;
+        margin: 0 0 20px 0;
+    }
+
+    .intro-graf p {
+        font-weight: bold;
+    }
+
+    .firstcharacter {
+        float: left;
+        font-size: 48px;
+        line-height: 40px;
+        padding-right: 8px;
+        font-weight: bold;
+    }
+
+
+    /* portraits */
+
+    .portrait-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 1000px;
+        margin: auto; /* Margin between containers */
+        padding: 0 10px; /* Padding on the sides of the container */
+        gap: 20px; /* Even spacing between columns */
+    }
+
+    .portrait-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 105px;
+        gap: 5px;
+    }
+    
+    .portrait-row img {
+        width: 100px;
+        height: auto;
+    }
+
+    .portrait-row img:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+
+    .portrait-name {
+        font-weight: bold;
+        padding: 2px 0; 
+        justify-content: center;
+        text-align: center;
+    }
+
+    .portrait-title {
+        font-size: 14px;
+        color: #555;
+        padding: 0 0 2px 0;
+        justify-content: center;
+        text-align: center;
+    }
+
+
+    /* bio */
+
+    .bio {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .bio-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px 15px 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        min-width: 275px;
+        max-width: 600px;
+        width: 90%;
+        gap: 10px;
+    }
+
+    .bio-title {
+        font-size: 24px;
+        font-weight: 900;
+        margin: 20px 0 12px 0;
+        padding: 0;
+    }
+
+    .bio-card {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .bio-card img {
+        width: 100px;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .bio-short-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .bio-long-info {
+        margin-top: 15px;
+        line-height: 1.5;
+        padding-left: 20px;
+    }
+
+    .former-bio-long-info {
+        margin-top: 15px;
+        line-height: 1.5;
+        padding-left: 5px;
+    }
+
+    .read-more {
+        margin-top: 15px;
+        line-height: 1.5;
+        padding-left: 5px;
+    }
+
+    .name {
+        font-weight: bold;
+        font-size: 18px;
+        padding: 0 0 10px 0;
+    }
+
+    .status, .department {
+        font-size: 14px;
+        color: #555;
+        padding: 0 0 5px 0;
+    }
+
+    .who-is-leaving {
+        font-size: 20px;
+        font-weight: 900;
+        padding: 0 0 10px 0;
+    }
+
+
+    /* mobile */
+
+    @media screen and (max-width: 480px) {
+
+        .portrait-category {
+            margin: 5px 0;
+        }
+        
+        .portrait-title {
+            font-size: 14px;
+        }
+
+        .portrait-row img {
+            width: 80px;
+            height: auto;
+        }
+
+        .portrait-container {
+            width: 85px;
+            gap: 5px;
+        }
+
+        .bio-container {
+            width: 100%;
+        }
+        
+        .bio-title {
+            font-size: 20px;
+            font-weight: 900;
+            margin: 15px 0 10px 0;
+            padding: 0;
+        }
+        
+        .bio-card img {
+            width: 80px;
+            height: auto;
+            border-radius: 8px;
+        }
+    }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+<body>
+    <!-- last updated: Feb. 19, 2025 -->
+    <!-- what's latest -->
+    <div class="latest-box">
+        <div class="latest-content">
+            <div class="intro-graf"><span class="firstcharacter">S</span>ay what you will about <a href="https://missionlocal.org/2025/12/sf-marina-safeway-housing-daniel-lurie/">the Marina Safeway</a>, it really looks like a Safeway.</div>
+
+<div class="intro-graf">The 1959 edifice <a href="https://www.sfchronicle.com/sf/article/safeway-tower-housing-marina-21224148.php">served as something of the prototype for all future Safeways</a>. It was, for the design of vast supermarket warehouses, what <a href="https://x.com/DannyDeraney/status/1998544806377828444?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Etweet">Margaret Hamilton’s performance</a> as the Wicked Witch was for all future portrayals of cackling witches — the original and the best. </div>
+
+<div class="intro-graf">A sprawling 25-story, nearly 800-unit housing development has been proposed for this site, supermarket architectural heritage notwithstanding. And supermarket cultural heritage notwithstanding — this Safeway was immortalized as a heterosexual cruising hotspot in Armistead Maupin’s 1978 <a href="https://cdn.penguin.co.uk/dam-assets/books/9781804994252/9781804994252-sample.pdf">“Tales of the City.”</a></div>
+
+<div class="intro-graf">Mission Local has been unsuccessful in its attempts to reach Maupin to gauge his thoughts on the “Social Safeway” potentially being repurposed into the ground-floor tenant of an irregularly shaped crystal palace resembling the back end of a Princess cruise ship or, perhaps, <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Miami_Hurricanes_logo.svg/1200px-Miami_Hurricanes_logo.svg.png">the University of Miami “U” logo</a> after one too many spring break Jägerbombs.
+</div>
+
+<div class="intro-graf">It would be a transformation rivaling that of <a href="https://www.theguardian.com/books/2014/jan/22/days-anna-madrigal-armistead-maupin-review">mysterious landlady Mrs. Madrigal.</a></div>
+
+<div class="intro-graf">We did, however, reach everyone in San Francisco’s municipal, state and federal government, and the significant candidates aspiring for such positions. </div>
+
+<div class="intro-graf">For some officials, this is a situation that requires no small degree of semantic and logical jiu-jitsu. Mayor Daniel Lurie on Dec. 12 signed into law his <a href="https://missionlocal.org/2025/12/sf-upzoning-passes-board/">upzoning plan</a>, adding height and density to broad swaths of the city, with particular emphasis on well-resourced neighborhoods that have been resistant to change. </div>
+
+<div class="intro-graf">But he, and several of his key allies, are shocked, shocked at a plan to add height and density to one of the city’s most well-well-resourced enclaves — and a place that has long proven nigh-invulnerable to change.</div>
+
+<div class="intro-graf">San Francisco’s present and aspirational leaders were all asked the following questions: </div>
+
+<div class="intro-graf"><p>1. Do you support the current housing proposal for the Marina Safeway?</p><p>2. If not, what would you support there?</p><p>3. What is your position on the other three current Safeway housing proposals?</p></div>
+
+<div class="intro-graf">And here are their responses: </div>
+        </div>
+    </div>
+    <!-- legend -->
+    <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot green-dot"></div>
+          <div>Supporting the Marina Safeway project</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot red-dot"></div>
+          <div>Opposing the Marina Safeway project</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot yellow-dot"></div>
+          <div>Ambiguous on the Marina Safeway project</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot grey-dot"></div>
+          <div>Declined to answer</div>
+        </div>
+        <div class="legend-item">
+            <div><span style="font-style: italic;">Click on the photos to read more about their positions.</span></div>
+        </div>
+    </div>
+
+    <!-- portraits: mayor -->
+
+        <div class="portrait-category-container" id="top">
+        <div class="portrait-category">the Mayor</div>
+    </div>
+    <div class="portrait-row">
+        <div class="portrait-container">
+            <a href="#mayor"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/daniel-lurie.png" alt="Daniel Lurie"></a>
+            <div class="portrait-name">Daniel Lurie</div>
+        </div>
+    </div>
+    <div class="portrait-category-container" id="top">
+        <div class="portrait-category">Board of Supervisors</div>
+    </div>
+    <div class="portrait-row">
+        <div class="portrait-container">
+            <a href="#sup-d1"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/connie-chan.png" alt="Connie Chan"></a>
+            <div class="portrait-name">Connie Chan</div>
+            <div class="portrait-title">District 1 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d2"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/stephen-sherrill.png" alt="Stephen Sherrill"></a>
+            <div class="portrait-name">Stephen Sherrill</div>
+            <div class="portrait-title">District 2 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d3"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/danny-sauter.png" alt="Danny Sauter"></a>
+            <div class="portrait-name">Danny Sauter</div>
+            <div class="portrait-title">District 3 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d4"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/alan-wong.png" alt="Paul Yep"></a>
+            <div class="portrait-name">Alan Wong</div>
+            <div class="portrait-title">District 4 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d5"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/bilal-mahmood.png" alt="Bilal Mahmood"></a>
+            <div class="portrait-name">Bilal Mahmood</div>
+            <div class="portrait-title">District 5 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d6"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/matt-dorsey.png" alt="Matt Dorsey"></a>
+            <div class="portrait-name">Matt Dorsey</div>
+            <div class="portrait-title">District 6 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d7"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/myrna-melgar.png" alt="Myrna Melgar"></a>
+            <div class="portrait-name">Myrna Melgar</div>
+            <div class="portrait-title">District 7 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d8"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/rafael-mandelman.png" alt="Rafael Mandelman"></a>
+            <div class="portrait-name">Rafael Mandelman</div>
+            <div class="portrait-title">District 8 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d9"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/jackie-fielder.png" alt="Jackie Fielder"></a>
+            <div class="portrait-name">Jackie Fielder</div>
+            <div class="portrait-title">District 9 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d10"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/shamann-walton.png" alt="Shamann Walton"></a>
+            <div class="portrait-name">Shamann Walton</div>
+            <div class="portrait-title">District 10 supervisor</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d11"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/chyanne-chen.png" alt="Chyanne Chen"></a>
+            <div class="portrait-name">Chyanne Chen</div>
+            <div class="portrait-title">District 11 supervisor</div>
+        </div>
+    </div>
+
+    <!-- portraits: major department heads -->
+    <div class="portrait-category-container">
+        <div class="portrait-category">Notable candidates for the Board of Supervisors</div>
+    </div>
+    <div class="portrait-row">
+        <div class="portrait-container">
+            <a href="#d2-candidate-lori"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/lori-brooke.png" alt="Lori Brooke"></a>
+            <div class="portrait-name">Lori Brooke</div>
+            <div class="portrait-title">District 2 candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#d4-candidate-albert"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/albert-chow.png" alt="Albert Chow"></a>
+            <div class="portrait-name">Albert Chow</div>
+            <div class="portrait-title">District 4 candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#d4-candidate-natalie"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/natalie-gee.png" alt="Natalie Gee"></a>
+            <div class="portrait-name">Natalie Gee</div>
+            <div class="portrait-title">District 4 candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#d4-candidate-david"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/david-lee.png" alt="David Lee"></a>
+            <div class="portrait-name">David Lee</div>
+            <div class="portrait-title">District 4 candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#d8-candidate-gary"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/gary-mccoy.png" alt="Gary McCoy"></a>
+            <div class="portrait-name">Gary McCoy</div>
+            <div class="portrait-title">District 8 candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#d8-candidate-michael"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/michael-nguyen.png" alt="Michael Nguyen"></a>
+            <div class="portrait-name">Michael Nguyen</div>
+            <div class="portrait-title">District 8 candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#d8-candidate-manny"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/manny-yekutiel.png" alt="Manny Yekutiel"></a>
+            <div class="portrait-name">Manny Yekutiel</div>
+            <div class="portrait-title">District 8 candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#d10-candidate-theo"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/theo-ellington.png" alt="Theo Ellington"></a>
+            <div class="portrait-name">Theo Ellington</div>
+            <div class="portrait-title">District 10 candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#d10-candidate-jr"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/jr-eppler.png" alt="J.R. Eppler"></a>
+            <div class="portrait-name">J.R. Eppler</div>
+            <div class="portrait-title">District 10 candidate</div>
+        </div>
+    </div>
+
+    <!-- portraits: transition team -->
+    <div class="portrait-category-container">
+        <div class="portrait-category">State representatives</div>
+    </div>
+    <div class="portrait-row">
+        <div class="portrait-container">
+            <a href="#matt-haney"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/matt-haney.png" alt="Matt Haney"></a>
+            <div class="portrait-name">Matt Haney</div>
+            <div class="portrait-title">Assemblymember</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#catherine-stefani"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/catherine-stefani.png" alt="Catherine Stefani"></a>
+            <div class="portrait-name">Catherine Stefani</div>
+            <div class="portrait-title">Assemblymember</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#scott-wiener"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/scott-wiener.png" alt="Scott Wiener"></a>
+            <div class="portrait-name">Scott Wiener</div>
+            <div class="portrait-title">State senator</div>
+        </div>
+    </div>
+
+        <!-- portraits: transition team -->
+    <div class="portrait-category-container">
+        <div class="portrait-category">Congressional candidates</div>
+    </div>
+    <div class="portrait-row">
+        <div class="portrait-container">
+            <a href="#saikat"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/saikat-chakarbarti.png" alt="Saikat Chakarbarti"></a>
+            <div class="portrait-name">Saikat Chakarbarti</div>
+            <div class="portrait-title">Congressional candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#sup-d1"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/connie-chan.png" alt="Connie Chan"></a>
+            <div class="portrait-name">Connie Chan</div>
+            <div class="portrait-title">Congressional candidate</div>
+        </div>
+        <div class="portrait-container">
+            <a href="#scott-wiener"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/scott-wiener.png" alt="Scott Wiener"></a>
+            <div class="portrait-name">Scott Wiener</div>
+            <div class="portrait-title">Congressional candidate</div>
+        </div>
+    </div>
+
+    <!-- bio info -->
+    <div class="bio">
+        <!-- mayor: bio info -->
+        <div class="bio-container" id="mayor">
+            <div class="bio-title">Mayor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/daniel-lurie.png" alt="Daniel Lurie">
+                <div class="bio-short-info">
+                    <div class="name">Daniel Lurie</div>
+                    <div class="department">Mayor's Office</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>The Family Zoning plan creates certainty for our neighborhoods and the developer trying to sneak in a project right before the Family Zoning plan takes effect is a violation of the spirit of that work.</p>
+                <p><b>2. If not, what would you support there?</b></p>
+
+                <p>We want to see San Francisco build more housing that works for their respective neighborhoods.</p>
+
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+
+                <p>As with every development proposal, the Mayor's Office and Planning Department are reviewing these projects closely. What distinguishes them is that the developers did not seek to circumvent or preempt the Family Zoning plan before it goes into effect.</p>
+ <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="sup-d1">
+            <div class="bio-title">District 1 supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/connie-chan.png" alt="Connie Chan">
+                <div class="bio-short-info">
+                    <div class="name">Connie Chan</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Re-elected in November 2024.</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+            <p>This is the Sacramento version of housing that destroys our neighborhoods. As this project has made clear, State Senator Scott Wiener and legislators in Sacramento have put developers in the driver’s seat and we are all just along for the ride.
+            </p>
+            <p>We need housing that's affordable for working people and families. The proposed development at the Marina Safeway will only produce 10% — 86 total — of affordable units out of almost 900.
+            </p>
+            <p>I've advocated and negotiated for housing projects, including 100% affordable senior housing and market-rate family housing with affordable units on site. I’ve worked with non-profit housing developers and property owners on projects that have significant development, protect our small business, are built with prevailing wage and labor standards, and preserve our history. That's what we accomplished at the Alexandria Theatre — we can build the housing our neighborhoods and communities need.</p>
+
+            <p>There's potential to rethink these Safeway sites in a way that truly serves San Franciscans, and builds housing that our teachers, nurses, firefighters, and construction workers can afford.</p>
+
+            <p>Unfortunately due to state laws, it no longer matters what San Francisco needs — or our residents want.</p>
+            <a href="#top">Back ↑</a>
+            </div>
+            </div>
+        <div class="bio-container" id="sup-d2">
+            <div class="bio-title">District 2 supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/stephen-sherrill.png" alt="Stephen Sherrill">
+                <div class="bio-short-info">
+                    <div class="name">Stephen Sherrill</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Appointed by Mayor London Breed</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>I do not support the current Marina Safeway proposal. The project relies on an oddity in our current planning code that artificially inflates the base project size before state density bonuses are applied. That approach sidesteps the community’s work and undermines a thoughtful, democratic planning process. The Family Zoning Plan corrects this oddity, making any potential project much more appropriate for this spot.</p>
+                <p>Since taking office, I have worked parcel-by-parcel with every neighborhood association and merchant group in District 2 to understand where we can responsibly add housing so the next generation of San Franciscans can thrive. On Tuesday, I proudly voted yes on the Family Zoning Plan because it provides consistency, predictability, and a clear path for future housing development across the city.</p>
+                <p><b>2. If not, what would you support there?</b></p>
+
+                <p>In my conversations with neighbors, they have emphasized the critical importance of a grocery store with a pharmacy in the neighborhood. Any conversation about any potential project needs to start with uninterrupted access to a grocery store and pharmacy.</p>
+
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+
+                <p>I will work with the Supervisors of the districts who represent those parcels as they know their neighborhoods best. I trust that they will thoughtfully go through the process of community outreach.</p>
+ <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <!-- four deputies -->
+        <div class="bio-container" id="sup-d3">
+            <div class="bio-title">District 3 supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/danny-sauter.png" alt="Danny Sauter">
+                <div class="bio-short-info">
+                    <div class="name">Danny Sauter</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Elected in November 2024</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>We need more housing in every neighborhood, especially the Marina. I appreciate that most of the recent Safeway proposals across the city are similar to the standards we had in mind when crafting the Family Zoning Plan: reasonable additional height in commercial corridors. I think most people would agree with me that the Marina Safeway proposal doesn't fit that, and I think we can do better. </p> <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="sup-d4">
+            <div class="bio-title">District 4 supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/alan-wong.png" alt="Alan Wong">
+                <div class="bio-short-info">
+                    <div class="name">Alan Wong</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Appointed by Mayor Daniel Lurie in December 2025</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>I support what is in line with the Family Zoning Plan.</p> <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="sup-d5">
+            <div class="bio-title">District 5 Supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/bilal-mahmood.png" alt="Bilal Mahmood">
+                <div class="bio-short-info">
+                    <div class="name">Bilal Mahmood</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Named by then Mayor-elect Daniel Lurie on Jan. 7, 2025.</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>I am supportive of housing being built everywhere. I think it’s exciting to see diff modalities being proposed, and different designs in different neighborhoods. If I have a concern, it’s that the developer biting off more than he can chew. Align has made commitments at the Fillmore site to have a grocery store long-term and short-term. For my constituents, I need to make sure they are being served there. I want to make sure Align follows through on that promise.</p> 
+
+                <p>I cannot speak to what promises they’ve made in the other neighborhoods. My primary concern is making sure they follow through on their promises here [District 5]. Hopefully they don’t get stretched too thin.</p>
+
+                <p>My primary concern is making sure follow-through on the promises here and hopefully the developers don’t get stretched too thin. </p>
+                <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="sup-d6">
+            <div class="bio-title">District 6 supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/matt-dorsey.png" alt="Matt Dorsey">
+                <div class="bio-short-info">
+                    <div class="name">Matt Dorsey</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Appointed by Mayor London Breed in 2022 and elected in November 2022.</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>I like the design and I like the density. Everything else being equal, if this were to come before me at the Board of Supervisors, I would support it. With that said, I realize I represent a district of people who self-select to live in a high-density neighborhood. I myself live in a 24-story building. I am in the safest YIMBY district in San Francisco, if not California. </p>
+
+                <p>In the Fillmore, the proposal is not out-of-scale. There are definitely buildings there that are high-rises. The height really doesn’t bother me in the Marina, either. I know people in the neighborhood may feel differently. </p>
+
+                <p>I can say confidently, I would be supportive of the other housing proposals at other Safeways. I like density and I think having amenities like a supermarket is a good thing for a complete neighborhood. Absent some other factor that would really weigh against it — assuming we even have discretion — I would be inclined to support it.  
+                </p>
+                <p>My perspective on this may not be universal. But I like density. I want the supermarket in my development back. Hopefully the Whole Foods will open soon. 
+                </p>
+<a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <!-- ending of four deputies -->
+        <div class="bio-container" id="sup-d7">
+            <div class="bio-title">District 7 supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/myrna-melgar.png" alt="Myrna Melgar">
+                <div class="bio-short-info">
+                    <div class="name">Myrna Melgar</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Re-elected in November 2024.</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                 <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>Yes.</p>
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+                <p>Yes.</p> <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="sup-d8">
+            <div class="bio-title">District 8 supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/rafael-mandelman.png" alt="Rafael Mandelman">
+                <div class="bio-short-info">
+                    <div class="name">Rafael Mandelman</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Elected in November 2018, and re-elected in 2022.</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>I am inclined to support the non-Marina proposals, though I have not closely reviewed them. I would love to see housing move forward on the Market Street site, as anticipated in the Family Zoning legislation. Development along the waterfront should be consistent with our local height limits and San Francisco’s longstanding planning priority of avoiding tall buildings right at the waterfront.</p>
+                <p>My personal preference would be to step height back from the waterfront, and I think that’s basically just good planning, but what’s especially problematic about a proposal like the one for the Marina Safeway is that it bears no resemblance to the planned and debated height limits that have been locally evaluated, debated and approved.</p> <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="sup-d9">
+            <div class="bio-title">District 9 Supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/jackie-fielder.png" alt="Jackie Fielder">
+                <div class="bio-short-info">
+                    <div class="name">Jackie Fielder</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Elected in November 2024</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>Yes, though wish it was more affordable.</p>
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+                <p>Yes.</p>
+ <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="sup-d10">
+            <div class="bio-title">District 10 Supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/shamann-walton.png" alt="Shamann Walton">
+                <div class="bio-short-info">
+                    <div class="name">Shamann Walton</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Elected in 2022.</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>I will say that it seems highly hypocritical that the mayor doesn’t [support the Marina proposal], after forcing an ill-advised zoning plan on the city. I always knew the zoning plan was a farce and there are no plans to build coming from the mayor’s office.</p>
+                <p>It’s also fun knowing the mayor never had an intent to build anything outside of SoMa and the Southeast.</p>
+<a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="sup-d11">
+            <div class="bio-title">District 11 Supervisor</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/chyanne-chen.png" alt="Chyanne Chen">
+                <div class="bio-short-info">
+                    <div class="name">Chyanne Chen</div>
+                    <div class="department">Board of Supervisors</div>
+                    <div class="status">Elected in November 2024.</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>The latest proposal for development at the Marina Safeway is what happens when we turn all power over to developers to decide what’s best for our communities.  Advocates of upzoning, density decontrol, streamlining, and ministerial approval got what they wanted.  Unfortunately, it leaves our communities out of the conversation.  We have to ask ourselves how would the proposal look different if we instead prioritize thoughtful infill development that centers community needs and goals.</p>
+                <p>Again, I’m pro-housing, but it must be responsible, equitable, and community-centered — with affordability maximized at every opportunity.</p><a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="d2-candidate-lori">
+            <div class="bio-title">District 2 supervisor candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/lori-brooke.png" alt="Lori Brooke">
+                <div class="bio-short-info">
+                    <div class="name">Lori Brooke</div>
+                    <div class="department">Founder of Neighborhood United</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>No. And I think it’s important to hold accountable the politicians who are now claiming to oppose this project, even though their own votes and policies made it possible. That kind of messaging misleads the public and reflects a serious lack of accountability.</p>
+                <p><b>2. If not, what would you support there?</b></p>
+
+                <p>I would support housing that is actually affordable for San Franciscans, built at a scale that fits the neighborhood, and developed through a genuine community-driven process, not something imposed on residents without their input.</p>
+
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+
+                <p>Those decisions should be made by the districts and the residents who live there. Each neighborhood deserves the right to shape what happens on its own commercial corridors.</p> <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="d4-candidate-albert">
+            <div class="bio-title">District 4 supervisor candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/albert-chow.png" alt="Albert Chow">
+                <div class="bio-short-info">
+                    <div class="name">Albert Chow</div>
+                    <div class="department">Owner of the Great Wall Hardware and supporter of Joel Engardio recall</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>I don’t support it.</p>
+                <p><b>2. If not, what would you support there?</b></p>
+
+                <p>It’s up to that district</p>
+
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+
+                <p>It’s up to whatever the residents want in those areas </p> <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="d4-candidate-natalie">
+            <div class="bio-title">District 4 supervisor candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/natalie-gee.png" alt="Natalie Gee">
+                <div class="bio-short-info">
+                    <div class="name">Natalie Gee</div>
+                    <div class="department">Legislative aide to District 10 Supervisor Shamann Walton</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>Yes [I support the Marina proposal], but like all development, it’s important that we fight for as much affordable housing as possible.</p> 
+
+<p>My primary concern is District 4, so if there were a proposal to develop a Safeway site in the district, I would welcome building homes on that site, so long as there is still a quality, affordable grocery store, and the new development has the same amount or more parking (and electric vehicle charging stations). I would also want to make sure that if the store shuts down temporarily, the workers would be guaranteed their jobs at the proposed site and are assigned to other stores during construction. </p>
+<p>As with any major decision affecting the neighborhood, I would want to hear from the community about their needs, and I would work with the developer to make sure the project was the best fit possible for the Sunset. I will work tirelessly to make sure we bring development that meets the needs of new and existing residents, fits the sunset, and makes our neighborhood a better place to live. That said, I will work equally hard to fight projects like the Sloat Blvd. skyscraper that are being proposed by scammers in bad faith.</p>
+<a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="d4-candidate-david">
+            <div class="bio-title">District 4 supervisor candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/david-lee.png" alt="David Lee">
+                <div class="bio-short-info">
+                    <div class="name">David Lee</div>
+                    <div class="department">Former State Assembly and District 1 supervisor candidate</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>That is a District 2 question.</p>
+                <p><b>2. If not, what would you support there?</b></p>
+                <p>This is also a District 2 question.</p>
+
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+                <p>I recognize that there is a need for building more housing.  I hope their district representatives will work with their communities to find a compromise where the need for housing, access to a grocery store and mitigation of neighborhood impacts are considered.</p><a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="d8-candidate-gary">
+            <div class="bio-title">District 8 supervisor candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/gary-mccoy.png" alt="Gary McCoy">
+                <div class="bio-short-info">
+                    <div class="name">Gary McCoy</div>
+                    <div class="department">TK</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>Yes.</p>
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+                <p>Absolutely yes.</p> <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="d8-candidate-michael">
+            <div class="bio-title">District 8 supervisor candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/michael-nguyen.png" alt="Michael Nguyen">
+                <div class="bio-short-info">
+                    <div class="name">Michael Nguyen</div>
+                    <div class="department">TK</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>The 25 story behemoth feels a little out of place in the Marina. The very real backlash makes sense when you don’t get community input. That said, with the 86 affordable units it provides, 6X more affordable homes that have been built in the Marina in the past 2 decades, it is an opening salvo that I would hope will be a starting point for future negotiations.</p>
+                <p><b>2. If not, what would you support there?</b></p>
+
+                <p>I would support a mixed use development with more affordable housing built with middle income housing. I would want to get community input on how high the building would be, along with the size of units (2 and 3 bedrooms seem more appropriate for family-sized housing). If there’s room for more negotiation, I would advocate for implementing rent control / rent stabilization of the new units after a 30 year period of market rate housing so that, eventually, these units will become rent controlled. That, of course, assumes that Costa Hawkins gets repealed before the 30 year period ends.</p>
+
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+
+                <p>I don’t support the current plans for the other 3 locations because they also seem to be skipping the neighborhood input step. However, I am excited that Safeway seems willing to start these development conversations after years of silence.</p>
+                <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="d8-candidate-manny">
+            <div class="bio-title">District 8 supervisor candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/manny-yekutiel.png" alt="Manny Yekutiel">
+                <div class="bio-short-info">
+                    <div class="name">Manny Yekutiel</div>
+                    <div class="department">Owner of Manny's and founder of Civic Joy Fund</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>I don't have a position on this.</p>
+                <p><b>2. If not, what would you support there?</b></p>
+
+                <p>I'd defer to Supervisor Sherrill.</p>
+
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+
+                <p>I wish the Safeway in the Castro was one of them!</p> <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="d10-candidate-theo">
+            <div class="bio-title">District 10 supervisor candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/theo-ellington.png" alt="Unfilled">
+                <div class="bio-short-info">
+                    <div class="name">Theo Ellington</div>
+                    <div class="department">TK</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>I’m focused on solutions for the Southeast side of San Francisco, where parts of our community are food deserts and we have plenty of room to build. No debate needed — we welcome more housing and a new grocery store.</p><a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="d10-candidate-jr">
+            <div class="bio-title">District 10 supervisor candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/jr-eppler.png" alt="J.R. Eppler">
+                <div class="bio-short-info">
+                    <div class="name">J.R. Eppler</div>
+                    <div class="department">TK</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>I'm running in District 10, which does not have a Safeway—and in parts of the district, a lack of convenient, full service grocery options altogether. That said, I prefer projects where developers and neighbors can work together in good faith to create a plan that allows us to build housing that's affordable and meets the needs of our communities. That's what we did with the Sophie Maxwell building and I was proud to be part of that effort. Surprising neighbors and electeds with what appears to be fully baked plans is seldom a recipe for success.</p><a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="matt-haney">
+            <div class="bio-title">State Assemblymember</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/matt-haney.png" alt="Matt Haney">
+                <div class="bio-short-info">
+                    <div class="name">Matt Haney</div>
+                    <div class="department">Elected in April 2022.</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p>I don't have a comment.</p><a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <!-- major department heads: bio info -->
+        <div class="bio-container" id="catherine-stefani">
+            <div class="bio-title">State Assemblymember</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/catherine-stefani.png" alt="Catherine Stefani">
+                <div class="bio-short-info">
+                    <div class="name">Catherine Stefani</div>
+                    <div class="department">Elected in November 2024.</div>
+                </div>
+            </div> 
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>No. The proposal that was submitted completely undermines the city’s careful work to create a predictable, community-informed framework for new housing. After two years of public process, analysis, and genuine collaboration on the Family Zoning plan, this project attempts to bypass those rules before they take effect. That kind of maneuver erodes public trust and fuels backlash at a time when we need stability and real pathways to build more homes across the city.</p>
+                <p><b>2. If not, what would you support there?</b></p>
+                <p>I support new housing and a modernized grocery store on this site. A reasonable, well-designed mixed-use project that respects the scale envisioned in the Family Zoning plan and preserves this essential neighborhood resource is entirely appropriate. </p>
+
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+
+                <p>I support adding housing on underutilized sites citywide, including the other Safeway properties, as long as the projects follow the framework San Francisco just adopted and are not built by exploiting gaps or loopholes in the law. The public deserves a predictable, fair process, and developers should work in good faith with communities and stay within the rules San Francisco set to distribute housing growth across the entire city.</p> <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="scott-wiener">
+            <div class="bio-title">State Senator</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/scott-wiener.png" alt="Scott Wiener">
+                <div class="bio-short-info">
+                    <div class="name">Scott Wiener</div>
+                    <div class="department">Elected in 2016.</div>
+                </div>
+            </div>
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>I support dense housing at the Marina Safeway site. The current proposal is reasonable, and the city has already zoned the site for 550 homes, even without state law. The city has long planned for dense housing here.</p>
+
+                <p>I’m confident the developer will work with the City to refine the project to be the best possible. It’s also important to work toward keeping the Safeway open in some form during construction, or at least minimizing the length of the closure. Supermarket closures significantly impact residents, so minimizing the length of any closure is critical.</p>
+
+                <p><b>3. What is your position on the other three current Safeway housing proposals?</b></p>
+
+                <p>I support development of other Safeway sites as well, including in my own neighborhood, the Castro.</p>
+
+                <p>I’m the only candidate in the race who’s passed legislation to make it easier to build the homes we desperately need to lower the cost of living. It’s critical we continue to make progress on these issues.</p>
+
+                <p>Pretty much the same as my position on the Marina Safeway proposal, but I do want to point out the Fillmore proposal specifically. The Safeway there has already closed and that neighborhood has been desperate for a grocery store to replace it. I want to see the developer and city prioritize getting a new grocery store into the Fillmore site ASAP — regardless of future development plans.</p> 
+
+                <p>I also would prioritize the Fillmore site for more affordable units to make sure that project does not lead to further gentrification and displacement. The Fillmore is one of the only Black communities left in San Francisco and has a horrible history of the city forcibly removing thousands of Black residents and attempting to erase Black culture from the “Harlem of the West” in the 1960s and 70s through eminent domain and redevelopment. So any new plans for development must make sure the community there can afford to live in it.</p>
+
+                <a href="#top">Back ↑</a>
+            </div>
+        </div>
+        <div class="bio-container" id="saikat">
+            <div class="bio-title">Congressional candidate</div>
+            <div class="bio-card">
+                <img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/saikat-chakarbarti.png" alt="Saikat Chakarbarti">
+                <div class="bio-short-info">
+                    <div class="name">Saikat Chakarbarti</div>
+                    <div class="department">tk</div>
+                    <div class="status">tk</div>
+                </div>
+            </div>
+            <div class="bio-long-info">
+                <p><b>1. Do you support the current housing proposal for the Marina Safeway?</b></p>
+                <p>Yes. This proposal builds more affordable housing in the Marina than has been built in the last 15 years. There is also no risk of gentrification because it is in a wealthy neighborhood. It is absolutely the kind of place we should be building more housing.</p>
+
+                <p>However, I would love to see even more affordable units in the project – and my proposal for a Reconstruction Finance Corporation would be able to provide low-interest financing for this project in exchange for increasing the number of affordable units. That would be a priority for me in Congress.</p>
+
+                <p>I would also love to see a temporary grocery store while construction occurs and a prioritization of making sure the Safeway re-opens as fast as possible.</p>
+
+                <p>And I would, of course, prefer a project that has buy-in from neighbors as long as the total amount of housing, especially affordable housing, is still built. But we should not let perfect be the enemy of the good when we are in the middle of a housing crisis.</p>
+                <p></p><a href="#top">Back ↑</a>
+            </div>
+        </div>
+    </div>
+      
+</body>
