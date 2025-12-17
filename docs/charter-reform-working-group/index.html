@@ -22,33 +22,6 @@
         color: #5E5E5E;
     }
 
-    /* category */
-
-    .portrait-category-container {
-        max-width: 850px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .portrait-category {
-        color: #848484;
-        margin: 15px 0;
-        display: flex; 
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .portrait-category::before,
-    .portrait-category::after {
-        content: '';
-        flex: 1;
-        height: 1px;
-        background-color: #b2b2b2;
-        margin: 0 10px;
-    }
-
-
     /* Latest */
 
     .latest-box {
@@ -71,7 +44,6 @@
         margin: 0 0 20px 0;
     }
 
-
     /* portraits */
 
     .portrait-row {
@@ -82,6 +54,13 @@
         margin: auto; /* Margin between containers */
         padding: 0 10px; /* Padding on the sides of the container */
         gap: 20px; /* Even spacing between columns */
+    }
+
+    .bio-portraits {
+        margin-top: 20px;
+    }
+    .bio-portraits .portrait-row {
+        padding: 0;
     }
 
     .portrait-container {
@@ -188,6 +167,83 @@
             padding: 0;
         }
     }
+
+    /* popup container (no overlay) */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* popup card */
+    .modal-content {
+        background: rgba(255, 255, 255);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        max-width: 560px;
+        width: calc(100vw - 40px);
+        max-height: 80vh;
+        overflow-y: auto;
+        border-radius: 10px;
+        padding: 24px;
+        position: relative;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    /* close button */
+    .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        font-size: 26px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #555;
+    }
+
+    .modal-close:hover {
+        color: #000;
+    }
+
+    /* header */
+    .modal-header {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        margin-bottom: 14px;
+    }
+
+    .modal-header img {
+        width: 85px;
+        height: auto;
+    }
+
+    .modal-name {
+        font-size: 22px;
+        font-weight: 900;
+    }
+
+    .modal-title {
+        font-size: 15px;
+        color: #666;
+    }
+
+
+    /* mobile */
+    @media screen and (max-width: 480px) {
+        .modal-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .modal-header img {
+            width: 80px;
+        }
+    } 
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -196,285 +252,640 @@
     <div class="latest-box">
         <div class="latest-content">
             <div class="intro-graf">Mayor Daniel Lurie is teaming up with Board President Rafael Mandelman to reform San Francisco's 548-page <a href="https://missionlocal.org/2025/11/spur-sf-charter-reform/">city charter</a>, and the pair has assembled a 28-person working group to take on the issue.</div>
-            <div class="intro-graf">They come from a variety of backgrounds: Six of them are City Hall officials, including Mandelman and Lurie's policy chief, Alicia John-Baptiste; four are from moderate political pressure groups that have spent heavily to lobby and campaign for politicos in this city, and four come from philanthropy, including the personal foundation of venture capitalist billionaire Michael Moritz.</div>
+            <div class="intro-graf">They come from a variety of backgrounds: Six are City Hall officials, including Mandelman and Lurie's policy chief, Alicia John-Baptiste; four are from political pressure groups that have spent heavily to lobby and campaign for different political figures; and four come from philanthropy, including one from the personal foundation of venture capitalist billionaire Michael Moritz.</div>
             <div class="intro-graf">Six are from the business and development sector, two are from urban think tanks, and five herald from universities and community nonprofits. Just one is from organized labor.</div>
-            <div class="intro-graf">Notably absent is anyone associated with <a href="https://missionlocal.org/2024/09/togethersf-wants-structural-change-in-city-hall-internal-doc-shows-its-just-beginning/">TogetherSF</a>, the defunct group behind a $9.5 million failed campaign last year to pass a ballot measure that would have drastically reshaped the charter. The group collapsed earlier this year. Its leaders spun up a new group, but remain on the outs with Lurie.</div>
-            <div class="intro-graf">Public pressure groups and wealthy donors told Mission Local last year that, despite the implosion of TogetherSF's effort, charter reform would continue to be a major focus for the coming years. Lurie's task force is in line with those goals.</div>
+            <div class="intro-graf">Notably absent is any personnel associated with <a href="https://missionlocal.org/2024/09/togethersf-wants-structural-change-in-city-hall-internal-doc-shows-its-just-beginning/">TogetherSF</a>, the defunct group behind a failed <a href="https://missionlocal.org/2024/11/michael-moritz-togethersf-sf-elections-november-2024/">$9.5 million campaign</a> last year to pass a <a href="https://missionlocal.org/2024/10/prop-d-cuts-empowers-and-weakens-all-explained-in-60-seconds/">ballot measure</a>a that would have drastically reshaped the charter. It was, however, heavily financed by Moritz.</div>
+            <div class="intro-graf">Public pressure groups and wealthy donors <a href="https://missionlocal.org/2024/12/the-2024-election-is-over-what-will-san-franciscos-big-money-groups-do-next/">told <i>Mission Local</i> last year</a> that, despite the implosion of TogetherSF's effort, charter reform would continue to be a major focus for the coming years. Lurie's task force is in line with those goals.</div>
+            <div class="intro-graf"><i>Click on their photos to read more.</i></italic></div>
         </div>
-    </div>
-
-    <!-- portraits: city hall officials -->
-    <div class="portrait-category-container" id="top">
-        <div class="portrait-category">City Hall Officials</div>
-    </div>
-    <div class="portrait-row">
-        <div class="portrait-container">
-            <a href="#city-hall"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Rafael-Mandelman-blank.png" alt="Rafael Mandelman"></a>
-            <div class="portrait-name">Rafael Mandelman</div>
-            <div class="portrait-title">Board president</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#city-hall"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Bilal-Mahmood.png" alt="Bilal Mahmood"></a>
-            <div class="portrait-name">Bilal Mahmood</div>
-            <div class="portrait-title">District 5 Supervisor</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#city-hall"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Chyanne-Chen.png" alt="Chyanne Chen"></a>
-            <div class="portrait-name">Chyanne Chen</div>
-            <div class="portrait-title">District 11 Supervisor</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#city-hall"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Carmen-Chu.png" alt="Carmen Chu"></a>
-            <div class="portrait-name">Carmen Chu</div>
-            <div class="portrait-title">City Administrator</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#city-hall"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Greg-Wagner.png" alt="Greg Wagner"></a>
-            <div class="portrait-name">Greg Wagner</div>
-            <div class="portrait-title">City Controller</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#city-hall"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Alicia-John-Baptiste.png" alt="Alicia John-Baptiste"></a>
-            <div class="portrait-name">Alicia John-Baptiste</div>
-            <div class="portrait-title">Mayor's Policy Chief</div>
-        </div>
-    </div>
-
-    <!-- portraits: Political Pressure Groups -->
-    <div class="portrait-category-container">
-        <div class="portrait-category">Political Pressure Groups</div>
-    </div>
-    <div class="portrait-row">
-        <div class="portrait-container">
-            <a href="#pressure"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Sachin-Agarwal.png" alt="Sachin Agarwal"></a>
-            <div class="portrait-name">Sachin Agarwal</div>
-            <div class="portrait-title">GrowSF</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#pressure"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Larry-Baer.png" alt="Larry Baer"></a>
-            <div class="portrait-name">Larry Baer</div>
-            <div class="portrait-title">Advance SF</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#pressure"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Meredith-Dodson.png" alt="Meredith Dodson"></a>
-            <div class="portrait-name">Meredith Dodson</div>
-            <div class="portrait-title">San Francisco Parent Coalition</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#pressure"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Andres-Power.png" alt="Andres Power"></a>
-            <div class="portrait-name">Andres Power</div>
-            <div class="portrait-title">Abundant SF</div>
-        </div>
-    </div>
-
-    <!-- portraits: labor -->
-    <div class="portrait-category-container">
-        <div class="portrait-category">Labor</div>
-    </div>
-    <div class="portrait-row">
-        <div class="portrait-container">
-            <a href="#labor"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Kim-Tavalionge.png" alt="Kim Tavaglione"></a>
-            <div class="portrait-name">Kim Tavaglione</div>
-            <div class="portrait-title">San Francisco Labor Council</div>
-        </div>
-    </div>
-
-    <!-- portraits: philanthropy -->
-    <div class="portrait-category-container">
-        <div class="portrait-category">Philanthropy</div>
-    </div>
-    <div class="portrait-row">
-        <div class="portrait-container">
-            <a href="#philanthropy"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Fred-Blackwell.png" alt="Fred Blackwell"></a>
-            <div class="portrait-name">Fred Blackwell</div>
-            <div class="portrait-title">San Francisco Foundation</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#philanthropy"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Bob-Fisher.png" alt="Bob Fisher"></a>
-            <div class="portrait-name">Bob Fisher</div>
-            <div class="portrait-title">Pisces Foundation</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#philanthropy"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Susan-Hirsch.png" alt="Susan Hirsch"></a>
-            <div class="portrait-name">Susan Hirsch</div>
-            <div class="portrait-title">Third Plateau</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#philanthropy"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Narula-Missy.png" alt="Missy Narula"></a>
-            <div class="portrait-name">Missy Narula</div>
-            <div class="portrait-title">Crankstart Foundation</div>
-        </div>
-    </div>
-
-    <!-- portraits: business and real estate -->
-    <div class="portrait-category-container">
-        <div class="portrait-category">Business and Real Estate</div>
-    </div>
-    <div class="portrait-row">
-        <div class="portrait-container">
-            <a href="#business"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Josh-Arce.png" alt="Josh Arce"></a>
-            <div class="portrait-name">Josh Arce</div>
-            <div class="portrait-title">California Alliance for Jobs</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#business"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Katherine-August-deWilde.png" alt="Katherine August-deWilde"></a>
-            <div class="portrait-name">Katherine August-deWilde</div>
-            <div class="portrait-title">Partnership for SF</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#business"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Rodney-Fong.png" alt="Rodney Fong"></a>
-            <div class="portrait-name">Rodney Fong</div>
-            <div class="portrait-title">SF Chamber of Commerce</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#business"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Shola-Olatoye.png" alt="Shola Olatoye"></a>
-            <div class="portrait-name">Shola Olatoye</div>
-            <div class="portrait-title">SF Downtown Development Corporation</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#business"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Tim-Omi.png" alt="Tim Omi"></a>
-            <div class="portrait-name">Tim Omi</div>
-            <div class="portrait-title">SF Council of District Merchants Associations</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#business"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Anna-Marie-Presutti.png" alt="Anna Marie Presutti"></a>
-            <div class="portrait-name">Anna Marie Presutti</div>
-            <div class="portrait-title">SF Downtown Development Corporation</div>
-        </div>
-    </div>
-
-    <!-- portraits: urban think tanks -->
-    <div class="portrait-category-container">
-        <div class="portrait-category">Urban Think Tanks</div>
-    </div>
-    <div class="portrait-row">
-        <div class="portrait-container">
-            <a href="#think-tank"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Ben-Rosenfield.png" alt="Ben Rosenfield"></a>
-            <div class="portrait-name">Ben Rosenfield</div>
-            <div class="portrait-title">SPUR</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#think-tank"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Natalie-Sandoval.png" alt="Natalie Sandoval"></a>
-            <div class="portrait-name">Natalie Sandoval</div>
-            <div class="portrait-title">Urban Land Institute</div>
-        </div>
-    </div>
-
-    <!-- portraits: urban think tanks -->
-    <div class="portrait-category-container">
-        <div class="portrait-category">Universities and Nonprofits</div>
-    </div>
-    <div class="portrait-row">
-        <div class="portrait-container">
-            <a href="#uni"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Dan-Bernal.png" alt="Dan Bernal"></a>
-            <div class="portrait-name">Dan Bernal</div>
-            <div class="portrait-title">UCSF</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#uni"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Anni-Chung.png" alt="Anni Chung"></a>
-            <div class="portrait-name">Anni Chung</div>
-            <div class="portrait-title">Self-Help for the Elderly</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#uni"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Lynn-Mahoney.png" alt="Lynn Mahoney"></a>
-            <div class="portrait-name">Lynn Mahoney</div>
-            <div class="portrait-title">San Francisco State University</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#uni"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Michael-Pappas.png" alt="Michael Pappas"></a>
-            <div class="portrait-name">Michael Pappas</div>
-            <div class="portrait-title">Interfaith Council</div>
-        </div>
-        <div class="portrait-container">
-            <a href="#uni"><img src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Shakira-Simley.png" alt="Shakirah Simley"></a>
-            <div class="portrait-name">Shakirah Simley</div>
-            <div class="portrait-title">Booker T. Washington Community Service Center</div>
-        </div> 
     </div>
 
     <!-- bio info -->
     <div class="bio">
         <!-- city hall officials info -->
-        <div class="bio-container" id="city-hall">
+        <div class="bio-container">
             <div class="bio-title">City Hall Officials</div>
             <div class="bio-long-info">
-                Six top City Hall officials are involved in the charter reform working group, coming from the Board of Supervisors, the mayor's office and city departments.<br></br>
-                <b>Rafael Mandelman</b>, who is leading the effort, is joined by two newly elected supervisors — one from the moderate slate and one from the progressives.<br></br>
-                <b>Bilal Mahmood</b> of <b>District 5</b>, who during the November 2024 election was backed by moderate political pressure groups such as GrowSF, is joining the group; GrowSF also secured a seat at the table. And <b>Chyanne Chen</b> of <b>District 11</b>, who was largely supported by organized labor. Unions only managed to get one representative at the table.<br></br>
-                <b>Alicia John-Baptiste</b>, who is <b>Lurie's policy chief</b> on infrastructure, climate and mobility, is representing the mayor's office in the group. Charter reform is now one of Lurie's key priorities, according to the mayor's office, and John-Baptiste is well-positioned to take the reins: She is the former CEO of SPUR, an urban think tank that recently published a report listing out 10 charter reform recommendations like increasing the power of the City Administrator and raising threshold for issues to end up on the ballot for voters.<br></br>
-                Senior city officials are also part of leading the conversation, including <b>City Administrator Carmen Chu</b>, who oversees more than 25 departments and an annual budget of over $750 million. One of the key recommendations from SPUR is to enhance the power of Chu and her department. <b>City Controller Greg Wagner</b>, who acts as the city's auditor and chief financial officer, is also involved. <a href="#top">Back ↑</a>
+                Six top City Hall officials are involved in the charter reform working group, coming from the Board of Supervisors, the mayor's office and city departments.
+            </div>
+            <div class="bio-portraits">
+                <div class="portrait-row">
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Rafael-Mandelman-blank.png"
+                            alt="Rafael Mandelman"
+                            onclick="openModal('modal-rafael')"
+                        >
+                        <div class="portrait-name">Rafael Mandelman</div>
+                        <div class="portrait-title">Board president</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Bilal-Mahmood.png"
+                            alt="Bilal Mahmood"
+                            onclick="openModal('modal-bilal')"
+                        >
+                        <div class="portrait-name">Bilal Mahmood</div>
+                        <div class="portrait-title">District 5 Supervisor</div>
+                    </div>
+
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Chyanne-Chen.png"
+                            alt="Chyanne Chen"
+                            onclick="openModal('modal-chyanne')"
+                        >
+                        <div class="portrait-name">Chyanne Chen</div>
+                        <div class="portrait-title">District 11 Supervisor</div>
+                    </div>
+
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Alicia-John-Baptiste.png"
+                            alt="Alicia John-Baptiste"
+                            onclick="openModal('modal-alicia')"
+                        >
+                        <div class="portrait-name">Alicia John-Baptiste</div>
+                        <div class="portrait-title">Mayor's policy chief</div>
+                    </div>
+
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Carmen-Chu.png"
+                            alt="Carmen Chu"
+                            onclick="openModal('modal-carmen')"
+                        >
+                        <div class="portrait-name">Carmen Chu</div>
+                        <div class="portrait-title">City Administrator</div>
+                    </div>
+
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Greg-Wagner.png"
+                            alt="Greg Wagner"
+                            onclick="openModal('modal-greg')"
+                        >
+                        <div class="portrait-name">Greg Wagner</div>
+                        <div class="portrait-title">City Controller</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- political pressure groups info-->
-        <div class="bio-container" id="pressure">
+        <!-- political pressure group info -->
+        <div class="bio-container">
             <div class="bio-title">Political pressure groups</div>
             <div class="bio-long-info">
-                Alongside the City Hall officials, several of San Francisco's most active political pressure groups have taken seats at the table as well, each bringing in their own power bases. All come from groups politically aligned with Lurie. <br></br>
-                Sachin Agarwal leads the tech-backed group GrowSF, which funded a slew of supervisor candidates from the moderate camp, including current board members Mahmood (District 5) and Danny Sauter (District 3). GrowSF influence is growing in the Lurie years: Tyler Law, Lurie's former campaign consultant, is now serving as the group's senior advisor. GrowSF has aligned itself with Lurie's agenda, such as the upzoning proposal and the effort to reform permitting in San Francisco.<br></br>
-                From the business sector, Larry Baer, the president and CEO of the San Francisco Giants, joins the group as the co-chair of Advance SF, a business coalition advocating for downtown revitalization. The group's members include major employers like OpenAI, Google, PG&E, Visa, Gap and Waymo.<br></br>
-                Meredith Dodson, head of both the San Francisco Parent Coalition and its political affiliate SF Parent Action, is also at the table. Dodson and her group backed the 2022 school board recall.<br></br>
-                And Andres Power, a former policy director to former Mayor London Breed and co-founder of PR firm West Advisors, has found his way back to City Hall: He is at the table through Abundant SF, a moderate YIMBY-aligned advocacy group pushing for housing and transit policies and led by tech executive Zack Rosen and political strategist Todd David. <a href="#top">Back ↑</a>
+                Alongside the City Hall officials, several of San Francisco's most active political pressure groups have taken seats at the table, each bringing in their own power bases. All come from groups politically aligned with Lurie.
+            </div>
+            <div class="bio-portraits">
+                <div class="portrait-row">
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Sachin-Agarwal.png"
+                            alt="Sachin Agarwal"
+                            onclick="openModal('modal-sachin')"
+                        >
+                        <div class="portrait-name">Sachin Agarwal</div>
+                        <div class="portrait-title">GrowSF</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Larry-Baer.png"
+                            alt="Larry Baer"
+                            onclick="openModal('modal-larry')"
+                        >
+                        <div class="portrait-name">Larry Baer</div>
+                        <div class="portrait-title">Advance SF</div>
+                    </div>
+
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Meredith-Dodson.png"
+                            alt="Meredith Dodson"
+                            onclick="openModal('modal-meredith')"
+                        >
+                        <div class="portrait-name">Meredith Dodson</div>
+                        <div class="portrait-title">San Francisco Parent Coalition</div>
+                    </div>
+
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Andres-Power.png"
+                            alt="Andres Power"
+                            onclick="openModal('modal-andres')"
+                        >
+                        <div class="portrait-name">Andres Power</div>
+                        <div class="portrait-title">Abundant SF</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- labor info -->
-        <div class="bio-container" id="labor">
+        <div class="bio-container">
             <div class="bio-title">Labor</div>
             <div class="bio-long-info">
-                The only representative from the city's unions is Kim Tavalionge, who is the executive director of the San Francisco Labor Council. <br></br>
-                Two others in the group could be voices for labor, however, including Chen, the District 11 supervisor who was backed by labor last year during the election, and Josh Arce, who is a special assistant to Northern California District Council of Laborers. <a href="#top">Back ↑</a>
+                The only representative from the city's unions is Kim Tavalionge, who is the executive director of the San Francisco Labor Council. 
+            </div>
+            <div class="bio-portraits">
+                <div class="portrait-row">
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Kim-Tavalionge.png"
+                            alt="Kim Tavalionge"
+                            onclick="openModal('modal-kim')"
+                        >
+                        <div class="portrait-name">Kim Tavalionge</div>
+                        <div class="portrait-title">San Francisco Labor Council</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- philanthropy info -->
-        <div class="bio-container" id="philanthropy">
+        <div class="bio-container">
             <div class="bio-title">Philanthropy</div>
             <div class="bio-long-info">
-                Lurie, the heir to the Levi Strauss fortune and a philanthropist himself, has brought wealthy donors into City Hall, soliciting millions of dollars for initiatives from downtown revitalization to street cleaning to the city's homelessness and behavioral health crisis.<br></br>
-                Likewise, major philanthropic foundations are joining the discourse on charter reform.<br></br>
-                The Crankstart Foundation, which is represented by its CEO Missy Narula, is one of the four foundations at the table. Crankstart is a San Francisco-based family foundation co-founded by venture capitalist billionaire Michael Moritz, the co-founder and chairman of the San Francisco Standard, and his wife Harriet Heyman. <br></br>
-                The foundation has become a key philanthropic partner to the Lurie administration, contributing to emergency food assistance, homelessness, and immigration defense, among other things. It is the largest family foundation in San Francisco, with $3.8 billion in assets.<br></br>
-                Others are Fred Blackwell, the CEO of the San Francisco Foundation, who was also the executive director of the San Francisco Redevelopment Agency and the director of the mayor's office of community development under former Mayor Gavin Newsom.<br></br>
-                And Bob Fisher, the son of the founders of retail giant Gap Inc. and a co-founding trustee of the Pisces Foundation, which supports environmental and community causes. Fisher has spent his career in retail and serves on the board of Gap, where he has held leadership roles including chief operating officer and president of brand operations.
-                <br></br>
-                Susan Hirsch is a principal at Third Plateau, a social impact consulting firm. Hirsch, a Bay Area philanthropist, is connected to Third Plateau through the merger of her firm, Hirsch Philanthropy Partners, into the consulting group. <a href="#top">Back ↑</a>
+                Lurie, the heir to the Levi Strauss fortune and a philanthropist himself, has brought wealthy donors into City Hall, soliciting millions of dollars for initiatives from downtown revitalization to street cleaning to the city's homelessness and behavioral health crisis.<br></br> 
+                Major philanthropic foundations are joining the discourse on charter reform. 
+            </div>
+            <div class="bio-portraits">
+                <div class="portrait-row">
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Narula-Missy.png"
+                            alt="Missy Narula"
+                            onclick="openModal('modal-missy')"
+                        >
+                        <div class="portrait-name">Missy Narula</div>
+                        <div class="portrait-title">Crankstart Foundation</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Fred-Blackwell.png"
+                            alt="Fred Blackwell"
+                            onclick="openModal('modal-fred')"
+                        >
+                        <div class="portrait-name">Fred Blackwell</div>
+                        <div class="portrait-title">San Francisco Foundation</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Bob-Fisher.png"
+                            alt="Bob Fisher"
+                            onclick="openModal('modal-bob')"
+                        >
+                        <div class="portrait-name">Bob Fisher</div>
+                        <div class="portrait-title">Pisces Foundation</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Susan-Hirsch.png"
+                            alt="Susan Hirsch"
+                            onclick="openModal('modal-susan')"
+                        >
+                        <div class="portrait-name">Susan Hirsch</div>
+                        <div class="portrait-title">Third Plateau</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- business and real estate info -->
-        <div class="bio-container" id="business">
-            <div class="bio-title">Business and Real Estate</div>
+        <div class="bio-container">
+            <div class="bio-title">Business and real estate</div>
             <div class="bio-long-info">
-                Six people from the business and real estate sectors are also part of the group.<br></br>
-                Josh Arce, who is also the vice president of the San Francisco Public Utilities Commission, brings experience from the labor-management advocacy nonprofit focused on infrastructure investment in California. Arce is also a special assistant to Northern California District Council of Laborers and was the director of San Francisco's Office of Economic and Workforce Development for five years from 2018 to 2023. <br></br>
-                Katherine August-deWilde, president of Partnership for San Francisco, represents major employers focused on downtown revitalization. Rodney Fong, CEO of the Chamber of Commerce, and Tim Omi, president of the Council of District Merchants Associations, are also at the table. Anna Marie Presutti, the CEO of SF Travel, joins them.<br></br>
-                There is also Shola Olatoye, the inaugural CEO of the San Francisco Downtown Development Corporation, a nonprofit that channels private funds into public improvements for downtown revitalization. The group has raised over $60 million so far, including money from billionaires such as Gap's Fisher, who is also in this charter reform group, and Ripple's Chris Larsen. <a href="#top">Back ↑</a>
+                Six people from the business and real estate sectors are also part of the group. 
+            </div>
+            <div class="bio-portraits">
+                <div class="portrait-row">
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Katherine-August-deWilde.png"
+                            alt="Katherine August-deWilde"
+                            onclick="openModal('modal-katherine')"
+                        >
+                        <div class="portrait-name">Katherine August-deWilde</div>
+                        <div class="portrait-title">Partnership for San Francisco</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Rodney-Fong.png"
+                            alt="Rodney Fong"
+                            onclick="openModal('modal-rodney')"
+                        >
+                        <div class="portrait-name">Rodney Fong</div>
+                        <div class="portrait-title">San Francisco Chamber of Commerce</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Tim-Omi.png"
+                            alt="Tim Omi"
+                            onclick="openModal('modal-tim')"
+                        >
+                        <div class="portrait-name">Tim Omi</div>
+                        <div class="portrait-title">Council of District Merchants Associations</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Shola-Olatoye.png"
+                            alt="Shola Olatoye"
+                            onclick="openModal('modal-shola')"
+                        >
+                        <div class="portrait-name">Shola Olatoye</div>
+                        <div class="portrait-title">San Francisco Downtown Development Corporation</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Josh-Arce.png"
+                            alt="Josh Arce"
+                            onclick="openModal('modal-josh')"
+                        >
+                        <div class="portrait-name">Josh Arce</div>
+                        <div class="portrait-title">California Alliance For Jobs</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Anna-Marie-Presutti.png"
+                            alt="Anna Marie Presutti"
+                            onclick="openModal('modal-anna')"
+                        >
+                        <div class="portrait-name">Anna Marie Presutti</div>
+                        <div class="portrait-title">San Francisco Travel Association </div>
+                </div>
             </div>
         </div>
 
         <!-- urban think tanks info -->
-        <div class="bio-container" id="think-tank">
-            <div class="bio-title">Urban Think Tanks</div>
+        <div class="bio-container">
+            <div class="bio-title">Urban think tanks</div>
             <div class="bio-long-info">
-                Think tanks are also involved, particularly SPUR, which is represented by Ben Rosenfield, a senior advisor on governance and economy. Rosenfield is also one of the three co-authors of SPUR's November 2025 charter reform report. SPUR's governance proposals also served as the basis for Lurie's move towards using policy chiefs, a deputy-mayor-like system to streamline how city department heads report to the mayor.<br></br>
-                Rosenfield previously served as the mayor's budget director for five years under Mayor Willie Brown, and as the city controller for 16 years. He was known as the “adult in the room” and respected by politicos of all stripes during his tenure at City Hall.<br></br>
-                Natalie Sandoval is the other think tank representative; she is the executive director of the Urban Land Institute San Francisco. Sandoval is also the vice-chair of the Oakland planning commission. <a href="#top">Back ↑</a>
+                Think tanks are also involved, including SPUR and Urban Land Institute.  
+            </div>
+            <div class="bio-portraits">
+                <div class="portrait-row">
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Ben-Rosenfield.png"
+                            alt="Ben Rosenfield"
+                            onclick="openModal('modal-ben')"
+                        >
+                        <div class="portrait-name">Ben Rosenfield</div>
+                        <div class="portrait-title">SPUR</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Natalie-Sandoval.png"
+                            alt="Natalie Sandoval"
+                            onclick="openModal('modal-natalie')"
+                        >
+                        <div class="portrait-name">Natalie Sandoval</div>
+                        <div class="portrait-title">Urban Land Institute</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- universities and nonprofits info -->
-        <div class="bio-container" id="uni">
-            <div class="bio-title">Universities and Nonprofits</div>
+        <div class="bio-container">
+            <div class="bio-title">Universities and nonprofits</div>
             <div class="bio-long-info">
-                Five people are representing universities and community nonprofits.<br></br>
-                Dan Bernal is representing UCSF as its vice chancellor for community and government relations. Bernal previously served as chief of staff to Speaker Emerita Nancy Pelosi and was president of the San Francisco Health Commission.<br></br>
-                Lynn Mahoney, is representing San Francisco State University as its 14th president.<br></br>
-                Anni Chung, president and CEO of Self-Help for the Elderly, represents programs serving mostly immigrant seniors with health, social, educational, and housing services.<br></br>
-                Michael Pappas, executive director of the San Francisco Interfaith Council, connects diverse faith communities to support vulnerable populations.<br></br>
-                Shakirah Simley, executive director of the Booker T. Washington Community Service Center, brings the perspective of one of the city's oldest Black-led and Black-serving community organizations. <a href="#top">Back ↑</a>
+                Five people are representing universities and community nonprofits.  
+            </div>
+            <div class="bio-portraits">
+                <div class="portrait-row">
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Dan-Bernal.png"
+                            alt="Dan Bernal"
+                            onclick="openModal('modal-dan')"
+                        >
+                        <div class="portrait-name">Dan Bernal</div>
+                        <div class="portrait-title">UCSF</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Lynn-Mahoney.png"
+                            alt="Lynn Mahoney"
+                            onclick="openModal('modal-lynn')"
+                        >
+                        <div class="portrait-name">Lynn Mahoney</div>
+                        <div class="portrait-title">San Francisco State University</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Anni-Chung.png"
+                            alt="Anni Chung"
+                            onclick="openModal('modal-anni')"
+                        >
+                        <div class="portrait-name">Anni Chung</div>
+                        <div class="portrait-title">Self-Help for the Elderly</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Shakira-Simley.png"
+                            alt="Shakirah Simley"
+                            onclick="openModal('modal-shakirah')"
+                        >
+                        <div class="portrait-name">Shakirah Simley</div>
+                        <div class="portrait-title">Booker T. Washington Community Service Center</div>
+                    </div>
+                    <div class="portrait-container">
+                        <img 
+                            src="https://newspack-missionlocal.s3.amazonaws.com/mission/wp-content/uploads/2025/12/Michael-Pappas.png"
+                            alt="Michael Pappas"
+                            onclick="openModal('modal-michael')"
+                        >
+                        <div class="portrait-name">Michael Pappas</div>
+                        <div class="portrait-title">San Francisco Interfaith Council</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
       
+    <!-- city hall officials : modals -->
+    <div class="modal" id="modal-rafael">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-rafael')">x</span>
+            <div class="modal-name">Rafael Mandelman</div>
+            <div class="bio-long-info">
+                <b>Rafael Mandelman</b>, District 8 Supervisor and the Board president, is leading the charter reform effort with Lurie. Heis joined by two newly elected supervisors — District 5 Supervisor Bilal Mahmood from the moderate slate and District 11 Supervisor Chyanne Chen one from the progressives.
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-bilal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-bilal')">x</span>
+            <div class="modal-name">Bilal Mahmood</div>
+            <div class="bio-long-info">
+                <b>Bilal Mahmood</b> of <b>District 5</b> was backed by political pressure groups such as <a href="https://missionlocal.org/2024/02/explore-big-money-san-francisco-growsf-togethersf-neighbors-larsen-moritz-tan-web/">GrowSF</a> during the November 2024 election. GrowSF also secured a seat at the table.
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-chyanne">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-chyanne')">x</span>
+            <div class="modal-name">Chyanne Chen</div>
+            <div class="bio-long-info">
+                <b>Chyanne Chen</b> of <b>District 11</b> was largely supported by organized labor. Unions only managed to get one representative at the table.
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-alicia">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-alicia')">x</span>
+            <div class="modal-name">Alicia John-Baptiste</div>
+            <div class="bio-long-info">
+                <b>Alicia John-Baptiste</b>, who is <b>Lurie's policy chief</b> on infrastructure, climate and mobility, is representing the mayor's office in the group. Charter reform is now one of Lurie's key priorities, according to the mayor's office, and John-Baptiste is well-positioned to take the reins: She is the former CEO of SPUR, an urban think tank that recently published a report listing out <a href="https://missionlocal.org/2025/11/spur-sf-charter-reform/">10 charter reform recommendations</a> like increasing the power of the City Administrator and raising the threshold for issues to end up on the ballot for voters. 
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-carmen">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-carmen')">x</span>
+            <div class="modal-name">Carmen Chu</div>
+            <div class="bio-long-info">
+                Senior city officials are also part of leading the conversation, including <b>City Administrator Carmen Chu</b>, who oversees more than 25 departments and an annual budget of over $750 million. One of the key recommendations from SPUR is to enhance the power of Chu's position and department. 
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-greg">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-greg')">x</span>
+            <div class="modal-name">Greg Wagner</div>
+            <div class="bio-long-info">
+                <b>City Controller Greg Wagner</b>, who acts as the city's auditor and chief financial officer, is also involved. 
+
+            </div>
+        </div>
+    </div>
+
+    <!-- political pressure groups : modals -->
+    <div class="modal" id="modal-sachin">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-sachin')">x</span>
+            <div class="modal-name">Sachin Agarwal</div>
+            <div class="bio-long-info">
+                <b>Sachin Agarwal</b> leads the tech-backed group <b>GrowSF</b>, which funded a slew of supervisor candidates from the moderate camp, including current board members Mahmood (District 5) and Danny Sauter (District 3). <br></br>
+                GrowSF influence is growing in the Lurie years: Tyler Law, Lurie's former campaign consultant, is now serving as the group's senior advisor, as is Lurie spokesperson Max Szabo. GrowSF has aligned itself with Lurie's agenda, including the upzoning proposal and the effort to reform permitting in San Francisco.  
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-larry">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-larry')">x</span>
+            <div class="modal-name">Larry Baer</div>
+            <div class="bio-long-info">
+                From the business sector, <b>Larry Baer</b>, the president and CEO of the San Francisco Giants, joins the group as the co-chair of <b>Advance SF</b>, a business coalition advocating for downtown revitalization. The group's members include major employers like OpenAI, Google, PG&E, Visa, Gap and Waymo. 
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-meredith">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-meredith')">x</span>
+            <div class="modal-name">Meredith</div>
+            <div class="bio-long-info">
+                <b>Meredith Dodson</b>, head of both the <b>San Francisco Parent Coalition</b> and its political affiliate SF Parent Action, is also at the table. Dodson and her group backed the 2022 school board recall. 
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-andres">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-andres')">x</span>
+            <div class="modal-name">Andres Power</div>
+            <div class="bio-long-info">
+                <b>Andres Power</b>, a former policy director to former Mayor London Breed and co-founder of PR firm West Advisors, has found his way back to City Hall: He is at the table through <b>Abundant SF</b>, <a href="https://sfstandard.com/2023/03/20/tech-families-abundant-sf-millions-housing-transportation-education/">a YIMBY-aligned advocacy group</a> pushing for housing and transit policies and led by tech executive Zack Rosen and political strategist Todd David.  
+            </div>
+        </div>
+    </div>
+
+    <!-- labor : modals -->
+    <div class="modal" id="modal-kim">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-kim')">x</span>
+            <div class="modal-name">Kim Tavalionge</div>
+            <div class="bio-long-info">
+                The only representative from the city's unions is <b>Kim Tavalionge</b>, who is the executive director of the San Francisco Labor Council.<br></br>
+                Two others in the group could be voices for labor, however, including <b>Chyanne Chen</b>, the District 11 supervisor who was backed by labor last year during the election, and <b>Josh Arce</b>, who is a special assistant to Northern California District Council of Laborers. 
+            </div>
+        </div>
+    </div>
+
+    <!-- philanthropy : modals -->
+    <div class="modal" id="modal-missy">    
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-missy')">x</span>
+            <div class="modal-name">Missy Narula</div>
+            <div class="bio-long-info">
+                The <b>Crankstart Foundation</b>, which is represented by its CEO <b>Missy Narula</b>, is one of the four foundations at the table. Crankstart is a San Francisco-based family foundation co-founded by venture capitalist billionaire <a href="https://missionlocal.org/2024/10/michael-moritz-san-francisco-togethersf-sf-elections-crankstart/">Michael Moritz</a>, the co-founder and chairman of the San Francisco Standard, and his wife Harriet Heyman.<br></br>
+                The foundation has become a key philanthropic partner to the Lurie administration, contributing to emergency food assistance, homelessness, and <a href="https://missionlocal.org/2025/06/foundation-of-michael-moritz-vc-billionaire-gives-3-4m-to-s-f-immigrant-defense/">immigration defense</a>, among other things. It is the largest family foundation in San Francisco, with <a href="https://missionlocal.org/2024/10/michael-moritz-san-francisco-togethersf-sf-elections-crankstart/">$3.8 billion</a> in assets. 
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-fred">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-fred')">x</span>
+            <div class="modal-name">Fred Blackwell</div>
+            <div class="bio-long-info">
+                <b>Fred Blackwell</b>, the CEO of the <b>San Francisco Foundation</b>, was also the executive director of the San Francisco Redevelopment Agency and the director of the mayor's office of community development under former Mayor Gavin Newsom.
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-bob">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-bob')">x</span>
+            <div class="modal-name">Bob Fisher</div>
+            <div class="bio-long-info">
+                <b>Bob Fisher</b>,the son of the founders of retail giant Gap Inc. and a co-founding trustee of the <b>Pisces Foundation</b>, which supports environmental and community causes. Fisher has spent his career in retail and serves on the board of Gap, where he has held leadership roles including chief operating officer and president of brand operations.
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-susan">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-susan')">x</span>
+            <div class="modal-name">Susan Hirsch</div>
+            <div class="bio-long-info">
+                <b>Susan Hirsch</b> is a principal at <b>Third Plateau</b>, a social impact consulting firm. Hirsch, a Bay Area philanthropist, is connected to Third Plateau through the merger of her firm, Hirsch Philanthropy Partners, into the consulting group.
+            </div>
+        </div>
+    </div>
+    
+    <!-- business and real estate : modals -->
+    <div class="modal" id="modal-katherine">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-katherine')">x</span>
+            <div class="modal-name">Katherine August-deWilde</div> 
+            <div class="bio-long-info">
+                <b>Katherine August-deWilde</b>, president of <b>Partnership for San Francisco</b>, represents major employers focused on downtown revitalization.
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-rodney">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-rodney')">x</span>
+            <div class="modal-name">Rodney Fong</div>
+            <div class="bio-long-info">
+                <b>Rodney Fong</b> is the president and CEO of the <b>San Francisco Chamber of Commerce</b>.
+            </div>
+        </div>  
+    </div>
+    <div class="modal" id="modal-tim">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-tim')">x</span>
+            <div class="modal-name">Tim Omi</div>
+            <div class="bio-long-info">
+                <b>Tim Omi</b> is president of the <b>Council of District Merchants Associations</b>.
+            </div>
+        </div>  
+    </div>
+    <div class="modal" id="modal-shola">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-shola')">x</span>
+            <div class="modal-name">Shola Olatoye</div>
+            <div class="bio-long-info">
+                <b>Shola Olatoye</b>, the inaugural CEO of the <b>San Francisco Downtown Development Corporation</b>, a nonprofit that channels private funds into public improvements for downtown revitalization. The group has raised over $60 million so far, including money from billionaires such as Gap's Fisher, who is also in this charter reform group, and Ripple's Chris Larsen.
+            </div>
+        </div>  
+    </div>
+    <div class="modal" id="modal-josh">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-josh')">x</span>
+            <div class="modal-name">Josh Arce</div>
+            <div class="bio-long-info">
+                <b>Josh Arce</b> is an advisor on <b>California Alliance for Jobs</b>. Arce is also the vice president of the San Francisco Public Utilities Commission, brings experience from the labor-management advocacy nonprofit focused on infrastructure investment in California. Arce is also a special assistant to Northern California District Council of Laborers and was the director of San Francisco's Office of Economic and Workforce Development for five years from 2018 to 2023. 
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-anna">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-anna')">x</span>
+            <div class="modal-name">Anna Marie Presutti</div>
+            <div class="bio-long-info">
+                <b>Anna Marie Presutti</b> is the CEO of <b>SF Travel</b>.
+            </div>
+        </div>
+    </div>
+
+    <!-- urban think tanks : modals -->
+    <div class="modal" id="modal-ben">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-ben')">x</span>
+            <div class="modal-name">Ben Rosenfield</div>
+            <div class="bio-long-info">
+                <b>SPUR</b>, which is represented by <b>Ben Rosenfield</b>, a senior advisor on governance and economy. Rosenfield is also one of the three co-authors of SPUR's November 2025 charter reform report. SPUR's governance proposals also served as the basis for Lurie's <a href="https://missionlocal.org/2024/12/sf-mayor-daniel-lurie-changing-mayors-office-deputy-mayors-policy-chiefs/">move towards using policy chiefs</a>, a deputy-mayor-like system to streamline how city department heads report to the mayor.<br></br>
+                Rosenfield previously served as the mayor's budget director for five years under Mayor Willie Brown, and as the city controller for 16 years. He was <a href="https://missionlocal.org/2023/11/ben-rosenfield-san-franciscos-adult-in-the-room-bids-adieu/">known as the “adult in the room”</a> and respected by politicos of all stripes during his tenure at City Hall.
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-natalie">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-natalie')">x</span>
+            <div class="modal-name">Natalie Sandoval</div>
+            <div class="bio-long-info">
+                <b>Natalie Sandoval</b> is the other think tank representative; she is the executive director of the <b>Urban Land Institute San Francisco</b>. Sandoval is also the vice-chair of the Oakland planning commission.
+            </div>
+        </div>
+    </div>
+
+    <!-- universities and nonprofits : modals -->
+    <div class="modal" id="modal-dan">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-dan')">x</span>
+            <div class="modal-name">Dan Bernal</div>
+            <div class="bio-long-info">
+                <b>Dan Bernal</b> is representing <b>UCSF</b> as its vice chancellor for community and government relations. Bernal previously served as chief of staff to Speaker Emerita Nancy Pelosi and was president of the San Francisco Health Commission.
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-lynn">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-lynn')">x</span>
+            <div class="modal-name">Lynn Mahoney</div>
+            <div class="bio-long-info">
+                <b>Lynn Mahoney</b> is representing <b>San Francisco State University</b> as its 14th president.  
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-anni">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-anni')">x</span>
+            <div class="modal-name">Anni Chung</div>
+            <div class="bio-long-info">
+                <b>Anni Chung</b>, president and CEO of <b>Self-Help for the Elderly</b>, represents programs serving mostly immigrant seniors with health, social, educational, and housing services. 
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-shakirah">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-shakirah')">x</span>
+            <div class="modal-name">Shakirah Simley</div>
+            <div class="bio-long-info">
+                <b>Shakirah Simley</b>, executive director of the <b>Booker T. Washington Community Service Center</b>, brings the perspective of one of the city's oldest Black-led and Black-serving community organizations.
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-michael">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal-michael')">x</span>
+            <div class="modal-name">Michael Pappas</div>
+            <div class="bio-long-info">
+               <b>Michael Pappas</b>, executive director of the <b>San Francisco Interfaith Council</b>, connects diverse faith communities to support vulnerable populations.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    </script>
+
 </body>
