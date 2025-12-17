@@ -878,6 +878,12 @@
 
     <script>
         function openModal(id) {
+            // close any open modals first
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+
+            // open the requested modal
             document.getElementById(id).style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
