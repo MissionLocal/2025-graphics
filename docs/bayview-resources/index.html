@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Bayview resources</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="cont">
+    <div class="map-wrapper">
+      <!-- <h1 class="map-header">Resources in Bayview</h1> -->
+      <p class="filter-label"><em>Click to filter by category</em></p>
+
+      <div id="filters">
+        <button data-category="School">School</button>
+        <button data-category="Health care">Health care</button>
+        <button data-category="Library">Library</button>
+        <button data-category="Services">Services</button>
+        <button data-category="Police station">Police Station</button>
+      </div>
+
+      <div id="clear-filters" style="display:none;">× remove filters</div>
+      <div id="map"></div>
+      <p class="credit">Source: Data compiled by Marina Newman. Map by Xueer Lu.</p>
+    </div>
+    <div id="custom-popup">
+      <span class="close-btn">&times;</span>
+      <div id="popup-content"></div>
+    </div>
+  </div>
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWxub3ciLCJhIjoiY21kNmw1aTAyMDFkbTJqb3Z2dTN0YzRjMyJ9.4abRTnHdhMI-RE48dHNtYw';
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mlnow/cm38404cu007c01r883k16tl6',
+      center: [-122.391414, 37.733434],
+      zoom: 12,
+      maxBounds: [
+        [-122.4261, 37.7096],
+        [-122.3495, 37.7571]
+      ]
+    });
+
+    map.on('load', () => {
+      map.addSource('locations', {
+        type: 'geojson',
+        data: 'bayview-resources.geojson'
+      });
+
+      map.addLayer({
+        id: 'resources',
+        type: 'circle',
+        source: 'locations',
+
+        paint: {
+          'circle-radius': 9,
+          'circle-opacity': 0.9,
+          'circle-color': [
+            'match',
+            ['get', 'Category'],
+
+            'School', '#46c134', // green
+            'Health care', '#57a4ea', // blue
+            'Library', '#f67cf6', // pink
+            'Services', '#efbe25', // yellow
+            'Police station', '#f36e57', // red
+
+            '#cccccc' // fallback color
+          ]
+        }
+      });
+
+      const activeCategories = new Set();
+
+      const buttons = document.querySelectorAll('#filters button');
+      const clearBtn = document.getElementById('clear-filters');
+
+      function updateFilter() {
+        if (activeCategories.size === 0) {
+          map.setFilter('resources', null);
+          clearBtn.style.display = 'none';
+          return;
+        }
+
+        map.setFilter('resources', [
+          'in',
+          ['get', 'Category'],
+          ['literal', Array.from(activeCategories)]
+        ]);
+
+        clearBtn.style.display = 'block';
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cat = btn.dataset.category;
+
+          if (activeCategories.has(cat)) {
+            activeCategories.delete(cat);
+            btn.classList.remove('active');
+          } else {
+            activeCategories.add(cat);
+            btn.classList.add('active');
+          }
+
+          updateFilter();
+        });
+      });
+
+      clearBtn.addEventListener('click', () => {
+        activeCategories.clear();
+        buttons.forEach(b => b.classList.remove('active'));
+        map.setFilter('resources', null);
+        clearBtn.style.display = 'none';
+      });
+
+      map.on('click', 'resources', (e) => {
+        const p = e.features[0].properties;
+        let content = `<h2>${p['Item'] || ''}</h2>`;
+        content += `<p>${p['Address'] || ''}</p>`;
+
+        const hasDetails = p['Type'] || p['Phone'] || p['About'];
+        if (hasDetails) content += `<hr>`;
+        if (p['Type']) content += `<p><strong>Type:</strong> ${p['Type']}</p>`;
+        if (p['Phone']) content += `<p><strong>Phone:</strong> ${p['Phone']}</p>`;
+        if (p['About']) content += `<p><strong>About:</strong> ${p['About']}</p>`;
+
+        const popupEl = document.getElementById('custom-popup');
+        const mapEl = document.getElementById('map');
+
+        document.getElementById('popup-content').innerHTML = content;
+
+        const mapHeight = mapEl.offsetHeight;
+        popupEl.style.maxHeight = (mapHeight - 60) + 'px';
+        popupEl.scrollTop = 0;
+        popupEl.style.display = 'block';
+        sendHeight();
+      });
+
+      map.on('mouseenter', 'resources', () => {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+
+      map.on('mouseleave', 'resources', () => {
+        map.getCanvas().style.cursor = '';
+      });
+    });
+
+    document.querySelector('#custom-popup .close-btn').addEventListener('click', () => {
+      document.getElementById('custom-popup').style.display = 'none';
+      sendHeight();
+    });
+
+    window.addEventListener('resize', () => {
+      const popupEl = document.getElementById('custom-popup');
+      const mapEl = document.getElementById('map');
+      if (popupEl.style.display === 'block') {
+        popupEl.style.maxHeight = (mapEl.offsetHeight - 40) + 'px';
+      }
+      sendHeight();
+    });
+  </script>
+
+  <!-- Pym integration -->
+  <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+  <script>
+    const pymChild = new pym.Child();
+
+    function sendHeight() {
+      pymChild.sendHeight();
+    }
+
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+  </script>
+
+</body>
+
+</html>
