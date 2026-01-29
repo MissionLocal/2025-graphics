@@ -41,15 +41,43 @@
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mlnow/cmis0bnr0000401sr9iyb6i1a',
-      center: [-122.391414, 37.733434],
-      zoom: 12,
+      center: [-122.3854085, 37.7318363],
+      zoom: 11.6,
       maxBounds: [
-        [-122.4261, 37.7096],
-        [-122.3495, 37.7571]
+        [-122.432, 37.695],   // southwest
+        [-122.340, 37.765]    // northeast
       ]
     });
 
     map.on('load', () => {
+
+      map.addSource('bayview', {
+        type: 'geojson',
+        data: 'neighborhoods.geojson'
+      });
+
+      map.addLayer({
+        id: 'bayview-fill',
+        type: 'fill',
+        source: 'bayview',
+        filter: ['==', ['get', 'nhood'], 'Bayview Hunters Point'],
+        paint: {
+          'fill-color': '#efbe25',
+          'fill-opacity': 0.12
+        }
+      });
+
+      map.addLayer({
+        id: 'bayview-outline',
+        type: 'line',
+        source: 'bayview',
+        filter: ['==', ['get', 'nhood'], 'Bayview Hunters Point'],
+        paint: {
+          'line-color': '#efbe25',
+          'line-width': 1.5
+        }
+      });
+
       map.addSource('locations', {
         type: 'geojson',
         data: 'bayview-resources.geojson'
