@@ -101,6 +101,7 @@ body {
 }
 
 #filters button {
+    color: #000;
     border: none;
     padding: 6px 12px;
     border-radius: 20px;
