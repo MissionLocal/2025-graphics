@@ -1,0 +1,115 @@
+name,size,description,change,department_code
+flare,,,,
+flare.Culture & Recreation.Academy of Sciences,7658802.0,A science museum — and scientific and educational institution — located in San Francisco's Golden Gate Park.,2.658232005023802,SCI
+flare.Public Protection.Adult Probation,61597678.0,Aims to rehabilitate adult offenders to promote community safety and reduce recidivism.,5.989561699434621,ADP
+"flare.Public Works, Transportation & Commerce.Airport Commission",2003762534.0,SFO is the Bay Area’s largest airport by passenger volume. The Commission sets its policies.,53.49449560882859,AIR
+flare.Culture & Recreation.Arts Commission,29911303.0,"The Commission champions the arts, invests in local artists, enlivens the urban environment, and shapes innovative cultural policy.",-30.01885875674174,ART
+flare.Culture & Recreation.Asian Art Museum,11814506.0,"The museum celebrates, preserves, and promotes Asian and Asian American art and cultures.",3.5259712526631777,AAM
+flare.Administration & Finance.Assessor - Recorder,39711689.0,"Aims to identify and assess all taxable property in the city, collect transfer tax, and record and provide access to records.",6.815335490654917,ASR
+"flare.Public Works, Transportation & Commerce.Board of Appeals",1198622.0,Provides a final administrative review process for appeals on a range of City determinations.,4.86292219761915,BOA
+flare.Administration & Finance.Board of Supervisors,23611933.0,"The legislative branch of San Francisco’s government. It adopts legislation, establishes policies, and assists constituents.",0.022569954468251576,BOS
+"flare.Public Works, Transportation & Commerce.Building Inspection",88340956.0,Oversees the enforcement of various building codes and Disability Access Regulations.,2.5984775033844705,DBI
+"flare.Welfare & Neighborhood Development.Children, Youth & Families",349435136.0,Aims to improve the city for children by investing in youth and their families.,2.123047119778006,CHF
+flare.Welfare & Neighborhood Development.Child Support Services,13291458.0,Aims to ensure the financial support and well-being of children through child support orders and non-cash alternatives.,-2.7444567128598116,CSS
+flare.Administration & Finance.City Attorney,117716023.0,"Provides legal services to the Mayor’s Office, the Board of Supervisors, elected City officials, and all the city’s departments, boards, and commissions.",8.25500336731152,CAT
+flare.Administration & Finance.City Planning,55060285.0,"Aims to guide and regulate land use, urban design, and development to make San Francisco the world’s most livable urban place.",-6.197075346936993,CPC
+flare.Administration & Finance.Civil Service Commission,1524657.0,Aims to make sure the city employs the best-qualified candidates for public service in a timely and efficient manner.,0.8631861810825419,CSC
+flare.Administration & Finance.Controller,88797154.0,"Aims to ensure the City’s financial integrity through audits and oversight, promoting effective and accountable government.",5.733588802444543,CON
+flare.Public Protection.Police Accountability,10037592.0,"Aims to hold the police accountable to civilian oversight through investigations, policy recommendations, and performance audits.",0.6743893621419422,DPA
+flare.Welfare & Neighborhood Development.Early Childhood,336660759.0,"Helps parents and guardians with child care, parenting support, and child development.",-2.5538010435837433,DEC
+flare.Public Protection.District Attorney,93586565.0,"Aims to prosecute suspects, support victims of crime, and develop alternatives to incarceration.",4.495893430866116,DAT
+"flare.Public Works, Transportation & Commerce.Economic & Workforce Development",140623065.0,"Aims to support sustainable jobs and businesses using grants, work training, and more.",-11.04422029409195,ECN
+flare.Administration & Finance.Elections,25672135.0,"Aims to provide equitable access to election services and voting, and to conduct free and fair elections.",11.895532697213422,REG
+flare.Public Protection.Emergency Management,140623335.0,"Leads in planning, preparedness, communication, response, and recovery for daily emergencies, citywide events, and major disasters.",1.3324906501700726,DEM
+flare.Welfare & Neighborhood Development.Environment,45708789.0,"Provides support for urban agriculture, forestry, green buildings, and other environmental projects.",41.43473638184269,ENV
+flare.Administration & Finance.Ethics Commission,14285132.0,"Investigates and punishes wrongdoing in the city, and collects and reports electoral data.",89.51146955002686,ETH
+flare.Culture & Recreation.Fine Arts Museum,23789575.0,Aims to connect visitors with art to stimulate creativity and share knowledge and ideas.,2.332367962109764,FAM
+flare.Public Protection.Fire Department,530775857.0,"Aims to protect lives and property from fires, natural disasters, accidents, hazardous materials incidents, and other causes.",3.812236968718008,FIR
+flare.General City Responsibilities.General City Responsibility,1656487698.0,"General City Responsibility Expenditures not directly attributable to one City department, such as reserve deposits and debt service.",-9.495101471084103,GEN
+flare.Administration & Finance.General Services Agency - City Administrator,616895884.0,"A broad array of departments, divisions, programs, and offices reporting to the Office of the City Administrator.",3.413848701371637,ADM
+flare.Administration & Finance.General Services Agency - Technology,168555616.0,"A broad array of departments, divisions, programs, and offices with the aim of improving city tech.",1.3482767966783742,DT
+flare.Administration & Finance.Health Service System,12682101.0,"Aims to preserve and improve health benefits and to enhance the well-being of employees, retirees, and their families.",-8.512292742172496,HSS
+flare.Welfare & Neighborhood Development.Homelessness Services,846323741.0,"Aims to make homelessness rare, brief, and one-time through services like housing and mental health support.",18.650293518193763,HOM
+flare.Administration & Finance.Human Resources,156672431.0,"Aims to use equitable practices to hire, develop, support, and retain a highly-qualified workforce.",3.921849037041737,HRD
+flare.Welfare & Neighborhood Development.Human Rights Commission,44751345.0,"Advocates for human and civil rights, and uses anti-discrimination laws to further racial solidarity and equity.",107.91943895868525,HRC
+flare.Welfare & Neighborhood Development.Human Services Agency,1231253530.0,"Delivers services to support communities including food distribution, children's programs, and a disability community center.",3.37558862458133,HSA
+flare.Public Protection.Juvenile Probation,46628943.0,"Aims to rehabilitate young offenders by providing supervision, support, and resources.",-4.776271546899097,JUV
+flare.Culture & Recreation.Law Library,1286319.0,Provides free legal information resources and services to help residents understand the law and protect their legal rights.,-28.333184760928432,LLB
+flare.Administration & Finance.Mayor,207543923.0,The executive branch of San Francisco's government. Has a broad remit for enacting programs and setting policy direction.,3.232082484306871,MYR
+"flare.Public Works, Transportation & Commerce.Municipal Transportation Agency",1521768064.0,"Aims to make transit and other sustainable modes of travel safe, affordable, and attractive.",3.3276129840493303,MTA
+flare.Public Protection.Police,822835972.0,"Aims to prevent and investigate crimes, ensure public safety, and maintain respect for all.",6.18448015686267,POL
+"flare.Public Works, Transportation & Commerce.Port",156486598.0,"Aims to advance sustainable maritime, recreational, and economic opportunities via the port.",4.237342417941666,PRT
+flare.Public Protection.Public Defender,56698180.0,Offers free legal representation and advocates for systemic changes to benefit the disenfranchised and disempowered.,7.770525198973679,PDR
+flare.Health.Public Health,3231869228.0,"Aims to protect and promote health through hospital funding, housing programs, mental health investment, and more.",1.3095931394394937,DPH
+flare.Culture & Recreation.Public Library,187512289.0,Provides free and equal access to books and digital services throughout the city.,-6.363224597650668,LIB
+"flare.Public Works, Transportation & Commerce.Public Utilities Commission",2024002957.0,"Provides reliable water, power, and wastewater services to the city.",13.16778462771574,PUC
+"flare.Public Works, Transportation & Commerce.Public Works",452952912.0,"Builds and maintains city infrastructure, such as streets and sidewalks.",-0.06095503409976839,DPW
+flare.Culture & Recreation.Recreation & Park Commission,254873111.0,"Provides the city's parks, playgrounds, and open spaces, as well as enriching recreational activities.",-3.1270493365669276,REC
+flare.Welfare & Neighborhood Development.Rent Arbitration Board,13812353.0,"Aims to protect tenants from excessive rent increases and unjust evictions, while assuring landlords fair rents.",-22.075152453653192,RNT
+flare.Administration & Finance.Retirement System,54824818.0,Works to secure and prudently invest the city's pension trust accounts and provide promised benefits.,6.519035165348304,RET
+flare.Public Protection.Sheriff Department Office Inspector General,1303559.0,Provides independent civilian oversight of the Sheriff's Office.,-25.796196110040942,SDA
+flare.Public Protection.Sheriff,323076630.0,"Operates jails and alternative sentencing programs, guards courthouses, and executes warrants.",11.017326202758719,SHF
+flare.Welfare & Neighborhood Development.Status of Women,11909801.0,"Aims to make the city fully gender equitable through policies, programs, and legislation.",-14.726200658688457,WOM
+flare.Public Protection.Superior Court,32956944.0,"Aims to assure equal access, fair treatment, and the just and efficient resolution of disputes for all people asserting their rights under the law in the city.",0.5338304525198383,CRT
+flare.Administration & Finance.Treasurer-Tax Collector,49013115.0,"The banker, tax collector, collection agent, and investment officer for the city.",-3.0542497754031768,TTX
+flare.Culture & Recreation.War Memorial,30516780.0,"The War Memorial and Performing Arts Center operates venues for culture, education, and entertainment.",-18.93626785964411,WAR
+flare.Welfare & Neighborhood Development,,,,
+flare.Welfare & Neighborhood Development.Child Support Services,,,,
+flare.Welfare & Neighborhood Development.Dept of Early Childhood,,,,
+flare.Welfare & Neighborhood Development.Environment,,,,
+"flare.Welfare & Neighborhood Development.Children, Youth & Families",,,,
+flare.Welfare & Neighborhood Development.Human Rights Commission,,,,
+flare.Welfare & Neighborhood Development.Human Services Agency,,,,
+flare.Welfare & Neighborhood Development.Homelessness Services,,,,
+flare.Welfare & Neighborhood Development.Status of Women,,,,
+flare.Welfare & Neighborhood Development.Rent Arbitration Board,,,,
+flare.Administration & Finance,,,,
+flare.Administration & Finance.Controller,,,,
+flare.Administration & Finance.Elections,,,,
+flare.Administration & Finance.City Planning,,,,
+flare.Administration & Finance.Mayor,,,,
+flare.Administration & Finance.Human Resources,,,,
+flare.Administration & Finance.Retirement System,,,,
+flare.Administration & Finance.City Attorney,,,,
+flare.Administration & Finance.Health Service System,,,,
+flare.Administration & Finance.GSA - City Administrator,,,,
+flare.Administration & Finance.Civil Service Commission,,,,
+flare.Administration & Finance.Ethics Commission,,,,
+flare.Administration & Finance.Board of Supervisors,,,,
+flare.Administration & Finance.GSA - Technology,,,,
+flare.Administration & Finance.Assessor - Recorder,,,,
+flare.Administration & Finance.Treasurer-Tax Collector,,,,
+flare.Health,,,,
+flare.Health.Public Health,,,,
+flare.Culture & Recreation,,,,
+flare.Culture & Recreation.Arts Commission,,,,
+flare.Culture & Recreation.War Memorial,,,,
+flare.Culture & Recreation.Academy of Sciences,,,,
+flare.Culture & Recreation.Fine Arts Museum,,,,
+flare.Culture & Recreation.Public Library,,,,
+flare.Culture & Recreation.Asian Art Museum,,,,
+flare.Culture & Recreation.Law Library,,,,
+flare.General City Responsibilities,,,,
+flare.General City Responsibilities.General City - Unallocated,,,,
+"flare.Public Works, Transportation & Commerce",,,,
+"flare.Public Works, Transportation & Commerce.Building Inspection",,,,
+"flare.Public Works, Transportation & Commerce.Port",,,,
+"flare.Public Works, Transportation & Commerce.Municipal Transportation Agency",,,,
+"flare.Public Works, Transportation & Commerce.Public Works",,,,
+"flare.Public Works, Transportation & Commerce.Board of Appeals",,,,
+"flare.Public Works, Transportation & Commerce.Airport Commission",,,,
+"flare.Public Works, Transportation & Commerce.Economic & Workforce Development",,,,
+"flare.Public Works, Transportation & Commerce.Recreation & Park Commission",,,,
+"flare.Public Works, Transportation & Commerce.Public Utilities Commission",,,,
+flare.Public Protection,,,,
+flare.Public Protection.Sheriff Department Office Inspector General,,,,
+flare.Public Protection.Superior Court,,,,
+flare.Public Protection.Police,,,,
+flare.Public Protection.Police Accountability,,,,
+flare.Public Protection.Public Defender,,,,
+flare.Public Protection.Juvenile Probation,,,,
+flare.Public Protection.Sheriff,,,,
+flare.Public Protection.Fire Department,,,,
+flare.Public Protection.Adult Probation,,,,
+flare.Public Protection.District Attorney,,,,
+flare.Public Protection.Emergency Management,,,,
