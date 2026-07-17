@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   try { if (window.pym) pymChild = new pym.Child(); } catch {}
 
   // PUBLIC token (pk.*) locked to your domains
-  mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21scG5hY2V5MHdwODNkcHRxb2Nhc2N5NyJ9.Ccmhr38K26uGXhVqe1yepA";
+  mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21scHVqYzdzMHFxdzNlcTZ3bWRibHJrayJ9._71fI5BCOxVoShuCjUjNjQ";
 
   // Tileset + source-layer
   const TILESET_URL = "mapbox://mlnow.01iokrpa";
